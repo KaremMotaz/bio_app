@@ -1,0 +1,65 @@
+import 'package:flutter/material.dart';
+import 'package:bio_app/core/theming/app_colors.dart';
+import 'package:bio_app/core/theming/assets_data.dart';
+import 'package:bio_app/core/theming/text_styles.dart';
+import 'package:bio_app/features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
+import 'package:bio_app/features/quiz/presentation/views/widgets/custom_button.dart';
+import 'package:bio_app/features/quiz/presentation/views/widgets/result_data_frame.dart';
+
+class QuizResultView extends StatelessWidget {
+  const QuizResultView({super.key, required this.finishedState});
+  final QuizFinishedState finishedState;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(height: 10),
+          Text(
+            "لقد\n اكملت \nالدرس!",
+            textAlign: TextAlign.center,
+            style: TextStyles.extraBold30.copyWith(color: Colors.amber),
+          ),
+          Image.asset(AssetsData.finishLesson, height: 280),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ResultDataFrame(
+                color: Colors.amberAccent,
+                data: '${finishedState.result.finalScore}',
+                icon: AssetsData.expIcon,
+                title: 'إجمالي النقاط',
+              ),
+              ResultDataFrame(
+                color: AppColors.buttonBlue,
+                data: finishedState.result.formattedDuration,
+                icon: AssetsData.timerIcon,
+                title: 'الوقت',
+              ),
+              ResultDataFrame(
+                color: AppColors.mainGreen,
+                data: '${finishedState.result.accuracy}%',
+                icon: AssetsData.targetIcon,
+                title: 'الدقة',
+              ),
+            ],
+          ),
+          CustomButton(
+            text: "المتابعة",
+            color: AppColors.buttonBlue,
+            shadowColor: AppColors.darkerBlue,
+            isEnabled: true,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
