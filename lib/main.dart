@@ -1,14 +1,21 @@
+import 'package:bio_app/core/services/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:bio_app/core/routing/app_router.dart';
 
-void main() {
-  runApp(const MainApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
+  
+  // Check if the user has seen the onboarding screen
+  final bool hasSeenOnboarding = CacheHelper.getBool(key: 'hasSeenOnboarding');
+
+  runApp(MainApp(hasSeenOnboarding: hasSeenOnboarding));
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
+  const MainApp({super.key, required this.hasSeenOnboarding});
+  final bool hasSeenOnboarding;
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
@@ -21,7 +28,7 @@ class MainApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      routerConfig: AppRouter.router,
+      routerConfig: AppRouter.createRouter(hasSeenOnboarding),
     );
   }
 }

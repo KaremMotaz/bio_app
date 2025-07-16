@@ -15,47 +15,52 @@ import 'package:bio_app/features/quiz/presentation/manager/quiz_cubit/quiz_cubit
 import 'package:bio_app/features/quiz/presentation/views/quiz_view.dart';
 
 abstract class AppRouter {
-  static final router = GoRouter(
-    routes: [
-      GoRoute(
-        path: Routes.onBoardingView,
-        builder: (context, state) => const OnboardingView(),
-      ),
-      GoRoute(
-        path: Routes.signInView,
-        builder: (context, state) => const LoginView(),
-      ),
-      GoRoute(
-        path: Routes.signUpView,
-        builder: (context, state) => const SignupView(),
-      ),
-      GoRoute(
-        path: Routes.forgotPasswordView,
-        builder: (context, state) => const ResetPasswordView(),
-      ),
-      GoRoute(
-        path: Routes.oTPVerificationView,
-        builder: (context, state) => const OtpVerificationView(),
-      ),
-      GoRoute(
-        path: Routes.mainView,
-        builder: (context, state) => const MainView(),
-      ),
-      GoRoute(
-        path: Routes.profileView,
-        builder: (context, state) => const ProfileView(),
-      ),
-      GoRoute(
-        path: Routes.quizView,
-        builder: (context, state) => BlocProvider(
-          create: (context) => QuizCubit(
-            QuizTimer(),
-            AnswerEvaluator(),
-            questionsRepo: QuestionsRepoImp(),
-          )..loadQuestions(),
-          child: const QuizView(),
+  static GoRouter createRouter(bool hasSeenOnboarding) {
+    final initialPath =
+        hasSeenOnboarding ? Routes.mainView : Routes.onBoardingView;
+    return GoRouter(
+      initialLocation: initialPath,
+      routes: [
+        GoRoute(
+          path: Routes.onBoardingView,
+          builder: (context, state) => const OnboardingView(),
         ),
-      ),
-    ],
-  );
+        GoRoute(
+          path: Routes.signInView,
+          builder: (context, state) => const LoginView(),
+        ),
+        GoRoute(
+          path: Routes.signUpView,
+          builder: (context, state) => const SignupView(),
+        ),
+        GoRoute(
+          path: Routes.forgotPasswordView,
+          builder: (context, state) => const ResetPasswordView(),
+        ),
+        GoRoute(
+          path: Routes.oTPVerificationView,
+          builder: (context, state) => const OtpVerificationView(),
+        ),
+        GoRoute(
+          path: Routes.mainView,
+          builder: (context, state) => const MainView(),
+        ),
+        GoRoute(
+          path: Routes.profileView,
+          builder: (context, state) => const ProfileView(),
+        ),
+        GoRoute(
+          path: Routes.quizView,
+          builder: (context, state) => BlocProvider(
+            create: (context) => QuizCubit(
+              QuizTimer(),
+              AnswerEvaluator(),
+              questionsRepo: QuestionsRepoImp(),
+            )..loadQuestions(),
+            child: const QuizView(),
+          ),
+        ),
+      ],
+    );
+  }
 }

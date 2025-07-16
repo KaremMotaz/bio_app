@@ -22,6 +22,7 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       bottomNavigationBar: HomeNavBar(
         selectedIndex: controller.selectedIndex,
         onTap: (index) {

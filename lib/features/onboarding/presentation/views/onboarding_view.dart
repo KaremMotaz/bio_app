@@ -1,3 +1,4 @@
+import 'package:bio_app/features/onboarding/presentation/views/widgets/onboarding_view_body.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingView extends StatelessWidget {
@@ -5,6 +6,6 @@ class OnboardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('Onboarding View')));
+    return Scaffold(body: SafeArea(child: OnboardingViewBody()));
   }
 }

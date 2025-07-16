@@ -1,3 +1,4 @@
+// import 'package:bio_app/features/home/presentation/views/widgets/custom_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:bio_app/core/routing/routes.dart';
@@ -7,12 +8,22 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton(
-        onPressed: () {
-          GoRouter.of(context).push(Routes.quizView);
-        },
-        child: Text("Go to Quiz"),
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // const CustomListItem(),
+          // SizedBox(height: 20),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                GoRouter.of(context).push(Routes.quizView);
+              },
+              child: Text("Go to Quiz"),
+            ),
+          ),
+        ],
       ),
     );
   }
