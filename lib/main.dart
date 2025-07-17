@@ -1,3 +1,4 @@
+import 'package:bio_app/core/constants/constants.dart';
 import 'package:bio_app/core/services/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -6,10 +7,9 @@ import 'package:bio_app/core/routing/app_router.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-  
-  // Check if the user has seen the onboarding screen
-  final bool hasSeenOnboarding = CacheHelper.getBool(key: 'hasSeenOnboarding');
 
+  // Check if the user has seen the onboarding screen
+  final bool hasSeenOnboarding = CacheHelper.getBool(key: kHasSeenOnboarding);
   runApp(MainApp(hasSeenOnboarding: hasSeenOnboarding));
 }
 

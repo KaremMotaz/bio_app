@@ -16,8 +16,9 @@ import 'package:bio_app/features/quiz/presentation/views/quiz_view.dart';
 
 abstract class AppRouter {
   static GoRouter createRouter(bool hasSeenOnboarding) {
-    final initialPath =
-        hasSeenOnboarding ? Routes.mainView : Routes.onBoardingView;
+    final initialPath = hasSeenOnboarding
+        ? Routes.signInView
+        : Routes.onBoardingView;
     return GoRouter(
       initialLocation: initialPath,
       routes: [
