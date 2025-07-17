@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:bio_app/features/quiz/presentation/helpers/option_style.dart';
-import 'package:bio_app/features/quiz/data/models/question_model.dart';
-import 'package:bio_app/features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
+
+import '../../../data/models/question_model.dart';
+import '../../helpers/option_style.dart';
+import '../../manager/quiz_cubit/quiz_cubit.dart';
 
 class ImageOptionsWidget extends StatelessWidget {
   const ImageOptionsWidget({

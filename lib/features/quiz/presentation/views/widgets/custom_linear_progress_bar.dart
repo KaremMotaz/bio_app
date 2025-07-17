@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/features/quiz/domain/entities/quiz_progress.dart';
+
+import '../../../../../core/theming/app_colors.dart';
+import '../../../domain/entities/quiz_progress.dart';
 
 class CustomLinearProgressBar extends StatelessWidget {
   const CustomLinearProgressBar({super.key, required this.progress});

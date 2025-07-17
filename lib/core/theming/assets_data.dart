@@ -1,8 +1,16 @@
 class AssetsData {
+  static const String googleIcon =
+      'assets/svg/google_icon.svg';
+  static const String faceBookIcon =
+      'assets/svg/facebook_icon.svg';
+  static const String emailNotification =
+      'assets/images/email_notification.png';
+  static const String forgotPassword = 'assets/images/forgot_password.png';
+
   static const String closeIcon = 'assets/svg/close.svg';
   static const String expIcon = 'assets/svg/exp.svg';
   static const String heartIcon = 'assets/svg/heart.svg';
-    static const String targetIcon = 'assets/svg/target.svg';
+  static const String targetIcon = 'assets/svg/target.svg';
   static const String timerIcon = 'assets/svg/timer.svg';
 
   static const String chromosome = 'assets/images/chromosome.jpg';
@@ -14,8 +22,6 @@ class AssetsData {
   static const String choiceTwo = 'assets/images/Choice_two.png';
   static const String choiceThree = 'assets/images/Choice_three.png';
   static const String choiceFour = 'assets/images/Choice_four.png';
-  
+
   static const String finishLesson = 'assets/images/finishLesson.png';
-
-
 }

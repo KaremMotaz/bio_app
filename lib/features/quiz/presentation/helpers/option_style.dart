@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../manager/quiz_cubit/quiz_cubit.dart';
 
 class OptionStyle {
   final QuizAnswerState answerState;

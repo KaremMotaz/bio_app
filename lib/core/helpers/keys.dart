@@ -1,0 +1,2 @@
+const kSupabaseUrl = "";
+const kSupabaseKey = "";

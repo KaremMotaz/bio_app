@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/features/quiz/data/models/question_model.dart';
-import 'package:bio_app/features/quiz/presentation/extensions/quiz_loaded_state_extension.dart';
-import 'package:bio_app/features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
-import 'package:bio_app/features/quiz/presentation/views/widgets/custom_button.dart';
-import 'package:bio_app/features/quiz/presentation/helpers/feedback_messages.dart';
+
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../data/models/question_model.dart';
+import '../../extensions/quiz_loaded_state_extension.dart';
+import '../../helpers/feedback_messages.dart';
+import '../../manager/quiz_cubit/quiz_cubit.dart';
+import 'custom_button.dart';
 
 class WrongAnswerFeedbackCard extends StatelessWidget {
   const WrongAnswerFeedbackCard({super.key, required this.state});

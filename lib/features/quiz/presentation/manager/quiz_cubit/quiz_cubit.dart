@@ -1,15 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bio_app/core/errors/failure.dart';
-import 'package:bio_app/features/quiz/data/models/question_model.dart';
-import 'package:bio_app/features/quiz/domain/logic/answer_evaluator.dart';
-import 'package:bio_app/features/quiz/domain/entities/quiz_progress.dart';
-import 'package:bio_app/features/quiz/domain/entities/quiz_result.dart';
-import 'package:bio_app/features/quiz/domain/entities/quiz_status.dart';
-import 'package:bio_app/features/quiz/domain/logic/quiz_timer.dart';
-import 'package:bio_app/features/quiz/domain/repos/questions_repo.dart';
-import 'package:bio_app/features/quiz/presentation/extensions/quiz_loaded_state_extension.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../../data/models/question_model.dart';
+import '../../../domain/logic/answer_evaluator.dart';
+import '../../../domain/entities/quiz_progress.dart';
+import '../../../domain/entities/quiz_result.dart';
+import '../../../domain/entities/quiz_status.dart';
+import '../../../domain/logic/quiz_timer.dart';
+import '../../../domain/repos/questions_repo.dart';
+import '../../extensions/quiz_loaded_state_extension.dart';
 
 part 'quiz_state.dart';
 part 'quiz_answer_state.dart';

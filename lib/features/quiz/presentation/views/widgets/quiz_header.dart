@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:bio_app/core/theming/assets_data.dart';
-import 'package:bio_app/features/quiz/domain/entities/quiz_progress.dart';
-import 'package:bio_app/features/quiz/domain/entities/quiz_status.dart';
-import 'package:bio_app/features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
-import 'package:bio_app/features/quiz/presentation/views/widgets/custom_linear_progress_bar.dart';
+
+import '../../../../../core/theming/assets_data.dart';
+import '../../../domain/entities/quiz_progress.dart';
+import '../../../domain/entities/quiz_status.dart';
+import '../../manager/quiz_cubit/quiz_cubit.dart';
+import 'custom_linear_progress_bar.dart';
 
 class QuizHeader extends StatelessWidget {
   const QuizHeader({super.key, required this.progress, required this.status});

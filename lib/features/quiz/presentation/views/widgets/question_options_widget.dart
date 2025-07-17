@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:bio_app/features/quiz/data/models/question_model.dart';
-import 'package:bio_app/features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
-import 'package:bio_app/features/quiz/presentation/views/widgets/image_options_widget.dart';
-import 'package:bio_app/features/quiz/presentation/views/widgets/text_options_widget.dart';
-import 'package:bio_app/features/quiz/presentation/views/widgets/true_false_0ptions_widget.dart';
+import '../../../data/models/question_model.dart';
+import '../../manager/quiz_cubit/quiz_cubit.dart';
+import 'image_options_widget.dart';
+import 'text_options_widget.dart';
+import 'true_false_0ptions_widget.dart';
 
 class QuestionOptionsWidget extends StatelessWidget {
   const QuestionOptionsWidget({

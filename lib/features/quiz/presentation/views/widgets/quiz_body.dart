@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/features/quiz/data/models/question_model.dart';
-import 'package:bio_app/features/quiz/presentation/extensions/question_model_extension.dart';
-import 'package:bio_app/features/quiz/presentation/helpers/quiz_answer_helpers.dart';
-import 'package:bio_app/features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
-import 'package:bio_app/features/quiz/presentation/views/widgets/question_options_widget.dart';
+
+import '../../../../../core/theming/text_styles.dart';
+import '../../../data/models/question_model.dart';
+import '../../extensions/question_model_extension.dart';
+import '../../helpers/quiz_answer_helpers.dart';
+import '../../manager/quiz_cubit/quiz_cubit.dart';
+import 'question_options_widget.dart';
 
 class QuizBody extends StatelessWidget {
   const QuizBody({

@@ -1,11 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
-import 'package:bio_app/core/errors/failure.dart';
-import 'package:bio_app/core/errors/server_failure.dart';
-import 'package:bio_app/features/quiz/data/mock_questions.dart';
-import 'package:bio_app/features/quiz/data/models/question_model.dart';
-import 'package:bio_app/features/quiz/domain/repos/questions_repo.dart';
+
+import '../../../../core/errors/failure.dart';
+import '../../../../core/errors/server_failure.dart';
+import '../../domain/repos/questions_repo.dart';
+import '../mock_questions.dart';
+import '../models/question_model.dart';
 
 class QuestionsRepoImp implements QuestionsRepo {
   @override

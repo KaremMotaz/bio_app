@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:bio_app/features/exam/presentation/views/exam_view.dart';
-import 'package:bio_app/features/home/presentation/views/home_view.dart';
-import 'package:bio_app/features/leaderboard/presentation/views/leaderboard_view.dart';
-import 'package:bio_app/features/settings/presentation/views/settings_view.dart';
+
+import '../../../exam/presentation/views/exam_view.dart';
+import '../../../home/presentation/views/home_view.dart';
+import '../../../leaderboard/presentation/views/leaderboard_view.dart';
+import '../../../settings/presentation/views/settings_view.dart';
 
 class MainPageView extends StatelessWidget {
   final PageController controller;

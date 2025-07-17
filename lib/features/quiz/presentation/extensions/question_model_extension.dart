@@ -1,4 +1,4 @@
-import 'package:bio_app/features/quiz/data/models/question_model.dart';
+import '../../data/models/question_model.dart';
 
 extension QuestionModelX on QuestionModel {
   bool get hasScenario => questionScenario != null;

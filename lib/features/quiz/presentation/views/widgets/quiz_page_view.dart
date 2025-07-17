@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:bio_app/features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
-import 'package:bio_app/features/quiz/presentation/views/widgets/quiz_body.dart';
+import '../../manager/quiz_cubit/quiz_cubit.dart';
+import 'quiz_body.dart';
 
 class QuizPageView extends StatefulWidget {
   const QuizPageView({super.key, required this.state});

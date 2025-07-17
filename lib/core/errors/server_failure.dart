@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
-import 'package:bio_app/core/errors/failure.dart';
+
+import 'failure.dart';
 
 class ServerFailure extends Failure {
   ServerFailure(super.errMessage);

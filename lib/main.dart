@@ -1,8 +1,8 @@
-import 'package:bio_app/core/constants/constants.dart';
-import 'package:bio_app/core/services/cache_helper.dart';
+import 'core/helpers/constants.dart';
+import 'core/services/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:bio_app/core/routing/app_router.dart';
+import 'core/routing/app_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,3 +1,4 @@
+import 'widgets/otp_view_body_bloc_consumer.dart';
 import 'package:flutter/material.dart';
 
 class OtpVerificationView extends StatelessWidget {
@@ -5,6 +6,11 @@ class OtpVerificationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('Otp Verification View')));
+    return Scaffold(
+      appBar: AppBar(title: Text("تأكيد الايميل")),
+      body: const SafeArea(
+        child: OtpViewBodyBlocConsumer(),
+      ),
+    );
   }
 }

@@ -1,5 +1,5 @@
-import 'package:bio_app/core/theming/assets_data.dart';
-import 'package:bio_app/features/quiz/data/models/question_model.dart';
+import '../../../core/theming/assets_data.dart';
+import 'models/question_model.dart';
 
 final List<QuestionModel> mockQuestions = [
   QuestionModel(

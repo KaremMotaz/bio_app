@@ -1,7 +1,7 @@
 // import 'package:bio_app/features/home/presentation/views/widgets/custom_list_item.dart';
+import 'package:bio_app/core/routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:bio_app/core/routing/routes.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

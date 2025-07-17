@@ -1,4 +1,4 @@
-import 'package:bio_app/features/onboarding/presentation/views/widgets/page_view_item.dart';
+import 'page_view_item.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingPageView extends StatelessWidget {

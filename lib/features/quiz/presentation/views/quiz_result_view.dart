@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/core/theming/assets_data.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
-import 'package:bio_app/features/quiz/presentation/views/widgets/custom_button.dart';
-import 'package:bio_app/features/quiz/presentation/views/widgets/result_data_frame.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/assets_data.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../manager/quiz_cubit/quiz_cubit.dart';
+import 'widgets/custom_button.dart';
+import 'widgets/result_data_frame.dart';
 
 class QuizResultView extends StatelessWidget {
   const QuizResultView({super.key, required this.finishedState});

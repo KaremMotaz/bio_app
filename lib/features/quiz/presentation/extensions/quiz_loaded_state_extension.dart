@@ -1,7 +1,7 @@
-import 'package:bio_app/features/quiz/data/models/question_model.dart';
-import 'package:bio_app/features/quiz/domain/entities/quiz_progress.dart';
-import 'package:bio_app/features/quiz/domain/entities/quiz_status.dart';
-import 'package:bio_app/features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
+import '../../data/models/question_model.dart';
+import '../../domain/entities/quiz_progress.dart';
+import '../../domain/entities/quiz_status.dart';
+import '../manager/quiz_cubit/quiz_cubit.dart';
 
 extension QuizLoadedStateX on QuizLoadedState {
   QuestionModel get currentQuestion => questions[progress.currentQuestionIndex];
