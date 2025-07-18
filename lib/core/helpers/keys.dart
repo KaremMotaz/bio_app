@@ -1,2 +1,2 @@
-const kSupabaseUrl = "";
-const kSupabaseKey = "";
+const kSupabaseUrl = "https://yyhurrtexnhawwwmudxh.supabase.co";
+const kSupabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl5aHVycnRleG5oYXd3d211ZHhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3Njg3MzQsImV4cCI6MjA2ODM0NDczNH0.Dp2IdiDt97WQMH7jBR8-dJi1-HQz3PFkSUs296x2bgE";
