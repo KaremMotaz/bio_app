@@ -14,17 +14,16 @@ void main() async {
   await CacheHelper.init();
   await SupabaseStorageService.initSupabase();
   await SupabaseStorageService.createBuckets(kBucketName);
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-  // Check if the user has seen the onboarding screen
-  final bool hasSeenOnboarding = CacheHelper.getBool(key: kHasSeenOnboarding);
   setupGetIt();
-  runApp(MainApp(hasSeenOnboarding: hasSeenOnboarding));
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key, required this.hasSeenOnboarding});
-  final bool hasSeenOnboarding;
+  const MainApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
@@ -37,7 +36,7 @@ class MainApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      routerConfig: AppRouter.createRouter(hasSeenOnboarding),
+      routerConfig: AppRouter.createRouter(),
     );
   }
 }

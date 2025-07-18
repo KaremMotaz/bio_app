@@ -25,4 +25,5 @@ class AssetsData {
   static const String choiceFour = 'assets/images/Choice_four.png';
 
   static const String finishLesson = 'assets/images/finishLesson.png';
+  static const String dummyUserImage = 'assets/images/dummy_image.png';
 }

@@ -1,6 +1,8 @@
+import 'package:bio_app/core/helpers/constants.dart';
+import 'package:bio_app/core/services/cache_helper.dart';
+import 'package:bio_app/core/services/firebase_auth_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../features/auth/presentation/views/fill_profile_view.dart';
 import '../../features/auth/presentation/views/otp_verification_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
@@ -17,16 +19,24 @@ import '../../features/quiz/presentation/views/quiz_view.dart';
 import 'routes.dart';
 
 abstract class AppRouter {
-  static GoRouter createRouter(bool hasSeenOnboarding) {
-    final initialPath = hasSeenOnboarding
+  static GoRouter createRouter() {
+    final bool hasSeenOnboarding = CacheHelper.getBool(
+      key: kHasSeenOnboarding,
+    );
+    final isLoggedIn = FirebaseAuthService().isLoggedIn();
+    final initialPath = isLoggedIn
+        ? Routes.mainView
+        : hasSeenOnboarding
         ? Routes.signInView
         : Routes.onBoardingView;
+
     return GoRouter(
       initialLocation: initialPath,
       routes: [
         GoRoute(
           path: Routes.onBoardingView,
-          builder: (context, state) => const OnboardingView(),
+          builder: (context, state) =>
+              const OnboardingView(),
         ),
 
         GoRoute(
@@ -39,15 +49,18 @@ abstract class AppRouter {
         ),
         GoRoute(
           path: Routes.forgotPasswordView,
-          builder: (context, state) => const ResetPasswordView(),
+          builder: (context, state) =>
+              const ResetPasswordView(),
         ),
         GoRoute(
           path: Routes.otpVerificationView,
-          builder: (context, state) => const OtpVerificationView(),
+          builder: (context, state) =>
+              const OtpVerificationView(),
         ),
         GoRoute(
           path: Routes.fillProfileView,
-          builder: (context, state) => const FillProfileView(),
+          builder: (context, state) =>
+              const FillProfileView(),
         ),
         GoRoute(
           path: Routes.mainView,
