@@ -1,11 +1,11 @@
-import '../../../../../core/theming/text_styles.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/helpers/app_regex.dart';
+import '../../../../../core/theming/text_styles.dart';
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../../../../core/widgets/app_text_form_field.dart';
 import '../../manager/fill_profile_cubit/fill_profile_cubit.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FillProfileForm extends StatefulWidget {
   const FillProfileForm({super.key});

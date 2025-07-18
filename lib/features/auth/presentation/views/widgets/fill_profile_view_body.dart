@@ -26,7 +26,6 @@ class FillProfileViewBody extends StatelessWidget {
               "يرجى قضاء بضع دقائق في ملء ملفك الشخصي بأكبر قدر ممكن من التفاصيل.",
               style: TextStyles.regular14,
             ),
-            SizedBox(height: 32),
             const FillProfileForm(),
           ],
         ),

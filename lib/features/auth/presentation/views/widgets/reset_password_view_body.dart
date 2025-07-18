@@ -1,14 +1,14 @@
-import '../../../../../core/theming/text_styles.dart';
-import '../../manager/reset_password_cubit/reset_password_cubit.dart';
-
-import '../../../../../core/helpers/app_regex.dart';
-import '../../../../../core/functions/build_snack_bar.dart';
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/assets_data.dart';
-import '../../../../../core/widgets/app_text_button.dart';
-import '../../../../../core/widgets/app_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../core/functions/build_snack_bar.dart';
+import '../../../../../core/helpers/app_regex.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/assets_data.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../../../core/widgets/app_text_button.dart';
+import '../../../../../core/widgets/app_text_form_field.dart';
+import '../../manager/reset_password_cubit/reset_password_cubit.dart';
 
 class ResetPasswordViewBody extends StatefulWidget {
   const ResetPasswordViewBody({super.key});

@@ -1,5 +1,6 @@
-import '../theming/text_styles.dart';
 import 'package:flutter/material.dart';
+
+import '../theming/text_styles.dart';
 
 void successSnackBar({required BuildContext context, required String message}) {
   ScaffoldMessenger.of(context).showSnackBar(

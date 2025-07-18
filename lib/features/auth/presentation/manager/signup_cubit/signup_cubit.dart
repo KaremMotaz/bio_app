@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../domain/auth_repo.dart';
 import '../../../domain/user_entity.dart';
-
 part 'signup_state.dart';
 
 class SignupCubit extends Cubit<SignupState> {
@@ -20,12 +18,12 @@ class SignupCubit extends Cubit<SignupState> {
       password: passwordController.text,
       email: emailController.text,
     );
-    await authRepo.sendEmailVerification();
     result.fold(
       (failure) {
         emit(SignupFailureState(message: failure.errMessage));
       },
-      (userEntity) {
+      (userEntity) async {
+        await authRepo.sendEmailVerification();
         emit(SignupSuccessState(userEntity: userEntity));
       },
     );

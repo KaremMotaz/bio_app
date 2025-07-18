@@ -1,9 +1,10 @@
-import '../../features/auth/presentation/views/reset_password_view.dart';
-import '../../features/auth/presentation/views/signin_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'routes.dart';
+
+import '../../features/auth/presentation/views/fill_profile_view.dart';
 import '../../features/auth/presentation/views/otp_verification_view.dart';
+import '../../features/auth/presentation/views/reset_password_view.dart';
+import '../../features/auth/presentation/views/signin_view.dart';
 import '../../features/auth/presentation/views/signup_view.dart';
 import '../../features/mainPageView/main_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
@@ -13,6 +14,7 @@ import '../../features/quiz/domain/logic/answer_evaluator.dart';
 import '../../features/quiz/domain/logic/quiz_timer.dart';
 import '../../features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
 import '../../features/quiz/presentation/views/quiz_view.dart';
+import 'routes.dart';
 
 abstract class AppRouter {
   static GoRouter createRouter(bool hasSeenOnboarding) {
@@ -26,6 +28,7 @@ abstract class AppRouter {
           path: Routes.onBoardingView,
           builder: (context, state) => const OnboardingView(),
         ),
+
         GoRoute(
           path: Routes.signInView,
           builder: (context, state) => const LoginView(),
@@ -41,6 +44,10 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.otpVerificationView,
           builder: (context, state) => const OtpVerificationView(),
+        ),
+        GoRoute(
+          path: Routes.fillProfileView,
+          builder: (context, state) => const FillProfileView(),
         ),
         GoRoute(
           path: Routes.mainView,

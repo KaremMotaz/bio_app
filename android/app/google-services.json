@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "259409221329",
+    "project_id": "bioapp-7c650",
+    "storage_bucket": "bioapp-7c650.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259409221329:android:80235fd2096c1e487b97f0",
+        "android_client_info": {
+          "package_name": "com.example.bio_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "259409221329-faud1c409bhai79em307mkse5nriuv6k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-qVynF-Q_NzNMZ_FHaR8CVs539tcveO4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "259409221329-faud1c409bhai79em307mkse5nriuv6k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

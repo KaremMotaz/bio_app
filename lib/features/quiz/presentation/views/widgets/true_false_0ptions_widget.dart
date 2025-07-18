@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../helpers/option_style.dart';
+
 import '../../../../../core/theming/text_styles.dart';
 import '../../../data/models/question_model.dart';
+import '../../helpers/option_style.dart';
 import '../../manager/quiz_cubit/quiz_cubit.dart';
 
 class TrueFalseOptionsWidget extends StatelessWidget {

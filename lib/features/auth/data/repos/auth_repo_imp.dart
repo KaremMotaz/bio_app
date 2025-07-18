@@ -35,9 +35,9 @@ class AuthRepoImp extends AuthRepo {
         email: email,
         password: password,
       );
-      UserEntity studentEntity = UserEntity(email: email, uid: user!.uid);
-      await addUserData(userEntity: studentEntity);
-      return right(studentEntity);
+      UserEntity userEntity = UserEntity(email: email, uid: user!.uid);
+      await addUserData(userEntity: userEntity);
+      return right(userEntity);
     } on FirebaseAuthException catch (e) {
       return left(AuthFailure.fromCode(e.code));
     } on FirestoreFailure catch (e) {

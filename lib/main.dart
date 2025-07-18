@@ -1,3 +1,8 @@
+import 'core/services/get_it_service.dart';
+import 'core/services/supabase_storage_service.dart';
+import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 import 'core/helpers/constants.dart';
 import 'core/services/cache_helper.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +12,13 @@ import 'core/routing/app_router.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
+  await SupabaseStorageService.initSupabase();
+  await SupabaseStorageService.createBuckets(kBucketName);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // Check if the user has seen the onboarding screen
   final bool hasSeenOnboarding = CacheHelper.getBool(key: kHasSeenOnboarding);
+  setupGetIt();
   runApp(MainApp(hasSeenOnboarding: hasSeenOnboarding));
 }
 

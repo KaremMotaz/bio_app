@@ -2,9 +2,11 @@
 import 'package:bio_app/core/routing/routes.dart';
 // import 'package:bio_app/core/services/cache_helper.dart';
 import 'package:bio_app/core/theming/app_colors.dart';
+import 'package:bio_app/core/theming/assets_data.dart';
 import 'package:bio_app/core/theming/text_styles.dart';
 import 'package:bio_app/core/widgets/app_text_button.dart';
 import 'package:bio_app/features/onboarding/presentation/views/widgets/onboarding_page_view.dart';
+import 'package:bio_app/features/onboarding/presentation/views/widgets/page_view_item.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -18,49 +20,90 @@ class OnboardingViewBody extends StatefulWidget {
 
 class _OnboardingViewBodyState extends State<OnboardingViewBody> {
   int currentPageIndex = 0;
-  late final PageController pageController;
+  late final PageController _pageController;
 
   @override
   void initState() {
     super.initState();
-    pageController = PageController();
-    pageController.addListener(() {
+    _pageController = PageController();
+    _pageController.addListener(() {
       setState(() {
-        currentPageIndex = pageController.page!.round();
+        currentPageIndex = _pageController.page!.round();
       });
     });
   }
 
+  void goToNextPage() {
+    if (currentPageIndex < pages.length - 1) {
+      _pageController.nextPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
   @override
   void dispose() {
-    pageController.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 
+  List<PageViewItem> pages = [
+    PageViewItem(
+      isVisible: true,
+      title: 'اختبارات دورية على كل فصل',
+      imageUrl: AssetsData.onboarding1,
+    ),
+    PageViewItem(
+      isVisible: true,
+      title: 'اطلاع مستمر على نتائجك ومستواك مقارنة بباقى زملائك',
+      imageUrl: AssetsData.onboarding1,
+    ),
+    PageViewItem(
+      isVisible: false,
+      title: 'مكافأت قيمة وتشجيع مستمر',
+      imageUrl: AssetsData.onboarding1,
+    ),
+  ];
+  
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        OnboardingPageView(pageController: pageController),
+        OnboardingPageView(pageController: _pageController, pages: pages),
         DotsIndicator(
-          dotsCount: 2,
+          dotsCount: 3,
+          position: currentPageIndex.toDouble(),
           decorator: DotsDecorator(
-            color: currentPageIndex == 1
-                ? AppColors.darkGreen
-                : AppColors.mainGreen,
-            activeColor: AppColors.darkGreen,
+            color: AppColors.gray,
+            activeColor: AppColors.mainBlue,
           ),
         ),
         const SizedBox(height: 20),
-        Visibility(
-          visible: currentPageIndex == 1,
-          maintainSize: true,
-          maintainAnimation: true,
-          maintainState: true,
-          child: Padding(
+        if (currentPageIndex == 0 || currentPageIndex == 1) ...[
+          SizedBox(height: 30),
+          CircleAvatar(
+            radius: 15,
+            backgroundColor: AppColors.mainBlue,
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              onPressed: () {
+                goToNextPage();
+              },
+              icon: Icon(
+                Icons.arrow_right_alt_sharp,
+                size: 25,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
+        if (currentPageIndex == 2) ...[
+          SizedBox(height: 10),
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: AppTextButton(
-              buttonText: "ابدأ الآن",
+              buttonText: "ابدء الآن",
               textStyle: TextStyles.bold17.copyWith(color: Colors.white),
               onPressed: () {
                 // CacheHelper.set(key: kHasSeenOnboarding, value: true);
@@ -68,8 +111,9 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
               },
             ),
           ),
-        ),
-        const SizedBox(height: 20),
+        ],
+
+        const SizedBox(height: 40),
       ],
     );
   }

@@ -1,13 +1,13 @@
-import '../../manager/login_cubit/login_cubit.dart';
-
-import '../../../../../core/functions/build_snack_bar.dart';
-import '../../../../../core/routing/routes.dart';
-import 'signin_view_body.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+
+import '../../../../../core/functions/build_snack_bar.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../manager/login_cubit/login_cubit.dart';
+import 'signin_view_body.dart';
 
 class LoginViewBodyBlocConsumer extends StatelessWidget {
   const LoginViewBodyBlocConsumer({super.key});
