@@ -25,6 +25,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -35,7 +36,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
           children: [
             Text(
               "مرحبًا بعودتك",
-              style: TextStyles.bold20.copyWith(color: AppColors.darkBlue),
+              style: TextStyles.bold20.copyWith(color: AppColors.mainBlue),
             ),
             SizedBox(height: 8),
             Text(
@@ -58,7 +59,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                 child: Text(
                 "نسيت كلمة المرور؟",
                   style: TextStyles.regular13.copyWith(
-                    color: AppColors.darkBlue,
+                    color: AppColors.mainBlue,
                   ),
                 ),
               ),

@@ -22,7 +22,7 @@ class OTPVerificationViewBody extends StatelessWidget {
             alignment: AlignmentDirectional.centerStart,
             child: Text(
               "تحقق من بريدك",
-              style: TextStyles.bold20.copyWith(color: AppColors.darkBlue),
+              style: TextStyles.bold20.copyWith(color: AppColors.mainBlue),
             ),
           ),
           SizedBox(height: 8),

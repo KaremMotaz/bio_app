@@ -24,9 +24,9 @@ class DontHaveAnAccount extends StatelessWidget {
               ..onTap = () {
                 GoRouter.of(context).push(Routes.signUpView);
               },
-            text: "تسجيل",
+            text: "إنشاء حساب",
             style: TextStyles.medium16.copyWith(
-              color: AppColors.darkBlue,
+              color: AppColors.mainBlue,
             ),
           ),
         ],

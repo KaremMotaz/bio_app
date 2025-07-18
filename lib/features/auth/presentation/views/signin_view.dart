@@ -1,3 +1,6 @@
+import 'package:bio_app/core/theming/app_colors.dart';
+import 'package:bio_app/core/theming/text_styles.dart';
+
 import '../manager/login_cubit/login_cubit.dart';
 
 import '../../../../core/services/get_it_service.dart';
@@ -14,7 +17,13 @@ class LoginView extends StatelessWidget {
     return BlocProvider<LoginCubit>(
       create: (context) => LoginCubit(getIt.get<AuthRepo>()),
       child: Scaffold(
-        appBar: AppBar(title: Text("تسجيل الدخول")),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            "تسجيل الدخول",
+            style: TextStyles.bold18.copyWith(color: AppColors.mainBlue),
+          ),
+        ),
         body: const SafeArea(child: LoginViewBodyBlocConsumer()),
       ),
     );

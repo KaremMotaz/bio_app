@@ -18,7 +18,7 @@ class FillProfileViewBody extends StatelessWidget {
               alignment: AlignmentDirectional.centerStart,
               child: Text(
                 "املأ ملفك الشخصي",
-                style: TextStyles.bold20.copyWith(color: AppColors.darkBlue),
+                style: TextStyles.bold20.copyWith(color: AppColors.mainBlue),
               ),
             ),
             SizedBox(height: 8),

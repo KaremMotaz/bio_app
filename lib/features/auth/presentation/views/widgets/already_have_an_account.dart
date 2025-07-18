@@ -29,7 +29,7 @@ class AlreadyHaveAnAccount extends StatelessWidget {
               },
             text: "تسجيل الدخول",
             style: TextStyles.medium16.copyWith(
-              color: AppColors.darkBlue,
+              color: AppColors.mainBlue,
             ),
           ),
         ],

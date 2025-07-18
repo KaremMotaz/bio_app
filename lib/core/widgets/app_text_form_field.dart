@@ -41,11 +41,11 @@ class AppTextFormField extends StatelessWidget {
             EdgeInsets.symmetric(horizontal: 20, vertical: 18),
         focusedBorder: focusedBorder ??
             buildOutLineInputBorder(
-              borderColor: AppColors.mainGreen,
+              borderColor: AppColors.mainBlue,
             ),
         enabledBorder: enabledBorder ??
             buildOutLineInputBorder(
-              borderColor: AppColors.lightGray,
+              borderColor: AppColors.lighterGray,
             ),
         errorBorder: buildOutLineInputBorder(
           borderColor: Colors.red,

@@ -29,7 +29,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
           children: [
             Text(
               "إنشاء حساب",
-              style: TextStyles.bold20.copyWith(color: AppColors.darkBlue),
+              style: TextStyles.bold20.copyWith(color: AppColors.mainBlue),
             ),
             SizedBox(height: 8),
             Text(

@@ -36,7 +36,7 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody> {
         children: [
           Text(
             "نسيت كلمة السر",
-            style: TextStyles.bold20.copyWith(color: AppColors.darkBlue),
+            style: TextStyles.bold20.copyWith(color: AppColors.mainBlue),
           ),
           SizedBox(height: 8),
           Text(
