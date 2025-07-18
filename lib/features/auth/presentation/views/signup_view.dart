@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/services/get_it_service.dart';
 import '../../domain/auth_repo.dart';
 import '../manager/signup_cubit/signup_cubit.dart';
@@ -12,11 +11,12 @@ class SignupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SignupCubit>(
-      create: (context) => SignupCubit(
-        getIt.get<AuthRepo>(),
-      ),
+      create: (context) =>
+          SignupCubit(getIt.get<AuthRepo>()),
       child: Scaffold(
-        appBar: AppBar(title: Text("تسجيل حساب جديد")),
+        appBar: AppBar(
+          title: Text("تسجيل حساب جديد"),
+        ),
         body: const SafeArea(
           child: SignupViewBodyBlocConsumer(),
         ),
