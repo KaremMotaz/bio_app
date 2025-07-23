@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/functions/build_snack_bar.dart';
 import '../../../../../core/helpers/app_regex.dart';
-import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/assets_data.dart';
 import '../../../../../core/theming/text_styles.dart';
 import '../../../../../core/widgets/app_text_button.dart';
@@ -14,13 +12,17 @@ class ResetPasswordViewBody extends StatefulWidget {
   const ResetPasswordViewBody({super.key});
 
   @override
-  State<ResetPasswordViewBody> createState() => _ResetPasswordViewBodyState();
+  State<ResetPasswordViewBody> createState() =>
+      _ResetPasswordViewBodyState();
 }
 
-final TextEditingController emailController = TextEditingController();
-final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+final TextEditingController emailController =
+    TextEditingController();
+final GlobalKey<FormState> _formKey =
+    GlobalKey<FormState>();
 
-class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody> {
+class _ResetPasswordViewBodyState
+    extends State<ResetPasswordViewBody> {
   @override
   void dispose() {
     emailController.dispose();
@@ -30,15 +32,13 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 20,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "نسيت كلمة السر",
-            style: TextStyles.bold20.copyWith(color: AppColors.mainBlue),
-          ),
-          SizedBox(height: 8),
           Text(
             "يرجى إدخال بريدك الإلكتروني لتلقي رابط إعادة تعيين كلمة السر",
             style: TextStyles.regular14,
@@ -60,27 +60,35 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody> {
               },
             ),
           ),
-          SizedBox(height: 24),
+          Spacer(),
           AppTextButton(
             buttonText: "إرسال",
-            textStyle: TextStyles.semiBold16.copyWith(color: Colors.white),
+            textStyle: TextStyles.semiBold16.copyWith(
+              color: Colors.white,
+            ),
             onPressed: () {
               validateThenSendLinkToResetPassword(context);
             },
           ),
+          SizedBox(height: 24),
         ],
       ),
     );
   }
 
-  void validateThenSendLinkToResetPassword(BuildContext context) {
+  void validateThenSendLinkToResetPassword(
+    BuildContext context,
+  ) {
     if (_formKey.currentState!.validate()) {
-      context.read<ResetPasswordCubit>().sendLinkToResetPassword(
-        emailController: emailController,
-      );
+      context
+          .read<ResetPasswordCubit>()
+          .sendLinkToResetPassword(
+            emailController: emailController,
+          );
       successSnackBar(
         context: context,
-        message: "تم ارسال رابط استعادة كلمة السر إلى بريدك الإلكتروني.",
+        message:
+            "تم ارسال رابط استعادة كلمة السر إلى بريدك الإلكتروني.",
       );
     }
   }

@@ -16,7 +16,7 @@ class AlreadyHaveAnAccount extends StatelessWidget {
       TextSpan(
         children: [
           TextSpan(
-            text: "لا تمتلك حساباً؟ ",
+            text: " تمتلك حساباً؟ ",
             style: TextStyles.medium16,
           ),
           const TextSpan(

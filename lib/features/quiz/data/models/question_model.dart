@@ -16,6 +16,8 @@ class QuestionModel {
     this.questionImages,
     required this.questionType,
   });
+
+  static fromMap(Map<String, dynamic> q) {}
 }
 
 enum QuestionType { textChoices, imageChoices, trueFalse }

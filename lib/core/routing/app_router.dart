@@ -1,6 +1,14 @@
 import 'package:bio_app/core/helpers/constants.dart';
 import 'package:bio_app/core/services/cache_helper.dart';
 import 'package:bio_app/core/services/firebase_auth_service.dart';
+import 'package:bio_app/features/exam/data/datasources/exam_remote_data_source.dart';
+import 'package:bio_app/features/exam/data/repos/exam_repo_impl.dart';
+import 'package:bio_app/features/exam/domain/usecases/get_exam_usecase.dart';
+import 'package:bio_app/features/exam/domain/usecases/submit_exam_usecase.dart'
+    show SubmitExamUseCase;
+import 'package:bio_app/features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
+import 'package:bio_app/features/exam/presentation/views/exam_view.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/views/fill_profile_view.dart';
@@ -23,8 +31,9 @@ abstract class AppRouter {
     final bool hasSeenOnboarding = CacheHelper.getBool(
       key: kHasSeenOnboarding,
     );
-    final isLoggedIn = FirebaseAuthService().isLoggedIn();
-    final initialPath = isLoggedIn
+    final bool isLoggedIn = FirebaseAuthService()
+        .isLoggedIn();
+    final String initialPath = isLoggedIn
         ? Routes.mainView
         : hasSeenOnboarding
         ? Routes.signInView
@@ -79,6 +88,32 @@ abstract class AppRouter {
               questionsRepo: QuestionsRepoImp(),
             )..loadQuestions(),
             child: const QuizView(),
+          ),
+        ),
+        GoRoute(
+          path: Routes.examView,
+          builder: (context, state) => BlocProvider(
+            create: (context) => ExamCubit(
+              getExamUseCase: GetExamUseCase(
+                examRepo: ExamRepoImpl(
+                  examRemoteDataSource:
+                      ExamRemoteDataSource(
+                        firestore:
+                            FirebaseFirestore.instance,
+                      ),
+                ),
+              ),
+              submitExamUseCase: SubmitExamUseCase(
+                examRepo: ExamRepoImpl(
+                  examRemoteDataSource:
+                      ExamRemoteDataSource(
+                        firestore:
+                            FirebaseFirestore.instance,
+                      ),
+                ),
+              ),
+            )..loadExam("0"),
+            child: const ExamView(),
           ),
         ),
       ],

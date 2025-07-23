@@ -1,12 +1,12 @@
 class AssetsData {
   static const String onboarding1 = 'assets/images/onboarding1.png';
-  // static const String onboarding2 = 'assets/images/onboarding2.png';
-  // static const String onboarding3 = 'assets/images/onboarding3.png';
+  static const String onboarding2 = 'assets/images/onboarding2.png';
+  static const String onboarding3 = 'assets/images/onboarding3.png';
   static const String googleIcon = 'assets/svg/google_icon.svg';
   static const String faceBookIcon = 'assets/svg/facebook_icon.svg';
   static const String emailNotification =
       'assets/images/email_notification.png';
-  static const String forgotPassword = 'assets/images/forgot_password.png';
+  static const String forgotPassword = 'assets/images/Forgot_password.png';
 
   static const String closeIcon = 'assets/svg/close.svg';
   static const String expIcon = 'assets/svg/exp.svg';

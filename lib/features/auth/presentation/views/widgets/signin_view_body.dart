@@ -40,7 +40,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
             ),
             SizedBox(height: 8),
             Text(
-              "نحن متحمسون لعودتك، لا يمكننا الانتظار لمعرفة ما كنت تفعله منذ آخر تسجيل دخول لك.",
+              "أهلاً بالطالب المميز! مستعد تكمّل التعلم؟",
               style: TextStyles.regular14,
             ),
             SizedBox(height: 32),

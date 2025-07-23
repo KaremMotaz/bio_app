@@ -57,12 +57,12 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
     PageViewItem(
       isVisible: true,
       title: 'اطلاع مستمر على نتائجك ومستواك مقارنة بباقى زملائك',
-      imageUrl: AssetsData.onboarding1,
+      imageUrl: AssetsData.onboarding2,
     ),
     PageViewItem(
       isVisible: false,
       title: 'مكافأت قيمة وتشجيع مستمر',
-      imageUrl: AssetsData.onboarding1,
+      imageUrl: AssetsData.onboarding3,
     ),
   ];
   

@@ -1,6 +1,4 @@
 import '../../../../../core/theming/text_styles.dart' show TextStyles;
-
-import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../manager/signup_cubit/signup_cubit.dart';
 import 'already_have_an_account.dart';
@@ -27,11 +25,6 @@ class _SignupViewBodyState extends State<SignupViewBody> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "إنشاء حساب",
-              style: TextStyles.bold20.copyWith(color: AppColors.mainBlue),
-            ),
-            SizedBox(height: 8),
             Text(
               "قم بالتسجيل الآن وابدأ في استكشاف كل ما يقدمه تطبيقنا. نحن متحمسون للترحيب بك في مجتمعنا!",
               style: TextStyles.regular14.copyWith(),
