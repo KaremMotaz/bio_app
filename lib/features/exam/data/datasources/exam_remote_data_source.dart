@@ -28,9 +28,10 @@ class ExamRemoteDataSource {
   }
 
   Future<void> createExam(ExamModel model) async {
+    final docRef = firestore.collection('exams').doc();
     await firestore
         .collection('exams')
-        .doc(model.id)
-        .set(model.toMap());
+        .doc(docRef.id)
+        .set(model.toMap(id: docRef.id));
   }
 }

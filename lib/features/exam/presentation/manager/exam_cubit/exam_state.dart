@@ -2,29 +2,35 @@ part of 'exam_cubit.dart';
 
 abstract class ExamState {}
 
-class ExamInitial extends ExamState {}
+class ExamInitialState extends ExamState {}
 
-class ExamLoading extends ExamState {}
+class ExamLoadingState extends ExamState {}
 
-class ExamLoaded extends ExamState {
+class ExamLoadedState extends ExamState {
   final Exam exam;
-  ExamLoaded(this.exam);
+  ExamLoadedState(this.exam);
 }
 
-class ExamError extends ExamState {
+class ExamErrorState extends ExamState {
   final String message;
-  ExamError(this.message);
+  ExamErrorState(this.message);
 }
 
-class AnswerSelected extends ExamState {
+class PageChangedState extends ExamState {
+  final int pageIndex;
+
+  PageChangedState(this.pageIndex);
+}
+
+class AnswerSelectedState extends ExamState {
   final String questionId;
   final int selectedIndex;
-  AnswerSelected(this.questionId, this.selectedIndex);
+  AnswerSelectedState(this.questionId, this.selectedIndex);
 }
 
-class ExamSubmitting extends ExamState {}
+class ExamSubmittingState extends ExamState {}
 
-class ExamSubmitted extends ExamState {
+class ExamSubmittedState extends ExamState {
   final ExamResultEntity result;
-  ExamSubmitted(this.result);
+  ExamSubmittedState(this.result);
 }

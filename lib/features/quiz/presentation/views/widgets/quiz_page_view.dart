@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../manager/quiz_cubit/quiz_cubit.dart';
-import 'quiz_body.dart';
+import 'quiz_question_card.dart';
 
 class QuizPageView extends StatefulWidget {
   const QuizPageView({super.key, required this.state});
@@ -32,8 +32,10 @@ class _QuizPageViewState extends State<QuizPageView> {
   void didUpdateWidget(covariant QuizPageView oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    final oldIndex = oldWidget.state.progress.currentQuestionIndex;
-    final newIndex = widget.state.progress.currentQuestionIndex;
+    final oldIndex =
+        oldWidget.state.progress.currentQuestionIndex;
+    final newIndex =
+        widget.state.progress.currentQuestionIndex;
 
     if (newIndex != oldIndex) {
       _animateToCurrentQuestion(newIndex);
@@ -49,10 +51,13 @@ class _QuizPageViewState extends State<QuizPageView> {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: state.questions.length,
       itemBuilder: (context, index) {
-        return QuizBody(
-          key: ValueKey(state.progress.currentQuestionIndex),
-          questionModel: state.questions[index],
-          selectedAnswerIndex: state.answerState.selectedAnswers[index],
+        return QuizQuestionCard(
+          key: ValueKey(
+            state.progress.currentQuestionIndex,
+          ),
+          question: state.questions[index],
+          selectedAnswerIndex:
+              state.answerState.selectedAnswers[index],
           answerState: state.answerState,
         );
       },

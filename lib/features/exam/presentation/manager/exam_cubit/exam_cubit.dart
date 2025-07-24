@@ -13,34 +13,54 @@ class ExamCubit extends Cubit<ExamState> {
   ExamCubit({
     required this.getExamUseCase,
     required this.submitExamUseCase,
-  }) : super(ExamInitial());
+  }) : super(ExamInitialState());
 
   Exam? currentExam;
-  Map<String, int> answers = {}; // questionId -> selectedIndex
+  Map<String, int> answers =
+      {}; // questionId -> selectedIndex
+  int currentPageIndex = 0;
 
   Future<void> loadExam(String examId) async {
-    emit(ExamLoading());
+    emit(ExamLoadingState());
     final exam = await getExamUseCase(examId);
     currentExam = exam;
-    emit(ExamLoaded(exam));
+    emit(ExamLoadedState(exam));
   }
 
   void selectAnswer(String questionId, int selectedIndex) {
     answers[questionId] = selectedIndex;
-    emit(AnswerSelected(questionId, selectedIndex));
+    emit(AnswerSelectedState(questionId, selectedIndex));
   }
 
-Future<ExamResultEntity?> submitExam() async {
-  if (currentExam == null) return null;
-  emit(ExamSubmitting());
-
-  try {
-    final result = await submitExamUseCase(currentExam!.id, answers);
-    emit(ExamSubmitted(result));
-    return result;
-  } catch (e) {
-    emit(ExamError(e.toString()));
-    return null;
+  void goToNextPage() {
+    if (currentPageIndex <
+        currentExam!.questions.length - 1) {
+      currentPageIndex++;
+      emit(PageChangedState(currentPageIndex));
+    }
   }
-}
+
+  void goToPreviousPage() {
+    if (currentPageIndex > 0) {
+      currentPageIndex--;
+      emit(PageChangedState(currentPageIndex));
+    }
+  }
+
+  Future<ExamResultEntity?> submitExam() async {
+    if (currentExam == null) return null;
+    emit(ExamSubmittingState());
+
+    try {
+      final result = await submitExamUseCase(
+        currentExam!.id,
+        answers,
+      );
+      emit(ExamSubmittedState(result));
+      return result;
+    } catch (e) {
+      emit(ExamErrorState(e.toString()));
+      return null;
+    }
+  }
 }

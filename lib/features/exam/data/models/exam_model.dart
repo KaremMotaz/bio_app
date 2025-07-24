@@ -32,8 +32,7 @@ class ExamModel extends Exam {
       ).map((q) => QuestionExamModel.fromMap(q)).toList(),
     );
   }
-
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap({required String id}) => {
     'id': id,
     'title': title,
     'unit': unit,

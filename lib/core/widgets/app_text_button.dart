@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 
 import '../theming/app_colors.dart';
@@ -6,8 +7,8 @@ class AppTextButton extends StatelessWidget {
   const AppTextButton({
     super.key,
     required this.buttonText,
-    required this.textStyle,
     required this.onPressed,
+    this.textStyle,
     this.borderRadius,
     this.backgroundColor,
     this.horizontalPadding,
@@ -16,7 +17,7 @@ class AppTextButton extends StatelessWidget {
     this.buttonHieght,
   });
   final String buttonText;
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
   final VoidCallback onPressed;
   final double? borderRadius;
   final Color? backgroundColor;
@@ -30,11 +31,14 @@ class AppTextButton extends StatelessWidget {
     return TextButton(
       onPressed: onPressed,
       style: ButtonStyle(
-        shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius ?? 12),
-          ),
-        ),
+        shape:
+            WidgetStatePropertyAll<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  borderRadius ?? 12,
+                ),
+              ),
+            ),
         backgroundColor: WidgetStatePropertyAll<Color>(
           backgroundColor ?? AppColors.mainBlue,
         ),
@@ -45,10 +49,18 @@ class AppTextButton extends StatelessWidget {
           ),
         ),
         fixedSize: WidgetStatePropertyAll(
-          Size(buttonWidth ?? double.maxFinite, buttonHieght ?? 50),
+          Size(
+            buttonWidth ?? double.maxFinite,
+            buttonHieght ?? 50,
+          ),
         ),
       ),
-      child: Text(buttonText, style: textStyle),
+      child: Text(
+        buttonText,
+        style: textStyle ?? TextStyles.semiBold15.copyWith(
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }

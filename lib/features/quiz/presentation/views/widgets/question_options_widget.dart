@@ -9,32 +9,32 @@ import 'true_false_0ptions_widget.dart';
 class QuestionOptionsWidget extends StatelessWidget {
   const QuestionOptionsWidget({
     super.key,
-    required this.questionModel,
+    required this.question,
     required this.index,
     required this.answerState,
   });
-  final QuestionModel questionModel;
+  final QuestionModel question;
   final QuizAnswerState answerState;
   final int index;
 
   @override
   Widget build(BuildContext context) {
-    switch (questionModel.questionType) {
+    switch (question.questionType) {
       case QuestionType.textChoices:
         return TextOptionsWidget(
-          questionModel: questionModel,
+          questionModel: question,
           index: index,
           answerState: answerState,
         );
       case QuestionType.imageChoices:
         return ImageOptionsWidget(
-          questionModel: questionModel,
+          questionModel: question,
           index: index,
           answerState: answerState,
         );
       case QuestionType.trueFalse:
         return TrueFalseOptionsWidget(
-          questionModel: questionModel,
+          questionModel: question,
           index: index,
           answerState: answerState,
         );

@@ -34,6 +34,7 @@ class TrueFalseOptionsWidget extends StatelessWidget {
         ],
       ),
       child: Text(
+        
         questionModel.options[index],
         textAlign: TextAlign.center,
         style: TextStyles.semiBold18.copyWith(color: style.fontColor),

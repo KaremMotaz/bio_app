@@ -8,14 +8,14 @@ import '../../helpers/quiz_answer_helpers.dart';
 import '../../manager/quiz_cubit/quiz_cubit.dart';
 import 'question_options_widget.dart';
 
-class QuizBody extends StatelessWidget {
-  const QuizBody({
+class QuizQuestionCard extends StatelessWidget {
+  const QuizQuestionCard({
     super.key,
-    required this.questionModel,
+    required this.question,
     required this.selectedAnswerIndex,
     required this.answerState,
   });
-  final QuestionModel questionModel;
+  final QuestionModel question;
   final int? selectedAnswerIndex;
   final QuizAnswerState answerState;
 
@@ -28,36 +28,51 @@ class QuizBody extends StatelessWidget {
           children: [
             SizedBox(height: 20),
 
-            if (questionModel.hasScenario) ...[
-              Text(questionModel.questionScenario!, style: TextStyles.bold17),
+            if (question.hasScenario) ...[
+              Text(
+                question.questionScenario!,
+                style: TextStyles.bold17,
+              ),
               SizedBox(height: 5),
             ],
 
-            Text("- ${questionModel.questionText}", style: TextStyles.bold17),
+            Text(
+              "- ${question.questionText}",
+              style: TextStyles.bold17,
+            ),
 
             SizedBox(height: 10),
 
-            if (questionModel.hasImages) ...[
+            if (question.hasImages) ...[
               const SizedBox(height: 20),
-              ...List.generate(questionModel.questionImages!.length, (index) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: Image.asset(
-                      questionModel.questionImages![index],
-                      height: 230,
-                      width: 300,
-                      fit: BoxFit.fill,
+              ...List.generate(
+                question.questionImages!.length,
+                (index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 20,
                     ),
-                  ),
-                );
-              }),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                        16,
+                      ),
+                      child: Image.asset(
+                        question.questionImages![index],
+                        height: 230,
+                        width: 300,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  );
+                },
+              ),
             ],
 
-            ...List.generate(questionModel.options.length, (index) {
+            ...List.generate(question.options.length, (
+              index,
+            ) {
               final optionState = getAnswerStateForOption(
-                question: questionModel,
+                question: question,
                 selectedIndex: selectedAnswerIndex ?? -1,
                 optionIndex: index,
                 currentAnswerState: answerState,
@@ -65,10 +80,12 @@ class QuizBody extends StatelessWidget {
 
               return GestureDetector(
                 onTap: () {
-                  context.read<QuizCubit>().selectAnswer(index);
+                  context.read<QuizCubit>().selectAnswer(
+                    index,
+                  );
                 },
                 child: QuestionOptionsWidget(
-                  questionModel: questionModel,
+                  question: question,
                   index: index,
                   answerState: optionState,
                 ),
