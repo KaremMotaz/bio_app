@@ -31,7 +31,7 @@ class ExamModel extends ExamEntity {
       questions: List<Map<String, dynamic>>.from(
         biologyQuestions,
         // map['questions'],
-      ).map((q) => QuestionExamModel.fromMap(q)).toList(),
+      ).map((q) => ExamQuestionModel.fromMap(q)).toList(),
     );
   }
   Map<String, dynamic> toMap({required String id}) => {
@@ -45,7 +45,7 @@ class ExamModel extends ExamEntity {
     'passMark': passMark,
     'isDraft': isDraft,
     'questions': questions
-        .cast<QuestionExamModel>()
+        .cast<ExamQuestionModel>()
         .map((q) => q.toMap())
         .toList(),
   };

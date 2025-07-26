@@ -8,7 +8,7 @@ final class QuizInitialState extends QuizState {}
 final class QuizLoadingState extends QuizState {}
 
 class QuizLoadedState extends QuizState {
-  final List<QuestionModel> questions;
+  final List<QuizQuestionModel> questions;
   final QuizProgress progress;
   final QuizStatus status;
   final QuizAnswerState answerState;

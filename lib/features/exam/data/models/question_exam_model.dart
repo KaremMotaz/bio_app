@@ -1,9 +1,9 @@
 import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
 
-class QuestionExamModel extends ExamQuestionEntity {
-  QuestionExamModel({
+class ExamQuestionModel extends ExamQuestionEntity {
+  ExamQuestionModel({
     required super.id,
-    required super.text,
+    required super.questionText,
     required super.options,
     required super.correctIndex,
     required super.type,
@@ -11,12 +11,12 @@ class QuestionExamModel extends ExamQuestionEntity {
     super.imageUrl,
   });
 
-  factory QuestionExamModel.fromMap(
+  factory ExamQuestionModel.fromMap(
     Map<String, dynamic> map,
   ) {
-    return QuestionExamModel(
+    return ExamQuestionModel(
       id: map['id'],
-      text: map['text'],
+      questionText: map['text'],
       options: List<String>.from(map['options']),
       correctIndex: map['correctIndex'],
       type: map['type'],
@@ -27,11 +27,17 @@ class QuestionExamModel extends ExamQuestionEntity {
 
   Map<String, dynamic> toMap() => {
     'id': id,
-    'text': text,
+    'text': questionText,
     'options': options,
     'correctIndex': correctIndex,
     'type': type,
     'marks': marks,
     'imageUrl': imageUrl,
   };
+}
+
+enum ExamQuestionType {
+  textChoices,
+  imageChoices,
+  trueFalse,
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theming/text_styles.dart';
-import '../../../data/models/question_model.dart';
+import '../../../data/models/quiz_question_model.dart';
 import '../../helpers/option_style.dart';
 import '../../manager/quiz_cubit/quiz_cubit.dart';
 
@@ -13,7 +13,7 @@ class TextOptionsWidget extends StatelessWidget {
     required this.answerState,
   });
 
-  final QuestionModel questionModel;
+  final QuizQuestionModel questionModel;
   final int index;
   final QuizAnswerState answerState;
 

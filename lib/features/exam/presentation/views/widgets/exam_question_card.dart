@@ -31,7 +31,7 @@ class ExamQuestionCard extends StatelessWidget {
             ],
 
             Text(
-              "${(question.id + 1)}- ${question.text}",
+              "${(question.id + 1)}- ${question.questionText}",
               style: TextStyles.bold17,
             ),
 
@@ -67,7 +67,8 @@ class ExamQuestionCard extends StatelessWidget {
                   final isSelected =
                       context
                           .read<ExamCubit>()
-                          .answers[question.id.toString()] ==
+                          .answers[question.id
+                          .toString()] ==
                       index;
 
                   return GestureDetector(

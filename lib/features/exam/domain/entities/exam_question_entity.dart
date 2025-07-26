@@ -1,22 +1,27 @@
+import 'package:bio_app/features/exam/data/models/question_exam_model.dart';
+
 class ExamQuestionEntity {
   final int id;
+  final String? title;
   final String? scenario;
-  final String text;
-  final List<String> options;
-  final int correctIndex;
+  final String questionText;
+  final ExamQuestionType type;
   final List<String>? imageUrl;
-  final String
-  type; // 'mcq', 'true_false', 'essay', 'order'
+  final List<String> options;
+  final String? explanation;
   final int marks;
+  final int correctIndex;
 
   ExamQuestionEntity({
     required this.id,
+    this.title,
     this.scenario,
-    required this.text,
+    this.imageUrl,
+    this.explanation,
+    required this.questionText,
     required this.options,
     required this.correctIndex,
     required this.type,
     required this.marks,
-    this.imageUrl,
   });
 }

@@ -1,8 +1,8 @@
-import '../../data/models/question_model.dart';
+import '../../data/models/quiz_question_model.dart';
 import '../manager/quiz_cubit/quiz_cubit.dart';
 
 QuizAnswerState getAnswerStateForOption({
-  required QuestionModel question,
+  required QuizQuestionModel question,
   required int selectedIndex,
   required int optionIndex,
   required QuizAnswerState currentAnswerState,

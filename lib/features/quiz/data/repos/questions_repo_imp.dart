@@ -6,13 +6,13 @@ import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';
 import '../../domain/repos/questions_repo.dart';
 import '../mock_quiz_questions.dart';
-import '../models/question_model.dart';
+import '../models/quiz_question_model.dart';
 
 class QuestionsRepoImp implements QuestionsRepo {
   @override
-  Either<Failure, List<QuestionModel>> getQuestions() {
+  Either<Failure, List<QuizQuestionModel>> getQuestions() {
     try {
-      final List<QuestionModel> questions =
+      final List<QuizQuestionModel> questions =
           mockQuizQuestions;
       return right(questions);
     } on FirebaseException catch (e) {

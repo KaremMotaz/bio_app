@@ -1,30 +1,35 @@
-import '../../data/models/question_model.dart';
+import '../../data/models/quiz_question_model.dart';
 import '../../domain/entities/quiz_progress.dart';
 import '../../domain/entities/quiz_status.dart';
 import '../manager/quiz_cubit/quiz_cubit.dart';
 
 extension QuizLoadedStateX on QuizLoadedState {
-  QuestionModel get currentQuestion => questions[progress.currentQuestionIndex];
+  QuizQuestionModel get currentQuestion =>
+      questions[progress.currentQuestionIndex];
 
   int get totalQuestions => questions.length;
 
-  int get currentQuestionIndex => progress.currentQuestionIndex;
+  int get currentQuestionIndex =>
+      progress.currentQuestionIndex;
 
-  int get answeredQuestionsCount => progress.answeredQuestionsCount;
+  int get answeredQuestionsCount =>
+      progress.answeredQuestionsCount;
 
   int? get currentSelectedAnswerIndex =>
       answerState.selectedAnswers[currentQuestionIndex];
 
   String? get explanation => currentQuestion.explanation;
 
-  String get correctAnswerText =>
-      currentQuestion.options[currentQuestion.correctAnswerIndex];
+  String get correctAnswerText => currentQuestion
+      .options[currentQuestion.correctAnswerIndex];
 
-  int get correctImageAnswerNumber => currentQuestion.correctAnswerIndex + 1;
+  int get correctImageAnswerNumber =>
+      currentQuestion.correctAnswerIndex + 1;
   int get remainingLives => status.remainingLives;
 
   bool get isLastQuestionFinished =>
-      progress.currentQuestionIndex == progress.totalQuestions;
+      progress.currentQuestionIndex ==
+      progress.totalQuestions;
 
   bool get isCorrectAnswered => answerState.isCorrect!;
 
@@ -40,11 +45,15 @@ extension QuizLoadedStateX on QuizLoadedState {
     totalQuestions: totalQuestions,
   );
 
-  QuizStatus get quizStatus =>
-      QuizStatus(score: status.score, remainingLives: status.remainingLives);
+  QuizStatus get quizStatus => QuizStatus(
+    score: status.score,
+    remainingLives: status.remainingLives,
+  );
 
   Map<int, int?> updateAnswerAt(int index) {
-    final updated = Map<int, int?>.from(answerState.selectedAnswers);
+    final updated = Map<int, int?>.from(
+      answerState.selectedAnswers,
+    );
     updated[currentQuestionIndex] = index;
     return updated;
   }

@@ -3,14 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/text_styles.dart';
-import '../../../data/models/question_model.dart';
+import '../../../data/models/quiz_question_model.dart';
 import '../../extensions/quiz_loaded_state_extension.dart';
 import '../../helpers/feedback_messages.dart';
 import '../../manager/quiz_cubit/quiz_cubit.dart';
 import 'custom_button.dart';
 
 class WrongAnswerFeedbackCard extends StatelessWidget {
-  const WrongAnswerFeedbackCard({super.key, required this.state});
+  const WrongAnswerFeedbackCard({
+    super.key,
+    required this.state,
+  });
   final QuizLoadedState state;
 
   @override
@@ -24,31 +27,42 @@ class WrongAnswerFeedbackCard extends StatelessWidget {
         children: [
           Text(
             FeedbackMessages.getRandomWrongMessage(),
-            style: TextStyles.extraBold24.copyWith(color: AppColors.darkRed),
+            style: TextStyles.extraBold24.copyWith(
+              color: AppColors.darkRed,
+            ),
           ),
           SizedBox(height: 8),
           Text(
             "الإجابة:",
-            style: TextStyles.extraBold21.copyWith(color: AppColors.darkRed),
+            style: TextStyles.extraBold21.copyWith(
+              color: AppColors.darkRed,
+            ),
           ),
           SizedBox(height: 8),
           Text(
-            state.currentQuestion.questionType == QuestionType.imageChoices
+            state.currentQuestion.type ==
+                    QuizQuestionType.imageChoices
                 ? "الإختيار رقم ${state.correctImageAnswerNumber}"
                 : state.correctAnswerText,
-            style: TextStyles.semiBold18.copyWith(color: AppColors.darkRed),
+            style: TextStyles.semiBold18.copyWith(
+              color: AppColors.darkRed,
+            ),
           ),
 
           if (state.explanation != null) ...[
             SizedBox(height: 5),
             Text(
               "السبب:",
-              style: TextStyles.extraBold21.copyWith(color: AppColors.darkRed),
+              style: TextStyles.extraBold21.copyWith(
+                color: AppColors.darkRed,
+              ),
             ),
             SizedBox(height: 5),
             Text(
               state.explanation!,
-              style: TextStyles.semiBold18.copyWith(color: AppColors.darkRed),
+              style: TextStyles.semiBold18.copyWith(
+                color: AppColors.darkRed,
+              ),
             ),
           ],
           SizedBox(height: 25),

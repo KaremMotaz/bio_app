@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/models/question_model.dart';
+import '../../../data/models/quiz_question_model.dart';
 import '../../manager/quiz_cubit/quiz_cubit.dart';
 import 'image_options_widget.dart';
 import 'text_options_widget.dart';
@@ -13,26 +13,26 @@ class QuestionOptionsWidget extends StatelessWidget {
     required this.index,
     required this.answerState,
   });
-  final QuestionModel question;
+  final QuizQuestionModel question;
   final QuizAnswerState answerState;
   final int index;
 
   @override
   Widget build(BuildContext context) {
-    switch (question.questionType) {
-      case QuestionType.textChoices:
+    switch (question.type) {
+      case QuizQuestionType.textChoices:
         return TextOptionsWidget(
           questionModel: question,
           index: index,
           answerState: answerState,
         );
-      case QuestionType.imageChoices:
+      case QuizQuestionType.imageChoices:
         return ImageOptionsWidget(
           questionModel: question,
           index: index,
           answerState: answerState,
         );
-      case QuestionType.trueFalse:
+      case QuizQuestionType.trueFalse:
         return TrueFalseOptionsWidget(
           questionModel: question,
           index: index,

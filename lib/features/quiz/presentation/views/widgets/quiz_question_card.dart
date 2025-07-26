@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/theming/text_styles.dart';
-import '../../../data/models/question_model.dart';
+import '../../../data/models/quiz_question_model.dart';
 import '../../extensions/question_model_extension.dart';
 import '../../helpers/quiz_answer_helpers.dart';
 import '../../manager/quiz_cubit/quiz_cubit.dart';
@@ -15,7 +15,7 @@ class QuizQuestionCard extends StatelessWidget {
     required this.selectedAnswerIndex,
     required this.answerState,
   });
-  final QuestionModel question;
+  final QuizQuestionModel question;
   final int? selectedAnswerIndex;
   final QuizAnswerState answerState;
 
@@ -30,7 +30,7 @@ class QuizQuestionCard extends StatelessWidget {
 
             if (question.hasScenario) ...[
               Text(
-                question.questionScenario!,
+                question.scenario!,
                 style: TextStyles.bold17,
               ),
               SizedBox(height: 5),
