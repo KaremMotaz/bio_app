@@ -1,6 +1,6 @@
-import 'package:bio_app/features/exam/domain/entities/question.dart';
+import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
 
-class Exam {
+class ExamEntity {
   final String id;
   final String title;
   final String unit;
@@ -9,10 +9,10 @@ class Exam {
   final DateTime startTime;
   final DateTime endTime;
   final int passMark;
-  final List<Question> questions;
+  final List<ExamQuestionEntity> questions;
   final bool isDraft;
 
-  Exam({
+  ExamEntity({
     required this.id,
     required this.title,
     required this.unit,

@@ -1,5 +1,5 @@
 import 'package:bio_app/core/widgets/app_text_button.dart';
-import 'package:bio_app/features/exam/domain/entities/exam.dart';
+import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
 import 'package:bio_app/features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +12,7 @@ class ExamFooter extends StatelessWidget {
   }) : _pageController = pageController;
 
   final PageController _pageController;
-  final Exam exam;
+  final ExamEntity exam;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class ExamFooter extends StatelessWidget {
                     onPressed: () {
                       cubit.goToPreviousPage();
                       _pageController.animateToPage(
-                        cubit.currentPageIndex - 1,
+                        cubit.currentPageIndex,
                         duration: const Duration(
                           milliseconds: 300,
                         ),
@@ -62,7 +62,7 @@ class ExamFooter extends StatelessWidget {
                     } else {
                       cubit.goToNextPage();
                       _pageController.animateToPage(
-                        cubit.currentPageIndex + 1,
+                        cubit.currentPageIndex,
                         duration: const Duration(
                           milliseconds: 300,
                         ),

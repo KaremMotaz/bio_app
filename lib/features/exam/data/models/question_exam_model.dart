@@ -1,6 +1,6 @@
-import 'package:bio_app/features/exam/domain/entities/question.dart';
+import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
 
-class QuestionExamModel extends Question {
+class QuestionExamModel extends ExamQuestionEntity {
   QuestionExamModel({
     required super.id,
     required super.text,
@@ -11,7 +11,9 @@ class QuestionExamModel extends Question {
     super.imageUrl,
   });
 
-  factory QuestionExamModel.fromMap(Map<String, dynamic> map) {
+  factory QuestionExamModel.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return QuestionExamModel(
       id: map['id'],
       text: map['text'],
@@ -24,12 +26,12 @@ class QuestionExamModel extends Question {
   }
 
   Map<String, dynamic> toMap() => {
-        'id': id,
-        'text': text,
-        'options': options,
-        'correctIndex': correctIndex,
-        'type': type,
-        'marks': marks,
-        'imageUrl': imageUrl,
-      };
+    'id': id,
+    'text': text,
+    'options': options,
+    'correctIndex': correctIndex,
+    'type': type,
+    'marks': marks,
+    'imageUrl': imageUrl,
+  };
 }

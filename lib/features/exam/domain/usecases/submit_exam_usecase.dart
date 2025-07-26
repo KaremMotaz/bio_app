@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam/domain/entities/exam_result.dart';
+import 'package:bio_app/features/exam/domain/entities/exam_result_entity.dart';
 import 'package:bio_app/features/exam/domain/repos/exam_repo.dart';
 
 

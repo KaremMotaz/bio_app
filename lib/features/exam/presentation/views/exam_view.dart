@@ -14,17 +14,37 @@ class ExamView extends StatelessWidget {
         builder: (context, state) {
           if (state is ExamLoadingState) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ),
             );
           } else if (state is ExamLoadedState) {
             final exam = state.exam;
             return ExamViewBody(exam: exam);
+          } else if (state is ExamErrorState) {
+            return Center(child: Text(state.message));
+          } else if (state is AnswerSelectedState) {
+            final exam = context
+                .read<ExamCubit>()
+                .currentExam;
+            return ExamViewBody(exam: exam!);
+          } else if (state is PageChangedState) {
+            final exam = context
+                .read<ExamCubit>()
+                .currentExam;
+            return ExamViewBody(exam: exam!);
+          } else if (state is ExamSubmittingState) {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ),
+            );
           } else if (state is ExamSubmittedState) {
             return Center(
               child: Text("Exam Result: ${state.result}"),
             );
           }
-          return const SizedBox();
+          return SizedBox();
         },
       ),
     );

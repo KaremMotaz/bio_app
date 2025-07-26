@@ -1,8 +1,9 @@
+import 'package:bio_app/features/exam/data/datasources/mock_exam_data.dart';
 import 'package:bio_app/features/exam/data/models/question_exam_model.dart';
-import 'package:bio_app/features/exam/domain/entities/exam.dart';
+import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ExamModel extends Exam {
+class ExamModel extends ExamEntity {
   ExamModel({
     required super.id,
     required super.title,
@@ -28,7 +29,8 @@ class ExamModel extends Exam {
       passMark: map['passMark'],
       isDraft: map['isDraft'],
       questions: List<Map<String, dynamic>>.from(
-        map['questions'],
+        biologyQuestions,
+        // map['questions'],
       ).map((q) => QuestionExamModel.fromMap(q)).toList(),
     );
   }

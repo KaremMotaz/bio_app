@@ -7,7 +7,7 @@ class ExamInitialState extends ExamState {}
 class ExamLoadingState extends ExamState {}
 
 class ExamLoadedState extends ExamState {
-  final Exam exam;
+  final ExamEntity exam;
   ExamLoadedState(this.exam);
 }
 
@@ -23,7 +23,7 @@ class PageChangedState extends ExamState {
 }
 
 class AnswerSelectedState extends ExamState {
-  final String questionId;
+  final int questionId;
   final int selectedIndex;
   AnswerSelectedState(this.questionId, this.selectedIndex);
 }

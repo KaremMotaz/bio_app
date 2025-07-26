@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam/domain/entities/exam.dart';
+import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
 import 'package:bio_app/features/exam/presentation/views/widgets/exam_footer.dart';
 import 'package:bio_app/features/exam/presentation/views/widgets/exam_header.dart';
 import 'package:bio_app/features/exam/presentation/views/widgets/exam_page_view.dart';
@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class ExamViewBody extends StatefulWidget {
   const ExamViewBody({super.key, required this.exam});
 
-  final Exam exam;
+  final ExamEntity exam;
 
   @override
   State<ExamViewBody> createState() => _ExamViewBodyState();

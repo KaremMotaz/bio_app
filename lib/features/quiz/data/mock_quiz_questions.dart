@@ -1,9 +1,10 @@
 import '../../../core/theming/assets_data.dart';
 import 'models/question_model.dart';
 
-final List<QuestionModel> mockQuestions = [
+final List<QuestionModel> mockQuizQuestions = [
   QuestionModel(
-    questionScenario: "تعرض ساق نبات نامٍ للضوء في اتجاه واحد لفترة زمنية ما :",
+    questionScenario:
+        "تعرض ساق نبات نامٍ للضوء في اتجاه واحد لفترة زمنية ما :",
     questionText:
         "ما الرسم البياني الذي يعبر عن نمو خلايا الجانب البعيد عن الضوء من ساق هذا النبات ؟",
     options: [
@@ -19,7 +20,8 @@ final List<QuestionModel> mockQuestions = [
     questionText: "أين يتم إنتاج خلايا الدم الحمراء؟",
     options: ["الكبد", "الطحال", "نخاع العظم", "القلب"],
     correctAnswerIndex: 2,
-    explanation: "نخاع العظم هو المسؤول عن إنتاج خلايا الدم الحمراء.",
+    explanation:
+        "نخاع العظم هو المسؤول عن إنتاج خلايا الدم الحمراء.",
     questionImages: [AssetsData.redBloodCells],
     questionType: QuestionType.textChoices,
   ),
@@ -52,7 +54,8 @@ final List<QuestionModel> mockQuestions = [
     questionType: QuestionType.trueFalse,
   ),
   QuestionModel(
-    questionText: "القلب هو العضو المسؤول عن إنتاج الهرمونات.",
+    questionText:
+        "القلب هو العضو المسؤول عن إنتاج الهرمونات.",
     options: ["صح", "غلط"],
     correctAnswerIndex: 1,
     explanation:
@@ -61,29 +64,40 @@ final List<QuestionModel> mockQuestions = [
   ),
   QuestionModel(
     questionText: "ما هي وحدة بناء البروتين؟",
-    options: ["الأحماض النووية", "الأحماض الأمينية", "الدهون", "السكريات"],
+    options: [
+      "الأحماض النووية",
+      "الأحماض الأمينية",
+      "الدهون",
+      "السكريات",
+    ],
     correctAnswerIndex: 1,
-    explanation: "الأحماض الأمينية ترتبط لتكوين البروتينات.",
+    explanation:
+        "الأحماض الأمينية ترتبط لتكوين البروتينات.",
     questionImages: [AssetsData.protein],
     questionType: QuestionType.textChoices,
   ),
   QuestionModel(
-    questionText: "ما هو العضو الذي يُخزّن الجلوكوز على هيئة جلايكوجين؟",
+    questionText:
+        "ما هو العضو الذي يُخزّن الجلوكوز على هيئة جلايكوجين؟",
     options: ["الكلى", "الكبد", "القلب", "الرئة"],
     correctAnswerIndex: 1,
-    explanation: "الكبد يقوم بتخزين الجلوكوز الزائد على هيئة جلايكوجين.",
+    explanation:
+        "الكبد يقوم بتخزين الجلوكوز الزائد على هيئة جلايكوجين.",
     questionImages: [AssetsData.glucose],
     questionType: QuestionType.textChoices,
   ),
   QuestionModel(
-    questionText: "الميتوكوندريا تُعرف بأنها مصنع الطاقة في الخلية.",
+    questionText:
+        "الميتوكوندريا تُعرف بأنها مصنع الطاقة في الخلية.",
     options: ["صح", "غلط"],
     correctAnswerIndex: 0,
-    explanation: "الميتوكوندريا تقوم بإنتاج الطاقة من خلال التنفس الخلوي.",
+    explanation:
+        "الميتوكوندريا تقوم بإنتاج الطاقة من خلال التنفس الخلوي.",
     questionType: QuestionType.trueFalse,
   ),
   QuestionModel(
-    questionText: "ما هو الإنزيم الذي يهضم النشويات في الفم؟",
+    questionText:
+        "ما هو الإنزيم الذي يهضم النشويات في الفم؟",
     options: ["الببسين", "الأميليز", "الليباز", "التربسين"],
     correctAnswerIndex: 1,
     explanation:

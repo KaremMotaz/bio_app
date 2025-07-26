@@ -1,8 +1,8 @@
-import 'package:bio_app/features/exam/domain/entities/exam_result.dart';
+import 'package:bio_app/features/exam/domain/entities/exam_result_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bio_app/features/exam/domain/usecases/get_exam_usecase.dart';
 import 'package:bio_app/features/exam/domain/usecases/submit_exam_usecase.dart';
-import 'package:bio_app/features/exam/domain/entities/exam.dart';
+import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
 
 part 'exam_state.dart';
 
@@ -15,7 +15,7 @@ class ExamCubit extends Cubit<ExamState> {
     required this.submitExamUseCase,
   }) : super(ExamInitialState());
 
-  Exam? currentExam;
+  ExamEntity? currentExam;
   Map<String, int> answers =
       {}; // questionId -> selectedIndex
   int currentPageIndex = 0;
@@ -27,8 +27,8 @@ class ExamCubit extends Cubit<ExamState> {
     emit(ExamLoadedState(exam));
   }
 
-  void selectAnswer(String questionId, int selectedIndex) {
-    answers[questionId] = selectedIndex;
+  void selectAnswer(int questionId, int selectedIndex) {
+    answers[questionId.toString()] = selectedIndex;
     emit(AnswerSelectedState(questionId, selectedIndex));
   }
 
