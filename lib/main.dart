@@ -11,12 +11,12 @@ import 'core/routing/app_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await CacheHelper.init();
   await SupabaseStorageService.initSupabase();
   await SupabaseStorageService.createBuckets(kBucketName);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await CacheHelper.init();
   setupGetIt();
 
   runApp(MainApp());

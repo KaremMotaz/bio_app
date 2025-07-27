@@ -5,6 +5,9 @@ class LeaderboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('Leaderboard View')));
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(child: Text('Leaderboard View')),
+    );
   }
 }
