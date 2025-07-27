@@ -1,4 +1,6 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:bio_app/features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
+import 'package:bio_app/features/exam/presentation/views/result_view.dart';
 import 'package:bio_app/features/exam/presentation/views/widgets/exam_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,41 +12,42 @@ class ExamView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+
       body: BlocBuilder<ExamCubit, ExamState>(
         builder: (context, state) {
-          if (state is ExamLoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.white,
-              ),
-            );
-          } else if (state is ExamLoadedState) {
-            final exam = state.exam;
-            return ExamViewBody(exam: exam);
-          } else if (state is ExamErrorState) {
-            return Center(child: Text(state.message));
-          } else if (state is AnswerSelectedState) {
-            final exam = context
-                .read<ExamCubit>()
-                .currentExam;
-            return ExamViewBody(exam: exam!);
-          } else if (state is PageChangedState) {
-            final exam = context
-                .read<ExamCubit>()
-                .currentExam;
-            return ExamViewBody(exam: exam!);
-          } else if (state is ExamSubmittingState) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.white,
-              ),
-            );
-          } else if (state is ExamSubmittedState) {
-            return Center(
-              child: Text("Exam Result: ${state.result}"),
-            );
+          final cubit = context.read<ExamCubit>();
+
+          switch (state.runtimeType) {
+            case const (ExamLoadingState):
+            case const (ExamSubmittingState):
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.mainBlue,
+                ),
+              );
+
+            case const (ExamLoadedState):
+              final exam = (state as ExamLoadedState).exam;
+              return ExamViewBody(exam: exam);
+
+            case const (AnswerSelectedState):
+            case const (PageChangedState):
+              final exam = cubit.currentExam;
+              return ExamViewBody(exam: exam!);
+
+            case const (ExamSubmittedState):
+              return const ResultView();
+
+            case const (ExamErrorState):
+              return Center(
+                child: Text(
+                  (state as ExamErrorState).message,
+                ),
+              );
+
+            default:
+              return const SizedBox(); // Fallback for unexpected states
           }
-          return SizedBox();
         },
       ),
     );

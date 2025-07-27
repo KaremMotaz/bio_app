@@ -34,6 +34,7 @@ class _ExamViewBodyState extends State<ExamViewBody> {
             exam: widget.exam,
             pageController: _pageController,
           ),
+          SizedBox(height: 12),
           ExamFooter(
             pageController: _pageController,
             exam: widget.exam,

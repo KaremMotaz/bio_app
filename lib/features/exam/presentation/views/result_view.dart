@@ -1,10 +1,29 @@
+import 'package:bio_app/core/widgets/app_text_button.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ResultView extends StatelessWidget {
   const ResultView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text("تم ارسال الأسئلة للمراجعة"),
+        const SizedBox(height: 16),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 18,
+          ),
+          child: AppTextButton(
+            buttonText: "حسنا",
+            onPressed: () {
+              GoRouter.of(context).pop();
+            },
+          ),
+        ),
+      ],
+    );
   }
 }

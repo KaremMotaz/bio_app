@@ -1,5 +1,5 @@
 import 'package:bio_app/features/exam/data/datasources/mock_exam_data.dart';
-import 'package:bio_app/features/exam/data/models/question_exam_model.dart';
+import 'package:bio_app/features/exam/data/models/exam_question_model.dart';
 import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

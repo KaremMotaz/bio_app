@@ -58,6 +58,7 @@ class ExamFooter extends StatelessWidget {
                       : "التالي",
                   onPressed: () {
                     if (isLastPage) {
+                  
                       cubit.submitExam();
                     } else {
                       cubit.goToNextPage();

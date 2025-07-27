@@ -8,7 +8,10 @@ class ExamQuestionModel extends ExamQuestionEntity {
     required super.correctIndex,
     required super.type,
     required super.marks,
-    super.imageUrl,
+    super.images,
+    super.title,
+    super.scenario,
+    super.explanation,
   });
 
   factory ExamQuestionModel.fromMap(
@@ -16,28 +19,34 @@ class ExamQuestionModel extends ExamQuestionEntity {
   ) {
     return ExamQuestionModel(
       id: map['id'],
+      title: map['title'],
+      scenario: map['scenario'],
       questionText: map['text'],
       options: List<String>.from(map['options']),
       correctIndex: map['correctIndex'],
       type: map['type'],
       marks: map['marks'],
-      imageUrl: map['imageUrl'],
+      images: map['images'],
+      explanation: map['explanation'],
     );
   }
 
   Map<String, dynamic> toMap() => {
     'id': id,
+    'title': title,
+    'scenario': scenario,
     'text': questionText,
     'options': options,
     'correctIndex': correctIndex,
-    'type': type,
+    'type': type.name,
     'marks': marks,
-    'imageUrl': imageUrl,
+    'imageUrl': images,
+    'explanation': explanation,
   };
 }
 
-enum ExamQuestionType {
-  textChoices,
-  imageChoices,
-  trueFalse,
+enum ExamOptionsType {
+  textOptions,
+  imageOptions,
+  trueFalseOptions,
 }

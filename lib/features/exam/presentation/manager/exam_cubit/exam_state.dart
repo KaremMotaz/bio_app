@@ -31,6 +31,5 @@ class AnswerSelectedState extends ExamState {
 class ExamSubmittingState extends ExamState {}
 
 class ExamSubmittedState extends ExamState {
-  final ExamResultEntity result;
-  ExamSubmittedState(this.result);
+  ExamSubmittedState();
 }

@@ -4,8 +4,8 @@ import '../../../data/models/quiz_question_model.dart';
 import '../../helpers/option_style.dart';
 import '../../manager/quiz_cubit/quiz_cubit.dart';
 
-class ImageOptionsWidget extends StatelessWidget {
-  const ImageOptionsWidget({
+class QuizImageOptions extends StatelessWidget {
+  const QuizImageOptions({
     super.key,
     required this.questionModel,
     required this.index,

@@ -6,7 +6,7 @@ import '../../../data/models/quiz_question_model.dart';
 import '../../extensions/question_model_extension.dart';
 import '../../helpers/quiz_answer_helpers.dart';
 import '../../manager/quiz_cubit/quiz_cubit.dart';
-import 'question_options_widget.dart';
+import 'quiz_question_options.dart';
 
 class QuizQuestionCard extends StatelessWidget {
   const QuizQuestionCard({
@@ -84,7 +84,7 @@ class QuizQuestionCard extends StatelessWidget {
                     index,
                   );
                 },
-                child: QuestionOptionsWidget(
+                child: QuizQuestionOptions(
                   question: question,
                   index: index,
                   answerState: optionState,

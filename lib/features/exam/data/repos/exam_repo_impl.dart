@@ -1,7 +1,6 @@
 import 'package:bio_app/features/exam/data/datasources/exam_remote_data_source.dart';
 import 'package:bio_app/features/exam/data/models/exam_model.dart';
 import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_result_entity.dart';
 import 'package:bio_app/features/exam/domain/repos/exam_repo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -14,7 +13,7 @@ class ExamRepoImpl implements ExamRepo {
       examRemoteDataSource.fetchExam(id);
 
   @override
-  Future<ExamResultEntity> submitAnswers(
+  Future<void> submitAnswers(
     String examId,
     Map<String, dynamic> answers,
   ) => examRemoteDataSource.submitAnswers(examId, answers);

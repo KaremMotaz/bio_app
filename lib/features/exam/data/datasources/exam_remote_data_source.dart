@@ -1,5 +1,4 @@
 import 'package:bio_app/features/exam/data/models/exam_model.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_result_entity.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ExamRemoteDataSource {
@@ -14,7 +13,7 @@ class ExamRemoteDataSource {
     return ExamModel.fromMap(doc.data()!..['id'] = doc.id);
   }
 
-  Future<ExamResultEntity> submitAnswers(
+  Future<void> submitAnswers(
     String examId,
     Map<String, dynamic> answers,
   ) async {
@@ -23,8 +22,6 @@ class ExamRemoteDataSource {
       'answers': answers,
       'timestamp': DateTime.now().toIso8601String(),
     });
-
-    throw Exception("Grading not supported yet");
   }
 
   Future<void> createExam(ExamModel model) async {

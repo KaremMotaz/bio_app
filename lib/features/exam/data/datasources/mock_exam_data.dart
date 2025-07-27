@@ -1,14 +1,19 @@
+import 'package:bio_app/core/theming/assets_data.dart';
+import 'package:bio_app/features/exam/data/models/exam_question_model.dart';
 
 final List<Map<String, dynamic>> biologyQuestions = [
   {
     "id": 0,
-    "text": "تعرض ساق نبات نامٍ للضوء في اتجاه واحد لفترة زمنية ما : ما الرسم البياني الذي يعبر عن نمو خلايا الجانب البعيد عن الضوء من ساق هذا النبات ؟",
-    "type": "imageChoices",
+    "scenario":
+        "تعرض ساق نبات نامٍ للضوء في اتجاه واحد لفترة زمنية ما :",
+    "text":
+        "ما الرسم البياني الذي يعبر عن نمو خلايا الجانب البعيد عن الضوء من ساق هذا النبات ؟",
+    "type": ExamOptionsType.imageOptions,
     "options": [
-      "assets/images/choice1.png",
-      "assets/images/choice2.png",
-      "assets/images/choice3.png",
-      "assets/images/choice4.png",
+      AssetsData.choiceOne,
+      AssetsData.choiceTwo,
+      AssetsData.choiceThree,
+      AssetsData.choiceFour,
     ],
     "correctIndex": 2,
     "marks": 2,
@@ -16,26 +21,27 @@ final List<Map<String, dynamic>> biologyQuestions = [
   {
     "id": 1,
     "text": "أين يتم إنتاج خلايا الدم الحمراء؟",
-    "type": "mcq",
+    "type": ExamOptionsType.textOptions,
     "options": ["الكبد", "الطحال", "نخاع العظم", "القلب"],
     "correctIndex": 2,
     "marks": 2,
-    "images": ["assets/images/red_blood_cells.png"],
-    "explanation": "نخاع العظم هو المسؤول عن إنتاج خلايا الدم الحمراء.",
+    "images": [AssetsData.redBloodCells],
+    "explanation":
+        "نخاع العظم هو المسؤول عن إنتاج خلايا الدم الحمراء.",
   },
   {
     "id": 2,
     "text": "كم عدد الكروموسومات في الخلية البشرية؟",
-    "type": "mcq",
+    "type": ExamOptionsType.textOptions,
     "options": ["23", "46", "44", "22"],
     "correctIndex": 1,
     "marks": 2,
-    "images": ["assets/images/chromosome.png"],
+    "images": [AssetsData.chromosome],
   },
   {
     "id": 3,
     "text": "ما هو أصغر عظم في جسم الإنسان؟",
-    "type": "mcq",
+    "type": ExamOptionsType.textOptions,
     "options": ["عظمة الركاب", "العضد", "الفخذ", "الترقوة"],
     "correctIndex": 0,
     "marks": 2,
@@ -43,7 +49,7 @@ final List<Map<String, dynamic>> biologyQuestions = [
   {
     "id": 4,
     "text": "ما هو الجزء المسؤول عن التنفس؟",
-    "type": "mcq",
+    "type": ExamOptionsType.textOptions,
     "options": ["القلب", "الكبد", "الرئتين", "الكلى"],
     "correctIndex": 2,
     "marks": 2,
@@ -51,57 +57,75 @@ final List<Map<String, dynamic>> biologyQuestions = [
   {
     "id": 5,
     "text": "الخلايا النباتية تحتوي على جدار خلوي.",
-    "type": "trueFalse",
+    "type": ExamOptionsType.trueFalseOptions,
     "options": ["صح", "غلط"],
     "correctIndex": 0,
     "marks": 2,
-    "explanation": "الخلايا النباتية تحتوي على جدار خلوي يوفر لها الدعم والحماية.",
+    "explanation":
+        "الخلايا النباتية تحتوي على جدار خلوي يوفر لها الدعم والحماية.",
   },
   {
     "id": 6,
     "text": "القلب هو العضو المسؤول عن إنتاج الهرمونات.",
-    "type": "trueFalse",
+    "type": ExamOptionsType.trueFalseOptions,
     "options": ["صح", "غلط"],
     "correctIndex": 1,
     "marks": 2,
-    "explanation": "الغدد الصماء مثل الغدة الدرقية والكظرية هي المسؤولة عن إنتاج الهرمونات.",
+    "explanation":
+        "الغدد الصماء مثل الغدة الدرقية والكظرية هي المسؤولة عن إنتاج الهرمونات.",
   },
   {
     "id": 7,
     "text": "ما هي وحدة بناء البروتين؟",
-    "type": "mcq",
-    "options": ["الأحماض النووية", "الأحماض الأمينية", "الدهون", "السكريات"],
+    "type": ExamOptionsType.textOptions,
+    "options": [
+      "الأحماض النووية",
+      "الأحماض الأمينية",
+      "الدهون",
+      "السكريات",
+    ],
     "correctIndex": 1,
     "marks": 2,
-    "images": ["assets/images/protein.png"],
-    "explanation": "الأحماض الأمينية ترتبط لتكوين البروتينات.",
+    "images": [AssetsData.protein],
+    "explanation":
+        "الأحماض الأمينية ترتبط لتكوين البروتينات.",
   },
   {
     "id": 8,
-    "text": "ما هو العضو الذي يُخزّن الجلوكوز على هيئة جلايكوجين؟",
-    "type": "mcq",
+    "text":
+        "ما هو العضو الذي يُخزّن الجلوكوز على هيئة جلايكوجين؟",
+    "type": ExamOptionsType.textOptions,
     "options": ["الكلى", "الكبد", "القلب", "الرئة"],
     "correctIndex": 1,
     "marks": 2,
-    "images": ["assets/images/glucose.png"],
-    "explanation": "الكبد يقوم بتخزين الجلوكوز الزائد على هيئة جلايكوجين.",
+    "images": [AssetsData.glucose],
+    "explanation":
+        "الكبد يقوم بتخزين الجلوكوز الزائد على هيئة جلايكوجين.",
   },
   {
     "id": 9,
-    "text": "الميتوكوندريا تُعرف بأنها مصنع الطاقة في الخلية.",
-    "type": "trueFalse",
+    "text":
+        "الميتوكوندريا تُعرف بأنها مصنع الطاقة في الخلية.",
+    "type": ExamOptionsType.trueFalseOptions,
     "options": ["صح", "غلط"],
     "correctIndex": 0,
     "marks": 2,
-    "explanation": "الميتوكوندريا تقوم بإنتاج الطاقة من خلال التنفس الخلوي.",
+    "explanation":
+        "الميتوكوندريا تقوم بإنتاج الطاقة من خلال التنفس الخلوي.",
   },
   {
     "id": 10,
     "text": "ما هو الإنزيم الذي يهضم النشويات في الفم؟",
-    "type": "mcq",
-    "options": ["الببسين", "الأميليز", "الليباز", "التربسين"],
+    "type": ExamOptionsType.textOptions,
+    "options": [
+      "الببسين",
+      "الأميليز",
+      "الليباز",
+      "التربسين",
+    ],
     "correctIndex": 1,
     "marks": 2,
-    "explanation": "الأميليز يُفرز من الغدد اللعابية ويبدأ بهضم النشويات في الفم.",
+    "explanation":
+        "الأميليز يُفرز من الغدد اللعابية ويبدأ بهضم النشويات في الفم.",
   },
 ];

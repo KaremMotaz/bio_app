@@ -1,4 +1,3 @@
-import 'package:bio_app/features/exam/domain/entities/exam_result_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bio_app/features/exam/domain/usecases/get_exam_usecase.dart';
 import 'package:bio_app/features/exam/domain/usecases/submit_exam_usecase.dart';
@@ -47,8 +46,7 @@ class ExamCubit extends Cubit<ExamState> {
     }
   }
 
-  Future<ExamResultEntity?> submitExam() async {
-    if (currentExam == null) return null;
+  Future<void> submitExam() async {
     emit(ExamSubmittingState());
 
     try {
@@ -56,11 +54,10 @@ class ExamCubit extends Cubit<ExamState> {
         currentExam!.id,
         answers,
       );
-      emit(ExamSubmittedState(result));
+      emit(ExamSubmittedState());
       return result;
     } catch (e) {
       emit(ExamErrorState(e.toString()));
-      return null;
     }
   }
 }

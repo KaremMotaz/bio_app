@@ -1,12 +1,12 @@
-import 'package:bio_app/features/exam/data/models/question_exam_model.dart';
+import 'package:bio_app/features/exam/data/models/exam_question_model.dart';
 
 class ExamQuestionEntity {
   final int id;
   final String? title;
   final String? scenario;
   final String questionText;
-  final ExamQuestionType type;
-  final List<String>? imageUrl;
+  final ExamOptionsType type;
+  final List<String>? images;
   final List<String> options;
   final String? explanation;
   final int marks;
@@ -16,7 +16,7 @@ class ExamQuestionEntity {
     required this.id,
     this.title,
     this.scenario,
-    this.imageUrl,
+    this.images,
     this.explanation,
     required this.questionText,
     required this.options,

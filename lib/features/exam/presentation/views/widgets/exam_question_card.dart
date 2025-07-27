@@ -1,8 +1,6 @@
-import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
+import 'package:bio_app/features/exam/presentation/views/widgets/exam_question_options.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
 
 class ExamQuestionCard extends StatelessWidget {
@@ -22,24 +20,33 @@ class ExamQuestionCard extends StatelessWidget {
           children: [
             SizedBox(height: 20),
 
-            if (question.scenario != null) ...[
-              Text(
-                question.scenario!,
-                style: TextStyles.bold17,
-              ),
-              SizedBox(height: 5),
-            ],
-
-            Text(
-              "${(question.id + 1)}- ${question.questionText}",
-              style: TextStyles.bold17,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (question.scenario != null) ...[
+                  Text(
+                    "${question.id + 1}- ${question.scenario}",
+                    style: TextStyles.bold17,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    "- ${question.questionText}",
+                    style: TextStyles.bold17,
+                  ),
+                ] else ...[
+                  Text(
+                    "${question.id + 1}- ${question.questionText}",
+                    style: TextStyles.bold17,
+                  ),
+                ],
+              ],
             ),
 
             SizedBox(height: 10),
 
-            if (question.imageUrl != null) ...[
+            if (question.images != null) ...[
               const SizedBox(height: 20),
-              ...List.generate(question.imageUrl!.length, (
+              ...List.generate(question.images!.length, (
                 index,
               ) {
                 return Padding(
@@ -48,8 +55,8 @@ class ExamQuestionCard extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
-                    child: Image.network(
-                      question.imageUrl![index],
+                    child: Image.asset(
+                      question.images![index],
                       height: 230,
                       width: 300,
                       fit: BoxFit.fill,
@@ -58,66 +65,7 @@ class ExamQuestionCard extends StatelessWidget {
                 );
               }),
             ],
-
-            ...List.generate(question.options.length, (
-              index,
-            ) {
-              return BlocBuilder<ExamCubit, ExamState>(
-                builder: (context, state) {
-                  final isSelected =
-                      context
-                          .read<ExamCubit>()
-                          .answers[question.id
-                          .toString()] ==
-                      index;
-
-                  return GestureDetector(
-                    onTap: () {
-                      context
-                          .read<ExamCubit>()
-                          .selectAnswer(question.id, index);
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      margin: const EdgeInsets.symmetric(
-                        vertical: 8,
-                      ),
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: isSelected
-                              ? AppColors.lightBlue
-                              : Colors.grey.shade300,
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(
-                          12,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: isSelected
-                                ? AppColors.lightBlue
-                                : Colors.white,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
-                      ),
-                      child: Text(
-                        question.options[index],
-                        style: TextStyles.semiBold18
-                            .copyWith(
-                              color: isSelected
-                                  ? AppColors.darkBlue
-                                  : Colors.black,
-                            ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  );
-                },
-              );
-            }),
+            ExamQuestionOptions(question: question),
           ],
         ),
       ),
