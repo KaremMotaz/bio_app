@@ -1,8 +1,8 @@
-import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
-import 'package:bio_app/features/exam/presentation/views/widgets/exam_footer.dart';
-import 'package:bio_app/features/exam/presentation/views/widgets/exam_header.dart';
-import 'package:bio_app/features/exam/presentation/views/widgets/exam_page_view.dart';
-import 'package:bio_app/features/exam/presentation/views/widgets/timer_widget.dart';
+import '../../../domain/entities/exam_entity.dart';
+import 'exam_footer.dart';
+import 'exam_header.dart';
+import 'exam_page_view.dart';
+import 'timer_widget.dart';
 import 'package:flutter/material.dart';
 
 class ExamViewBody extends StatefulWidget {

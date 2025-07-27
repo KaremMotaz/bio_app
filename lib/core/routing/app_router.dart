@@ -1,13 +1,14 @@
-import 'package:bio_app/core/helpers/constants.dart';
-import 'package:bio_app/core/services/cache_helper.dart';
-import 'package:bio_app/core/services/firebase_auth_service.dart';
-import 'package:bio_app/features/exam/data/datasources/exam_remote_data_source.dart';
-import 'package:bio_app/features/exam/data/repos/exam_repo_impl.dart';
-import 'package:bio_app/features/exam/domain/usecases/get_exam_usecase.dart';
+import '../helpers/constants.dart';
+import '../services/cache_helper.dart';
+import '../services/firebase_auth_service.dart';
+import '../../features/exam/data/datasources/exam_remote_data_source.dart';
+import '../../features/exam/data/repos/exam_repo_impl.dart';
+import '../../features/exam/domain/usecases/get_exam_usecase.dart';
 import 'package:bio_app/features/exam/domain/usecases/submit_exam_usecase.dart'
     show SubmitExamUseCase;
 import 'package:bio_app/features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
 import 'package:bio_app/features/exam/presentation/views/exam_view.dart';
+import 'package:bio_app/features/exam/presentation/views/exam_result_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -78,6 +79,11 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.profileView,
           builder: (context, state) => const ProfileView(),
+        ),
+        GoRoute(
+          path: Routes.examResultView,
+          builder: (context, state) =>
+              const ExamResultView(),
         ),
         GoRoute(
           path: Routes.quizView,

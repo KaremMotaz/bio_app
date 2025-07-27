@@ -1,17 +1,17 @@
-import '../../../../../core/theming/text_styles.dart';
-import '../../manager/login_cubit/login_cubit.dart';
-
-import '../../../../../core/routing/routes.dart';
-import '../../../../../core/theming/assets_data.dart';
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/widgets/app_text_button.dart';
-import 'dont_have_an_account.dart';
-import 'sign_in_form.dart';
-import 'or_divider.dart';
-import 'social_login_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/assets_data.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../../../core/widgets/app_text_button.dart';
+import '../../manager/login_cubit/login_cubit.dart';
+import 'dont_have_an_account.dart';
+import 'or_divider.dart';
+import 'sign_in_form.dart';
+import 'social_login_button.dart';
 
 class SigninViewBody extends StatefulWidget {
   const SigninViewBody({super.key});

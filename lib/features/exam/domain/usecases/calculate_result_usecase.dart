@@ -1,5 +1,5 @@
-import 'package:bio_app/features/exam/data/models/exam_question_model.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
+import '../../data/models/exam_question_model.dart';
+import '../entities/exam_entity.dart';
 
 class CalculateResultUseCase {
   int call(ExamEntity exam, Map<String, dynamic> answers) {

@@ -1,7 +1,7 @@
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/features/exam/presentation/views/widgets/exam_question_options.dart';
+import '../../../../../core/theming/text_styles.dart';
+import 'exam_question_options.dart';
 import 'package:flutter/material.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
+import '../../../domain/entities/exam_question_entity.dart';
 
 class ExamQuestionCard extends StatelessWidget {
   final ExamQuestionEntity question;

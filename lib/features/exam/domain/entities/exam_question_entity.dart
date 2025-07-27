@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam/data/models/exam_question_model.dart';
+import '../../data/models/exam_question_model.dart';
 
 class ExamQuestionEntity {
   final int id;

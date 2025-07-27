@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam/domain/entities/exam_result_entity.dart';
+import '../../domain/entities/exam_result_entity.dart';
 
 class ExamResultModel extends ExamResultEntity {
   ExamResultModel({

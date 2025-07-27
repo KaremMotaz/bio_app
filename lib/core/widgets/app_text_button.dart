@@ -1,4 +1,4 @@
-import 'package:bio_app/core/theming/text_styles.dart';
+import '../theming/text_styles.dart';
 import 'package:flutter/material.dart';
 
 import '../theming/app_colors.dart';

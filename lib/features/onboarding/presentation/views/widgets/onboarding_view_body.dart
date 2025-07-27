@@ -1,12 +1,12 @@
-// import 'package:bio_app/core/constants/constants.dart';
-import 'package:bio_app/core/routing/routes.dart';
-// import 'package:bio_app/core/services/cache_helper.dart';
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/core/theming/assets_data.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/core/widgets/app_text_button.dart';
-import 'package:bio_app/features/onboarding/presentation/views/widgets/onboarding_page_view.dart';
-import 'package:bio_app/features/onboarding/presentation/views/widgets/page_view_item.dart';
+import '../../../../../core/helpers/constants.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/services/cache_helper.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/assets_data.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../../../core/widgets/app_text_button.dart';
+import 'onboarding_page_view.dart';
+import 'page_view_item.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -106,7 +106,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
               buttonText: "ابدء الآن",
               textStyle: TextStyles.bold17.copyWith(color: Colors.white),
               onPressed: () {
-                // CacheHelper.set(key: kHasSeenOnboarding, value: true);
+                CacheHelper.set(key: kHasSeenOnboarding, value: true);
                 GoRouter.of(context).pushReplacement(Routes.signInView);
               },
             ),

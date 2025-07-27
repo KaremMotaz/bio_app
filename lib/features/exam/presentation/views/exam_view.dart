@@ -1,7 +1,7 @@
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
-import 'package:bio_app/features/exam/presentation/views/result_view.dart';
-import 'package:bio_app/features/exam/presentation/views/widgets/exam_view_body.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../manager/exam_cubit/exam_cubit.dart';
+import 'exam_finished_view.dart';
+import 'widgets/exam_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,7 +36,7 @@ class ExamView extends StatelessWidget {
               return ExamViewBody(exam: exam!);
 
             case const (ExamSubmittedState):
-              return const ResultView();
+              return const ExamFinishedView();
 
             case const (ExamErrorState):
               return Center(

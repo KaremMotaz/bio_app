@@ -1,9 +1,9 @@
-import 'package:bio_app/core/widgets/app_text_button.dart';
+import '../../../../core/widgets/app_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class ResultView extends StatelessWidget {
-  const ResultView({super.key});
+class ExamFinishedView extends StatelessWidget {
+  const ExamFinishedView({super.key});
 
   @override
   Widget build(BuildContext context) {

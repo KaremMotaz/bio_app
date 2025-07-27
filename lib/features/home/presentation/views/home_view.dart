@@ -13,8 +13,6 @@ class HomeView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // const CustomListItem(),
-          // SizedBox(height: 20),
           Center(
             child: ElevatedButton(
               onPressed: () {

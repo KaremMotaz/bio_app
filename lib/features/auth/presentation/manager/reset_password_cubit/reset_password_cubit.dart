@@ -1,6 +1,7 @@
-import '../../../domain/auth_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../domain/auth_repo.dart';
 
 part 'reset_password_state.dart';
 

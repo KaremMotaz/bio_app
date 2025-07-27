@@ -1,4 +1,4 @@
-import 'package:bio_app/features/profile/presentation/views/widgets/edit_profile_list_tile.dart';
+import 'edit_profile_list_tile.dart';
 
 import 'package:flutter/material.dart';
 

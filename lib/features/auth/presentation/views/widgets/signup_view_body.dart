@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../../core/theming/text_styles.dart' show TextStyles;
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../manager/signup_cubit/signup_cubit.dart';
 import 'already_have_an_account.dart';
 import 'signup_form.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignupViewBody extends StatefulWidget {
   const SignupViewBody({super.key});

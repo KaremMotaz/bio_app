@@ -1,4 +1,4 @@
-import 'package:bio_app/core/theming/text_styles.dart';
+import '../../../../../core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomSettingsListTile extends StatelessWidget {

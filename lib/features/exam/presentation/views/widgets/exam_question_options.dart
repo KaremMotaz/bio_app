@@ -1,8 +1,8 @@
-import 'package:bio_app/features/exam/data/models/exam_question_model.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
-import 'package:bio_app/features/exam/presentation/views/widgets/exam_images_options.dart';
-import 'package:bio_app/features/exam/presentation/views/widgets/exam_mcq_options.dart';
-import 'package:bio_app/features/exam/presentation/views/widgets/exam_true_false_options.dart';
+import '../../../data/models/exam_question_model.dart';
+import '../../../domain/entities/exam_question_entity.dart';
+import 'exam_images_options.dart';
+import 'exam_mcq_options.dart';
+import 'exam_true_false_options.dart';
 import 'package:flutter/material.dart';
 
 class ExamQuestionOptions extends StatelessWidget {

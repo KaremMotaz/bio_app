@@ -1,11 +1,11 @@
-import '../../../../../core/theming/text_styles.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/assets_data.dart';
+import '../../../../../core/theming/text_styles.dart';
 import '../../../../../core/widgets/app_text_button.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class OTPVerificationViewBody extends StatelessWidget {
   const OTPVerificationViewBody({super.key});

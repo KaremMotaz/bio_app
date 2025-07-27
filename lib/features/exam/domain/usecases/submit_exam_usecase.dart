@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam/domain/repos/exam_repo.dart';
+import '../repos/exam_repo.dart';
 
 class SubmitExamUseCase {
   final ExamRepo examRepo;

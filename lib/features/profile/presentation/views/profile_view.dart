@@ -1,8 +1,8 @@
-import 'package:bio_app/core/services/get_it_service.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/features/auth/domain/auth_repo.dart';
-import 'package:bio_app/features/auth/presentation/manager/fill_profile_cubit/fill_profile_cubit.dart';
-import 'package:bio_app/features/profile/presentation/views/widgets/profile_view_body.dart';
+import '../../../../core/services/get_it_service.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../../auth/domain/auth_repo.dart';
+import '../../../auth/presentation/manager/fill_profile_cubit/fill_profile_cubit.dart';
+import 'widgets/profile_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

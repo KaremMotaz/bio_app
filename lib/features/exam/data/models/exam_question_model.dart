@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
+import '../../domain/entities/exam_question_entity.dart';
 
 class ExamQuestionModel extends ExamQuestionEntity {
   ExamQuestionModel({

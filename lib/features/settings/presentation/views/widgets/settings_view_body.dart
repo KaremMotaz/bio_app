@@ -1,7 +1,7 @@
-import 'package:bio_app/core/functions/show_confirm_dialog.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/features/auth/presentation/manager/log_out_cubit/log_out_cubit.dart';
-import 'package:bio_app/features/settings/presentation/views/widgets/custom_settings_list_tile.dart';
+import '../../../../../core/functions/show_confirm_dialog.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../../auth/presentation/manager/log_out_cubit/log_out_cubit.dart';
+import 'custom_settings_list_tile.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/assets_data.dart';
 import 'package:flutter/material.dart';

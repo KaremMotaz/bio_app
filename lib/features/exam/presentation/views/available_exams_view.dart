@@ -1,4 +1,5 @@
-import 'package:bio_app/core/routing/routes.dart';
+import '../../../../core/routing/routes.dart';
+import '../../../../core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,11 +15,12 @@ class AvailableExamsView extends StatelessWidget {
         centerTitle: true,
         title: Text("Available Exams"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: TextButton(
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
               style: TextButton.styleFrom(
                 backgroundColor: Colors.blueGrey,
               ),
@@ -30,8 +32,21 @@ class AvailableExamsView extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
             ),
-          ),
-        ],
+            SizedBox(height: 30),
+            TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: AppColors.mainBlue,
+              ),
+              onPressed: () {
+                GoRouter.of(context).push(Routes.examResultView);
+              },
+              child: Text(
+                "Go to Exam Result",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

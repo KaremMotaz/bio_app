@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bio_app/features/exam/domain/usecases/get_exam_usecase.dart';
-import 'package:bio_app/features/exam/domain/usecases/submit_exam_usecase.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
+import '../../../domain/usecases/get_exam_usecase.dart';
+import '../../../domain/usecases/submit_exam_usecase.dart';
+import '../../../domain/entities/exam_entity.dart';
 
 part 'exam_state.dart';
 
