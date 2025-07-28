@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'font_weight_helper.dart';
 
 abstract class TextStyles {

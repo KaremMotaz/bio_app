@@ -19,11 +19,13 @@ class ExamTrueFalseOptions extends StatelessWidget {
         ...List.generate(question.options.length, (index) {
           return BlocBuilder<ExamCubit, ExamState>(
             builder: (context, state) {
-              final isSelected =
-                  context.read<ExamCubit>().answers[question
-                      .id
-                      .toString()] ==
-                  index;
+              bool isSelected = false;
+
+              if (state is ExamRunningState) {
+                final selectedIndex =
+                    state.answers[question.id.toString()];
+                isSelected = selectedIndex == index;
+              }
 
               return GestureDetector(
                 onTap: () {

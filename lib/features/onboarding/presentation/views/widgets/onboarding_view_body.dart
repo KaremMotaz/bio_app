@@ -1,3 +1,7 @@
+import 'package:dots_indicator/dots_indicator.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../../../../core/helpers/constants.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/services/cache_helper.dart';
@@ -7,9 +11,6 @@ import '../../../../../core/theming/text_styles.dart';
 import '../../../../../core/widgets/app_text_button.dart';
 import 'onboarding_page_view.dart';
 import 'page_view_item.dart';
-import 'package:dots_indicator/dots_indicator.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class OnboardingViewBody extends StatefulWidget {
   const OnboardingViewBody({super.key});

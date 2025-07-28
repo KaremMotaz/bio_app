@@ -15,8 +15,6 @@ class ExamView extends StatelessWidget {
 
       body: BlocBuilder<ExamCubit, ExamState>(
         builder: (context, state) {
-          final cubit = context.read<ExamCubit>();
-
           switch (state.runtimeType) {
             case const (ExamLoadingState):
             case const (ExamSubmittingState):
@@ -26,15 +24,10 @@ class ExamView extends StatelessWidget {
                 ),
               );
 
-            case const (ExamLoadedState):
-              final exam = (state as ExamLoadedState).exam;
-              return ExamViewBody(exam: exam);
-
-            case const (AnswerSelectedState):
-            case const (PageChangedState):
             case const (ExamRunningState):
-              final exam = cubit.currentExam;
-              return ExamViewBody(exam: exam!);
+              final runningState =
+                  state as ExamRunningState;
+              return ExamViewBody(exam: runningState.exam);
 
             case const (ExamSubmittedState):
               return const ExamFinishedView();
@@ -47,7 +40,7 @@ class ExamView extends StatelessWidget {
               );
 
             default:
-              return const SizedBox(); // Fallback for unexpected states
+              return SizedBox.shrink();
           }
         },
       ),

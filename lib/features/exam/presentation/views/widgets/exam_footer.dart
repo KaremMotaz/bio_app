@@ -9,20 +9,24 @@ class ExamFooter extends StatelessWidget {
     super.key,
     required PageController pageController,
     required this.exam,
+    required this.currentPageIndex,
   }) : _pageController = pageController;
 
   final PageController _pageController;
   final ExamEntity exam;
-
+  final int currentPageIndex;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ExamCubit, ExamState>(
       builder: (context, state) {
+        if (state is! ExamRunningState) {
+          return const SizedBox();
+        }
+
         final cubit = context.read<ExamCubit>();
         final isLastPage =
-            cubit.currentPageIndex ==
-            exam.questions.length - 1;
-        final isFirstPage = cubit.currentPageIndex == 0;
+            currentPageIndex == exam.questions.length - 1;
+        final isFirstPage = currentPageIndex == 0;
 
         return Padding(
           padding: const EdgeInsets.symmetric(
@@ -37,9 +41,8 @@ class ExamFooter extends StatelessWidget {
                   child: AppTextButton(
                     buttonText: "السابق",
                     onPressed: () {
-                      cubit.goToPreviousPage();
                       _pageController.animateToPage(
-                        cubit.currentPageIndex,
+                        currentPageIndex - 1,
                         duration: const Duration(
                           milliseconds: 300,
                         ),
@@ -50,7 +53,6 @@ class ExamFooter extends StatelessWidget {
                 ),
                 const SizedBox(width: 100),
               ],
-
               Expanded(
                 child: AppTextButton(
                   buttonText: isLastPage
@@ -58,12 +60,10 @@ class ExamFooter extends StatelessWidget {
                       : "التالي",
                   onPressed: () {
                     if (isLastPage) {
-                  
                       cubit.submitExam();
                     } else {
-                      cubit.goToNextPage();
                       _pageController.animateToPage(
-                        cubit.currentPageIndex,
+                        currentPageIndex + 1,
                         duration: const Duration(
                           milliseconds: 300,
                         ),

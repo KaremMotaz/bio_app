@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+
 import '../../../domain/entities/exam_entity.dart';
 import 'exam_footer.dart';
 import 'exam_header.dart';
 import 'exam_page_view.dart';
-import 'package:flutter/material.dart';
 
 class ExamViewBody extends StatefulWidget {
   const ExamViewBody({super.key, required this.exam});
@@ -15,11 +16,18 @@ class ExamViewBody extends StatefulWidget {
 
 class _ExamViewBodyState extends State<ExamViewBody> {
   final PageController _pageController = PageController();
+  int currentPageIndex = 0;
 
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  void onPageChanged(int index) {
+    setState(() {
+      currentPageIndex = index;
+    });
   }
 
   @override
@@ -30,15 +38,18 @@ class _ExamViewBodyState extends State<ExamViewBody> {
           ExamHeader(
             exam: widget.exam,
             pageController: _pageController,
+            currentPageIndex: currentPageIndex,
           ),
           ExamPageView(
             exam: widget.exam,
             pageController: _pageController,
+            onPageChanged: onPageChanged,
           ),
           SizedBox(height: 12),
           ExamFooter(
             pageController: _pageController,
             exam: widget.exam,
+            currentPageIndex: currentPageIndex,
           ),
           SizedBox(height: 18),
         ],

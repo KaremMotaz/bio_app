@@ -1,7 +1,8 @@
-import '../../../../../core/theming/text_styles.dart';
-import 'exam_question_options.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../core/theming/text_styles.dart';
 import '../../../domain/entities/exam_question_entity.dart';
+import 'exam_question_options.dart';
 
 class ExamQuestionCard extends StatelessWidget {
   final ExamQuestionEntity question;

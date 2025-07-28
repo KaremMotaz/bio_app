@@ -1,9 +1,3 @@
-import '../helpers/constants.dart';
-import '../services/cache_helper.dart';
-import '../services/firebase_auth_service.dart';
-import '../../features/exam/data/datasources/exam_remote_data_source.dart';
-import '../../features/exam/data/repos/exam_repo_impl.dart';
-import '../../features/exam/domain/usecases/get_exam_usecase.dart';
 import 'package:bio_app/features/exam/domain/usecases/submit_exam_usecase.dart'
     show SubmitExamUseCase;
 import 'package:bio_app/features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
@@ -12,11 +6,15 @@ import 'package:bio_app/features/exam_result/presentation/views/exam_result_view
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../features/auth/presentation/views/fill_profile_view.dart';
 import '../../features/auth/presentation/views/otp_verification_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/signin_view.dart';
 import '../../features/auth/presentation/views/signup_view.dart';
+import '../../features/exam/data/datasources/exam_remote_data_source.dart';
+import '../../features/exam/data/repos/exam_repo_impl.dart';
+import '../../features/exam/domain/usecases/get_exam_usecase.dart';
 import '../../features/mainPageView/main_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/profile/presentation/views/profile_view.dart';
@@ -25,6 +23,9 @@ import '../../features/quiz/domain/logic/answer_evaluator.dart';
 import '../../features/quiz/domain/logic/quiz_timer.dart';
 import '../../features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
 import '../../features/quiz/presentation/views/quiz_view.dart';
+import '../helpers/constants.dart';
+import '../services/cache_helper.dart';
+import '../services/firebase_auth_service.dart';
 import 'routes.dart';
 
 abstract class AppRouter {

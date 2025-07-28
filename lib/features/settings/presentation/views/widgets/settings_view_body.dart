@@ -1,12 +1,13 @@
-import '../../../../../core/functions/show_confirm_dialog.dart';
-import '../../../../../core/theming/text_styles.dart';
-import '../../../../auth/presentation/manager/log_out_cubit/log_out_cubit.dart';
-import 'custom_settings_list_tile.dart';
-import '../../../../../core/routing/routes.dart';
-import '../../../../../core/theming/assets_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../../core/functions/show_confirm_dialog.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/theming/assets_data.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../../auth/presentation/manager/log_out_cubit/log_out_cubit.dart';
+import 'custom_settings_list_tile.dart';
 
 class SettingsViewBody extends StatelessWidget {
   const SettingsViewBody({super.key});

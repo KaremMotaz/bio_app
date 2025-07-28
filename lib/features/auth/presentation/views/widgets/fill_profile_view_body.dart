@@ -1,8 +1,8 @@
-import '../../../../../core/theming/text_styles.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/text_styles.dart';
 import 'fill_profile_form.dart';
-import 'package:flutter/material.dart';
 
 class FillProfileViewBody extends StatelessWidget {
   const FillProfileViewBody({super.key});

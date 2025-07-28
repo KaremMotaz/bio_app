@@ -6,36 +6,38 @@ class ExamInitialState extends ExamState {}
 
 class ExamLoadingState extends ExamState {}
 
-class ExamLoadedState extends ExamState {
-  final ExamEntity exam;
-  ExamLoadedState(this.exam);
-}
-
 class ExamRunningState extends ExamState {
-  final int remainingSeconds;
+  final ExamEntity exam;
+  final Map<String, int> answers;
+  final int remainingTimeInSeconds;
 
-  ExamRunningState(this.remainingSeconds);
-}
+  ExamRunningState({
+    required this.exam,
+    required this.answers,
+    required this.remainingTimeInSeconds,
+  });
 
-class ExamErrorState extends ExamState {
-  final String message;
-  ExamErrorState(this.message);
-}
-
-class PageChangedState extends ExamState {
-  final int pageIndex;
-
-  PageChangedState({required this.pageIndex});
-}
-
-class AnswerSelectedState extends ExamState {
-  final int questionId;
-  final int selectedIndex;
-  AnswerSelectedState(this.questionId, this.selectedIndex);
+  ExamRunningState copyWith({
+    ExamEntity? exam,
+    int? currentPageIndex,
+    Map<String, int>? answers,
+    int? remainingTimeInSeconds,
+  }) {
+    return ExamRunningState(
+      exam: exam ?? this.exam,
+      answers: answers ?? this.answers,
+      remainingTimeInSeconds:
+          remainingTimeInSeconds ??
+          this.remainingTimeInSeconds,
+    );
+  }
 }
 
 class ExamSubmittingState extends ExamState {}
 
-class ExamSubmittedState extends ExamState {
-  ExamSubmittedState();
+class ExamSubmittedState extends ExamState {}
+
+class ExamErrorState extends ExamState {
+  final String message;
+  ExamErrorState(this.message);
 }
