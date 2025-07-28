@@ -32,6 +32,7 @@ class ExamView extends StatelessWidget {
 
             case const (AnswerSelectedState):
             case const (PageChangedState):
+            case const (ExamRunningState):
               final exam = cubit.currentExam;
               return ExamViewBody(exam: exam!);
 

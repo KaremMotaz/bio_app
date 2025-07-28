@@ -2,7 +2,6 @@ import '../../../domain/entities/exam_entity.dart';
 import 'exam_footer.dart';
 import 'exam_header.dart';
 import 'exam_page_view.dart';
-import 'timer_widget.dart';
 import 'package:flutter/material.dart';
 
 class ExamViewBody extends StatefulWidget {
@@ -28,8 +27,10 @@ class _ExamViewBodyState extends State<ExamViewBody> {
     return SafeArea(
       child: Column(
         children: [
-          ExamHeader(),
-          TimerWidget(duration: widget.exam.duration),
+          ExamHeader(
+            exam: widget.exam,
+            pageController: _pageController,
+          ),
           ExamPageView(
             exam: widget.exam,
             pageController: _pageController,

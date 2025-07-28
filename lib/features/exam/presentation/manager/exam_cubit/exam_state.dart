@@ -11,6 +11,12 @@ class ExamLoadedState extends ExamState {
   ExamLoadedState(this.exam);
 }
 
+class ExamRunningState extends ExamState {
+  final int remainingSeconds;
+
+  ExamRunningState(this.remainingSeconds);
+}
+
 class ExamErrorState extends ExamState {
   final String message;
   ExamErrorState(this.message);
@@ -19,7 +25,7 @@ class ExamErrorState extends ExamState {
 class PageChangedState extends ExamState {
   final int pageIndex;
 
-  PageChangedState(this.pageIndex);
+  PageChangedState({required this.pageIndex});
 }
 
 class AnswerSelectedState extends ExamState {
