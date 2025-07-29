@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../../core/theming/text_styles.dart';
 import '../../../domain/entities/exam_entity.dart';
 import '../../manager/exam_cubit/exam_cubit.dart';
 import 'select_exam_question.dart';
 import 'timer_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ExamHeader extends StatelessWidget {
   const ExamHeader({

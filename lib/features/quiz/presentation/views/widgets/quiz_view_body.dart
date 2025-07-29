@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../extensions/quiz_loaded_state_extension.dart';
 import '../../manager/quiz_cubit/quiz_cubit.dart';
 import 'custom_button.dart';
@@ -17,7 +18,9 @@ class QuizViewBody extends StatelessWidget {
       children: [
         SizedBox(height: 16),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+          ),
           child: QuizHeader(
             progress: state.quizProgress,
             status: state.quizStatus,
@@ -29,7 +32,11 @@ class QuizViewBody extends StatelessWidget {
         state.isAnswered
             ? FeedbackCard(state: state)
             : Padding(
-                padding: const EdgeInsets.only(right: 16, left: 16, bottom: 16),
+                padding: const EdgeInsets.only(
+                  right: 16,
+                  left: 16,
+                  bottom: 16,
+                ),
                 child: CustomButton(
                   isEnabled: state.isSelected,
                   onPressed: () {

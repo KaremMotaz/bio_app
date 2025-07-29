@@ -1,6 +1,6 @@
-import 'edit_profile_list_tile.dart';
-
 import 'package:flutter/material.dart';
+
+import 'edit_profile_list_tile.dart';
 
 class ProfileViewBody extends StatefulWidget {
   const ProfileViewBody({super.key});

@@ -1,4 +1,4 @@
-import 'package:bio_app/features/quiz/domain/entities/quiz_question_entity.dart';
+import '../../../domain/entities/quiz_question_entity.dart';
 import 'package:flutter/material.dart';
 import '../../helpers/option_style.dart';
 import '../../manager/quiz_cubit/quiz_cubit.dart';

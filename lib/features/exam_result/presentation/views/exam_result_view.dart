@@ -1,5 +1,6 @@
-import 'widgets/exam_result_view_body.dart';
 import 'package:flutter/material.dart';
+
+import 'widgets/exam_result_view_body.dart';
 
 class ExamResultView extends StatelessWidget {
   const ExamResultView({super.key});

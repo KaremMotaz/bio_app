@@ -1,5 +1,5 @@
-import 'package:bio_app/features/exam/presentation/views/widgets/question_images.dart';
-import 'package:bio_app/features/exam/presentation/views/widgets/question_widget.dart';
+import 'question_images.dart';
+import 'question_widget.dart';
 import 'package:flutter/material.dart';
 import '../../../domain/entities/exam_question_entity.dart';
 import 'question_options.dart';

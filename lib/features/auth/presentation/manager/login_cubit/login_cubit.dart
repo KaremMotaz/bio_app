@@ -1,9 +1,10 @@
-import '../../../../../core/services/firebase_auth_service.dart';
-import '../../../domain/auth_repo.dart';
-import '../../../domain/user_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../core/services/firebase_auth_service.dart';
+import '../../../domain/auth_repo.dart';
+import '../../../domain/user_entity.dart';
 
 part 'login_state.dart';
 

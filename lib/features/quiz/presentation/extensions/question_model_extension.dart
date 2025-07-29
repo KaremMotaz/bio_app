@@ -1,4 +1,4 @@
-import 'package:bio_app/features/quiz/domain/entities/quiz_question_entity.dart';
+import '../../domain/entities/quiz_question_entity.dart';
 
 
 extension QuestionModelExtension on QuizQuestionEntity {

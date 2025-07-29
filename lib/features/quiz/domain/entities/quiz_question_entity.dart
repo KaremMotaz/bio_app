@@ -1,4 +1,4 @@
-import 'package:bio_app/features/quiz/data/models/quiz_question_model.dart';
+import '../../data/models/quiz_question_model.dart';
 
 class QuizQuestionEntity {
   final String? scenario;
