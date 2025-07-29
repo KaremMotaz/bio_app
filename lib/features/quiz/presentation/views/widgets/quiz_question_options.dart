@@ -1,3 +1,4 @@
+import 'package:bio_app/features/quiz/domain/entities/quiz_question_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/models/quiz_question_model.dart';
@@ -13,7 +14,7 @@ class QuizQuestionOptions extends StatelessWidget {
     required this.index,
     required this.answerState,
   });
-  final QuizQuestionModel question;
+  final QuizQuestionEntity question;
   final QuizAnswerState answerState;
   final int index;
 
@@ -22,19 +23,19 @@ class QuizQuestionOptions extends StatelessWidget {
     switch (question.type) {
       case QuizQuestionType.textChoices:
         return QuizTextOptions(
-          questionModel: question,
+          question: question,
           index: index,
           answerState: answerState,
         );
       case QuizQuestionType.imageChoices:
         return QuizImageOptions(
-          questionModel: question,
+          question: question,
           index: index,
           answerState: answerState,
         );
       case QuizQuestionType.trueFalse:
         return QuizTrueFalseOptions(
-          questionModel: question,
+          question: question,
           index: index,
           answerState: answerState,
         );

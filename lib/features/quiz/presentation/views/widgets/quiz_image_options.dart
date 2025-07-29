@@ -1,18 +1,17 @@
+import 'package:bio_app/features/quiz/domain/entities/quiz_question_entity.dart';
 import 'package:flutter/material.dart';
-
-import '../../../data/models/quiz_question_model.dart';
 import '../../helpers/option_style.dart';
 import '../../manager/quiz_cubit/quiz_cubit.dart';
 
 class QuizImageOptions extends StatelessWidget {
   const QuizImageOptions({
     super.key,
-    required this.questionModel,
+    required this.question,
     required this.index,
     required this.answerState,
   });
 
-  final QuizQuestionModel questionModel;
+  final QuizQuestionEntity question;
   final int index;
   final QuizAnswerState answerState;
 
@@ -60,7 +59,7 @@ class QuizImageOptions extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: Image.asset(
-                questionModel.options[index],
+                question.options[index],
                 height: 150,
                 fit: BoxFit.contain,
               ),

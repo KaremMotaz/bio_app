@@ -1,9 +1,9 @@
+import 'package:bio_app/features/quiz/domain/entities/quiz_question_entity.dart';
+import 'package:bio_app/features/quiz/presentation/extensions/question_model_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/theming/text_styles.dart';
-import '../../../data/models/quiz_question_model.dart';
-import '../../extensions/question_model_extension.dart';
 import '../../helpers/quiz_answer_helpers.dart';
 import '../../manager/quiz_cubit/quiz_cubit.dart';
 import 'quiz_question_options.dart';
@@ -15,7 +15,7 @@ class QuizQuestionCard extends StatelessWidget {
     required this.selectedAnswerIndex,
     required this.answerState,
   });
-  final QuizQuestionModel question;
+  final QuizQuestionEntity question;
   final int? selectedAnswerIndex;
   final QuizAnswerState answerState;
 
@@ -45,27 +45,24 @@ class QuizQuestionCard extends StatelessWidget {
 
             if (question.hasImages) ...[
               const SizedBox(height: 20),
-              ...List.generate(
-                question.questionImages!.length,
-                (index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 20,
+              ...List.generate(question.images!.length, (
+                index,
+              ) {
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 20,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Image.asset(
+                      question.images![index],
+                      height: 230,
+                      width: 300,
+                      fit: BoxFit.fill,
                     ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(
-                        16,
-                      ),
-                      child: Image.asset(
-                        question.questionImages![index],
-                        height: 230,
-                        width: 300,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  );
-                },
-              ),
+                  ),
+                );
+              }),
             ],
 
             ...List.generate(question.options.length, (

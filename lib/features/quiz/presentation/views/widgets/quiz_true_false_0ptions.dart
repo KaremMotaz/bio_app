@@ -1,19 +1,19 @@
+import 'package:bio_app/features/quiz/domain/entities/quiz_question_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theming/text_styles.dart';
-import '../../../data/models/quiz_question_model.dart';
 import '../../helpers/option_style.dart';
 import '../../manager/quiz_cubit/quiz_cubit.dart';
 
 class QuizTrueFalseOptions extends StatelessWidget {
   const QuizTrueFalseOptions({
     super.key,
-    required this.questionModel,
+    required this.question,
     required this.index,
     required this.answerState,
   });
 
-  final QuizQuestionModel questionModel;
+  final QuizQuestionEntity question;
   final int index;
   final QuizAnswerState answerState;
 
@@ -48,7 +48,7 @@ class QuizTrueFalseOptions extends StatelessWidget {
         ],
       ),
       child: Text(
-        questionModel.options[index],
+        question.options[index],
         textAlign: TextAlign.center,
         style: TextStyles.semiBold18.copyWith(
           color: style.fontColor,

@@ -1,23 +1,39 @@
-class QuizQuestionModel {
-  final String? scenario;
-  final String questionText;
-  final List<String> options;
-  final int correctAnswerIndex;
-  final String? explanation;
-  final List<String>? questionImages;
-  final QuizQuestionType type;
+import 'package:bio_app/features/quiz/domain/entities/quiz_question_entity.dart';
 
+class QuizQuestionModel extends QuizQuestionEntity {
   QuizQuestionModel({
-    required this.questionText,
-    required this.options,
-    required this.correctAnswerIndex,
-    this.scenario,
-    this.explanation,
-    this.questionImages,
-    required this.type,
+    required super.questionText,
+    required super.options,
+    required super.correctAnswerIndex,
+    required super.type,
+    super.scenario,
+    super.explanation,
+    super.images,
   });
 
-  static fromMap(Map<String, dynamic> q) {}
+  factory QuizQuestionModel.fromMap(
+    Map<String, dynamic> map,
+  ) {
+    return QuizQuestionModel(
+      questionText: map['text'],
+      options: List<String>.from(map['options']),
+      correctAnswerIndex: map['correctAnswerIndex'],
+      type: QuizQuestionType.values.byName(map['type']),
+      scenario: map['scenario'],
+      explanation: map['explanation'],
+      images: map['images'],
+    );
+  }
+
+  Map<String, dynamic> toMap() => {
+    'text': questionText,
+    'options': options,
+    'correctAnswerIndex': correctAnswerIndex,
+    'type': type.name,
+    'scenario': scenario,
+    'explanation': explanation,
+    'images': images,
+  };
 }
 
 enum QuizQuestionType {

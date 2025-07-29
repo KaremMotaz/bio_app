@@ -22,14 +22,14 @@ final List<QuizQuestionModel> mockQuizQuestions = [
     correctAnswerIndex: 2,
     explanation:
         "نخاع العظم هو المسؤول عن إنتاج خلايا الدم الحمراء.",
-    questionImages: [AssetsData.redBloodCells],
+    images: [AssetsData.redBloodCells],
     type: QuizQuestionType.textChoices,
   ),
   QuizQuestionModel(
     questionText: "كم عدد الكروموسومات في الخلية البشرية؟",
     options: ["23", "46", "44", "22"],
     correctAnswerIndex: 1,
-    questionImages: [AssetsData.chromosome],
+    images: [AssetsData.chromosome],
     type: QuizQuestionType.textChoices,
   ),
   QuizQuestionModel(
@@ -73,7 +73,7 @@ final List<QuizQuestionModel> mockQuizQuestions = [
     correctAnswerIndex: 1,
     explanation:
         "الأحماض الأمينية ترتبط لتكوين البروتينات.",
-    questionImages: [AssetsData.protein],
+    images: [AssetsData.protein],
     type: QuizQuestionType.textChoices,
   ),
   QuizQuestionModel(
@@ -83,7 +83,7 @@ final List<QuizQuestionModel> mockQuizQuestions = [
     correctAnswerIndex: 1,
     explanation:
         "الكبد يقوم بتخزين الجلوكوز الزائد على هيئة جلايكوجين.",
-    questionImages: [AssetsData.glucose],
+    images: [AssetsData.glucose],
     type: QuizQuestionType.textChoices,
   ),
   QuizQuestionModel(

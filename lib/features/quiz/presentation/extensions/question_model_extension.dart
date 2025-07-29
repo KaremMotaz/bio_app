@@ -1,10 +1,11 @@
-import '../../data/models/quiz_question_model.dart';
+import 'package:bio_app/features/quiz/domain/entities/quiz_question_entity.dart';
 
-extension QuestionModelX on QuizQuestionModel {
+
+extension QuestionModelExtension on QuizQuestionEntity {
   bool get hasScenario => scenario != null;
 
   bool get hasImages =>
-      questionImages != null && questionImages!.isNotEmpty;
+      images != null && images!.isNotEmpty;
 
   String get fullQuestionText => hasScenario
       ? "$scenario\n- $questionText"

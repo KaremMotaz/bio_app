@@ -5,8 +5,8 @@ import 'exam_mcq_options.dart';
 import 'exam_true_false_options.dart';
 import 'package:flutter/material.dart';
 
-class ExamQuestionOptions extends StatelessWidget {
-  const ExamQuestionOptions({
+class QuestionOptions extends StatelessWidget {
+  const QuestionOptions({
     super.key,
     required this.question,
   });
