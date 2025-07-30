@@ -1,8 +1,9 @@
-import 'question_images.dart';
-import 'question_widget.dart';
 import 'package:flutter/material.dart';
+
 import '../../domain/entities/exam_question_entity.dart';
+import 'question_images.dart';
 import 'question_options.dart';
+import 'question_widget.dart';
 
 class ExamQuestionCard extends StatelessWidget {
   final ExamQuestionEntity question;

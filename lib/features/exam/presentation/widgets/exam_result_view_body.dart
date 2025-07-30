@@ -1,5 +1,4 @@
-import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
-
+import '../../domain/entities/exam_entity.dart';
 import 'exam_result_question_card.dart';
 import 'package:flutter/material.dart';
 

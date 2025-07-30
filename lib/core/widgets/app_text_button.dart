@@ -1,7 +1,7 @@
-import '../theming/text_styles.dart';
 import 'package:flutter/material.dart';
 
 import '../theming/app_colors.dart';
+import '../theming/text_styles.dart';
 
 class AppTextButton extends StatelessWidget {
   const AppTextButton({
