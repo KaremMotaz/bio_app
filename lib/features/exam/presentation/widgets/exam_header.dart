@@ -18,7 +18,6 @@ class ExamHeader extends StatelessWidget {
   final PageController pageController;
   final ExamEntity exam;
   final int currentPageIndex;
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ExamCubit, ExamState>(
@@ -30,20 +29,23 @@ class ExamHeader extends StatelessWidget {
           return const SizedBox();
         }
 
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            SelectExamQuestion(
-              exam: exam,
-              pageController: pageController,
-              currentPageIndex: currentPageIndex,
-            ),
-            const TimerWidget(),
-            Text(
-              "السؤال ${currentPageIndex + 1} / ${exam.questions.length}",
-              style: TextStyles.semiBold15,
-            ),
-          ],
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "السؤال ${currentPageIndex + 1} / ${exam.questions.length}",
+                style: TextStyles.semiBold15,
+              ),
+              const TimerWidget(),
+              SelectExamQuestion(
+                exam: exam,
+                pageController: pageController,
+                currentPageIndex: currentPageIndex,
+              ),
+            ],
+          ),
         );
       },
     );

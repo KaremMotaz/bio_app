@@ -4,8 +4,8 @@ import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/assets_data.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../manager/quiz_cubit/quiz_cubit.dart';
-import 'widgets/custom_button.dart';
-import 'widgets/result_data_frame.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/result_data_frame.dart';
 
 class QuizResultView extends StatelessWidget {
   const QuizResultView({super.key, required this.finishedState});

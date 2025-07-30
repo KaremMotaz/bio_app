@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../core/theming/text_styles.dart';
+import '../../../../core/theming/text_styles.dart';
 
 class ResultDataFrame extends StatelessWidget {
   const ResultDataFrame({

@@ -1,5 +1,4 @@
-import 'package:bio_app/features/exam/domain/usecases/submit_exam_usecase.dart'
-    show SubmitExamUseCase;
+import 'package:bio_app/features/exam/domain/usecases/submit_exam_usecase.dart';
 import 'package:bio_app/features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
 import 'package:bio_app/features/exam/presentation/views/exam_result_view.dart';
 import 'package:bio_app/features/exam/presentation/views/exam_view.dart';
@@ -83,8 +82,29 @@ abstract class AppRouter {
         ),
         GoRoute(
           path: Routes.examResultView,
-          builder: (context, state) =>
-              const ExamResultView(),
+          builder: (context, state) => BlocProvider(
+            create: (context) => ExamCubit(
+              getExamUseCase: GetExamUseCase(
+                examRepo: ExamRepoImpl(
+                  examRemoteDataSource:
+                      ExamRemoteDataSource(
+                        firestore:
+                            FirebaseFirestore.instance,
+                      ),
+                ),
+              ),
+              submitExamUseCase: SubmitExamUseCase(
+                examRepo: ExamRepoImpl(
+                  examRemoteDataSource:
+                      ExamRemoteDataSource(
+                        firestore:
+                            FirebaseFirestore.instance,
+                      ),
+                ),
+              ),
+            )..loadExam("0"),
+            child: const ExamResultView(),
+          ),
         ),
         GoRoute(
           path: Routes.quizView,

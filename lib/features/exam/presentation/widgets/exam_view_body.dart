@@ -18,16 +18,16 @@ class _ExamViewBodyState extends State<ExamViewBody> {
   final PageController _pageController = PageController();
   int currentPageIndex = 0;
 
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
   void onPageChanged(int index) {
     setState(() {
       currentPageIndex = index;
     });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override

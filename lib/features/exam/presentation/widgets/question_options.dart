@@ -17,11 +17,20 @@ class QuestionOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (question.type) {
       case ExamOptionsType.textOptions:
-        return ExamMcqOptions(question: question);
+        return ExamMcqOptions(
+          question: question,
+          isEnabled: isEnabled,
+        );
       case ExamOptionsType.trueFalseOptions:
-        return ExamTrueFalseOptions(question: question);
+        return ExamTrueFalseOptions(
+          question: question,
+          isEnabled: isEnabled,
+        );
       case ExamOptionsType.imageOptions:
-        return ExamImagesOptions(question: question);
+        return ExamImagesOptions(
+          question: question,
+          isEnabled: isEnabled,
+        );
     }
   }
 }

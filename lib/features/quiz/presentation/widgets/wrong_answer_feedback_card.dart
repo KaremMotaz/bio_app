@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/text_styles.dart';
-import '../../../data/models/quiz_question_model.dart';
-import '../../extensions/quiz_loaded_state_extension.dart';
-import '../../helpers/feedback_messages.dart';
-import '../../manager/quiz_cubit/quiz_cubit.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../data/models/quiz_question_model.dart';
+import '../extensions/quiz_loaded_state_extension.dart';
+import '../helpers/feedback_messages.dart';
+import '../manager/quiz_cubit/quiz_cubit.dart';
 import 'custom_button.dart';
 
 class WrongAnswerFeedbackCard extends StatelessWidget {

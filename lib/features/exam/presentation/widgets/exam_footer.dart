@@ -1,3 +1,5 @@
+import 'package:go_router/go_router.dart';
+
 import '../../../../core/widgets/app_text_button.dart';
 import '../../domain/entities/exam_entity.dart';
 import '../manager/exam_cubit/exam_cubit.dart';
@@ -10,11 +12,13 @@ class ExamFooter extends StatelessWidget {
     required PageController pageController,
     required this.exam,
     required this.currentPageIndex,
+    this.isEnabled,
   }) : _pageController = pageController;
 
   final PageController _pageController;
   final ExamEntity exam;
   final int currentPageIndex;
+  final bool? isEnabled;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ExamCubit, ExamState>(
@@ -60,7 +64,11 @@ class ExamFooter extends StatelessWidget {
                       : "التالي",
                   onPressed: () {
                     if (isLastPage) {
-                      cubit.submitExam();
+                      if (isEnabled ?? true) {
+                        cubit.submitExam();
+                      } else {
+                        GoRouter.of(context).pop(context);
+                      }
                     } else {
                       _pageController.animateToPage(
                         currentPageIndex + 1,

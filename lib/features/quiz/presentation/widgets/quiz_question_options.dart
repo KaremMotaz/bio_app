@@ -1,8 +1,8 @@
-import '../../../domain/entities/quiz_question_entity.dart';
+import '../../domain/entities/quiz_question_entity.dart';
 import 'package:flutter/material.dart';
 
-import '../../../data/models/quiz_question_model.dart';
-import '../../manager/quiz_cubit/quiz_cubit.dart';
+import '../../data/models/quiz_question_model.dart';
+import '../manager/quiz_cubit/quiz_cubit.dart';
 import 'quiz_image_options.dart';
 import 'quiz_text_options.dart';
 import 'quiz_true_false_0ptions.dart';

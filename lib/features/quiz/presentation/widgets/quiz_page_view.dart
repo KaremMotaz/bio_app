@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../manager/quiz_cubit/quiz_cubit.dart';
+import '../manager/quiz_cubit/quiz_cubit.dart';
 import 'quiz_question_card.dart';
 
 class QuizPageView extends StatefulWidget {

@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/routing/routes.dart';
 import '../manager/quiz_cubit/quiz_cubit.dart';
 import 'quiz_result_view.dart';
-import 'widgets/quiz_view_body.dart';
+import '../widgets/quiz_view_body.dart';
 
 class QuizView extends StatelessWidget {
   const QuizView({super.key});

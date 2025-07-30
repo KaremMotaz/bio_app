@@ -1,10 +1,10 @@
-import '../../../domain/entities/quiz_question_entity.dart';
-import '../../extensions/question_model_extension.dart';
+import '../../domain/entities/quiz_question_entity.dart';
+import '../extensions/question_model_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/theming/text_styles.dart';
-import '../../helpers/quiz_answer_helpers.dart';
-import '../../manager/quiz_cubit/quiz_cubit.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../helpers/quiz_answer_helpers.dart';
+import '../manager/quiz_cubit/quiz_cubit.dart';
 import 'quiz_question_options.dart';
 
 class QuizQuestionCard extends StatelessWidget {

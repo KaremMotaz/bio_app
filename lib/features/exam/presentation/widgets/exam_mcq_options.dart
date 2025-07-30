@@ -10,7 +10,7 @@ class ExamMcqOptions extends StatelessWidget {
   const ExamMcqOptions({
     super.key,
     required this.question,
-    this.isEnabled,
+    this.isEnabled = true,
   });
 
   final ExamQuestionEntity question;
@@ -50,7 +50,7 @@ class ExamMcqOptions extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border.all(
-                    color: isSelected
+                    color: isSelected && isEnabled! 
                         ? AppColors.lightBlue
                         : Colors.grey.shade300,
                     width: 2,
@@ -58,7 +58,7 @@ class ExamMcqOptions extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: isSelected
+                      color: isSelected && isEnabled! 
                           ? AppColors.lightBlue
                           : Colors.white,
                       offset: const Offset(0, 3),
@@ -68,7 +68,7 @@ class ExamMcqOptions extends StatelessWidget {
                 child: Text(
                   question.options[index],
                   style: TextStyles.semiBold18.copyWith(
-                    color: isSelected
+                    color: isSelected && isEnabled! 
                         ? AppColors.darkBlue
                         : Colors.black,
                   ),

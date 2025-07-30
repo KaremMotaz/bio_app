@@ -1,12 +1,12 @@
+import '../../domain/entities/quiz_question_entity.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theming/text_styles.dart';
-import '../../../domain/entities/quiz_question_entity.dart';
-import '../../helpers/option_style.dart';
-import '../../manager/quiz_cubit/quiz_cubit.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../helpers/option_style.dart';
+import '../manager/quiz_cubit/quiz_cubit.dart';
 
-class QuizTrueFalseOptions extends StatelessWidget {
-  const QuizTrueFalseOptions({
+class QuizTextOptions extends StatelessWidget {
+  const QuizTextOptions({
     super.key,
     required this.question,
     required this.index,

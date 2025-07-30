@@ -12,11 +12,6 @@ class ExamResultView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: const Text("Result"),
-      ),
       body: BlocBuilder<ExamCubit, ExamState>(
         builder: (context, state) {
           switch (state.runtimeType) {
