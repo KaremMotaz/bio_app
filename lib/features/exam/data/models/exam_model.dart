@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../../domain/entities/exam_entity.dart';
 import '../datasources/mock_exam_data.dart';
 import 'exam_question_model.dart';
@@ -31,17 +30,4 @@ class ExamModel extends ExamEntity {
       ).map((q) => ExamQuestionModel.fromMap(q)).toList(),
     );
   }
-  Map<String, dynamic> toMap({required String id}) => {
-    'id': id,
-    'title': title,
-    'unit': unit,
-    'lesson': lesson,
-    'endTime': endTime.toIso8601String(),
-    'passMark': passMark,
-    'isDraft': isDraft,
-    'questions': questions
-        .cast<ExamQuestionModel>()
-        .map((q) => q.toMap())
-        .toList(),
-  };
 }

@@ -1,24 +1,26 @@
+import 'package:bio_app/core/theming/app_colors.dart';
+import 'package:bio_app/features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/theming/app_colors.dart';
-import '../manager/exam_cubit/exam_cubit.dart';
-import 'exam_finished_view.dart';
-import '../widgets/exam_view_body.dart';
+import '../widgets/exam_result_view_body.dart';
 
-class ExamView extends StatelessWidget {
-  const ExamView({super.key});
+class ExamResultView extends StatelessWidget {
+  const ExamResultView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: const Text("Result"),
+      ),
       body: BlocBuilder<ExamCubit, ExamState>(
         builder: (context, state) {
           switch (state.runtimeType) {
             case const (ExamLoadingState):
-            case const (ExamSubmittingState):
               return const Center(
                 child: CircularProgressIndicator(
                   color: AppColors.mainBlue,
@@ -28,10 +30,9 @@ class ExamView extends StatelessWidget {
             case const (ExamRunningState):
               final runningState =
                   state as ExamRunningState;
-              return ExamViewBody(exam: runningState.exam);
-
-            case const (ExamSubmittedState):
-              return const ExamFinishedView();
+              return ExamResultViewBody(
+                exam: runningState.exam,
+              );
 
             case const (ExamErrorState):
               return Center(

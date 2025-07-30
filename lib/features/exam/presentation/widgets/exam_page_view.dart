@@ -1,4 +1,4 @@
-import '../../../domain/entities/exam_entity.dart';
+import '../../domain/entities/exam_entity.dart';
 import 'question_card.dart';
 import 'package:flutter/material.dart';
 

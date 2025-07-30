@@ -24,16 +24,6 @@ class QuizQuestionModel extends QuizQuestionEntity {
       images: map['images'],
     );
   }
-
-  Map<String, dynamic> toMap() => {
-    'text': questionText,
-    'options': options,
-    'correctAnswerIndex': correctAnswerIndex,
-    'type': type.name,
-    'scenario': scenario,
-    'explanation': explanation,
-    'images': images,
-  };
 }
 
 enum QuizQuestionType {

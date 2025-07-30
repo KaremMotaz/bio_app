@@ -2,7 +2,7 @@ import 'package:bio_app/features/exam/domain/usecases/submit_exam_usecase.dart'
     show SubmitExamUseCase;
 import 'package:bio_app/features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
 import 'package:bio_app/features/exam/presentation/views/exam_view.dart';
-import 'package:bio_app/features/exam_result/presentation/views/exam_result_view.dart';
+import 'package:bio_app/features/exam/presentation/views/exam_result_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

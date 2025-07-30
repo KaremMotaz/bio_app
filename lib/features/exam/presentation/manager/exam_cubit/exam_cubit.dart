@@ -43,7 +43,7 @@ class ExamCubit extends Cubit<ExamState> {
 
   void _startTimer() {
     _tick(); // Immediate first tick
-    _timer = Timer.periodic(Duration(seconds: 1), (_) => _tick());
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _tick());
   }
 
   void _tick() {

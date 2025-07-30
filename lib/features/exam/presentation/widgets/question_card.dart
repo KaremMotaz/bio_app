@@ -1,7 +1,7 @@
 import 'question_images.dart';
 import 'question_widget.dart';
 import 'package:flutter/material.dart';
-import '../../../domain/entities/exam_question_entity.dart';
+import '../../domain/entities/exam_question_entity.dart';
 import 'question_options.dart';
 
 class ExamQuestionCard extends StatelessWidget {
@@ -19,11 +19,11 @@ class ExamQuestionCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Column(
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             QuestionWidget(question: question),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             QuestionImages(question: question),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             QuestionOptions(question: question),
           ],
         ),

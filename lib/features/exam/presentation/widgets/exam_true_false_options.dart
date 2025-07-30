@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/text_styles.dart';
-import '../../../domain/entities/exam_question_entity.dart';
-import '../../manager/exam_cubit/exam_cubit.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../domain/entities/exam_question_entity.dart';
+import '../manager/exam_cubit/exam_cubit.dart';
 
 class ExamTrueFalseOptions extends StatelessWidget {
   const ExamTrueFalseOptions({
     super.key,
     required this.question,
+    this.isEnabled,
   });
   final ExamQuestionEntity question;
+  final bool? isEnabled;
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +32,12 @@ class ExamTrueFalseOptions extends StatelessWidget {
 
               return GestureDetector(
                 onTap: () {
-                  context.read<ExamCubit>().selectAnswer(
-                    question.id,
-                    index,
-                  );
+                  if (isEnabled ?? true) {
+                    context.read<ExamCubit>().selectAnswer(
+                      question.id,
+                      index,
+                    );
+                  }
                 },
                 child: Container(
                   width: double.infinity,

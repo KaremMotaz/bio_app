@@ -30,19 +30,6 @@ class ExamQuestionModel extends ExamQuestionEntity {
       explanation: map['explanation'],
     );
   }
-
-  Map<String, dynamic> toMap() => {
-    'id': id,
-    'title': title,
-    'scenario': scenario,
-    'text': questionText,
-    'options': options,
-    'correctIndex': correctIndex,
-    'type': type.name,
-    'marks': marks,
-    'imageUrl': images,
-    'explanation': explanation,
-  };
 }
 
 enum ExamOptionsType {

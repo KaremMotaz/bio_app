@@ -1,8 +1,11 @@
+import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
+
 import 'exam_result_question_card.dart';
 import 'package:flutter/material.dart';
 
 class ExamResultViewBody extends StatefulWidget {
-  const ExamResultViewBody({super.key});
+  const ExamResultViewBody({super.key, required this.exam});
+  final ExamEntity exam;
 
   @override
   State<ExamResultViewBody> createState() =>
@@ -24,7 +27,7 @@ class _ExamResultViewBodyState
   Widget build(BuildContext context) {
     return PageView.builder(
       controller: _pageController,
-      itemCount: 1,
+      itemCount: widget.exam.questions.length,
       physics: const NeverScrollableScrollPhysics(),
       onPageChanged: (index) {
         setState(() {
@@ -32,8 +35,8 @@ class _ExamResultViewBodyState
         });
       },
       itemBuilder: (context, index) {
-        // final question = exam.questions[index];
-        return ExamResultQuestionCard();
+        final question = widget.exam.questions[index];
+        return ExamResultQuestionCard(question: question);
       },
     );
   }

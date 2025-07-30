@@ -1,4 +1,4 @@
-import '../../../domain/entities/exam_question_entity.dart';
+import '../../domain/entities/exam_question_entity.dart';
 import 'package:flutter/material.dart';
 
 class QuestionImages extends StatelessWidget {

@@ -1,6 +1,6 @@
-import '../../../../../core/widgets/app_text_button.dart';
-import '../../../domain/entities/exam_entity.dart';
-import '../../manager/exam_cubit/exam_cubit.dart';
+import '../../../../core/widgets/app_text_button.dart';
+import '../../domain/entities/exam_entity.dart';
+import '../manager/exam_cubit/exam_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

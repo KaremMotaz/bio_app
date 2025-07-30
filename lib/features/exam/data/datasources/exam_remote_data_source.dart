@@ -24,12 +24,4 @@ class ExamRemoteDataSource {
       'timestamp': DateTime.now().toIso8601String(),
     });
   }
-
-  Future<void> createExam(ExamModel model) async {
-    final docRef = firestore.collection('exams').doc();
-    await firestore
-        .collection('exams')
-        .doc(docRef.id)
-        .set(model.toMap(id: docRef.id));
-  }
 }

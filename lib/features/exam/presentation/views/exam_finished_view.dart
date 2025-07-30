@@ -10,7 +10,7 @@ class ExamFinishedView extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("تم ارسال الأسئلة للمراجعة"),
+        const Text("تم ارسال الأسئلة للمراجعة"),
         const SizedBox(height: 16),
         Padding(
           padding: const EdgeInsets.symmetric(

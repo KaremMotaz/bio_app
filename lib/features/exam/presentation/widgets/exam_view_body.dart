@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/exam_entity.dart';
+import '../../domain/entities/exam_entity.dart';
 import 'exam_footer.dart';
 import 'exam_header.dart';
 import 'exam_page_view.dart';
@@ -45,13 +45,13 @@ class _ExamViewBodyState extends State<ExamViewBody> {
             pageController: _pageController,
             onPageChanged: onPageChanged,
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           ExamFooter(
             pageController: _pageController,
             exam: widget.exam,
             currentPageIndex: currentPageIndex,
           ),
-          SizedBox(height: 18),
+          const SizedBox(height: 18),
         ],
       ),
     );

@@ -1,5 +1,5 @@
-import '../../../data/models/exam_question_model.dart';
-import '../../../domain/entities/exam_question_entity.dart';
+import '../../data/models/exam_question_model.dart';
+import '../../domain/entities/exam_question_entity.dart';
 import 'exam_images_options.dart';
 import 'exam_mcq_options.dart';
 import 'exam_true_false_options.dart';
@@ -9,8 +9,10 @@ class QuestionOptions extends StatelessWidget {
   const QuestionOptions({
     super.key,
     required this.question,
+    this.isEnabled,
   });
   final ExamQuestionEntity question;
+  final bool? isEnabled;
   @override
   Widget build(BuildContext context) {
     switch (question.type) {
