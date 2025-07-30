@@ -1,10 +1,10 @@
 import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
-import 'package:bio_app/features/exam/presentation/widgets/exam_result_question_card.dart';
+import 'package:bio_app/core/entities/exam_question_entity.dart';
+import 'package:bio_app/features/exam_result/presentation/widgets/exam_result_details_question_card.dart';
 import 'package:flutter/material.dart';
 
-class ExamResultPageView extends StatelessWidget {
-  const ExamResultPageView({
+class ExamResultDetailsPageView extends StatelessWidget {
+  const ExamResultDetailsPageView({
     super.key,
     required this.exam,
     required this.pageController,
@@ -23,9 +23,8 @@ class ExamResultPageView extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         onPageChanged: onPageChanged,
         itemBuilder: (context, index) {
-          final ExamQuestionEntity question =
-              exam.questions[index];
-          return ExamResultQuestionCard(question: question);
+          final ExamQuestionEntity question = exam.questions[index];
+          return ExamResultDetailsQuestionCard(question: question);
         },
       ),
     );

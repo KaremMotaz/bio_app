@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
-import '../../domain/entities/exam_question_entity.dart';
+import '../../../../core/entities/exam_question_entity.dart';
 import '../manager/exam_cubit/exam_cubit.dart';
 
 class ExamMcqOptions extends StatelessWidget {

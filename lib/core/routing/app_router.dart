@@ -1,11 +1,13 @@
 import 'package:bio_app/features/exam/domain/usecases/submit_exam_usecase.dart';
 import 'package:bio_app/features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
-import 'package:bio_app/features/exam/presentation/views/exam_result_view.dart';
+import 'package:bio_app/features/exam_result/data/repos/exam_result_repo_imp.dart';
+import 'package:bio_app/features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
+import 'package:bio_app/features/exam_result/presentation/views/exam_result_details_view.dart';
+import 'package:bio_app/features/exam_result/presentation/views/exam_result_view.dart';
 import 'package:bio_app/features/exam/presentation/views/exam_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../features/auth/presentation/views/fill_profile_view.dart';
 import '../../features/auth/presentation/views/otp_verification_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
@@ -32,8 +34,7 @@ abstract class AppRouter {
     final bool hasSeenOnboarding = CacheHelper.getBool(
       key: kHasSeenOnboarding,
     );
-    final bool isLoggedIn = FirebaseAuthService()
-        .isLoggedIn();
+    final bool isLoggedIn = FirebaseAuthService().isLoggedIn();
     final String initialPath = isLoggedIn
         ? Routes.mainView
         : hasSeenOnboarding
@@ -45,8 +46,7 @@ abstract class AppRouter {
       routes: [
         GoRoute(
           path: Routes.onBoardingView,
-          builder: (context, state) =>
-              const OnboardingView(),
+          builder: (context, state) => const OnboardingView(),
         ),
 
         GoRoute(
@@ -59,18 +59,15 @@ abstract class AppRouter {
         ),
         GoRoute(
           path: Routes.forgotPasswordView,
-          builder: (context, state) =>
-              const ResetPasswordView(),
+          builder: (context, state) => const ResetPasswordView(),
         ),
         GoRoute(
           path: Routes.otpVerificationView,
-          builder: (context, state) =>
-              const OtpVerificationView(),
+          builder: (context, state) => const OtpVerificationView(),
         ),
         GoRoute(
           path: Routes.fillProfileView,
-          builder: (context, state) =>
-              const FillProfileView(),
+          builder: (context, state) => const FillProfileView(),
         ),
         GoRoute(
           path: Routes.mainView,
@@ -80,30 +77,30 @@ abstract class AppRouter {
           path: Routes.profileView,
           builder: (context, state) => const ProfileView(),
         ),
+
         GoRoute(
           path: Routes.examResultView,
           builder: (context, state) => BlocProvider(
-            create: (context) => ExamCubit(
+            create: (context) => ExamResultCubit(
               getExamUseCase: GetExamUseCase(
                 examRepo: ExamRepoImpl(
-                  examRemoteDataSource:
-                      ExamRemoteDataSource(
-                        firestore:
-                            FirebaseFirestore.instance,
-                      ),
+                  examRemoteDataSource: ExamRemoteDataSource(
+                    firestore: FirebaseFirestore.instance,
+                  ),
                 ),
               ),
-              submitExamUseCase: SubmitExamUseCase(
-                examRepo: ExamRepoImpl(
-                  examRemoteDataSource:
-                      ExamRemoteDataSource(
-                        firestore:
-                            FirebaseFirestore.instance,
-                      ),
-                ),
+              examResultRepo: ExamResultRepoImpl(
+                firestore: FirebaseFirestore.instance,
               ),
-            )..loadExam("0"),
+            )..getResult(examId: 0),
             child: const ExamResultView(),
+          ),
+        ),
+        GoRoute(
+          path: Routes.examResultDetailsView,
+          builder: (context, state) => BlocProvider.value(
+            value: BlocProvider.of<ExamResultCubit>(context),
+            child: const ExamResultDetailsView(),
           ),
         ),
         GoRoute(
@@ -123,20 +120,16 @@ abstract class AppRouter {
             create: (context) => ExamCubit(
               getExamUseCase: GetExamUseCase(
                 examRepo: ExamRepoImpl(
-                  examRemoteDataSource:
-                      ExamRemoteDataSource(
-                        firestore:
-                            FirebaseFirestore.instance,
-                      ),
+                  examRemoteDataSource: ExamRemoteDataSource(
+                    firestore: FirebaseFirestore.instance,
+                  ),
                 ),
               ),
               submitExamUseCase: SubmitExamUseCase(
                 examRepo: ExamRepoImpl(
-                  examRemoteDataSource:
-                      ExamRemoteDataSource(
-                        firestore:
-                            FirebaseFirestore.instance,
-                      ),
+                  examRemoteDataSource: ExamRemoteDataSource(
+                    firestore: FirebaseFirestore.instance,
+                  ),
                 ),
               ),
             )..loadExam("0"),

@@ -1,5 +1,5 @@
 import '../../../../core/theming/assets_data.dart';
-import '../models/exam_question_model.dart';
+import '../../../../core/models/exam_question_model.dart';
 
 final List<Map<String, dynamic>> biologyQuestions = [
   {

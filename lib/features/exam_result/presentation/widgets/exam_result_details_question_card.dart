@@ -1,12 +1,11 @@
-
-import '../../domain/entities/exam_question_entity.dart';
-import 'question_images.dart';
-import 'question_options.dart';
-import 'question_widget.dart';
+import '../../../../core/entities/exam_question_entity.dart';
+import '../../../exam/presentation/widgets/question_images.dart';
+import '../../../exam/presentation/widgets/question_options.dart';
+import '../../../exam/presentation/widgets/question_widget.dart';
 import 'package:flutter/material.dart';
 
-class ExamResultQuestionCard extends StatelessWidget {
-  const ExamResultQuestionCard({
+class ExamResultDetailsQuestionCard extends StatelessWidget {
+  const ExamResultDetailsQuestionCard({
     super.key,
     required this.question,
   });
@@ -24,10 +23,7 @@ class ExamResultQuestionCard extends StatelessWidget {
             const SizedBox(height: 10),
             QuestionImages(question: question),
             const SizedBox(height: 20),
-            QuestionOptions(
-              question: question,
-              isEnabled: false,
-            ),
+            QuestionOptions(question: question, isEnabled: false),
             const SizedBox(height: 20),
             // FeedbackCard(state: question),
           ],

@@ -1,5 +1,5 @@
 import '../../../../core/theming/text_styles.dart';
-import '../../domain/entities/exam_question_entity.dart';
+import '../../../../core/entities/exam_question_entity.dart';
 import 'package:flutter/material.dart';
 
 class QuestionWidget extends StatelessWidget {

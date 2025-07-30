@@ -1,21 +1,21 @@
 import 'package:bio_app/features/exam/presentation/widgets/exam_footer.dart';
-import 'package:bio_app/features/exam/presentation/widgets/exam_result_header.dart';
-import 'package:bio_app/features/exam/presentation/widgets/exam_result_page_view.dart';
+import 'package:bio_app/features/exam_result/presentation/widgets/exam_result_header.dart';
+import 'package:bio_app/features/exam_result/presentation/widgets/exam_result_details_page_view.dart';
 
-import '../../domain/entities/exam_entity.dart';
+import '../../../exam/domain/entities/exam_entity.dart';
 import 'package:flutter/material.dart';
 
-class ExamResultViewBody extends StatefulWidget {
-  const ExamResultViewBody({super.key, required this.exam});
+class ExamResultDetailsViewBody extends StatefulWidget {
+  const ExamResultDetailsViewBody({super.key, required this.exam});
   final ExamEntity exam;
 
   @override
-  State<ExamResultViewBody> createState() =>
-      _ExamResultViewBodyState();
+  State<ExamResultDetailsViewBody> createState() =>
+      _ExamResultDetailsViewBodyState();
 }
 
-class _ExamResultViewBodyState
-    extends State<ExamResultViewBody> {
+class _ExamResultDetailsViewBodyState
+    extends State<ExamResultDetailsViewBody> {
   final PageController _pageController = PageController();
   int currentPageIndex = 0;
 
@@ -41,7 +41,7 @@ class _ExamResultViewBodyState
             pageController: _pageController,
             currentPageIndex: currentPageIndex,
           ),
-          ExamResultPageView(
+          ExamResultDetailsPageView(
             exam: widget.exam,
             onPageChanged: onPageChanged,
             pageController: _pageController,

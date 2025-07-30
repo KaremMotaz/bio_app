@@ -1,4 +1,4 @@
-import '../../data/models/exam_question_model.dart';
+import '../models/exam_question_model.dart';
 
 class ExamQuestionEntity {
   final int id;

@@ -1,5 +1,5 @@
-import '../../data/models/exam_question_model.dart';
-import '../../domain/entities/exam_question_entity.dart';
+import '../../../../core/models/exam_question_model.dart';
+import '../../../../core/entities/exam_question_entity.dart';
 import 'exam_images_options.dart';
 import 'exam_mcq_options.dart';
 import 'exam_true_false_options.dart';

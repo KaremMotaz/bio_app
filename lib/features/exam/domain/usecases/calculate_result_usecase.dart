@@ -1,4 +1,4 @@
-import '../../data/models/exam_question_model.dart';
+import '../../../../core/models/exam_question_model.dart';
 import '../entities/exam_entity.dart';
 
 class CalculateResultUseCase {
