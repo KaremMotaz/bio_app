@@ -64,7 +64,7 @@ class _SignUpFormState extends State<SignUpForm> {
             },
             controller: widget.emailController,
           ),
-          SizedBox(height: 18),
+          const SizedBox(height: 18),
           AppTextFormField(
             hintText: "كلمة المرور",
             isObscureText: isPasswordObscureText,
@@ -89,15 +89,15 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
           ),
-          SizedBox(height: 24),
-          Align(
+          const SizedBox(height: 24),
+          const Align(
             alignment: AlignmentDirectional.centerStart,
             child: Text(
               "يجب أن تحتوي كلمة المرور على ما يلي:",
               style: TextStyles.regular14,
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           PasswordValidations(
             hasLowerCase: hasLowerCase,
             hasUpperCase: hasUpperCase,

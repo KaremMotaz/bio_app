@@ -26,7 +26,7 @@ class _CustomListItemState extends State<CustomListItem> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(color: Colors.grey, blurRadius: 4, offset: Offset(0, 3)),
         ],
       ),
@@ -35,15 +35,15 @@ class _CustomListItemState extends State<CustomListItem> {
           ListTile(
             title: Text(
               reciters[0]['name'],
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            leading: CircleAvatar(
+            leading: const CircleAvatar(
               backgroundColor: Color(0xff2d6677),
               child: Icon(Icons.mic, color: Colors.white),
             ),
             trailing: isExpanded
-                ? Icon(Icons.expand_less, size: 30)
-                : Icon(Icons.expand_more, size: 30),
+                ? const Icon(Icons.expand_less, size: 30)
+                : const Icon(Icons.expand_more, size: 30),
             onTap: () {
               setState(() {
                 isExpanded = !isExpanded;
@@ -54,7 +54,7 @@ class _CustomListItemState extends State<CustomListItem> {
             ListView.builder(
               padding: EdgeInsets.zero,
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: reciters[0]['tracks'].length,
               itemBuilder: (context, index) {
                 final item = reciters[0]['tracks'][index];

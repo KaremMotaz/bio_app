@@ -22,7 +22,7 @@ class CustomSettingsListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Container(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: 9,
           vertical: 9,
         ),

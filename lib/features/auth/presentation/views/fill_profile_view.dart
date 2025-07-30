@@ -15,7 +15,7 @@ class FillProfileView extends StatelessWidget {
         getIt.get<AuthRepo>(),
       ),
       child: Scaffold(
-        appBar: AppBar(title: Text("تعبئة الملف الشخصي")),
+        appBar: AppBar(title: const Text("تعبئة الملف الشخصي")),
         body: const SafeArea(
           child: FillProfileViewBodyBlocConsumer(),
         ),

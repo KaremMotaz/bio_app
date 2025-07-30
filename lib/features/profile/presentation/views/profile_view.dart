@@ -20,7 +20,7 @@ class ProfileView extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "الملف الشخصي",
             style: TextStyles.bold18,
           ),

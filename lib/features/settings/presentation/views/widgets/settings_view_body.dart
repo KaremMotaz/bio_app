@@ -16,20 +16,20 @@ class SettingsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 20,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("الحساب", style: TextStyles.bold20),
-            SizedBox(height: 20),
+            const Text("الحساب", style: TextStyles.bold20),
+            const SizedBox(height: 20),
             ListTile(
               leading: Image.asset(
                 AssetsData.dummyUserImage,
               ),
-              title: Text(
+              title: const Text(
                 "Karim Motaz",
                 style: TextStyles.bold18,
               ),
@@ -53,9 +53,9 @@ class SettingsViewBody extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
             ),
-            SizedBox(height: 30),
-            Text("الإعدادات", style: TextStyles.bold20),
-            SizedBox(height: 20),
+            const SizedBox(height: 30),
+            const Text("الإعدادات", style: TextStyles.bold20),
+            const SizedBox(height: 20),
             CustomSettingsListTile(
               bgIconcolor: const Color(0xfffee9f0),
               title: "تسجيل الخروج",
@@ -82,7 +82,7 @@ class SettingsViewBody extends StatelessWidget {
               icon: Icons.logout_rounded,
               iconcolor: const Color(0xffd05b75),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
           ],
         ),
       ),

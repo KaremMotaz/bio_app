@@ -50,17 +50,17 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
   }
 
   List<PageViewItem> pages = [
-    PageViewItem(
+    const PageViewItem(
       isVisible: true,
       title: 'اختبارات دورية على كل فصل',
       imageUrl: AssetsData.onboarding1,
     ),
-    PageViewItem(
+    const PageViewItem(
       isVisible: true,
       title: 'اطلاع مستمر على نتائجك ومستواك مقارنة بباقى زملائك',
       imageUrl: AssetsData.onboarding2,
     ),
-    PageViewItem(
+    const PageViewItem(
       isVisible: false,
       title: 'مكافأت قيمة وتشجيع مستمر',
       imageUrl: AssetsData.onboarding3,
@@ -75,14 +75,14 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
         DotsIndicator(
           dotsCount: 3,
           position: currentPageIndex.toDouble(),
-          decorator: DotsDecorator(
+          decorator: const DotsDecorator(
             color: AppColors.gray,
             activeColor: AppColors.mainBlue,
           ),
         ),
         const SizedBox(height: 20),
         if (currentPageIndex == 0 || currentPageIndex == 1) ...[
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           CircleAvatar(
             radius: 15,
             backgroundColor: AppColors.mainBlue,
@@ -91,7 +91,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
               onPressed: () {
                 goToNextPage();
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_right_alt_sharp,
                 size: 25,
                 color: Colors.white,
@@ -100,7 +100,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
           ),
         ],
         if (currentPageIndex == 2) ...[
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: AppTextButton(

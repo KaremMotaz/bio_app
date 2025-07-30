@@ -21,7 +21,7 @@ showConfirmDialog({
       return Dialog(
         backgroundColor: Colors.white,
         child: Padding(
-          padding: EdgeInsetsDirectional.only(
+          padding: const EdgeInsetsDirectional.only(
             start: 30,
             end: 30,
             top: 24,
@@ -48,9 +48,9 @@ showConfirmDialog({
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(bodyContent, style: TextStyles.bold17),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 Row(
                   children: [
                     Expanded(
@@ -73,7 +73,7 @@ showConfirmDialog({
                         },
                       ),
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     Expanded(
                       child: AppTextButton(
                         buttonText: buttonText,

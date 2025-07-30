@@ -15,7 +15,7 @@ class DontHaveAnAccount extends StatelessWidget {
       textAlign: TextAlign.center,
       TextSpan(
         children: [
-          TextSpan(text: "لا تمتلك حساباً؟ ", style: TextStyles.medium16),
+          const TextSpan(text: "لا تمتلك حساباً؟ ", style: TextStyles.medium16),
           const TextSpan(
             text: " ",
           ),

@@ -31,14 +31,14 @@ class WrongAnswerFeedbackCard extends StatelessWidget {
               color: AppColors.darkRed,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             "الإجابة:",
             style: TextStyles.extraBold21.copyWith(
               color: AppColors.darkRed,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             state.currentQuestion.type ==
                     QuizQuestionType.imageChoices
@@ -50,14 +50,14 @@ class WrongAnswerFeedbackCard extends StatelessWidget {
           ),
 
           if (state.explanation != null) ...[
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Text(
               "السبب:",
               style: TextStyles.extraBold21.copyWith(
                 color: AppColors.darkRed,
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Text(
               state.explanation!,
               style: TextStyles.semiBold18.copyWith(
@@ -65,7 +65,7 @@ class WrongAnswerFeedbackCard extends StatelessWidget {
               ),
             ),
           ],
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           CustomButton(
             text: "كمل",
             isEnabled: true,
@@ -80,7 +80,7 @@ class WrongAnswerFeedbackCard extends StatelessWidget {
               }
             },
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
         ],
       ),
     );

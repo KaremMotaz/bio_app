@@ -21,14 +21,14 @@ class PasswordValidations extends StatelessWidget {
     return Column(
       children: [
         buildValidationRow("على الأقل حرف صغير واحد", hasLowerCase),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
 
         buildValidationRow("على الأقل حرف كبير واحد", hasUpperCase),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         buildValidationRow("على الأقل رمز خاص واحد", hasSpecialCharacters),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         buildValidationRow("على الأقل رقم واحد", hasNumber),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         buildValidationRow("يجب أن يحتوي على 8 أحرف على الأقل", hasMinLength),
       ],
     );
@@ -42,7 +42,7 @@ class PasswordValidations extends StatelessWidget {
           color: hasValidated ? Colors.green : null,
           size: 16,
         ),
-        SizedBox(width: 5),
+        const SizedBox(width: 5),
         Text(
           text,
           style: TextStyles.regular14.copyWith(

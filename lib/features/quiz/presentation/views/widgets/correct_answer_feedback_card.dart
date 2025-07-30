@@ -25,14 +25,14 @@ class CorrectAnswerFeedbackCard extends StatelessWidget {
             FeedbackMessages.getRandomCorrectMessage(),
             style: TextStyles.extraBold24.copyWith(color: AppColors.darkGreen),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           if (state.explanation != null) ...[
             Text(
               state.explanation!,
               style: TextStyles.semiBold18.copyWith(color: AppColors.darkGreen),
             ),
           ],
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           CustomButton(
             text: "كمل",
             isEnabled: true,
@@ -40,7 +40,7 @@ class CorrectAnswerFeedbackCard extends StatelessWidget {
               context.read<QuizCubit>().nextQuestion();
             },
           ),
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
         ],
       ),
     );

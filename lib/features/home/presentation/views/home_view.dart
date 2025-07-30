@@ -18,7 +18,7 @@ class HomeView extends StatelessWidget {
               onPressed: () {
                 GoRouter.of(context).push(Routes.quizView);
               },
-              child: Text("Go to Quiz"),
+              child: const Text("Go to Quiz"),
             ),
           ),
         ],

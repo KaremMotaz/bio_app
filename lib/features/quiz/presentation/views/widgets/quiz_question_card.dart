@@ -25,14 +25,14 @@ class QuizQuestionCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Column(
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             if (question.hasScenario) ...[
               Text(
                 question.scenario!,
                 style: TextStyles.bold17,
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
             ],
 
             Text(
@@ -40,7 +40,7 @@ class QuizQuestionCard extends StatelessWidget {
               style: TextStyles.bold17,
             ),
 
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
 
             if (question.hasImages) ...[
               const SizedBox(height: 20),

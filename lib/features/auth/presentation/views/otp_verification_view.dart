@@ -7,7 +7,7 @@ class OtpVerificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("تأكيد الايميل")),
+      appBar: AppBar(title: const Text("تأكيد الايميل")),
       body: const SafeArea(
         child: OtpViewBodyBlocConsumer(),
       ),

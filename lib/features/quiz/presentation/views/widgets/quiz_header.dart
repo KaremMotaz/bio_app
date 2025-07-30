@@ -30,14 +30,14 @@ class QuizHeader extends StatelessWidget {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      child: Text("لا"),
+                      child: const Text("لا"),
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.pop(context);
                         quizCubit.exitToHome();
                       },
-                      child: Text("نعم"),
+                      child: const Text("نعم"),
                     ),
                   ],
                 );
@@ -46,30 +46,30 @@ class QuizHeader extends StatelessWidget {
           },
           child: SvgPicture.asset(AssetsData.closeIcon, height: 16),
         ),
-        SizedBox(width: 16),
+        const SizedBox(width: 16),
         Expanded(child: CustomLinearProgressBar(progress: progress)),
-        SizedBox(width: 12),
+        const SizedBox(width: 12),
         Row(
           children: [
             SvgPicture.asset(AssetsData.expIcon),
-            SizedBox(width: 4),
+            const SizedBox(width: 4),
             Text(
               "${status.score}",
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.amber,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ],
         ),
-        SizedBox(width: 12),
+        const SizedBox(width: 12),
         Row(
           children: [
             SvgPicture.asset(AssetsData.heartIcon),
-            SizedBox(width: 4),
+            const SizedBox(width: 4),
             Text(
               "${status.remainingLives}",
-              style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+              style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
             ),
           ],
         ),

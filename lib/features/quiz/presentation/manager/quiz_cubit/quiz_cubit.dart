@@ -39,7 +39,7 @@ class QuizCubit extends Cubit<QuizState> {
           QuizLoadedState(
             questions: questions,
             status: QuizStatus(score: 0, remainingLives: 5),
-            answerState: QuizAnswerState(
+            answerState: const QuizAnswerState(
               isSelected: false,
               selectedAnswers: {},
             ),

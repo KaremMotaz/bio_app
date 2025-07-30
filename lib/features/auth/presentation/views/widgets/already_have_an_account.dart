@@ -15,7 +15,7 @@ class AlreadyHaveAnAccount extends StatelessWidget {
       textAlign: TextAlign.center,
       TextSpan(
         children: [
-          TextSpan(
+          const TextSpan(
             text: " تمتلك حساباً؟ ",
             style: TextStyles.medium16,
           ),

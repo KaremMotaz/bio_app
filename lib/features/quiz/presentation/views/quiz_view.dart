@@ -31,7 +31,7 @@ class QuizView extends StatelessWidget {
             } else if (state is QuizErrorState) {
               return Center(child: Text(state.message));
             } else {
-              return SizedBox.shrink();
+              return const SizedBox.shrink();
             }
           },
         ),

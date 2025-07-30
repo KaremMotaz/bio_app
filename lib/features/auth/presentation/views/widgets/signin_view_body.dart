@@ -29,7 +29,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,18 +38,18 @@ class _SigninViewBodyState extends State<SigninViewBody> {
               "مرحبًا بعودتك",
               style: TextStyles.bold20.copyWith(color: AppColors.mainBlue),
             ),
-            SizedBox(height: 8),
-            Text(
+            const SizedBox(height: 8),
+            const Text(
               "أهلاً بالطالب المميز! مستعد تكمّل التعلم؟",
               style: TextStyles.regular14,
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             SignInForm(
               emailController: emailController,
               passwordController: passwordController,
               formKey: formKey,
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Align(
               alignment: AlignmentDirectional.centerEnd,
               child: TextButton(
@@ -64,7 +64,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                 ),
               ),
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             AppTextButton(
               buttonText: "تسجيل دخول",
               textStyle: TextStyles.semiBold16.copyWith(color: Colors.white),
@@ -74,9 +74,9 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                 passwordController.clear();
               },
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             const DontHaveAnAccount(),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             const OrDivider(),
             const SizedBox(height: 20),
             SocialLoginButton(

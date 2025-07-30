@@ -19,14 +19,14 @@ class QuizResultView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             "لقد\n اكملت \nالدرس!",
             textAlign: TextAlign.center,
             style: TextStyles.extraBold30.copyWith(color: Colors.amber),
           ),
           Image.asset(AssetsData.finishLesson, height: 280),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

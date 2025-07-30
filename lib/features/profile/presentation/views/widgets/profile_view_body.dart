@@ -30,14 +30,14 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: 20,
             vertical: 20,
           ),
           child: Column(
             children: [
               // const Align(child: CustomCircleAvatar()),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               EditProfileListTile(
                 title: "الاسم",
                 subTitle: const Text('Karim Motaz'),
@@ -60,7 +60,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                 },
                 icon: Icons.person,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               EditProfileListTile(
                 title: "الهاتف",
                 onTap: () {

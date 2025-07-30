@@ -25,10 +25,10 @@ class SocialLoginButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
         ),
-        padding: WidgetStatePropertyAll<EdgeInsets>(
+        padding: const WidgetStatePropertyAll<EdgeInsets>(
           EdgeInsets.symmetric(horizontal: 12),
         ),
-        fixedSize: WidgetStatePropertyAll(Size(double.maxFinite, 60)),
+        fixedSize: const WidgetStatePropertyAll(Size(double.maxFinite, 60)),
       ),
       child: ListTile(
         title: Text(

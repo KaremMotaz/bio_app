@@ -33,14 +33,14 @@ class _ResetPasswordViewBodyState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 20,
         vertical: 20,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "يرجى إدخال بريدك الإلكتروني لتلقي رابط إعادة تعيين كلمة السر",
             style: TextStyles.regular14,
           ),
@@ -61,7 +61,7 @@ class _ResetPasswordViewBodyState
               },
             ),
           ),
-          Spacer(),
+          const Spacer(),
           AppTextButton(
             buttonText: "إرسال",
             textStyle: TextStyles.semiBold16.copyWith(
@@ -71,7 +71,7 @@ class _ResetPasswordViewBodyState
               validateThenSendLinkToResetPassword(context);
             },
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
         ],
       ),
     );

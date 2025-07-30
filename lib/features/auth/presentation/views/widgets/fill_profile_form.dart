@@ -36,7 +36,7 @@ class _FillProfileFormState extends State<FillProfileForm> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             AppTextFormField(
               hintText: "الاسم الأول",
               controller: firstNameController,
@@ -47,7 +47,7 @@ class _FillProfileFormState extends State<FillProfileForm> {
                 return null;
               },
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             AppTextFormField(
               hintText: "الاسم الأخير",
               controller: lastNameController,
@@ -58,7 +58,7 @@ class _FillProfileFormState extends State<FillProfileForm> {
                 return null;
               },
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             AppTextFormField(
               textInputType: TextInputType.phone,
               hintText: "رقم الهاتف",

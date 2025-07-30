@@ -5,6 +5,6 @@ class OutOfLivesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('Out Of Lives View')));
+    return const Scaffold(body: Center(child: Text('Out Of Lives View')));
   }
 }

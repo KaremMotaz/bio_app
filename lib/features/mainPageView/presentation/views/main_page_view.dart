@@ -20,11 +20,11 @@ class MainPageView extends StatelessWidget {
     return PageView(
       controller: controller,
       onPageChanged: onPageChanged,
-      children: [
-        const HomeView(),
-        const AvailableExamsView(),
-        const LeaderboardView(),
-        const SettingsView(),
+      children: const [
+        HomeView(),
+        AvailableExamsView(),
+        LeaderboardView(),
+        SettingsView(),
       ],
     );
   }

@@ -67,9 +67,9 @@ Widget customSnackbar({
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Icon(icon, color: color, size: 30),
-          SizedBox(width: 15),
+          const SizedBox(width: 15),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,7 +78,7 @@ Widget customSnackbar({
                   titleWord,
                   style: TextStyles.semiBold16.copyWith(color: Colors.black),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(
                   message,
                   // overflow: TextOverflow.ellipsis,

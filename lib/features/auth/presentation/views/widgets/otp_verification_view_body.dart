@@ -13,11 +13,11 @@ class OTPVerificationViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Column(
         children: [
           Image.asset(AssetsData.emailNotification, width: 130),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Align(
             alignment: AlignmentDirectional.centerStart,
             child: Text(
@@ -25,21 +25,21 @@ class OTPVerificationViewBody extends StatelessWidget {
               style: TextStyles.bold20.copyWith(color: AppColors.mainBlue),
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
 
-          Text(
+          const Text(
             "لقد ارسلنا رابط التحقق إلي بريدك الإلكتروني. يرجى التحقق من بريدك والضغط على الرابط.",
             style: TextStyles.regular14,
           ),
-          SizedBox(height: 16),
-          Align(
+          const SizedBox(height: 16),
+          const Align(
             alignment: AlignmentDirectional.centerStart,
             child: Text(
               "بعد التحقق قم بالضغط على الزر التالي ثم تسجيل الدخول.",
               style: TextStyles.regular14,
             ),
           ),
-          SizedBox(height: 32),
+          const SizedBox(height: 32),
           AppTextButton(
             buttonText: "التالي",
             textStyle: TextStyles.semiBold16.copyWith(color: Colors.white),

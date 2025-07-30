@@ -21,7 +21,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,13 +30,13 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               "قم بالتسجيل الآن وابدأ في استكشاف كل ما يقدمه تطبيقنا. نحن متحمسون للترحيب بك في مجتمعنا!",
               style: TextStyles.regular14.copyWith(),
             ),
-            SizedBox(height: 36),
+            const SizedBox(height: 36),
             SignUpForm(
               emailController: emailController,
               passwordController: passwordController,
               formKey: formKey,
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             AppTextButton(
               buttonText: "إنشاء حساب جديد",
               textStyle: TextStyles.semiBold16.copyWith(color: Colors.white),
@@ -46,7 +46,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 passwordController.clear();
               },
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             const Align(
               alignment: AlignmentDirectional.center,
               child: AlreadyHaveAnAccount(),

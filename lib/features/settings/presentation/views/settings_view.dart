@@ -18,7 +18,7 @@ class SettingsView extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "Settings",
             style: TextStyles.medium16,
           ),

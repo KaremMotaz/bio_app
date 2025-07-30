@@ -49,7 +49,7 @@ class _SignInFormState extends State<SignInForm> {
               return null;
             },
           ),
-          SizedBox(height: 18),
+          const SizedBox(height: 18),
           AppTextFormField(
             hintText: "كلمة المرور",
             isObscureText: isPasswordObscureText,

@@ -73,7 +73,7 @@ class _CustomButtonState extends State<CustomButton> {
               ? [
                   BoxShadow(
                     color: widget.shadowColor ?? AppColors.darkGreen,
-                    offset: _isPressed ? Offset(0, 2) : Offset(0, 6),
+                    offset: _isPressed ? const Offset(0, 2) : const Offset(0, 6),
                   ),
                 ]
               : [],

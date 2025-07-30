@@ -38,7 +38,7 @@ class AppTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         isDense: true,
         contentPadding: contentPadding ??
-            EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+            const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
         focusedBorder: focusedBorder ??
             buildOutLineInputBorder(
               borderColor: AppColors.mainBlue,

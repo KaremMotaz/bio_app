@@ -19,7 +19,7 @@ void main() async {
   await CacheHelper.init();
   setupGetIt();
 
-  runApp(MainApp());
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -31,7 +31,7 @@ class MainApp extends StatelessWidget {
       locale: const Locale("ar"),
       supportedLocales: const [Locale('ar')],
       theme: ThemeData(fontFamily: "Cairo"),
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

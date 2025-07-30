@@ -10,7 +10,7 @@ class FillProfileViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -21,8 +21,8 @@ class FillProfileViewBody extends StatelessWidget {
                 style: TextStyles.bold20.copyWith(color: AppColors.mainBlue),
               ),
             ),
-            SizedBox(height: 8),
-            Text(
+            const SizedBox(height: 8),
+            const Text(
               "يرجى قضاء بضع دقائق في ملء ملفك الشخصي بأكبر قدر ممكن من التفاصيل.",
               style: TextStyles.regular14,
             ),
