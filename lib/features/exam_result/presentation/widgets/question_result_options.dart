@@ -6,31 +6,17 @@ import '../../../../core/entities/exam_question_entity.dart';
 import 'package:flutter/material.dart';
 
 class QuestionResultOptions extends StatelessWidget {
-  const QuestionResultOptions({
-    super.key,
-    required this.question,
-    this.isEnabled,
-  });
+  const QuestionResultOptions({super.key, required this.question});
   final ExamQuestionEntity question;
-  final bool? isEnabled;
   @override
   Widget build(BuildContext context) {
     switch (question.type) {
       case ExamOptionsType.textOptions:
-        return ExamResultMcqOptions(
-          question: question,
-          isEnabled: isEnabled,
-        );
+        return ExamResultMcqOptions(question: question);
       case ExamOptionsType.trueFalseOptions:
-        return ExamResultTrueFalseOptions(
-          question: question,
-          isEnabled: isEnabled,
-        );
+        return ExamResultTrueFalseOptions(question: question);
       case ExamOptionsType.imageOptions:
-        return ExamResultImagesOptions(
-          question: question,
-          isEnabled: isEnabled,
-        );
+        return ExamResultImagesOptions(question: question);
     }
   }
 }

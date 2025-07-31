@@ -9,13 +9,13 @@ class SelectorWidget extends StatelessWidget {
     required this.exam,
     required this.currentPageIndex,
     required this.pageController,
-    required this.answers,
+    this.answers,
   });
 
   final ExamEntity exam;
   final int currentPageIndex;
   final PageController pageController;
-  final Map<String, dynamic> answers;
+  final Map<String, dynamic>? answers;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +37,9 @@ class SelectorWidget extends StatelessWidget {
                 crossAxisSpacing: 12,
               ),
           itemBuilder: (context, index) {
-            final isCurrent = index == currentPageIndex;
-            final questionId = exam.questions[index].id.toString();
-            final isAnswered = answers.containsKey(questionId);
+            final bool isCurrent = index == currentPageIndex;
+            final String questionId = exam.questions[index].id.toString();
+            final bool isAnswered = answers?.containsKey(questionId) ?? false;
 
             Color bgColor;
             if (isCurrent) {

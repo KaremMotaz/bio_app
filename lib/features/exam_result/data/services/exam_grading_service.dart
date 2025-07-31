@@ -1,3 +1,4 @@
+import 'package:bio_app/core/entities/exam_question_entity.dart';
 import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
 
 class ExamGradingService {
@@ -35,5 +36,14 @@ class ExamGradingService {
     required double passPercentage,
   }) {
     return studentPercentage >= passPercentage;
+  }
+
+  static bool isCorrectAnswer(
+    ExamQuestionEntity question,
+    Map<String, int> answers,
+  ) {
+    final studentAnswer = answers[question.id.toString()];
+    return studentAnswer != null &&
+        studentAnswer == question.correctIndex;
   }
 }

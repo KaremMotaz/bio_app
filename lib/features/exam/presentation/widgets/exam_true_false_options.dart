@@ -27,7 +27,6 @@ class ExamTrueFalseOptions extends StatelessWidget {
         return TrueFalseOptions(
           options: question.options,
           selectedIndex: selectedIndex,
-          isEnabled: isEnabled ?? true,
           onSelect: (index) {
             if (isEnabled ?? true) {
               context.read<ExamCubit>().selectAnswer(
@@ -39,7 +38,6 @@ class ExamTrueFalseOptions extends StatelessWidget {
           styleBuilder: (int index) {
             return OptionStyle.examQuestionStyle(
               isSelected: selectedIndex == index,
-              isEnabled: isEnabled!,
             );
           },
         );

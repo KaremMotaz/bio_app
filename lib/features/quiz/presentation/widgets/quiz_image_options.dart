@@ -1,3 +1,4 @@
+
 import '../../domain/entities/quiz_question_entity.dart';
 import 'package:flutter/material.dart';
 import '../helpers/option_style.dart';
@@ -17,9 +18,15 @@ class QuizImageOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final OptionStyle style = OptionStyle(
-      answerState: answerState,
-    );
+    final OptionStyle style = OptionStyle(answerState: answerState);
+
+    // return ImageOptions(
+    //   options: question.options,
+    //   selectedIndex: answerState.selectedIndex,
+    //   isEnabled: isEnabled,
+    //   onSelect: onSelect,
+    //   styleBuilder: styleBuilder,
+    // );
 
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -45,10 +52,7 @@ class QuizImageOptions extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: style.borderColor,
-                width: 2,
-              ),
+              border: Border.all(color: style.borderColor, width: 2),
               boxShadow: [
                 BoxShadow(
                   color: style.shadowColor,

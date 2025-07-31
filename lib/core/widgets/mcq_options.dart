@@ -4,7 +4,6 @@ import 'package:bio_app/core/theming/option_style.dart';
 class McqOptions extends StatelessWidget {
   final List<String> options;
   final int? selectedIndex;
-  final bool isEnabled;
   final void Function(int index) onSelect;
   final OptionStyle Function(int index) styleBuilder;
 
@@ -12,7 +11,6 @@ class McqOptions extends StatelessWidget {
     super.key,
     required this.options,
     required this.selectedIndex,
-    required this.isEnabled,
     required this.onSelect,
     required this.styleBuilder,
   });

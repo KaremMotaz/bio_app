@@ -38,7 +38,6 @@ class ExamImagesOptions extends StatelessWidget {
           styleBuilder: (int index) {
             return OptionStyle.examQuestionStyle(
               isSelected: selectedIndex == index,
-              isEnabled: isEnabled!,
             );
           },
         );

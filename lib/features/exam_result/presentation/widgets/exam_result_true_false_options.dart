@@ -26,12 +26,10 @@ class ExamResultTrueFalseOptions extends StatelessWidget {
         return TrueFalseOptions(
           options: question.options,
           selectedIndex: selectedIndex,
-          isEnabled: isEnabled ?? true,
           onSelect: (index) {},
           styleBuilder: (int index) {
             return OptionStyle.examResultQuestionStyle(
               isSelected: selectedIndex == index,
-              isEnabled: isEnabled!,
               isCorrect: question.correctIndex == index,
             );
           },

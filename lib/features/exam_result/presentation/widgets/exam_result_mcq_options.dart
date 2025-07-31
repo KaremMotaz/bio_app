@@ -9,11 +9,9 @@ class ExamResultMcqOptions extends StatelessWidget {
   const ExamResultMcqOptions({
     super.key,
     required this.question,
-    this.isEnabled = true,
   });
 
   final ExamQuestionEntity question;
-  final bool? isEnabled;
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +24,10 @@ class ExamResultMcqOptions extends StatelessWidget {
         return McqOptions(
           options: question.options,
           selectedIndex: selectedIndex,
-          isEnabled: isEnabled ?? true,
           onSelect: (index) {},
           styleBuilder: (int index) {
             return OptionStyle.examResultQuestionStyle(
               isSelected: selectedIndex == index,
-              isEnabled: isEnabled!,
               isCorrect: question.correctIndex == index,
             );
           },

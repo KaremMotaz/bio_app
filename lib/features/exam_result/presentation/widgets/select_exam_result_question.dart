@@ -31,16 +31,13 @@ class SelectExamResultQuestion extends StatelessWidget {
               child: BlocBuilder<ExamResultCubit, ExamResultState>(
                 builder: (context, state) {
                   if (state is! ExamResultLoadedState) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
+                    return const SizedBox.shrink();
                   }
-
                   return SelectorWidget(
                     exam: exam,
                     currentPageIndex: currentPageIndex,
                     pageController: pageController,
-                    answers: state.answers,
+                    answers: const {},
                   );
                 },
               ),

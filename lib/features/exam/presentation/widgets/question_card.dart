@@ -8,11 +8,7 @@ import 'question_widget.dart';
 class ExamQuestionCard extends StatelessWidget {
   final ExamQuestionEntity question;
 
-
-  const ExamQuestionCard({
-    super.key,
-    required this.question,
-  });
+  const ExamQuestionCard({super.key, required this.question});
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +18,11 @@ class ExamQuestionCard extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            QuestionWidget(question: question,),
+            QuestionWidget(question: question),
             const SizedBox(height: 10),
             QuestionImages(question: question),
             const SizedBox(height: 20),
-            QuestionOptions(question: question, isEnabled: true,),
+            QuestionOptions(question: question),
           ],
         ),
       ),

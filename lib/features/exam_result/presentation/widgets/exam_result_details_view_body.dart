@@ -5,8 +5,13 @@ import '../../../exam/domain/entities/exam_entity.dart';
 import 'package:flutter/material.dart';
 
 class ExamResultDetailsViewBody extends StatefulWidget {
-  const ExamResultDetailsViewBody({super.key, required this.exam});
+  const ExamResultDetailsViewBody({
+    super.key,
+    required this.exam,
+    required this.answers,
+  });
   final ExamEntity exam;
+  final Map<String, int> answers;
 
   @override
   State<ExamResultDetailsViewBody> createState() =>
@@ -44,6 +49,7 @@ class _ExamResultDetailsViewBodyState
             exam: widget.exam,
             onPageChanged: onPageChanged,
             pageController: _pageController,
+            answers: widget.answers,
           ),
           const SizedBox(height: 12),
           ExamResultFooter(

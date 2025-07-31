@@ -25,9 +25,10 @@ class ExamResultDetailsView extends StatelessWidget {
               );
 
             case const (ExamResultLoadedState):
-              final runningState = state as ExamResultLoadedState;
+              final loadedState = state as ExamResultLoadedState;
               return ExamResultDetailsViewBody(
-                exam: runningState.exam,
+                exam: loadedState.exam,
+                answers: loadedState.answers,
               );
 
             case const (ExamResultErrorState):
