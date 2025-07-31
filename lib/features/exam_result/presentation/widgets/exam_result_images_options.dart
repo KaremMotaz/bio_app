@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/option_style.dart';
 import 'package:bio_app/core/widgets/image_options.dart';
 import 'package:bio_app/features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,13 @@ class ExamResultImagesOptions extends StatelessWidget {
           selectedIndex: selectedIndex,
           isEnabled: canSelect,
           onSelect: (index) {},
+          styleBuilder: (int index) {
+            return OptionStyle.examResultQuestionStyle(
+              isSelected: selectedIndex == index,
+              isEnabled: isEnabled!,
+              isCorrect: question.correctIndex == index,
+            );
+          },
         );
       },
     );

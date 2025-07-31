@@ -17,14 +17,14 @@ class ExamResultLoadedState extends ExamResultState {
   final int studentScore;
   final int maxScore;
   final double percentage;
-  final bool passed;
+  final bool isPassed;
 
   const ExamResultLoadedState({
     required this.exam,
     required this.studentScore,
     required this.maxScore,
     required this.percentage,
-    required this.passed,
+    required this.isPassed,
     required this.answers,
   });
 }

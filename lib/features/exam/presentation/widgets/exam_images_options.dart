@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/option_style.dart';
 import 'package:bio_app/core/widgets/image_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +33,12 @@ class ExamImagesOptions extends StatelessWidget {
             context.read<ExamCubit>().selectAnswer(
               question.id,
               index,
+            );
+          },
+          styleBuilder: (int index) {
+            return OptionStyle.examQuestionStyle(
+              isSelected: selectedIndex == index,
+              isEnabled: isEnabled!,
             );
           },
         );

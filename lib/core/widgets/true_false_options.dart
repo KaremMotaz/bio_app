@@ -2,25 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:bio_app/core/theming/option_style.dart';
 
 class TrueFalseOptions extends StatelessWidget {
+  final List<String> options;
+  final int? selectedIndex;
+  final bool isEnabled;
+  final void Function(int index) onSelect;
+  final OptionStyle Function(int index) styleBuilder;
+
   const TrueFalseOptions({
     super.key,
     required this.options,
     required this.selectedIndex,
     required this.isEnabled,
     required this.onSelect,
+    required this.styleBuilder,
   });
-
-  final List<String> options;
-  final int? selectedIndex;
-  final bool isEnabled;
-  final void Function(int index) onSelect;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: List.generate(options.length, (index) {
-        final isSelected = selectedIndex == index;
-        final style = OptionStyle.defaultStyle(isSelected, isEnabled);
+        final OptionStyle style = styleBuilder(index);
 
         return GestureDetector(
           onTap: () => onSelect(index),

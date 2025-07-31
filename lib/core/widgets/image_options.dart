@@ -6,6 +6,7 @@ class ImageOptions extends StatelessWidget {
   final int? selectedIndex;
   final bool isEnabled;
   final void Function(int) onSelect;
+  final OptionStyle Function(int index) styleBuilder;
 
   const ImageOptions({
     super.key,
@@ -13,14 +14,14 @@ class ImageOptions extends StatelessWidget {
     required this.selectedIndex,
     required this.isEnabled,
     required this.onSelect,
+    required this.styleBuilder,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: List.generate(options.length, (index) {
-        final isSelected = selectedIndex == index;
-        final style = OptionStyle.defaultStyle(isSelected, isEnabled);
+        final OptionStyle style = styleBuilder(index);
 
         return GestureDetector(
           onTap: () {

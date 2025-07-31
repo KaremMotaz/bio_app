@@ -48,7 +48,7 @@ class ExamResultCubit extends Cubit<ExamResultState> {
           studentScore: studentScore,
           maxScore: maxScore,
           percentage: studentPercentage,
-          passed: passed,
+          isPassed: passed,
           answers: studentAnswers,
         ),
       );

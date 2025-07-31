@@ -15,7 +15,7 @@ class ExamResultViewBody extends StatelessWidget {
       children: [
         const Text("النتيجة"),
         const SizedBox(height: 40),
-        if (state.passed) ...[
+        if (state.isPassed) ...[
           const Text("مبروك!"),
         ] else ...[
           const Text("للاسف!"),
