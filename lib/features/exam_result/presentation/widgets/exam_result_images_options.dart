@@ -1,11 +1,11 @@
 import 'package:bio_app/core/widgets/image_options.dart';
+import 'package:bio_app/features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/entities/exam_question_entity.dart';
-import '../manager/exam_cubit/exam_cubit.dart';
 
-class ExamImagesOptions extends StatelessWidget {
-  const ExamImagesOptions({
+class ExamResultImagesOptions extends StatelessWidget {
+  const ExamResultImagesOptions({
     super.key,
     required this.question,
     this.isEnabled,
@@ -16,11 +16,11 @@ class ExamImagesOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ExamCubit, ExamState>(
-      buildWhen: (previous, current) => current is ExamRunningState,
+    return BlocBuilder<ExamResultCubit, ExamResultState>(
+      buildWhen: (previous, current) =>
+          current is ExamResultLoadedState,
       builder: (context, state) {
-        if (state is! ExamRunningState) return const SizedBox();
-
+        if (state is! ExamResultLoadedState) return const SizedBox();
         final selectedIndex = state.answers[question.id.toString()];
         final canSelect = isEnabled ?? true;
 
@@ -28,12 +28,7 @@ class ExamImagesOptions extends StatelessWidget {
           options: question.options,
           selectedIndex: selectedIndex,
           isEnabled: canSelect,
-          onSelect: (index) {
-            context.read<ExamCubit>().selectAnswer(
-              question.id,
-              index,
-            );
-          },
+          onSelect: (index) {},
         );
       },
     );

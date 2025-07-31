@@ -42,5 +42,3 @@ class ExamResultFooter extends StatelessWidget {
     );
   }
 }
-
-

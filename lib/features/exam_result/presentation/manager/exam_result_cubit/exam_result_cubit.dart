@@ -26,18 +26,20 @@ class ExamResultCubit extends Cubit<ExamResultState> {
     try {
       final int studentScore =
           ExamGradingService.calculateStudentScore(
-            exam,
-            studentAnswers,
+            exam: exam,
+            studentAnswers: studentAnswers,
           );
-      final int maxScore = ExamGradingService.calculateMaxScore(exam);
-      final double percentage =
+      final int maxScore = ExamGradingService.calculateMaxScore(
+        exam: exam,
+      );
+      final double studentPercentage =
           ExamGradingService.calculatePercentage(
-            studentScore,
-            maxScore,
+            studentScore: studentScore,
+            maxScore: maxScore,
           );
       final bool passed = ExamGradingService.isPassed(
-        studentScore,
-        exam.passMark,
+        studentPercentage: studentPercentage,
+        passPercentage: exam.passPercentage,
       );
 
       emit(
@@ -45,8 +47,9 @@ class ExamResultCubit extends Cubit<ExamResultState> {
           exam: exam,
           studentScore: studentScore,
           maxScore: maxScore,
-          percentage: percentage,
+          percentage: studentPercentage,
           passed: passed,
+          answers: studentAnswers,
         ),
       );
     } catch (e) {

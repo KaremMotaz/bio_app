@@ -11,7 +11,7 @@ class ExamModel extends ExamEntity {
     required super.unit,
     required super.lesson,
     required super.endTime,
-    required super.passMark,
+    required super.passPercentage,
     required super.questions,
     required super.isDraft,
   });
@@ -23,7 +23,7 @@ class ExamModel extends ExamEntity {
       unit: map['unit'],
       lesson: map['lesson'],
       endTime: (map['endTime'] as Timestamp).toDate(),
-      passMark: map['passMark'],
+      passPercentage: (map['passPercentage'] as num).toDouble(),
       isDraft: map['isDraft'],
       questions: List<Map<String, dynamic>>.from(
         biologyQuestions,

@@ -1,11 +1,11 @@
 import 'package:bio_app/core/widgets/true_false_options.dart';
+import 'package:bio_app/features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/entities/exam_question_entity.dart';
-import '../manager/exam_cubit/exam_cubit.dart';
 
-class ExamTrueFalseOptions extends StatelessWidget {
-  const ExamTrueFalseOptions({
+class ExamResultTrueFalseOptions extends StatelessWidget {
+  const ExamResultTrueFalseOptions({
     super.key,
     required this.question,
     this.isEnabled,
@@ -16,25 +16,17 @@ class ExamTrueFalseOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ExamCubit, ExamState>(
+    return BlocBuilder<ExamResultCubit, ExamResultState>(
       builder: (context, state) {
         int? selectedIndex;
-        if (state is ExamRunningState) {
+        if (state is ExamResultLoadedState) {
           selectedIndex = state.answers[question.id.toString()];
         }
-
         return TrueFalseOptions(
           options: question.options,
           selectedIndex: selectedIndex,
           isEnabled: isEnabled ?? true,
-          onSelect: (index) {
-            if (isEnabled ?? true) {
-              context.read<ExamCubit>().selectAnswer(
-                question.id,
-                index,
-              );
-            }
-          },
+          onSelect: (index) {},
         );
       },
     );

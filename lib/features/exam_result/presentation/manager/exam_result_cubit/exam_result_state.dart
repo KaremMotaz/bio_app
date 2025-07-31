@@ -13,6 +13,7 @@ final class ExamResultLoadingState extends ExamResultState {}
 
 class ExamResultLoadedState extends ExamResultState {
   final ExamEntity exam;
+  final Map<String, int> answers;
   final int studentScore;
   final int maxScore;
   final double percentage;
@@ -24,6 +25,7 @@ class ExamResultLoadedState extends ExamResultState {
     required this.maxScore,
     required this.percentage,
     required this.passed,
+    required this.answers,
   });
 }
 

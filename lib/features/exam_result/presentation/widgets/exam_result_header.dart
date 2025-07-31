@@ -1,7 +1,7 @@
 import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:bio_app/core/theming/text_styles.dart';
 import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
-import 'package:bio_app/features/exam/presentation/widgets/select_exam_question.dart';
+import 'package:bio_app/features/exam_result/presentation/widgets/select_exam_result_question.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -31,11 +31,8 @@ class ExamResultHeader extends StatelessWidget {
               color: AppColors.mainBlue,
             ),
           ),
-          const Text(
-            "النتيجة",
-            style: TextStyles.semiBold16,
-          ),
-          SelectExamQuestion(
+          const Text("النتيجة", style: TextStyles.semiBold16),
+          SelectExamResultQuestion(
             exam: exam,
             pageController: pageController,
             currentPageIndex: currentPageIndex,

@@ -1,7 +1,6 @@
 import 'package:bio_app/features/exam_result/presentation/widgets/exam_result_footer.dart';
 import 'package:bio_app/features/exam_result/presentation/widgets/exam_result_header.dart';
 import 'package:bio_app/features/exam_result/presentation/widgets/exam_result_details_page_view.dart';
-
 import '../../../exam/domain/entities/exam_entity.dart';
 import 'package:flutter/material.dart';
 

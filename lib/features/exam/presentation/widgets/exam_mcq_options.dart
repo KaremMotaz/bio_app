@@ -1,8 +1,7 @@
+import 'package:bio_app/core/widgets/mcq_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/text_styles.dart';
 import '../../../../core/entities/exam_question_entity.dart';
 import '../manager/exam_cubit/exam_cubit.dart';
 
@@ -18,67 +17,25 @@ class ExamMcqOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: List.generate(question.options.length, (
-        index,
-      ) {
-        return BlocSelector<ExamCubit, ExamState, bool>(
-          selector: (state) {
-            if (state is ExamRunningState) {
-              return state.answers[question.id
-                      .toString()] ==
-                  index;
-            }
-            return false;
-          },
-          builder: (context, isSelected) {
-            return GestureDetector(
-              onTap: () {
-                if (isEnabled ?? true) {
-                  context.read<ExamCubit>().selectAnswer(
-                    question.id,
-                    index,
-                  );
-                }
-              },
-              child: Container(
-                width: double.infinity,
-                margin: const EdgeInsets.symmetric(
-                  vertical: 8,
-                ),
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                    color: isSelected && isEnabled! 
-                        ? AppColors.lightBlue
-                        : Colors.grey.shade300,
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: isSelected && isEnabled! 
-                          ? AppColors.lightBlue
-                          : Colors.white,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Text(
-                  question.options[index],
-                  style: TextStyles.semiBold18.copyWith(
-                    color: isSelected && isEnabled! 
-                        ? AppColors.darkBlue
-                        : Colors.black,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
+    return BlocBuilder<ExamCubit, ExamState>(
+      builder: (context, state) {
+        int? selectedIndex;
+        if (state is ExamRunningState) {
+          selectedIndex = state.answers[question.id.toString()];
+        }
+
+        return McqOptions(
+          options: question.options,
+          selectedIndex: selectedIndex,
+          isEnabled: isEnabled ?? true,
+          onSelect: (index) {
+            context.read<ExamCubit>().selectAnswer(
+              question.id,
+              index,
             );
           },
         );
-      }),
+      },
     );
   }
 }

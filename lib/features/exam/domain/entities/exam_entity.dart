@@ -6,7 +6,7 @@ class ExamEntity {
   final String unit;
   final String lesson;
   final DateTime endTime;
-  final int passMark;
+  final double passPercentage;
   final List<ExamQuestionEntity> questions;
   final bool isDraft;
 
@@ -16,7 +16,7 @@ class ExamEntity {
     required this.unit,
     required this.lesson,
     required this.endTime,
-    required this.passMark,
+    required this.passPercentage,
     required this.questions,
     required this.isDraft,
   });
