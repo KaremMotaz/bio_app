@@ -1,11 +1,11 @@
 import 'package:bio_app/core/widgets/custom_footer_widget.dart';
-import '../../domain/entities/exam_entity.dart';
-import '../manager/exam_cubit/exam_cubit.dart';
+import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
+import 'package:bio_app/features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ExamFooter extends StatelessWidget {
-  const ExamFooter({
+class ExamResultFooter extends StatelessWidget {
+  const ExamResultFooter({
     super.key,
     required PageController pageController,
     required this.exam,
@@ -19,13 +19,13 @@ class ExamFooter extends StatelessWidget {
   final bool? isEnabled;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ExamCubit, ExamState>(
+    return BlocBuilder<ExamResultCubit, ExamResultState>(
       builder: (context, state) {
-        if (state is! ExamRunningState) {
+        if (state is! ExamResultLoadedState) {
           return const SizedBox();
         }
 
-        final cubit = context.read<ExamCubit>();
+        final cubit = context.read<ExamResultCubit>();
         final isLastPage =
             currentPageIndex == exam.questions.length - 1;
         final isFirstPage = currentPageIndex == 0;
@@ -42,3 +42,5 @@ class ExamFooter extends StatelessWidget {
     );
   }
 }
+
+

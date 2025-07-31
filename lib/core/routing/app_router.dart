@@ -98,10 +98,13 @@ abstract class AppRouter {
         ),
         GoRoute(
           path: Routes.examResultDetailsView,
-          builder: (context, state) => BlocProvider.value(
-            value: BlocProvider.of<ExamResultCubit>(context),
-            child: const ExamResultDetailsView(),
-          ),
+          builder: (context, state) {
+            final cubit = state.extra as ExamResultCubit;
+            return BlocProvider.value(
+              value: cubit,
+              child: const ExamResultDetailsView(),
+            );
+          },
         ),
         GoRoute(
           path: Routes.quizView,

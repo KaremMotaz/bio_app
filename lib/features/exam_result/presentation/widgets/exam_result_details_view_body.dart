@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam/presentation/widgets/exam_footer.dart';
+import 'package:bio_app/features/exam_result/presentation/widgets/exam_result_footer.dart';
 import 'package:bio_app/features/exam_result/presentation/widgets/exam_result_header.dart';
 import 'package:bio_app/features/exam_result/presentation/widgets/exam_result_details_page_view.dart';
 
@@ -47,7 +47,7 @@ class _ExamResultDetailsViewBodyState
             pageController: _pageController,
           ),
           const SizedBox(height: 12),
-          ExamFooter(
+          ExamResultFooter(
             pageController: _pageController,
             exam: widget.exam,
             currentPageIndex: currentPageIndex,

@@ -2,6 +2,7 @@ import 'package:bio_app/core/routing/routes.dart';
 import 'package:bio_app/core/widgets/app_text_button.dart';
 import 'package:bio_app/features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class ExamResultViewBody extends StatelessWidget {
@@ -29,7 +30,10 @@ class ExamResultViewBody extends StatelessWidget {
           child: AppTextButton(
             buttonText: "عرض تفاصيل النتيجة",
             onPressed: () {
-              GoRouter.of(context).push(Routes.examResultDetailsView);
+              final cubit = BlocProvider.of<ExamResultCubit>(context);
+              GoRouter.of(
+                context,
+              ).push(Routes.examResultDetailsView, extra: cubit);
             },
           ),
         ),
