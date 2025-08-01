@@ -9,27 +9,24 @@ extension QuizLoadedStateX on QuizLoadedState {
 
   int get totalQuestions => questions.length;
 
-  int get currentQuestionIndex =>
-      progress.currentQuestionIndex;
+  int get currentQuestionIndex => progress.currentQuestionIndex;
 
-  int get answeredQuestionsCount =>
-      progress.answeredQuestionsCount;
+  int get answeredQuestionsCount => progress.answeredQuestionsCount;
 
   int? get currentSelectedAnswerIndex =>
-      answerState.selectedAnswers[currentQuestionIndex];
+      answerState.selectedAnswers[currentQuestionIndex.toString()];
 
   String? get explanation => currentQuestion.explanation;
 
-  String get correctAnswerText => currentQuestion
-      .options[currentQuestion.correctAnswerIndex];
+  String get correctAnswerText =>
+      currentQuestion.options[currentQuestion.correctIndex];
 
   int get correctImageAnswerNumber =>
-      currentQuestion.correctAnswerIndex + 1;
+      currentQuestion.correctIndex + 1;
   int get remainingLives => status.remainingLives;
 
   bool get isLastQuestionFinished =>
-      progress.currentQuestionIndex ==
-      progress.totalQuestions;
+      progress.currentQuestionIndex == progress.totalQuestions;
 
   bool get isCorrectAnswered => answerState.isCorrect!;
 
@@ -50,11 +47,11 @@ extension QuizLoadedStateX on QuizLoadedState {
     remainingLives: status.remainingLives,
   );
 
-  Map<int, int?> updateAnswerAt(int index) {
-    final updated = Map<int, int?>.from(
+  Map<String, int?> updateAnswerAt(int index) {
+    final Map<String, int?> updated = Map<String, int?>.from(
       answerState.selectedAnswers,
     );
-    updated[currentQuestionIndex] = index;
+    updated[currentQuestionIndex.toString()] = index;
     return updated;
   }
 }

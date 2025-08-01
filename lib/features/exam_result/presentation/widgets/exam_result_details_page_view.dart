@@ -1,8 +1,9 @@
-import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
-import 'package:bio_app/core/entities/exam_question_entity.dart';
-import 'package:bio_app/features/exam_result/data/services/exam_grading_service.dart';
-import 'package:bio_app/features/exam_result/presentation/widgets/exam_result_details_question_card.dart';
 import 'package:flutter/material.dart';
+
+import '../../../exam/domain/entities/exam_entity.dart';
+import '../../../exam/domain/entities/exam_question_entity.dart';
+import '../../data/services/exam_grading_service.dart';
+import 'exam_result_details_question_card.dart';
 
 class ExamResultDetailsPageView extends StatelessWidget {
   const ExamResultDetailsPageView({

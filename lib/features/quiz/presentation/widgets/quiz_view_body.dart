@@ -18,19 +18,21 @@ class QuizViewBody extends StatelessWidget {
       children: [
         const SizedBox(height: 16),
         Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: QuizHeader(
             progress: state.quizProgress,
             status: state.quizStatus,
           ),
         ),
 
-        Expanded(child: QuizPageView(state: state)),
+        QuizPageView(state: state),
 
         state.isAnswered
-            ? FeedbackCard(state: state)
+            ? FeedbackCard(
+                question: state
+                    .questions[state.progress.currentQuestionIndex],
+                answerState: state.answerState,
+              )
             : Padding(
                 padding: const EdgeInsets.only(
                   right: 16,

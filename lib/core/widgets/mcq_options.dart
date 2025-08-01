@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:bio_app/core/theming/option_style.dart';
+
+import '../theming/option_style.dart';
 
 class McqOptions extends StatelessWidget {
   final List<String> options;
-  final int? selectedIndex;
   final void Function(int index) onSelect;
   final OptionStyle Function(int index) styleBuilder;
 
   const McqOptions({
     super.key,
     required this.options,
-    required this.selectedIndex,
     required this.onSelect,
     required this.styleBuilder,
   });
@@ -22,7 +21,9 @@ class McqOptions extends StatelessWidget {
         final OptionStyle style = styleBuilder(index);
 
         return GestureDetector(
-          onTap: () => onSelect(index),
+          onTap: () {
+            onSelect(index);
+          },
           child: Container(
             width: double.infinity,
             margin: const EdgeInsets.symmetric(vertical: 8),

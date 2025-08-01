@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../manager/exam_cubit/exam_cubit.dart';
-import 'exam_finished_view.dart';
 import '../widgets/exam_view_body.dart';
+import 'exam_finished_view.dart';
 
 class ExamView extends StatelessWidget {
   const ExamView({super.key});

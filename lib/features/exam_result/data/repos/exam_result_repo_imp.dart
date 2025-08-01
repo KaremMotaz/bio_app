@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam_result/domin/repos/exam_result_repo.dart';
+import '../../domin/repos/exam_result_repo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ExamResultRepoImpl implements ExamResultRepo {

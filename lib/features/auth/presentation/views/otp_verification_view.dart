@@ -1,5 +1,6 @@
-import 'widgets/otp_view_body_bloc_consumer.dart';
 import 'package:flutter/material.dart';
+
+import 'widgets/otp_view_body_bloc_consumer.dart';
 
 class OtpVerificationView extends StatelessWidget {
   const OtpVerificationView({super.key});

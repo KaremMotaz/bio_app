@@ -1,19 +1,26 @@
+import '../../domain/entities/quiz_question_entity.dart';
 import 'package:flutter/material.dart';
-
-import '../extensions/quiz_loaded_state_extension.dart';
 import '../manager/quiz_cubit/quiz_cubit.dart';
 import 'correct_answer_feedback_card.dart';
 import 'wrong_answer_feedback_card.dart';
 
 class FeedbackCard extends StatelessWidget {
-  const FeedbackCard({super.key, required this.state});
+  const FeedbackCard({
+    super.key,
+    required this.question,
+    required this.answerState,
+  });
 
-  final QuizLoadedState state;
+  final QuizQuestionEntity question;
+  final QuizAnswerState answerState;
 
   @override
   Widget build(BuildContext context) {
-    return state.isCorrectAnswered
-        ? CorrectAnswerFeedbackCard(state: state)
-        : WrongAnswerFeedbackCard(state: state);
+    return answerState.isCorrect!
+        ? CorrectAnswerFeedbackCard(question: question)
+        : WrongAnswerFeedbackCard(
+            question: question,
+            isLastLifeLost: answerState.isLastLifeLost,
+          );
   }
 }

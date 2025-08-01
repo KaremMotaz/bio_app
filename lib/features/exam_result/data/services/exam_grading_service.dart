@@ -1,5 +1,5 @@
-import 'package:bio_app/core/entities/exam_question_entity.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
+import '../../../exam/domain/entities/exam_question_entity.dart';
+import '../../../exam/domain/entities/exam_entity.dart';
 
 class ExamGradingService {
   static int calculateStudentScore({

@@ -1,13 +1,11 @@
-
 part of 'quiz_cubit.dart';
 
-
-class QuizAnswerState  {
+class QuizAnswerState {
   final bool isSelected;
   final bool isAnswered;
   final bool? isCorrect;
   final bool isLastLifeLost;
-  final Map<int, int?> selectedAnswers;
+  final Map<String, int?> selectedAnswers;
 
   const QuizAnswerState({
     required this.isSelected,
@@ -22,7 +20,7 @@ class QuizAnswerState  {
     bool? isCorrect,
     bool? isAnswered,
     bool? isLastLifeLost,
-    Map<int, int?>? selectedAnswers,
+    Map<String, int?>? selectedAnswers,
   }) {
     return QuizAnswerState(
       isSelected: isSelected ?? this.isSelected,
@@ -32,5 +30,4 @@ class QuizAnswerState  {
       selectedAnswers: selectedAnswers ?? this.selectedAnswers,
     );
   }
-
 }

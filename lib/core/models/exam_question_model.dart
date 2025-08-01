@@ -1,4 +1,4 @@
-import '../entities/exam_question_entity.dart';
+import '../../features/exam/domain/entities/exam_question_entity.dart';
 
 class ExamQuestionModel extends ExamQuestionEntity {
   ExamQuestionModel({
@@ -7,16 +7,14 @@ class ExamQuestionModel extends ExamQuestionEntity {
     required super.options,
     required super.correctIndex,
     required super.type,
-    required super.marks,
+    super.marks = 1,
     super.images,
     super.title,
     super.scenario,
     super.explanation,
   });
 
-  factory ExamQuestionModel.fromMap(
-    Map<String, dynamic> map,
-  ) {
+  factory ExamQuestionModel.fromMap(Map<String, dynamic> map) {
     return ExamQuestionModel(
       id: map['id'],
       title: map['title'],
@@ -32,8 +30,4 @@ class ExamQuestionModel extends ExamQuestionEntity {
   }
 }
 
-enum ExamOptionsType {
-  textOptions,
-  imageOptions,
-  trueFalseOptions,
-}
+enum ExamOptionsType { textOptions, imageOptions, trueFalseOptions }

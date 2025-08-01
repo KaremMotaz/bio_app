@@ -1,5 +1,6 @@
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
+import '../../features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
+import 'app_colors.dart';
+import 'text_styles.dart';
 import 'package:flutter/material.dart';
 
 class OptionStyle {
@@ -66,6 +67,53 @@ class OptionStyle {
             : isWrong
             ? AppColors.lightRed
             : Colors.black,
+      ),
+    );
+  }
+
+  static OptionStyle quizQuestionStyle(QuizAnswerState answerState) {
+    final isSelected = answerState.isSelected;
+    final isCorrect = answerState.isCorrect ?? false;
+    final isAnswered = answerState.isAnswered;
+    final isWrong = isSelected && !isCorrect;
+
+    return OptionStyle(
+      backgroundColor: isAnswered && isCorrect
+          ? AppColors.lighterGreen
+          : isAnswered && isWrong
+          ? AppColors.lighterRed
+          : isSelected
+          ? AppColors.lighterBlue
+          : Colors.white,
+      borderColor: isAnswered && isCorrect
+          ? AppColors.mainGreen
+          : isAnswered && isWrong
+          ? AppColors.lightRed
+          : isSelected
+          ? AppColors.lightBlue
+          : Colors.grey.shade300,
+      shadowColor: isAnswered && isCorrect
+          ? AppColors.mainGreen
+          : isAnswered && isWrong
+          ? AppColors.lightRed
+          : isSelected
+          ? AppColors.lightBlue
+          : Colors.white,
+      circleBackgroundColor: isAnswered && isCorrect
+          ? AppColors.mainGreen
+          : isAnswered && isWrong
+          ? AppColors.lightRed
+          : isSelected
+          ? AppColors.darkBlue
+          : Colors.grey,
+      textStyle: TextStyles.semiBold18.copyWith(
+        color: isAnswered && isCorrect
+            ? AppColors.mainGreen
+            : isAnswered && isWrong
+            ? AppColors.lightRed
+            : isSelected
+            ? Colors.blue
+            : Colors.grey,
       ),
     );
   }

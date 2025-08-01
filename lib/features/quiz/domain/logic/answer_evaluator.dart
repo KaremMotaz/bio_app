@@ -5,13 +5,10 @@ class AnswerEvaluator {
     QuizQuestionModel question,
     int? selectedIndex,
   ) {
-    return selectedIndex == question.correctAnswerIndex;
+    return selectedIndex == question.correctIndex;
   }
 
-  int updateRemainingLives(
-    bool isCorrect,
-    int currentLives,
-  ) {
+  int updateRemainingLives(bool isCorrect, int currentLives) {
     return isCorrect ? currentLives : currentLives - 1;
   }
 }

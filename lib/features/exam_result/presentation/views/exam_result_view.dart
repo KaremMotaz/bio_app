@@ -1,8 +1,9 @@
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
-import 'package:bio_app/features/exam_result/presentation/widgets/exam_result_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../manager/exam_result_cubit/exam_result_cubit.dart';
+import '../widgets/exam_result_view_body.dart';
 
 class ExamResultView extends StatelessWidget {
   const ExamResultView({super.key});

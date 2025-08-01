@@ -1,6 +1,6 @@
-import 'package:bio_app/core/entities/exam_question_entity.dart';
+import '../../domain/entities/exam_question_entity.dart';
 import '../../domain/entities/exam_entity.dart';
-import 'question_card.dart';
+import 'exam_question_card.dart';
 import 'package:flutter/material.dart';
 
 class ExamPageView extends StatelessWidget {

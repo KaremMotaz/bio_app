@@ -1,5 +1,5 @@
-import 'package:bio_app/core/widgets/app_text_button.dart';
-import 'package:bio_app/features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
+import 'app_text_button.dart';
+import '../../features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

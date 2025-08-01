@@ -1,4 +1,4 @@
-import '../../domain/entities/exam_result_entity.dart';
+import '../../../exam_result/domin/entities/exam_result_entity.dart';
 
 class ExamResultModel extends ExamResultEntity {
   ExamResultModel({

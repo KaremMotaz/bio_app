@@ -1,8 +1,9 @@
+import '../manager/exam_cubit/exam_cubit.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/entities/exam_question_entity.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../domain/entities/exam_question_entity.dart';
 import 'question_images.dart';
-import 'question_options.dart';
+import 'exam_question_options.dart';
 import 'question_widget.dart';
 
 class ExamQuestionCard extends StatelessWidget {
@@ -18,11 +19,19 @@ class ExamQuestionCard extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            QuestionWidget(question: question),
+            QuestionWidget<ExamQuestionEntity>(question: question),
             const SizedBox(height: 10),
-            QuestionImages(question: question),
+            QuestionImages<ExamQuestionEntity>(question: question),
             const SizedBox(height: 20),
-            QuestionOptions(question: question),
+            ExamQuestionOptions<ExamQuestionEntity>(
+              question: question,
+              onSelect: (int index) {
+                context.read<ExamCubit>().selectAnswer(
+                  question.id,
+                  index,
+                );
+              },
+            ),
           ],
         ),
       ),

@@ -1,6 +1,6 @@
-import 'package:bio_app/core/widgets/custom_footer_widget.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
-import 'package:bio_app/features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
+import '../../../../core/widgets/custom_footer_widget.dart';
+import '../../../exam/domain/entities/exam_entity.dart';
+import '../manager/exam_result_cubit/exam_result_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

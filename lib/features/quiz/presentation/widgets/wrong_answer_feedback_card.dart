@@ -1,10 +1,9 @@
+import '../../domain/entities/quiz_question_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../data/models/quiz_question_model.dart';
-import '../extensions/quiz_loaded_state_extension.dart';
 import '../helpers/feedback_messages.dart';
 import '../manager/quiz_cubit/quiz_cubit.dart';
 import 'custom_button.dart';
@@ -12,9 +11,12 @@ import 'custom_button.dart';
 class WrongAnswerFeedbackCard extends StatelessWidget {
   const WrongAnswerFeedbackCard({
     super.key,
-    required this.state,
+    required this.question,
+    required this.isLastLifeLost,
   });
-  final QuizLoadedState state;
+
+  final QuizQuestionEntity question;
+  final bool isLastLifeLost;
 
   @override
   Widget build(BuildContext context) {
@@ -40,16 +42,15 @@ class WrongAnswerFeedbackCard extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            state.currentQuestion.type ==
-                    QuizQuestionType.imageChoices
-                ? "الإختيار رقم ${state.correctImageAnswerNumber}"
-                : state.correctAnswerText,
+            question.type == QuizQuestionType.imageChoices
+                ? "الإختيار رقم ${question.correctIndex + 1}"
+                : question.options[question.correctIndex],
             style: TextStyles.semiBold18.copyWith(
               color: AppColors.darkRed,
             ),
           ),
 
-          if (state.explanation != null) ...[
+          if (question.explanation != null) ...[
             const SizedBox(height: 5),
             Text(
               "السبب:",
@@ -59,7 +60,7 @@ class WrongAnswerFeedbackCard extends StatelessWidget {
             ),
             const SizedBox(height: 5),
             Text(
-              state.explanation!,
+              question.explanation!,
               style: TextStyles.semiBold18.copyWith(
                 color: AppColors.darkRed,
               ),
@@ -73,7 +74,7 @@ class WrongAnswerFeedbackCard extends StatelessWidget {
             shadowColor: AppColors.darkRed,
             onPressed: () {
               final cubit = context.read<QuizCubit>();
-              if (state.isLastLifeLost) {
+              if (isLastLifeLost) {
                 cubit.finishQuizIfLastLifeLost();
               } else {
                 cubit.nextQuestion();

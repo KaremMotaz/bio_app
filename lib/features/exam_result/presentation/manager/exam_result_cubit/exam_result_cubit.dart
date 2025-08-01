@@ -1,7 +1,7 @@
-import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
-import 'package:bio_app/features/exam/domain/usecases/get_exam_usecase.dart';
-import 'package:bio_app/features/exam_result/data/services/exam_grading_service.dart';
-import 'package:bio_app/features/exam_result/domin/repos/exam_result_repo.dart';
+import '../../../../exam/domain/entities/exam_entity.dart';
+import '../../../../exam/domain/usecases/get_exam_usecase.dart';
+import '../../../data/services/exam_grading_service.dart';
+import '../../../domin/repos/exam_result_repo.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,6 +1,7 @@
-import '../../../../core/widgets/app_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../core/widgets/app_text_button.dart';
 
 class ExamFinishedView extends StatelessWidget {
   const ExamFinishedView({super.key});

@@ -32,10 +32,8 @@ class _QuizPageViewState extends State<QuizPageView> {
   void didUpdateWidget(covariant QuizPageView oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    final oldIndex =
-        oldWidget.state.progress.currentQuestionIndex;
-    final newIndex =
-        widget.state.progress.currentQuestionIndex;
+    final oldIndex = oldWidget.state.progress.currentQuestionIndex;
+    final newIndex = widget.state.progress.currentQuestionIndex;
 
     if (newIndex != oldIndex) {
       _animateToCurrentQuestion(newIndex);
@@ -46,21 +44,19 @@ class _QuizPageViewState extends State<QuizPageView> {
   Widget build(BuildContext context) {
     final state = widget.state;
 
-    return PageView.builder(
-      controller: _pageController,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: state.questions.length,
-      itemBuilder: (context, index) {
-        return QuizQuestionCard(
-          key: ValueKey(
-            state.progress.currentQuestionIndex,
-          ),
-          question: state.questions[index],
-          selectedAnswerIndex:
-              state.answerState.selectedAnswers[index],
-          answerState: state.answerState,
-        );
-      },
+    return Expanded(
+      child: PageView.builder(
+        controller: _pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: state.questions.length,
+        itemBuilder: (context, index) {
+          return QuizQuestionCard(
+            key: ValueKey(state.progress.currentQuestionIndex),
+            question: state.questions[index],
+            answerState: state.answerState,
+          );
+        },
+      ),
     );
   }
 }

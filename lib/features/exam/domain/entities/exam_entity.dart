@@ -1,4 +1,4 @@
-import '../../../../core/entities/exam_question_entity.dart';
+import 'exam_question_entity.dart';
 
 class ExamEntity {
   final String id;

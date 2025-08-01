@@ -1,10 +1,9 @@
-import 'package:bio_app/features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
-
-import '../../../../core/theming/app_colors.dart';
-import '../../../exam/presentation/manager/exam_cubit/exam_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/theming/app_colors.dart';
+import '../../../exam/presentation/manager/exam_cubit/exam_cubit.dart';
+import '../manager/exam_result_cubit/exam_result_cubit.dart';
 import '../widgets/exam_result_details_view_body.dart';
 
 class ExamResultDetailsView extends StatelessWidget {

@@ -1,10 +1,9 @@
+import '../../../../core/entities/base_question_entity.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/entities/exam_question_entity.dart';
-
-class QuestionImages extends StatelessWidget {
+class QuestionImages<T extends BaseQuestionEntity> extends StatelessWidget {
   const QuestionImages({super.key, required this.question});
-  final ExamQuestionEntity question;
+  final T question;
   @override
   Widget build(BuildContext context) {
     return Column(

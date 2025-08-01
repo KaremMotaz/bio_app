@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/theming/option_style.dart';
 
 class ImageOptions extends StatelessWidget {
   final List<String> options;
-  final int? selectedIndex;
-  final bool isEnabled;
   final void Function(int) onSelect;
   final OptionStyle Function(int index) styleBuilder;
 
   const ImageOptions({
     super.key,
     required this.options,
-    required this.selectedIndex,
-    required this.isEnabled,
     required this.onSelect,
     required this.styleBuilder,
   });
@@ -25,9 +22,7 @@ class ImageOptions extends StatelessWidget {
 
         return GestureDetector(
           onTap: () {
-            if (isEnabled) {
-              onSelect(index);
-            }
+            onSelect(index);
           },
           child: Padding(
             padding: const EdgeInsets.all(16),

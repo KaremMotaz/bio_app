@@ -1,19 +1,22 @@
-import 'package:bio_app/core/theming/option_style.dart';
-import 'package:bio_app/core/widgets/true_false_options.dart';
-import 'package:bio_app/features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
+import '../../../../core/entities/base_question_entity.dart';
+import '../../../../core/theming/option_style.dart';
+import '../../../../core/widgets/true_false_options.dart';
+import '../manager/exam_result_cubit/exam_result_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/entities/exam_question_entity.dart';
 
-class ExamResultTrueFalseOptions extends StatelessWidget {
+class ExamResultTrueFalseOptions<T extends BaseQuestionEntity>
+    extends StatelessWidget {
   const ExamResultTrueFalseOptions({
     super.key,
     required this.question,
     this.isEnabled,
+    required this.onSelect,
   });
 
-  final ExamQuestionEntity question;
+  final T question;
   final bool? isEnabled;
+  final void Function(int) onSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +28,7 @@ class ExamResultTrueFalseOptions extends StatelessWidget {
         }
         return TrueFalseOptions(
           options: question.options,
-          selectedIndex: selectedIndex,
-          onSelect: (index) {},
+          onSelect: onSelect,
           styleBuilder: (int index) {
             return OptionStyle.examResultQuestionStyle(
               isSelected: selectedIndex == index,

@@ -1,18 +1,16 @@
-import 'package:bio_app/core/theming/option_style.dart';
-import 'package:bio_app/core/widgets/mcq_options.dart';
+import '../../../../core/entities/base_question_entity.dart';
+import '../../../../core/theming/option_style.dart';
+import '../../../../core/widgets/mcq_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../core/entities/exam_question_entity.dart';
 import '../manager/exam_cubit/exam_cubit.dart';
 
-class ExamMcqOptions extends StatelessWidget {
-  const ExamMcqOptions({
-    super.key,
-    required this.question,
-  });
+class ExamMcqOptions<T extends BaseQuestionEntity>
+    extends StatelessWidget {
+  const ExamMcqOptions({super.key, required this.question, required this.onSelect});
 
-  final ExamQuestionEntity question;
+  final T question;
+  final void Function(int index) onSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +23,7 @@ class ExamMcqOptions extends StatelessWidget {
 
         return McqOptions(
           options: question.options,
-          selectedIndex: selectedIndex,
-          onSelect: (index) {
-            context.read<ExamCubit>().selectAnswer(
-              question.id,
-              index,
-            );
-          },
+          onSelect: onSelect,
           styleBuilder: (int index) {
             return OptionStyle.examQuestionStyle(
               isSelected: selectedIndex == index,

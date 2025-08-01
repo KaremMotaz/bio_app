@@ -1,16 +1,17 @@
-import 'package:bio_app/core/entities/exam_question_entity.dart';
-import 'package:bio_app/features/exam_result/presentation/widgets/correct_answer_card.dart';
-import 'package:bio_app/features/exam_result/presentation/widgets/wrong_answer_card.dart';
+import '../../../../core/entities/base_question_entity.dart';
+import 'correct_answer_card.dart';
+import 'wrong_answer_card.dart';
 import 'package:flutter/material.dart';
 
-class ResultFeedbackCard extends StatelessWidget {
+class ResultFeedbackCard<T extends BaseQuestionEntity>
+    extends StatelessWidget {
   const ResultFeedbackCard({
     super.key,
     required this.isCorrect,
     required this.question,
   });
   final bool isCorrect;
-  final ExamQuestionEntity question;
+  final T question;
 
   @override
   Widget build(BuildContext context) {

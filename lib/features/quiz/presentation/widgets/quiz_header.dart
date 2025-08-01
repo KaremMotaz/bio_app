@@ -9,9 +9,14 @@ import '../manager/quiz_cubit/quiz_cubit.dart';
 import 'custom_linear_progress_bar.dart';
 
 class QuizHeader extends StatelessWidget {
-  const QuizHeader({super.key, required this.progress, required this.status});
+  const QuizHeader({
+    super.key,
+    required this.progress,
+    required this.status,
+  });
   final QuizProgress progress;
   final QuizStatus status;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -24,7 +29,9 @@ class QuizHeader extends StatelessWidget {
               builder: (context) {
                 return AlertDialog(
                   title: const Text("إنهاء الكويز"),
-                  content: const Text("هل أنت متأكد إنك عايز تخرج من الكويز؟"),
+                  content: const Text(
+                    "هل أنت متأكد إنك عايز تخرج من الكويز؟",
+                  ),
                   actions: [
                     TextButton(
                       onPressed: () {
@@ -47,7 +54,11 @@ class QuizHeader extends StatelessWidget {
           child: SvgPicture.asset(AssetsData.closeIcon, height: 16),
         ),
         const SizedBox(width: 16),
-        Expanded(child: CustomLinearProgressBar(progress: progress)),
+        Expanded(
+          child: CustomLinearProgressBar(
+            progressPercentage: progress.progressPercentage,
+          ),
+        ),
         const SizedBox(width: 12),
         Row(
           children: [
@@ -69,7 +80,10 @@ class QuizHeader extends StatelessWidget {
             const SizedBox(width: 4),
             Text(
               "${status.remainingLives}",
-              style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                color: Colors.red,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),

@@ -1,13 +1,7 @@
-import 'package:bio_app/features/exam/domain/usecases/submit_exam_usecase.dart';
-import 'package:bio_app/features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
-import 'package:bio_app/features/exam_result/data/repos/exam_result_repo_imp.dart';
-import 'package:bio_app/features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
-import 'package:bio_app/features/exam_result/presentation/views/exam_result_details_view.dart';
-import 'package:bio_app/features/exam_result/presentation/views/exam_result_view.dart';
-import 'package:bio_app/features/exam/presentation/views/exam_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../features/auth/presentation/views/fill_profile_view.dart';
 import '../../features/auth/presentation/views/otp_verification_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
@@ -16,6 +10,13 @@ import '../../features/auth/presentation/views/signup_view.dart';
 import '../../features/exam/data/datasources/exam_remote_data_source.dart';
 import '../../features/exam/data/repos/exam_repo_impl.dart';
 import '../../features/exam/domain/usecases/get_exam_usecase.dart';
+import '../../features/exam/domain/usecases/submit_exam_usecase.dart';
+import '../../features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
+import '../../features/exam/presentation/views/exam_view.dart';
+import '../../features/exam_result/data/repos/exam_result_repo_imp.dart';
+import '../../features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
+import '../../features/exam_result/presentation/views/exam_result_details_view.dart';
+import '../../features/exam_result/presentation/views/exam_result_view.dart';
 import '../../features/mainPageView/main_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/profile/presentation/views/profile_view.dart';

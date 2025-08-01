@@ -28,11 +28,10 @@ class QuizCubit extends Cubit<QuizState> {
 
   Future<void> loadQuestions() async {
     emit(QuizLoadingState());
-    final Either<Failure, List<QuizQuestionModel>>
-    questions = questionsRepo.getQuestions();
+    final Either<Failure, List<QuizQuestionModel>> questions =
+        questionsRepo.getQuestions();
     questions.fold(
-      (failure) =>
-          emit(QuizErrorState(message: failure.errMessage)),
+      (failure) => emit(QuizErrorState(message: failure.errMessage)),
       (questions) {
         _timer.start();
         emit(
@@ -62,11 +61,10 @@ class QuizCubit extends Cubit<QuizState> {
       currentState.currentSelectedAnswerIndex,
     );
 
-    final int newRemainingLives = _evaluator
-        .updateRemainingLives(
-          isCorrect,
-          currentState.remainingLives,
-        );
+    final int newRemainingLives = _evaluator.updateRemainingLives(
+      isCorrect,
+      currentState.remainingLives,
+    );
 
     emit(
       currentState.copyWith(
@@ -80,8 +78,7 @@ class QuizCubit extends Cubit<QuizState> {
           isSelected: true,
           isCorrect: isCorrect,
           isAnswered: true,
-          isLastLifeLost:
-              !isCorrect && newRemainingLives == 0,
+          isLastLifeLost: !isCorrect && newRemainingLives == 0,
         ),
       ),
     );
@@ -90,13 +87,10 @@ class QuizCubit extends Cubit<QuizState> {
   void nextQuestion() {
     final currentState = state as QuizLoadedState;
 
-    final QuizProgress newProgress = currentState.progress
-        .copyWith(
-          currentQuestionIndex:
-              currentState.currentQuestionIndex + 1,
-          answeredQuestionsCount:
-              currentState.answeredQuestionsCount + 1,
-        );
+    final QuizProgress newProgress = currentState.progress.copyWith(
+      currentQuestionIndex: currentState.currentQuestionIndex + 1,
+      answeredQuestionsCount: currentState.answeredQuestionsCount + 1,
+    );
 
     if (!newProgress.isLastQuestionFinished) {
       emit(
@@ -104,8 +98,7 @@ class QuizCubit extends Cubit<QuizState> {
           progress: newProgress,
           answerState: currentState.answerState.copyWith(
             isSelected: false,
-            selectedAnswers:
-                currentState.answerState.selectedAnswers,
+            selectedAnswers: currentState.answerState.selectedAnswers,
             isCorrect: null,
             isAnswered: false,
           ),
@@ -130,9 +123,7 @@ class QuizCubit extends Cubit<QuizState> {
     emit(
       currentState.copyWith(
         answerState: currentState.answerState.copyWith(
-          selectedAnswers: currentState.updateAnswerAt(
-            index,
-          ),
+          selectedAnswers: currentState.updateAnswerAt(index),
           isSelected: true,
         ),
       ),

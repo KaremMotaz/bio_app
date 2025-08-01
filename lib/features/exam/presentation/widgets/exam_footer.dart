@@ -1,4 +1,4 @@
-import 'package:bio_app/core/widgets/custom_footer_widget.dart';
+import '../../../../core/widgets/custom_footer_widget.dart';
 import '../../domain/entities/exam_entity.dart';
 import '../manager/exam_cubit/exam_cubit.dart';
 import 'package:flutter/material.dart';

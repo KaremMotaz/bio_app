@@ -1,11 +1,13 @@
+import '../../../../core/entities/base_question_entity.dart';
+
 import '../../../../core/theming/text_styles.dart';
-import '../../../../core/entities/exam_question_entity.dart';
 import 'package:flutter/material.dart';
 
-class QuestionWidget extends StatelessWidget {
+class QuestionWidget<T extends BaseQuestionEntity>
+    extends StatelessWidget {
   const QuestionWidget({super.key, required this.question});
 
-  final ExamQuestionEntity question;
+  final T question;
 
   @override
   Widget build(BuildContext context) {
