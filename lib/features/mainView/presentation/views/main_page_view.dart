@@ -1,5 +1,7 @@
+import 'package:bio_app/features/home/units/data/repos/unit_repo_imp.dart';
+import 'package:bio_app/features/home/units/presentation/manager/unit_cubit/unit_cubit.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../exam/presentation/views/available_exams_view.dart';
 import '../../../home/units/presentation/unit_view.dart';
 import '../../../leaderboard/presentation/views/leaderboard_view.dart';
@@ -20,11 +22,15 @@ class MainPageView extends StatelessWidget {
     return PageView(
       controller: controller,
       onPageChanged: onPageChanged,
-      children: const [
-        UnitView(),
-        AvailableExamsView(),
-        LeaderboardView(),
-        SettingsView(),
+      children: [
+        BlocProvider(
+          create: (context) =>
+              UnitCubit(unitRepoImpl: UnitRepoImpl())..getUnits(),
+          child: const UnitView(),
+        ),
+        const AvailableExamsView(),
+        const LeaderboardView(),
+        const SettingsView(),
       ],
     );
   }

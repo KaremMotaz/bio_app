@@ -29,7 +29,10 @@ class CustomUnitCard extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
-                colors: unit.colorList,
+                colors: [
+                  Color(unit.colorList[0]),
+                  Color(unit.colorList[1]),
+                ],
               ),
               boxShadow: [
                 BoxShadow(

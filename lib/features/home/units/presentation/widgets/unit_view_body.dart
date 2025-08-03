@@ -1,3 +1,4 @@
+import 'package:bio_app/features/home/units/data/models/unit_model.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/text_styles.dart';
@@ -7,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class UnitViewBody extends StatelessWidget {
-  const UnitViewBody({super.key});
+  const UnitViewBody({super.key, required this.units});
+  final List<UnitModel> units;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class UnitViewBody extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 46),
-            const UnitsCardsList(),
+            UnitsCardsList(units: units),
           ],
         ),
       ),

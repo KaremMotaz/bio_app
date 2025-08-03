@@ -3,18 +3,15 @@ import 'custom_unit_card.dart';
 import 'package:flutter/material.dart';
 
 class UnitsCardsList extends StatelessWidget {
-  const UnitsCardsList({super.key});
+  const UnitsCardsList({super.key, required this.units});
+  final List<UnitModel> units;
 
   @override
   Widget build(BuildContext context) {
-    final units = UnitModel.units;
-
     return Column(
       children: List.generate(units.length, (index) {
         return Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: index == 1 ? 70 : 0,
-          ),
+          padding: EdgeInsets.only(top: index == 0 ? 0 : 70),
           child: CustomUnitCard(unit: units[index]),
         );
       }),
