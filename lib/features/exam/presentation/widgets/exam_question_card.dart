@@ -8,8 +8,13 @@ import 'question_widget.dart';
 
 class ExamQuestionCard extends StatelessWidget {
   final ExamQuestionEntity question;
+  final Map<String, int> answers;
 
-  const ExamQuestionCard({super.key, required this.question});
+  const ExamQuestionCard({
+    super.key,
+    required this.question,
+    required this.answers,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +36,7 @@ class ExamQuestionCard extends StatelessWidget {
                   index,
                 );
               },
+              answers: answers,
             ),
           ],
         ),

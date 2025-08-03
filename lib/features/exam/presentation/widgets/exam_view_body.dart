@@ -6,9 +6,14 @@ import 'exam_header.dart';
 import 'exam_page_view.dart';
 
 class ExamViewBody extends StatefulWidget {
-  const ExamViewBody({super.key, required this.exam});
+  const ExamViewBody({
+    super.key,
+    required this.exam,
+    required this.answers,
+  });
 
   final ExamEntity exam;
+  final Map<String, int> answers;
 
   @override
   State<ExamViewBody> createState() => _ExamViewBodyState();
@@ -44,6 +49,7 @@ class _ExamViewBodyState extends State<ExamViewBody> {
             exam: widget.exam,
             pageController: _pageController,
             onPageChanged: onPageChanged,
+            answers: widget.answers,
           ),
           const SizedBox(height: 12),
           ExamFooter(

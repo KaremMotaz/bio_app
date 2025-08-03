@@ -10,9 +10,11 @@ class ExamResultDetailsQuestionCard extends StatelessWidget {
     super.key,
     required this.question,
     required this.isCorrect,
+    required this.answers,
   });
   final ExamQuestionEntity question;
   final bool isCorrect;
+  final Map<String, int> answers;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class ExamResultDetailsQuestionCard extends StatelessWidget {
             ExamQuestionResultOptions<ExamQuestionEntity>(
               question: question,
               onSelect: (int index) {},
+              answers: answers,
             ),
             const SizedBox(height: 20),
             ResultFeedbackCard<ExamQuestionEntity>(

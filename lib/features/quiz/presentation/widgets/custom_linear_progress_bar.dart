@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/theming/app_colors.dart';
 
 class CustomLinearProgressBar extends StatelessWidget {

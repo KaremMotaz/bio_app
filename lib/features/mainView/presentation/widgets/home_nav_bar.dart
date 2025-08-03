@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../core/theming/assets_data.dart';
+
+import '../../../../core/theming/assets_data.dart';
 
 class HomeNavBar extends StatelessWidget {
   final int selectedIndex;

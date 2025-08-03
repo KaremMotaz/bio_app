@@ -1,5 +1,6 @@
-import '../../../../core/entities/base_question_entity.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/entities/base_question_entity.dart';
 
 class QuestionImages<T extends BaseQuestionEntity> extends StatelessWidget {
   const QuestionImages({super.key, required this.question});

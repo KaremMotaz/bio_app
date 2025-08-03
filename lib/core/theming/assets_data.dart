@@ -38,6 +38,7 @@ class AssetsData {
 
   static const String homeIcon = 'assets/images/home.png';
   static const String examIcon = 'assets/images/exam.png';
-  static const String leaderboardIcon = 'assets/images/leaderboard.png';
+  static const String leaderboardIcon =
+      'assets/images/leaderboard.png';
   static const String settingsIcon = 'assets/images/settings.png';
 }

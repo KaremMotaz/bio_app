@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'core/helpers/constants.dart';
 import 'core/routing/app_router.dart';
 import 'core/services/cache_helper.dart';

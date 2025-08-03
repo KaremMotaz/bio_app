@@ -26,18 +26,18 @@ class ExamView extends StatelessWidget {
               );
 
             case const (ExamRunningState):
-              final runningState =
-                  state as ExamRunningState;
-              return ExamViewBody(exam: runningState.exam);
+              final runningState = state as ExamRunningState;
+              return ExamViewBody(
+                exam: runningState.exam,
+                answers: runningState.answers,
+              );
 
             case const (ExamSubmittedState):
               return const ExamFinishedView();
 
             case const (ExamErrorState):
               return Center(
-                child: Text(
-                  (state as ExamErrorState).message,
-                ),
+                child: Text((state as ExamErrorState).message),
               );
 
             default:

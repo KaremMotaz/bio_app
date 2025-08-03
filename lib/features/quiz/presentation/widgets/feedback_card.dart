@@ -1,5 +1,6 @@
-import '../../domain/entities/quiz_question_entity.dart';
 import 'package:flutter/material.dart';
+
+import '../../domain/entities/quiz_question_entity.dart';
 import '../manager/quiz_cubit/quiz_cubit.dart';
 import 'correct_answer_feedback_card.dart';
 import 'wrong_answer_feedback_card.dart';

@@ -1,13 +1,13 @@
-import 'package:bio_app/core/routing/routes.dart';
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/features/home/presentation/widgets/units_cards_list.dart';
-import 'package:bio_app/features/home/presentation/widgets/custom_circle_avatar.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/text_styles.dart';
+import 'units_cards_list.dart';
+import 'custom_circle_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key});
+class UnitViewBody extends StatelessWidget {
+  const UnitViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

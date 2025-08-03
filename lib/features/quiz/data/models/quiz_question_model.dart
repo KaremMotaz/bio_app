@@ -2,6 +2,7 @@ import '../../domain/entities/quiz_question_entity.dart';
 
 class QuizQuestionModel extends QuizQuestionEntity {
   QuizQuestionModel({
+    required super.id,
     required super.questionText,
     required super.options,
     required super.correctIndex,
@@ -9,7 +10,6 @@ class QuizQuestionModel extends QuizQuestionEntity {
     super.scenario,
     super.explanation,
     super.images,
-    required super.id,
     super.marks = 1,
   });
 

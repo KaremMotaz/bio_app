@@ -30,8 +30,11 @@ class ExamResultDetailsPageView extends StatelessWidget {
           final ExamQuestionEntity question = exam.questions[index];
           return ExamResultDetailsQuestionCard(
             question: question,
-            isCorrect:
-              ExamGradingService.isCorrectAnswer(question, answers),
+            isCorrect: ExamGradingService.isCorrectAnswer(
+              question,
+              answers,
+            ),
+            answers: answers,
           );
         },
       ),

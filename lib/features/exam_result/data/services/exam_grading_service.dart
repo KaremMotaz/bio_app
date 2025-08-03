@@ -1,5 +1,5 @@
-import '../../../exam/domain/entities/exam_question_entity.dart';
 import '../../../exam/domain/entities/exam_entity.dart';
+import '../../../exam/domain/entities/exam_question_entity.dart';
 
 class ExamGradingService {
   static int calculateStudentScore({

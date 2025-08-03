@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../exam/presentation/views/available_exams_view.dart';
-import '../../../home/presentation/views/home_view.dart';
+import '../../../home/units/presentation/unit_view.dart';
 import '../../../leaderboard/presentation/views/leaderboard_view.dart';
 import '../../../settings/presentation/views/settings_view.dart';
 
@@ -21,7 +21,7 @@ class MainPageView extends StatelessWidget {
       controller: controller,
       onPageChanged: onPageChanged,
       children: const [
-        HomeView(),
+        UnitView(),
         AvailableExamsView(),
         LeaderboardView(),
         SettingsView(),

@@ -1,10 +1,12 @@
+import 'package:bio_app/core/services/get_it_service.dart';
+import 'package:bio_app/features/quiz/domain/logic/quiz_helpers.dart';
+
 import '../../../../core/entities/base_question_entity.dart';
 import '../../../../core/theming/option_style.dart';
 import '../../../../core/widgets/image_options.dart';
 import '../../../../core/widgets/mcq_options.dart';
 import '../../../../core/widgets/true_false_options.dart';
 import '../../data/models/quiz_question_model.dart';
-import '../../domain/helpers/quiz_answer_helpers.dart';
 import '../manager/quiz_cubit/quiz_cubit.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +29,8 @@ class QuizQuestionOptions<T extends BaseQuestionEntity>
         answerState.selectedAnswers[question.id.toString()] ?? -1;
 
     OptionStyle getOptionStyle(int index) {
-      final state = getAnswerStateForOption(
+      final QuizHelper helper = getIt<QuizHelper>();
+      final state = helper.getAnswerStateForOption(
         question: question,
         selectedIndex: selectedIndex,
         optionIndex: index,

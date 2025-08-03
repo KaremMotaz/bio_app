@@ -1,103 +1,137 @@
-import 'package:bio_app/features/home/presentation/views/chapters_view.dart';
-import 'package:bio_app/features/home/presentation/views/lessons_view.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+import 'package:bio_app/features/quiz/domain/logic/quiz_helpers.dart';
 
+import '../services/get_it_service.dart';
+import '../../features/exam/domain/usecases/get_exam_usecase.dart';
+import '../../features/exam/domain/usecases/submit_exam_usecase.dart';
+import '../../features/exam_result/data/repos/exam_result_repo_imp.dart';
+import '../../features/quiz/data/repos/questions_repo_imp.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../helpers/constants.dart';
+import '../services/cache_helper.dart';
+import '../services/firebase_auth_service.dart';
+import 'routes.dart';
+import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/auth/presentation/views/fill_profile_view.dart';
 import '../../features/auth/presentation/views/otp_verification_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/signin_view.dart';
 import '../../features/auth/presentation/views/signup_view.dart';
-import '../../features/exam/data/datasources/exam_remote_data_source.dart';
-import '../../features/exam/data/repos/exam_repo_impl.dart';
-import '../../features/exam/domain/usecases/get_exam_usecase.dart';
-import '../../features/exam/domain/usecases/submit_exam_usecase.dart';
-import '../../features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
-import '../../features/exam/presentation/views/exam_view.dart';
-import '../../features/exam_result/data/repos/exam_result_repo_imp.dart';
-import '../../features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
-import '../../features/exam_result/presentation/views/exam_result_details_view.dart';
-import '../../features/exam_result/presentation/views/exam_result_view.dart';
 import '../../features/mainView/main_view.dart';
-import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/profile/presentation/views/profile_view.dart';
-import '../../features/quiz/data/repos/questions_repo_imp.dart';
-import '../../features/quiz/domain/logic/answer_evaluator.dart';
-import '../../features/quiz/domain/logic/quiz_timer.dart';
-import '../../features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
+import '../../features/exam_result/presentation/views/exam_result_view.dart';
+import '../../features/exam_result/presentation/views/exam_result_details_view.dart';
+import '../../features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
 import '../../features/quiz/presentation/views/quiz_view.dart';
-import '../helpers/constants.dart';
-import '../services/cache_helper.dart';
-import '../services/firebase_auth_service.dart';
-import 'routes.dart';
+import '../../features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
+import '../../features/home/chapters/presentation/chapters_view.dart';
+import '../../features/home/lessons/presentation/lessons_view.dart';
+import '../../features/exam/presentation/views/exam_view.dart';
+import '../../features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
 
 abstract class AppRouter {
   static GoRouter createRouter() {
     final bool hasSeenOnboarding = CacheHelper.getBool(
       key: kHasSeenOnboarding,
     );
-    final bool isLoggedIn = FirebaseAuthService().isLoggedIn();
-    final String initialPath = isLoggedIn
-        ? Routes.mainView
-        : hasSeenOnboarding
-        ? Routes.signInView
-        : Routes.onBoardingView;
+    final bool isLoggedIn = getIt<FirebaseAuthService>().isLoggedIn();
+
+    final String initialPath;
+    if (isLoggedIn) {
+      initialPath = Routes.mainView;
+    } else if (hasSeenOnboarding) {
+      initialPath = Routes.signInView;
+    } else {
+      initialPath = Routes.onBoardingView;
+    }
 
     return GoRouter(
       initialLocation: initialPath,
       routes: [
         GoRoute(
           path: Routes.onBoardingView,
-          builder: (context, state) => const OnboardingView(),
+          builder: (context, state) {
+            return const OnboardingView();
+          },
         ),
-
         GoRoute(
           path: Routes.signInView,
-          builder: (context, state) => const LoginView(),
+          builder: (context, state) {
+            return const LoginView();
+          },
         ),
         GoRoute(
           path: Routes.signUpView,
-          builder: (context, state) => const SignupView(),
+          builder: (context, state) {
+            return const SignupView();
+          },
         ),
         GoRoute(
           path: Routes.forgotPasswordView,
-          builder: (context, state) => const ResetPasswordView(),
+          builder: (context, state) {
+            return const ResetPasswordView();
+          },
         ),
         GoRoute(
           path: Routes.otpVerificationView,
-          builder: (context, state) => const OtpVerificationView(),
+          builder: (context, state) {
+            return const OtpVerificationView();
+          },
         ),
         GoRoute(
           path: Routes.fillProfileView,
-          builder: (context, state) => const FillProfileView(),
+          builder: (context, state) {
+            return const FillProfileView();
+          },
         ),
         GoRoute(
           path: Routes.mainView,
-          builder: (context, state) => const MainView(),
+          builder: (context, state) {
+            return const MainView();
+          },
         ),
         GoRoute(
           path: Routes.profileView,
-          builder: (context, state) => const ProfileView(),
+          builder: (context, state) {
+            return const ProfileView();
+          },
         ),
-
+        GoRoute(
+          path: Routes.quizView,
+          builder: (context, state) {
+            return BlocProvider(
+              create: (_) => QuizCubit(
+                getIt<QuizHelper>(),
+                getIt<QuizHelper>(),
+                questionsRepo: getIt<QuestionsRepoImp>(),
+              )..loadQuestions(),
+              child: const QuizView(),
+            );
+          },
+        ),
+        GoRoute(
+          path: Routes.examView,
+          builder: (context, state) {
+            return BlocProvider(
+              create: (_) => ExamCubit(
+                getExamUseCase: getIt<GetExamUseCase>(),
+                submitExamUseCase: getIt<SubmitExamUseCase>(),
+              )..loadExam("0"),
+              child: const ExamView(),
+            );
+          },
+        ),
         GoRoute(
           path: Routes.examResultView,
-          builder: (context, state) => BlocProvider(
-            create: (context) => ExamResultCubit(
-              getExamUseCase: GetExamUseCase(
-                examRepo: ExamRepoImpl(
-                  examRemoteDataSource: ExamRemoteDataSource(
-                    firestore: FirebaseFirestore.instance,
-                  ),
-                ),
-              ),
-              examResultRepo: ExamResultRepoImpl(
-                firestore: FirebaseFirestore.instance,
-              ),
-            )..getResult(examId: 0),
-            child: const ExamResultView(),
-          ),
+          builder: (context, state) {
+            return BlocProvider(
+              create: (_) => ExamResultCubit(
+                getExamUseCase: getIt<GetExamUseCase>(),
+                examResultRepo: getIt<ExamResultRepoImpl>(),
+              )..getResult(examId: 0),
+              child: const ExamResultView(),
+            );
+          },
         ),
         GoRoute(
           path: Routes.examResultDetailsView,
@@ -110,45 +144,16 @@ abstract class AppRouter {
           },
         ),
         GoRoute(
-          path: Routes.quizView,
-          builder: (context, state) => BlocProvider(
-            create: (context) => QuizCubit(
-              QuizTimer(),
-              AnswerEvaluator(),
-              questionsRepo: QuestionsRepoImp(),
-            )..loadQuestions(),
-            child: const QuizView(),
-          ),
-        ),
-        GoRoute(
-          path: Routes.examView,
-          builder: (context, state) => BlocProvider(
-            create: (context) => ExamCubit(
-              getExamUseCase: GetExamUseCase(
-                examRepo: ExamRepoImpl(
-                  examRemoteDataSource: ExamRemoteDataSource(
-                    firestore: FirebaseFirestore.instance,
-                  ),
-                ),
-              ),
-              submitExamUseCase: SubmitExamUseCase(
-                examRepo: ExamRepoImpl(
-                  examRemoteDataSource: ExamRemoteDataSource(
-                    firestore: FirebaseFirestore.instance,
-                  ),
-                ),
-              ),
-            )..loadExam("0"),
-            child: const ExamView(),
-          ),
-        ),
-        GoRoute(
           path: Routes.chaptersView,
-          builder: (context, state) => const ChaptersView(),
+          builder: (context, state) {
+            return const ChaptersView();
+          },
         ),
         GoRoute(
           path: Routes.lessonsView,
-          builder: (context, state) => const LessonsView(),
+          builder: (context, state) {
+            return const LessonsView();
+          },
         ),
       ],
     );

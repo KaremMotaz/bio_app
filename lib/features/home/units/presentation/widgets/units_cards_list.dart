@@ -1,5 +1,5 @@
-import 'package:bio_app/features/home/data/models/unit_model.dart';
-import 'package:bio_app/features/home/presentation/widgets/custom_unit_card.dart';
+import '../../data/models/unit_model.dart';
+import 'custom_unit_card.dart';
 import 'package:flutter/material.dart';
 
 class UnitsCardsList extends StatelessWidget {

@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '../../features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
 import 'app_colors.dart';
 import 'text_styles.dart';
-import 'package:flutter/material.dart';
 
 class OptionStyle {
   final Color backgroundColor;

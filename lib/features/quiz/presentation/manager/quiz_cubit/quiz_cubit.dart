@@ -1,22 +1,23 @@
+import 'package:bio_app/features/quiz/domain/logic/quiz_helpers.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../../core/errors/failure.dart';
 import '../../../data/models/quiz_question_model.dart';
 import '../../../domain/entities/quiz_progress.dart';
 import '../../../domain/entities/quiz_result.dart';
 import '../../../domain/entities/quiz_status.dart';
-import '../../../domain/logic/answer_evaluator.dart';
-import '../../../domain/logic/quiz_timer.dart';
-import '../../../domain/repos/questions_repo.dart';
 import '../../../domain/extensions/quiz_loaded_state_extension.dart';
+import '../../../domain/repos/questions_repo.dart';
+
 part 'quiz_answer_state.dart';
 part 'quiz_state.dart';
 
 class QuizCubit extends Cubit<QuizState> {
   final QuestionsRepo questionsRepo;
-  final QuizTimer _timer;
-  final AnswerEvaluator _evaluator;
+  final QuizHelper _timer;
+  final QuizHelper _evaluator;
 
   QuizCubit(
     this._timer,
@@ -31,7 +32,7 @@ class QuizCubit extends Cubit<QuizState> {
     questions.fold(
       (failure) => emit(QuizErrorState(message: failure.errMessage)),
       (questions) {
-        _timer.start();
+        _timer.startTimer();
         emit(
           QuizLoadedState(
             questions: questions,
@@ -108,7 +109,7 @@ class QuizCubit extends Cubit<QuizState> {
           result: QuizResult(
             finalScore: currentState.status.score,
             totalQuestions: currentState.totalQuestions,
-            duration: _timer.calculateDuration(),
+            duration: _timer.getDuration(),
           ),
         ),
       );
@@ -136,7 +137,7 @@ class QuizCubit extends Cubit<QuizState> {
         result: QuizResult(
           finalScore: currentState.status.score,
           totalQuestions: currentState.totalQuestions,
-          duration: _timer.calculateDuration(),
+          duration: _timer.getDuration(),
         ),
       ),
     );
