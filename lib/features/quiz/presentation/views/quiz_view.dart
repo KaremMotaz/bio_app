@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../core/routing/routes.dart';
 import '../manager/quiz_cubit/quiz_cubit.dart';
 import '../widgets/quiz_view_body.dart';
@@ -13,27 +12,31 @@ class QuizView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
-        child: BlocConsumer<QuizCubit, QuizState>(
+        child: BlocListener<QuizCubit, QuizState>(
+          listenWhen: (prev, curr) => curr is QuizExitToHomeState,
           listener: (context, state) {
             if (state is QuizExitToHomeState) {
-              GoRouter.of(context).pushReplacement(Routes.mainView);
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                context.go(Routes.mainView);
+              });
             }
           },
-          builder: (context, state) {
-            if (state is QuizLoadingState) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is QuizLoadedState) {
-              return QuizViewBody(state: state);
-            } else if (state is QuizFinishedState) {
-              return QuizResultView(finishedState: state);
-            } else if (state is QuizErrorState) {
-              return Center(child: Text(state.message));
-            } else {
-              return const SizedBox.shrink();
-            }
-          },
+          child: BlocBuilder<QuizCubit, QuizState>(
+            builder: (context, state) => switch (state) {
+              QuizLoadingState() => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              QuizLoadedState() => QuizViewBody(state: state),
+              QuizFinishedState() => QuizResultView(
+                finishedState: state,
+              ),
+              QuizErrorState(:final message) => Center(
+                child: Text(message),
+              ),
+              _ => const SizedBox.shrink(),
+            },
+          ),
         ),
       ),
     );

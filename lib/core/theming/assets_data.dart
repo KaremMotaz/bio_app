@@ -6,7 +6,8 @@ class AssetsData {
   static const String faceBookIcon = 'assets/svg/facebook_icon.svg';
   static const String emailNotification =
       'assets/images/email_notification.png';
-  static const String forgotPassword = 'assets/images/Forgot_password.png';
+  static const String forgotPassword =
+      'assets/images/Forgot_password.png';
 
   static const String closeIcon = 'assets/svg/close.svg';
   static const String expIcon = 'assets/svg/exp.svg';
@@ -17,7 +18,8 @@ class AssetsData {
   static const String chromosome = 'assets/images/chromosome.jpg';
   static const String glucose = 'assets/images/glucose.jpg';
   static const String protein = 'assets/images/protein.jpg';
-  static const String redBloodCells = 'assets/images/red_blood_cells.jpeg';
+  static const String redBloodCells =
+      'assets/images/red_blood_cells.jpeg';
 
   static const String choiceOne = 'assets/images/Choice_one.png';
   static const String choiceTwo = 'assets/images/Choice_two.png';
@@ -25,5 +27,17 @@ class AssetsData {
   static const String choiceFour = 'assets/images/Choice_four.png';
 
   static const String finishLesson = 'assets/images/finishLesson.png';
-  static const String dummyUserImage = 'assets/images/dummy_image.png';
+  static const String dummyUserImage =
+      'assets/images/dummy_image.png';
+  static const String profileImage = 'assets/images/profile.jpeg';
+  static const String brain = 'assets/images/brain.png';
+  static const String dna = 'assets/images/dna.png';
+  static const String earth = 'assets/images/earth.png';
+  static const String openIcon = 'assets/svg/open.svg';
+  static const String lockIcon = 'assets/svg/lock.svg';
+
+  static const String homeIcon = 'assets/images/home.png';
+  static const String examIcon = 'assets/images/exam.png';
+  static const String leaderboardIcon = 'assets/images/leaderboard.png';
+  static const String settingsIcon = 'assets/images/settings.png';
 }

@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/errors/failure.dart';
 import '../../../data/models/quiz_question_model.dart';
 import '../../../domain/entities/quiz_progress.dart';
@@ -10,8 +9,7 @@ import '../../../domain/entities/quiz_status.dart';
 import '../../../domain/logic/answer_evaluator.dart';
 import '../../../domain/logic/quiz_timer.dart';
 import '../../../domain/repos/questions_repo.dart';
-import '../../extensions/quiz_loaded_state_extension.dart';
-
+import '../../../domain/extensions/quiz_loaded_state_extension.dart';
 part 'quiz_answer_state.dart';
 part 'quiz_state.dart';
 

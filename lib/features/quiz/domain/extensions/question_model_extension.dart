@@ -1,4 +1,4 @@
-import '../../domain/entities/quiz_question_entity.dart';
+import '../entities/quiz_question_entity.dart';
 
 
 extension QuestionModelExtension on QuizQuestionEntity {

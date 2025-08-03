@@ -1,3 +1,5 @@
+import 'package:bio_app/features/home/presentation/views/chapters_view.dart';
+import 'package:bio_app/features/home/presentation/views/lessons_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -17,7 +19,7 @@ import '../../features/exam_result/data/repos/exam_result_repo_imp.dart';
 import '../../features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
 import '../../features/exam_result/presentation/views/exam_result_details_view.dart';
 import '../../features/exam_result/presentation/views/exam_result_view.dart';
-import '../../features/mainPageView/main_view.dart';
+import '../../features/mainView/main_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/profile/presentation/views/profile_view.dart';
 import '../../features/quiz/data/repos/questions_repo_imp.dart';
@@ -139,6 +141,14 @@ abstract class AppRouter {
             )..loadExam("0"),
             child: const ExamView(),
           ),
+        ),
+        GoRoute(
+          path: Routes.chaptersView,
+          builder: (context, state) => const ChaptersView(),
+        ),
+        GoRoute(
+          path: Routes.lessonsView,
+          builder: (context, state) => const LessonsView(),
         ),
       ],
     );

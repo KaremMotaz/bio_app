@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../core/theming/app_colors.dart';
 import '../../../core/theming/assets_data.dart';
-import 'nav_icon.dart';
 
 class HomeNavBar extends StatelessWidget {
   final int selectedIndex;
@@ -16,34 +13,28 @@ class HomeNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final icons = [
-      AssetsData.heartIcon,
-      AssetsData.heartIcon,
-      AssetsData.heartIcon,
-      AssetsData.heartIcon,
+    final List<String> icons = [
+      AssetsData.homeIcon,
+      AssetsData.examIcon,
+      AssetsData.leaderboardIcon,
+      AssetsData.settingsIcon,
     ];
-    final labels = ['Home', 'Exams', 'Leaderboard', 'Sittings'];
 
     return NavigationBar(
       selectedIndex: selectedIndex,
       onDestinationSelected: onTap,
       backgroundColor: Colors.white,
-      labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
-        return TextStyle(
-          color: states.contains(WidgetState.selected)
-              ? Colors.black
-              : AppColors.darkBlue,
-        );
-      }),
+      labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+      overlayColor: const WidgetStatePropertyAll(Colors.transparent),
       indicatorColor: Colors.transparent,
       destinations: List.generate(
         icons.length,
         (index) => NavigationDestination(
-          icon: NavIcon(
-            assetPath: icons[index],
-            isSelected: selectedIndex == index,
+          icon: Opacity(
+            opacity: selectedIndex == index ? 1 : 0.5,
+            child: Image.asset(icons[index], width: 35),
           ),
-          label: labels[index],
+          label: "",
         ),
       ),
     );

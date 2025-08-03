@@ -30,7 +30,10 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       locale: const Locale("ar"),
       supportedLocales: const [Locale('ar')],
-      theme: ThemeData(fontFamily: "Cairo"),
+      theme: ThemeData(
+        fontFamily: "Cairo",
+        scaffoldBackgroundColor: Colors.white,
+      ),
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

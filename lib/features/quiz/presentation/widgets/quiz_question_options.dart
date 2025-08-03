@@ -4,7 +4,7 @@ import '../../../../core/widgets/image_options.dart';
 import '../../../../core/widgets/mcq_options.dart';
 import '../../../../core/widgets/true_false_options.dart';
 import '../../data/models/quiz_question_model.dart';
-import '../helpers/quiz_answer_helpers.dart';
+import '../../domain/helpers/quiz_answer_helpers.dart';
 import '../manager/quiz_cubit/quiz_cubit.dart';
 import 'package:flutter/material.dart';
 

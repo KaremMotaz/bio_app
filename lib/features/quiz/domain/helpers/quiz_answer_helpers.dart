@@ -1,5 +1,5 @@
 import '../../../../core/entities/base_question_entity.dart';
-import '../manager/quiz_cubit/quiz_cubit.dart';
+import '../../presentation/manager/quiz_cubit/quiz_cubit.dart';
 
 QuizAnswerState getAnswerStateForOption({
   required BaseQuestionEntity question,

@@ -1,7 +1,7 @@
 import '../../data/models/quiz_question_model.dart';
-import '../../domain/entities/quiz_progress.dart';
-import '../../domain/entities/quiz_status.dart';
-import '../manager/quiz_cubit/quiz_cubit.dart';
+import '../entities/quiz_progress.dart';
+import '../entities/quiz_status.dart';
+import '../../presentation/manager/quiz_cubit/quiz_cubit.dart';
 
 extension QuizLoadedStateX on QuizLoadedState {
   QuizQuestionModel get currentQuestion =>

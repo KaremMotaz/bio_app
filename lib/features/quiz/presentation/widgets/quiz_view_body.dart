@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../extensions/quiz_loaded_state_extension.dart';
+import '../../domain/extensions/quiz_loaded_state_extension.dart';
 import '../manager/quiz_cubit/quiz_cubit.dart';
 import 'custom_button.dart';
 import 'feedback_card.dart';
