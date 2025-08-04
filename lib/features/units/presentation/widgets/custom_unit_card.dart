@@ -30,8 +30,8 @@ class CustomUnitCard extends StatelessWidget {
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
                 colors: [
-                  Color(unit.colorList[0]),
-                  Color(unit.colorList[1]),
+                  Color(int.parse('0xff${unit.colorList[0]}')),
+                  Color(int.parse('0xff${unit.colorList[1]}')),
                 ],
               ),
               boxShadow: [
