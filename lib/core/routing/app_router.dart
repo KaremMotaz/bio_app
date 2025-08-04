@@ -1,3 +1,5 @@
+import 'package:bio_app/features/chapters/data/repos/chapter_repo_imp.dart';
+import 'package:bio_app/features/chapters/presentation/manager/chapter_cubit/chapter_cubit.dart';
 import 'package:bio_app/features/quiz/domain/logic/quiz_helpers.dart';
 
 import '../services/get_it_service.dart';
@@ -24,8 +26,8 @@ import '../../features/exam_result/presentation/views/exam_result_details_view.d
 import '../../features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
 import '../../features/quiz/presentation/views/quiz_view.dart';
 import '../../features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
-import '../../features/home/chapters/presentation/chapters_view.dart';
-import '../../features/home/lessons/presentation/lessons_view.dart';
+import '../../features/chapters/presentation/chapter_view.dart';
+import '../../features/lessons/presentation/lessons_view.dart';
 import '../../features/exam/presentation/views/exam_view.dart';
 import '../../features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
 
@@ -146,7 +148,12 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.chaptersView,
           builder: (context, state) {
-            return const ChaptersView();
+            return BlocProvider(
+              create: (context) => ChapterCubit(
+                chapterRepoImpl: getIt<ChapterRepoImpl>(),
+              )..getChapters(),
+              child: const ChapterView(),
+            );
           },
         ),
         GoRoute(
