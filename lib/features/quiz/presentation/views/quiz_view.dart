@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/routing/routes.dart';
 import '../manager/quiz_cubit/quiz_cubit.dart';
 import '../widgets/quiz_view_body.dart';
 import 'quiz_result_view.dart';
@@ -18,7 +17,7 @@ class QuizView extends StatelessWidget {
           listener: (context, state) {
             if (state is QuizExitToHomeState) {
               WidgetsBinding.instance.addPostFrameCallback((_) {
-                context.go(Routes.mainView);
+                GoRouter.of(context).pop();
               });
             }
           },

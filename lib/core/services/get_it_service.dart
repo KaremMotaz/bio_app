@@ -1,4 +1,5 @@
 import 'package:bio_app/features/chapters/data/repos/chapter_repo_imp.dart';
+import 'package:bio_app/features/lessons/data/repos/lesson_repo_imp.dart';
 import 'package:bio_app/features/quiz/domain/logic/quiz_helpers.dart';
 import 'package:bio_app/features/units/data/repos/unit_repo_imp.dart';
 
@@ -62,9 +63,15 @@ void setupGetIt() {
   getIt.registerLazySingleton<ExamResultRepoImpl>(
     () => ExamResultRepoImpl(firestore: FirebaseFirestore.instance),
   );
+
+  // 📚 Units
   getIt.registerLazySingleton<UnitRepoImpl>(() => UnitRepoImpl());
-  
+
+  // 📚 Chapters
   getIt.registerLazySingleton<ChapterRepoImpl>(
     () => ChapterRepoImpl(),
   );
+
+  // 📚 Lessons
+  getIt.registerLazySingleton<LessonRepoImp>(() => LessonRepoImp());
 }

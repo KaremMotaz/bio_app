@@ -14,4 +14,5 @@ class Routes {
       '/examResultDetailsView';
   static const String chaptersView = '/chaptersView';
   static const String lessonsView = '/lessonsView';
+  static const String quizReadyView = '/quizReadyView';
 }

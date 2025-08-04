@@ -1,5 +1,8 @@
 import 'package:bio_app/features/chapters/data/repos/chapter_repo_imp.dart';
 import 'package:bio_app/features/chapters/presentation/manager/chapter_cubit/chapter_cubit.dart';
+import 'package:bio_app/features/lessons/data/repos/lesson_repo_imp.dart';
+import 'package:bio_app/features/lessons/presentation/manager/lesson_cubit/lesson_cubit.dart';
+import 'package:bio_app/features/lessons/presentation/quiz_ready_view.dart';
 import 'package:bio_app/features/quiz/domain/logic/quiz_helpers.dart';
 
 import '../services/get_it_service.dart';
@@ -159,7 +162,18 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.lessonsView,
           builder: (context, state) {
-            return const LessonsView();
+            return BlocProvider(
+              create: (context) =>
+                  LessonCubit(lessonRepoImp: getIt<LessonRepoImp>())
+                    ..getLessons(),
+              child: const LessonsView(),
+            );
+          },
+        ),
+        GoRoute(
+          path: Routes.quizReadyView,
+          builder: (context, state) {
+            return const QuizReadyView();
           },
         ),
       ],
