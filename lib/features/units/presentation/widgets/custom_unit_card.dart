@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:bio_app/features/units/domain/unit_entity.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/assets_data.dart';
@@ -12,6 +13,7 @@ class CustomUnitCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorPair = AppColors.predefinedColorPairs[unit.colorIndex];
     return GestureDetector(
       onTap: () {
         GoRouter.of(context).push(Routes.chaptersView);
@@ -29,10 +31,7 @@ class CustomUnitCard extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
-                colors: [
-                  Color(int.parse('0xff${unit.colorList[0]}')),
-                  Color(int.parse('0xff${unit.colorList[1]}')),
-                ],
+                colors: [Color(colorPair[0]), Color(colorPair[1])],
               ),
               boxShadow: [
                 BoxShadow(
@@ -80,7 +79,7 @@ class CustomUnitCard extends StatelessWidget {
           Positioned(
             top: -45,
             left: 30,
-            child: Image.asset(unit.image, width: 128, height: 126),
+            child: Image.network(unit.image, width: 128, height: 126),
           ),
         ],
       ),

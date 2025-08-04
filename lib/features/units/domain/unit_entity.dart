@@ -1,15 +1,32 @@
+
 class UnitEntity {
   final int id;
-  final String displayNumber;
   final String title;
   final String image;
-  final List<int> colorList;
+  final int colorIndex;
 
   UnitEntity({
     required this.id,
-    required this.displayNumber,
     required this.title,
     required this.image,
-    required this.colorList,
+    required this.colorIndex,
   });
+
+  String get displayNumber => _getDisplayNumberFromId(id);
+
+  String _getDisplayNumberFromId(int id) {
+    const numbers = [
+      'الأول',
+      'الثاني',
+      'الثالث',
+      'الرابع',
+      'الخامس',
+      'السادس',
+      'السابع',
+      'الثامن',
+      'التاسع',
+      'العاشر',
+    ];
+    return id >= 0 && id < numbers.length ? numbers[id] : 'غير معروف';
+  }
 }
