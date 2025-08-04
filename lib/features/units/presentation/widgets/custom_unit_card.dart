@@ -60,7 +60,7 @@ class CustomUnitCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  "الباب ${unit.number}",
+                  "الباب ${unit.displayNumber}",
                   style: TextStyles.bold14.copyWith(
                     color: Colors.white,
                   ),
