@@ -1,3 +1,4 @@
+import 'package:bio_app/core/helpers/constants.dart';
 import 'package:bio_app/core/routing/routes.dart';
 import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:bio_app/core/theming/text_styles.dart';
@@ -6,11 +7,18 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomChapterCard extends StatelessWidget {
-  const CustomChapterCard({super.key, required this.chapter});
+  const CustomChapterCard({
+    super.key,
+    required this.chapter,
+    required this.index,
+  });
   final ChapterEntity chapter;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    final List<int> colorPair =
+        AppColors.predefinedColorPairsForChapters[chapter.colorIndex];
     return GestureDetector(
       onTap: () {
         GoRouter.of(context).push(Routes.lessonsView);
@@ -28,10 +36,7 @@ class CustomChapterCard extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
-                colors: [
-                  Color(chapter.colorList[0]),
-                  Color(chapter.colorList[1]),
-                ],
+                colors: [Color(colorPair[0]), Color(colorPair[1])],
               ),
               boxShadow: [
                 BoxShadow(
@@ -46,7 +51,7 @@ class CustomChapterCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "الفصل ${chapter.number}",
+                  "الفصل ${getDisplayNumber(index)}",
                   style: TextStyles.bold14.copyWith(
                     color: Colors.grey.shade600,
                   ),
@@ -66,7 +71,7 @@ class CustomChapterCard extends StatelessWidget {
           Positioned(
             top: -45,
             left: 30,
-            child: Image.asset(
+            child: Image.network(
               chapter.image,
               width: 100,
               height: 100,

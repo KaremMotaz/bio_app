@@ -9,9 +9,11 @@ class ChapterCubit extends Cubit<ChapterState> {
     : super(ChapterInitialState());
   final ChapterRepoImpl chapterRepoImpl;
 
-  Future<void> getChapters() async {
+  Future<void> getChapters({required int selectedIndex}) async {
     emit(ChapterLoadingState());
-    final result = await chapterRepoImpl.getChapters();
+    final result = await chapterRepoImpl.getChapters(
+      selectedIndex: selectedIndex,
+    );
     result.fold(
       (failure) =>
           emit(ChapterErrorState(message: failure.errMessage)),

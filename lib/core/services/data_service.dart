@@ -1,4 +1,3 @@
-
 abstract class DatabaseService {
   Future<void> addData({
     required String path,
@@ -6,9 +5,12 @@ abstract class DatabaseService {
     String? documentId,
   });
 
-  Future<dynamic> getData({
+  Future<dynamic> getData({required String path, String? documentId});
+
+  Future<List<Map<String, dynamic>>> getFilteredData({
     required String path,
-    String? documentId,
+    required String field,
+    required dynamic isEqualToValue,
   });
 
   Future<bool> checkIfDataExists({

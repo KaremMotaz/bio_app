@@ -1,3 +1,4 @@
+import 'package:bio_app/features/chapters/data/data_source/chapters_remote_data_source.dart';
 import 'package:bio_app/features/chapters/data/repos/chapter_repo_imp.dart';
 import 'package:bio_app/features/lessons/data/repos/lesson_repo_imp.dart';
 import 'package:bio_app/features/quiz/domain/logic/quiz_helpers.dart';
@@ -76,7 +77,11 @@ void setupGetIt() {
 
   // 📚 Chapters
   getIt.registerLazySingleton<ChapterRepoImpl>(
-    () => ChapterRepoImpl(),
+    () => ChapterRepoImpl(
+      chaptersRemoteDataSource: ChaptersRemoteDataSource(
+        databaseService: getIt(),
+      ),
+    ),
   );
 
   // 📚 Lessons

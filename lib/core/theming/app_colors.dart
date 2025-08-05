@@ -20,7 +20,7 @@ class AppColors {
   static const Color mainpurple = Color(0xffFF598C);
   static const Color darkModeGray = Color(0xff202124);
 
-  static final List<List<int>> predefinedColorPairs = [
+  static final List<List<int>> predefinedColorPairsForUnits = [
     [0xffFF79A2, 0xffFFC9D9],
     [0xffDB65BE, 0xffFFDAF9],
     [0xff96CD83, 0xffE4F185],
@@ -29,5 +29,16 @@ class AppColors {
     [0xff7BE7C3, 0xffC9FFED],
     [0xffFFD682, 0xffFFF3D5],
     [0xffFFAFAF, 0xffFFE0E0],
+  ];
+
+  static final List<List<int>> predefinedColorPairsForChapters = [
+    [0xffffffff, 0xffFFC9D9],
+    [0xffffffff, 0xffFFDAF9],
+    [0xffffffff, 0xffE4F185],
+    [0xffffffff, 0xffE2E1FF],
+    [0xffffffff, 0xffC6F5FF],
+    [0xffffffff, 0xffC9FFED],
+    [0xffffffff, 0xffFFF3D5],
+    [0xffffffff, 0xffFFE0E0],
   ];
 }

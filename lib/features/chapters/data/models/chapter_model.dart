@@ -1,21 +1,23 @@
 import 'package:bio_app/features/chapters/domain/chapter_entity.dart';
 
 class ChapterModel extends ChapterEntity {
+  final int unitId;
+
   ChapterModel({
     required super.id,
-    required super.number,
     required super.title,
     required super.image,
-    required super.colorList,
+    required super.colorIndex,
+    required this.unitId,
   });
 
   factory ChapterModel.fromJson(Map<String, dynamic> json) {
     return ChapterModel(
       id: json['id'] as int,
-      number: json['number'] as String,
       title: json['title'] as String,
       image: json['image'] as String,
-      colorList: List<int>.from(json['colorList']),
+      colorIndex: json['colorIndex'] as int,
+      unitId: json['unitId'] as int,
     );
   }
 }

@@ -12,7 +12,7 @@ class UnitsCardsList extends StatelessWidget {
       children: List.generate(units.length, (index) {
         return Padding(
           padding: EdgeInsets.only(top: index == 0 ? 0 : 70),
-          child: CustomUnitCard(unit: units[index]),
+          child: CustomUnitCard(unit: units[index], index: index),
         );
       }),
     );

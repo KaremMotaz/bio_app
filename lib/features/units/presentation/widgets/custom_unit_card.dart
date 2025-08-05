@@ -1,3 +1,4 @@
+import 'package:bio_app/core/helpers/constants.dart';
 import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:bio_app/features/units/domain/unit_entity.dart';
 import '../../../../core/routing/routes.dart';
@@ -8,15 +9,22 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomUnitCard extends StatelessWidget {
-  const CustomUnitCard({super.key, required this.unit});
+  const CustomUnitCard({
+    super.key,
+    required this.unit,
+    required this.index,
+  });
   final UnitEntity unit;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
-    final colorPair = AppColors.predefinedColorPairs[unit.colorIndex];
+    final List<int> colorPair =
+        AppColors.predefinedColorPairsForUnits[unit.colorIndex];
+
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(Routes.chaptersView);
+        GoRouter.of(context).push(Routes.chaptersView, extra: index);
       },
       child: Stack(
         clipBehavior: Clip.none,
@@ -59,7 +67,7 @@ class CustomUnitCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  "الباب ${unit.displayNumber}",
+                  "الباب ${getDisplayNumber(index)}",
                   style: TextStyles.bold14.copyWith(
                     color: Colors.white,
                   ),

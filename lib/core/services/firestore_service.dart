@@ -36,6 +36,20 @@ class FirestoreService implements DatabaseService {
   }
 
   @override
+  Future<List<Map<String, dynamic>>> getFilteredData({
+    required String path,
+    required String field,
+    required dynamic isEqualToValue,
+  }) async {
+    QuerySnapshot<Map<String, dynamic>> data = await firestore
+        .collection(path)
+        .where(field, isEqualTo: isEqualToValue)
+        .get();
+
+    return data.docs.map((e) => e.data()).toList();
+  }
+
+  @override
   Future<bool> checkIfDataExists({
     required String path,
     required String documentId,
