@@ -9,11 +9,16 @@ class LessonCubit extends Cubit<LessonState> {
     : super(LessonInitialState());
   final LessonRepoImp lessonRepoImp;
 
-  Future<void> getLessons({required int selectedIndex}) async {
+  Future<void> getLessons({
+    required int unitSelectedIndex,
+    required int chapterSelectedIndex,
+  }) async {
     emit(LessonLoadingState());
     final result = await lessonRepoImp.getLessons(
-      selectedIndex: selectedIndex,
+      unitSelectedIndex: unitSelectedIndex,
+      chapterSelectedIndex: chapterSelectedIndex,
     );
+
     result.fold(
       (failure) =>
           emit(LessonErrorState(message: failure.errMessage)),

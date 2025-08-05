@@ -3,18 +3,25 @@ import 'package:bio_app/features/chapters/presentation/widgets/custom_chapter_ca
 import 'package:flutter/material.dart';
 
 class ChaptersCardsList extends StatelessWidget {
-  const ChaptersCardsList({super.key, required this.chapters});
+  const ChaptersCardsList({
+    super.key,
+    required this.chapters,
+    required this.unitSelectedIndex,
+  });
   final List<ChapterEntity> chapters;
+  final int unitSelectedIndex;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: List.generate(chapters.length, (index) {
+        final ChapterEntity chapter = chapters[index];
         return Padding(
           padding: const EdgeInsets.only(top: 70),
           child: CustomChapterCard(
             chapter: chapters[index],
-            index: index,
+            chapterSelectedIndex: chapter.id,
+            unitSelectedIndex: unitSelectedIndex,
           ),
         );
       }),

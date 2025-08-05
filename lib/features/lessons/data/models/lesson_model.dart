@@ -2,11 +2,13 @@ import 'package:bio_app/features/lessons/domain/lesson_entity.dart';
 
 class LessonModel extends LessonEntity {
   final int chapterId;
+  final int unitId;
 
   LessonModel({
     required super.id,
     required super.title,
     required this.chapterId,
+    required this.unitId,
   });
 
   factory LessonModel.fromJson(Map<String, dynamic> json) {
@@ -14,6 +16,7 @@ class LessonModel extends LessonEntity {
       id: json['id'] as int,
       title: json['title'] as String,
       chapterId: json['chapterId'] as int,
+      unitId: json['unitId'] as int,
     );
   }
 }

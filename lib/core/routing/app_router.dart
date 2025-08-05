@@ -151,23 +151,30 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.chaptersView,
           builder: (context, state) {
-            final int selectedIndex = state.extra as int;
+            final int unitSelectedIndex = state.extra as int;
             return BlocProvider(
               create: (context) => ChapterCubit(
                 chapterRepoImpl: getIt<ChapterRepoImpl>(),
-              )..getChapters(selectedIndex: selectedIndex),
-              child: const ChapterView(),
+              )..getChapters(selectedIndex: unitSelectedIndex),
+              child: ChapterView(
+                unitSelectedIndex: unitSelectedIndex,
+              ),
             );
           },
         ),
         GoRoute(
           path: Routes.lessonsView,
           builder: (context, state) {
-            final int selectedIndex = state.extra as int;
+            final extra = state.extra as Map<String, int>;
+            final int chapterSelectedIndex = extra['chapterIndex']!;
+            final int unitSelectedIndex = extra['unitIndex']!;
             return BlocProvider(
               create: (context) =>
                   LessonCubit(lessonRepoImp: getIt<LessonRepoImp>())
-                    ..getLessons(selectedIndex: selectedIndex),
+                    ..getLessons(
+                      chapterSelectedIndex: chapterSelectedIndex,
+                      unitSelectedIndex: unitSelectedIndex,
+                    ),
               child: const LessonsView(),
             );
           },

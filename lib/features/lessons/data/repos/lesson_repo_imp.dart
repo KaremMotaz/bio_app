@@ -12,12 +12,14 @@ class LessonRepoImp implements LessonRepo {
 
   @override
   Future<Either<Failure, List<LessonModel>>> getLessons({
-    required int selectedIndex,
+    required int unitSelectedIndex,
+    required int chapterSelectedIndex,
   }) async {
     try {
       final List<Map<String, dynamic>> result =
           await lessonsRemoteDataSource.getFilteredLessons(
-            selectedIndex: selectedIndex,
+            unitSelectedIndex: unitSelectedIndex,
+            chapterSelectedIndex: chapterSelectedIndex,
           );
       final List<LessonModel> lessons = result
           .map((json) => LessonModel.fromJson(json))

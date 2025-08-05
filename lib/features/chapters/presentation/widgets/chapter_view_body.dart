@@ -3,8 +3,13 @@ import 'package:bio_app/features/chapters/presentation/widgets/chapters_cards_li
 import 'package:flutter/material.dart';
 
 class ChapterViewBody extends StatelessWidget {
-  const ChapterViewBody({super.key, required this.chapters});
+  const ChapterViewBody({
+    super.key,
+    required this.chapters,
+    required this.unitSelectedIndex,
+  });
   final List<ChapterEntity> chapters;
+  final int unitSelectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,10 @@ class ChapterViewBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text("Chapters"),
-            ChaptersCardsList(chapters: chapters),
+            ChaptersCardsList(
+              chapters: chapters,
+              unitSelectedIndex: unitSelectedIndex,
+            ),
           ],
         ),
       ),

@@ -12,8 +12,8 @@ class ChaptersRemoteDataSource {
     final List<Map<String, dynamic>> result = await databaseService
         .getFilteredData(
           path: BackendEndpoint.getChapters,
-          field: BackendFields.unitId,
-          isEqualToValue: selectedIndex,
+          field1: BackendFields.unitId,
+          value1: selectedIndex,
         );
     return result;
   }
