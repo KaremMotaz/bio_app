@@ -163,10 +163,11 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.lessonsView,
           builder: (context, state) {
+            final int selectedIndex = state.extra as int;
             return BlocProvider(
               create: (context) =>
                   LessonCubit(lessonRepoImp: getIt<LessonRepoImp>())
-                    ..getLessons(),
+                    ..getLessons(selectedIndex: selectedIndex),
               child: const LessonsView(),
             );
           },

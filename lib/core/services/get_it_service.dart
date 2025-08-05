@@ -1,5 +1,6 @@
 import 'package:bio_app/features/chapters/data/data_source/chapters_remote_data_source.dart';
 import 'package:bio_app/features/chapters/data/repos/chapter_repo_imp.dart';
+import 'package:bio_app/features/lessons/data/data_source/lessons_remote_data_source.dart';
 import 'package:bio_app/features/lessons/data/repos/lesson_repo_imp.dart';
 import 'package:bio_app/features/quiz/domain/logic/quiz_helpers.dart';
 import 'package:bio_app/features/units/data/data_source/units_remote_data_source.dart';
@@ -85,5 +86,11 @@ void setupGetIt() {
   );
 
   // 📚 Lessons
-  getIt.registerLazySingleton<LessonRepoImp>(() => LessonRepoImp());
+  getIt.registerLazySingleton<LessonRepoImp>(
+    () => LessonRepoImp(
+      lessonsRemoteDataSource: LessonsRemoteDataSource(
+        databaseService: getIt(),
+      ),
+    ),
+  );
 }

@@ -8,9 +8,7 @@ import 'package:bio_app/core/errors/failure.dart';
 
 class ChapterRepoImpl implements ChapterRepo {
   ChaptersRemoteDataSource chaptersRemoteDataSource;
-  ChapterRepoImpl({
-    required this.chaptersRemoteDataSource,
-  });
+  ChapterRepoImpl({required this.chaptersRemoteDataSource});
 
   @override
   Future<Either<Failure, List<ChapterModel>>> getChapters({

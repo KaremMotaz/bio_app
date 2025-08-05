@@ -1,3 +1,4 @@
+import 'package:bio_app/core/helpers/constants.dart';
 import 'package:bio_app/core/routing/routes.dart';
 import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:bio_app/features/lessons/domain/lesson_entity.dart';
@@ -5,8 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomLessonCard extends StatefulWidget {
-  const CustomLessonCard({super.key, required this.lesson});
+  const CustomLessonCard({
+    super.key,
+    required this.lesson,
+    required this.index,
+  });
   final LessonEntity lesson;
+  final int index;
 
   @override
   State<CustomLessonCard> createState() => _CustomLessonCardState();
@@ -15,6 +21,7 @@ class CustomLessonCard extends StatefulWidget {
 class _CustomLessonCardState extends State<CustomLessonCard> {
   bool isExpanded = false;
   int? selectedIndex;
+  List<String> quizzes = ["الاختبار 1", "الاختبار 2", "الاختبار 3"];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +41,7 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
         children: [
           ListTile(
             title: Text(
-              widget.lesson.title,
+              'الدرس ${getDisplayNumber(widget.index)} : ${widget.lesson.title}',
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -58,10 +65,10 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
               padding: EdgeInsets.zero,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: widget.lesson.topics.length,
+              itemCount: quizzes.length,
               itemBuilder: (context, index) {
-                final item = widget.lesson.topics[index];
-                final isSelected = selectedIndex == index;
+                final String item = quizzes[index];
+                final bool isSelected = selectedIndex == index;
                 return Container(
                   color: isSelected ? Colors.grey[100] : Colors.white,
                   child: ListTile(
@@ -69,7 +76,9 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
                     onTap: () {
                       setState(() {
                         selectedIndex = index;
-                        GoRouter.of(context).push(Routes.quizReadyView);
+                        GoRouter.of(
+                          context,
+                        ).push(Routes.quizReadyView);
                       });
                     },
                   ),

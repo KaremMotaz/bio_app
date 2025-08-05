@@ -21,7 +21,7 @@ class CustomChapterCard extends StatelessWidget {
         AppColors.predefinedColorPairsForChapters[chapter.colorIndex];
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(Routes.lessonsView);
+        GoRouter.of(context).push(Routes.lessonsView, extra: index);
       },
       child: Stack(
         clipBehavior: Clip.none,

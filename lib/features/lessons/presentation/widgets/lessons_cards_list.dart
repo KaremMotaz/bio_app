@@ -12,7 +12,10 @@ class LessonsCardsList extends StatelessWidget {
       children: List.generate(lessons.length, (index) {
         return Padding(
           padding: const EdgeInsets.only(top: 20),
-          child: CustomLessonCard(lesson: lessons[index]),
+          child: CustomLessonCard(
+            lesson: lessons[index],
+            index: index,
+          ),
         );
       }),
     );
