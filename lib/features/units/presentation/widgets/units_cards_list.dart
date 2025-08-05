@@ -10,10 +10,9 @@ class UnitsCardsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: List.generate(units.length, (index) {
-        final UnitEntity unit = units[index];
         return Padding(
           padding: EdgeInsets.only(top: index == 0 ? 0 : 70),
-          child: CustomUnitCard(unit: units[index], index: unit.id),
+          child: CustomUnitCard(unit: units[index]),
         );
       }),
     );

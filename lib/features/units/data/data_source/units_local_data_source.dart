@@ -1,35 +1,43 @@
+import 'package:bio_app/core/helpers/constants.dart';
+import 'package:bio_app/features/units/data/models/unit_model.dart';
+import 'package:bio_app/core/services/local_cache_service.dart';
 
+abstract class UnitsLocalDataSource {
+  Future<List<UnitModel>?> getUnits();
+  Future<void> cacheUnits(List<UnitModel> units);
+  Future<void> clearUnits();
+}
 
+class UnitsLocalDataSourceImpl implements UnitsLocalDataSource {
+  final LocalCacheService cache;
 
+  UnitsLocalDataSourceImpl({required this.cache});
 
+  @override
+  Future<List<UnitModel>?> getUnits() async {
+    final list = await cache.getList(key: kUnits, boxName: kUnitsBox);
+    if (list == null) return null;
 
+    try {
+      return list.map((e) => UnitModel.fromJson(e)).toList();
+    } catch (_) {
+      await clearUnits();
+      return null;
+    }
+  }
 
+  @override
+  Future<void> cacheUnits(List<UnitModel> units) async {
+    final list = units.map((u) => u.toJson()).toList();
+    await cache.saveList(
+      key: kUnits,
+      boxName: kUnitsBox,
+      list: List<Map<String, dynamic>>.from(list),
+    );
+  }
 
-
-
-
-
-
-// final List<Map<String, dynamic>> unitsJson = [
-//   {
-//     "id": 0,
-//     "displayNumber": "الأول",
-//     "title": "التركيب والوظيفة في الكائنات الحية",
-//     "image": "assets/images/brain.png",
-//     "colorList": [0xffFF79A2, 0xffFFC9D9],
-//   },
-//   {
-//     "id": 1,
-//     "displayNumber": "الثاني",
-//     "title": "البيولوجيا الجزيئية",
-//     "image": "assets/images/dna.png",
-//     "colorList": [0xffDB65BE, 0xffFFDAF9],
-//   },
-//   {
-//     "id": 2,
-//     "displayNumber": "الثالث",
-//     "title": "البيئة والأحياء وعلوم الأرض",
-//     "image": "assets/images/earth.png",
-//     "colorList": [0xff96CD83, 0xffE4F185],
-//   },
-// ];
+  @override
+  Future<void> clearUnits() async {
+    await cache.clear(key: kUnits, boxName: kUnitsBox);
+  }
+}

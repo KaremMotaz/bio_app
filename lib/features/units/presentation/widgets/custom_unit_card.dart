@@ -12,10 +12,8 @@ class CustomUnitCard extends StatelessWidget {
   const CustomUnitCard({
     super.key,
     required this.unit,
-    required this.index,
   });
   final UnitEntity unit;
-  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +22,9 @@ class CustomUnitCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(Routes.chaptersView, extra: index);
+        GoRouter.of(
+          context,
+        ).push(Routes.chaptersView, extra: unit.id);
       },
       child: Stack(
         clipBehavior: Clip.none,
@@ -67,7 +67,7 @@ class CustomUnitCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  "الباب ${getDisplayNumber(index)}",
+                  "الباب ${getDisplayNumber(unit.id)}",
                   style: TextStyles.bold14.copyWith(
                     color: Colors.white,
                   ),

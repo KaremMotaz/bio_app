@@ -13,7 +13,12 @@ class UnitCubit extends Cubit<UnitState> {
     final result = await unitRepoImpl.getUnits();
     result.fold(
       (failure) => emit(UnitErrorState(message: failure.errMessage)),
-      (units) => emit(UnitLoadedState(units: units)),
+      (units) {
+        final unitEntities = units
+            .map((model) => model.toEntity())
+            .toList();
+        emit(UnitLoadedState(units: unitEntities));
+      },
     );
   }
 }

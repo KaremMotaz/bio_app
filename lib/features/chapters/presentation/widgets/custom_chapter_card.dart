@@ -26,7 +26,7 @@ class CustomChapterCard extends StatelessWidget {
         GoRouter.of(context).push(
           Routes.lessonsView,
           extra: {
-            'chapterIndex': chapterSelectedIndex,
+            'chapterIndex': chapter.id,
             'unitIndex': unitSelectedIndex,
           },
         );

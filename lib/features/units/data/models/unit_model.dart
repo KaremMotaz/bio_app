@@ -1,6 +1,9 @@
 import 'package:bio_app/features/units/domain/unit_entity.dart';
+import 'package:hive/hive.dart';
 
+@HiveType(typeId: 0)
 class UnitModel extends UnitEntity {
+  
   UnitModel({
     required super.id,
     required super.title,
@@ -16,5 +19,27 @@ class UnitModel extends UnitEntity {
       colorIndex: json['colorIndex'] as int,
     );
   }
-}
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'image': image,
+      'colorIndex': colorIndex,
+    };
+  }
+
+  UnitEntity toEntity() => UnitEntity(
+    id: id,
+    title: title,
+    image: image,
+    colorIndex: colorIndex,
+  );
+
+  factory UnitModel.fromEntity(UnitEntity e) => UnitModel(
+    id: e.id,
+    title: e.title,
+    image: e.image,
+    colorIndex: e.colorIndex,
+  );
+}

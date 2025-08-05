@@ -1,8 +1,10 @@
+import 'package:bio_app/core/services/local_cache_service.dart';
 import 'package:bio_app/features/chapters/data/data_source/chapters_remote_data_source.dart';
 import 'package:bio_app/features/chapters/data/repos/chapter_repo_imp.dart';
 import 'package:bio_app/features/lessons/data/data_source/lessons_remote_data_source.dart';
 import 'package:bio_app/features/lessons/data/repos/lesson_repo_imp.dart';
 import 'package:bio_app/features/quiz/domain/logic/quiz_helpers.dart';
+import 'package:bio_app/features/units/data/data_source/units_local_data_source.dart';
 import 'package:bio_app/features/units/data/data_source/units_remote_data_source.dart';
 import 'package:bio_app/features/units/data/repos/unit_repo_imp.dart';
 
@@ -31,6 +33,7 @@ void setupGetIt() {
   // 🔐 Auth
   getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
   getIt.registerSingleton<DatabaseService>(FirestoreService());
+  getIt.registerSingleton<LocalCacheService>(LocalCacheService());
 
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImp(
@@ -73,6 +76,7 @@ void setupGetIt() {
       unitsRemoteDataSource: UnitsRemoteDataSource(
         databaseService: getIt(),
       ),
+      unitsLocalDataSource: UnitsLocalDataSourceImpl(cache: getIt()),
     ),
   );
 
