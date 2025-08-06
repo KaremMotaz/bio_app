@@ -1,4 +1,4 @@
-import 'package:bio_app/features/chapters/domain/chapter_entity.dart';
+import '../../domain/chapter_entity.dart';
 
 class ChapterModel extends ChapterEntity {
   final int unitId;

@@ -1,10 +1,9 @@
-import 'package:bio_app/features/chapters/data/repos/chapter_repo_imp.dart';
-import 'package:bio_app/features/chapters/presentation/manager/chapter_cubit/chapter_cubit.dart';
-import 'package:bio_app/features/lessons/data/repos/lesson_repo_imp.dart';
-import 'package:bio_app/features/lessons/presentation/manager/lesson_cubit/lesson_cubit.dart';
-import 'package:bio_app/features/lessons/presentation/quiz_ready_view.dart';
-import 'package:bio_app/features/quiz/domain/logic/quiz_helpers.dart';
-
+import '../../features/chapters/data/repos/chapter_repo_imp.dart';
+import '../../features/chapters/presentation/manager/chapter_cubit/chapter_cubit.dart';
+import '../../features/lessons/data/repos/lesson_repo_imp.dart';
+import '../../features/lessons/presentation/manager/lesson_cubit/lesson_cubit.dart';
+import '../../features/lessons/presentation/quiz_ready_view.dart';
+import '../../features/quiz/domain/logic/quiz_helpers.dart';
 import '../services/get_it_service.dart';
 import '../../features/exam/domain/usecases/get_exam_usecase.dart';
 import '../../features/exam/domain/usecases/submit_exam_usecase.dart';

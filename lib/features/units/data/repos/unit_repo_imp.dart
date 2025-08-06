@@ -1,10 +1,10 @@
 import 'dart:developer';
-import 'package:bio_app/core/errors/server_failure.dart';
-import 'package:bio_app/core/errors/failure.dart';
-import 'package:bio_app/features/units/data/data_source/units_remote_data_source.dart';
-import 'package:bio_app/features/units/data/data_source/units_local_data_source.dart';
-import 'package:bio_app/features/units/data/models/unit_model.dart';
-import 'package:bio_app/features/units/domain/unit_repo.dart';
+import '../../../../core/errors/server_failure.dart';
+import '../../../../core/errors/failure.dart';
+import '../data_source/units_remote_data_source.dart';
+import '../data_source/units_local_data_source.dart';
+import '../models/unit_model.dart';
+import '../../domain/unit_repo.dart';
 import 'package:dartz/dartz.dart';
 
 class UnitRepoImpl implements UnitRepo {

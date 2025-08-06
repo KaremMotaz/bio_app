@@ -1,7 +1,7 @@
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/features/lessons/presentation/manager/lesson_cubit/lesson_cubit.dart';
-import 'package:bio_app/features/lessons/presentation/widgets/lessons_view_body.dart';
+import '../../../core/theming/app_colors.dart';
+import '../../../core/theming/text_styles.dart';
+import 'manager/lesson_cubit/lesson_cubit.dart';
+import 'widgets/lessons_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

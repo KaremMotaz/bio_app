@@ -1,5 +1,6 @@
-import '../../domin/repos/exam_result_repo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../../domin/repos/exam_result_repo.dart';
 
 class ExamResultRepoImpl implements ExamResultRepo {
   final FirebaseFirestore firestore;

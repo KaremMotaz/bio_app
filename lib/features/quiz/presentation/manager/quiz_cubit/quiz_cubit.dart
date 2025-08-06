@@ -1,4 +1,4 @@
-import 'package:bio_app/features/quiz/domain/logic/quiz_helpers.dart';
+import '../../../domain/logic/quiz_helpers.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

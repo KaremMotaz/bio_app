@@ -1,4 +1,4 @@
-import 'package:bio_app/features/lessons/domain/lesson_entity.dart';
+import '../../domain/lesson_entity.dart';
 
 class LessonModel extends LessonEntity {
   final int chapterId;

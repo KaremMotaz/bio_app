@@ -1,4 +1,4 @@
-import 'package:bio_app/features/units/domain/unit_entity.dart';
+import '../../domain/unit_entity.dart';
 import 'custom_unit_card.dart';
 import 'package:flutter/material.dart';
 

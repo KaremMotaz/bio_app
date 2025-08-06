@@ -1,6 +1,6 @@
-import 'package:bio_app/core/helpers/constants.dart';
-import 'package:bio_app/features/chapters/data/models/chapter_model.dart';
-import 'package:bio_app/core/services/local_cache_service.dart';
+import '../../../../core/helpers/constants.dart';
+import '../models/chapter_model.dart';
+import '../../../../core/services/local_cache_service.dart';
 
 abstract class ChaptersLocalDataSource {
   Future<List<ChapterModel>?> getChapters({required int unitId});

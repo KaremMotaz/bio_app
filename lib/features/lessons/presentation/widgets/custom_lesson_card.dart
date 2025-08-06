@@ -1,7 +1,7 @@
-import 'package:bio_app/core/helpers/constants.dart';
-import 'package:bio_app/core/routing/routes.dart';
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/features/lessons/domain/lesson_entity.dart';
+import '../../../../core/helpers/constants.dart';
+import '../../../../core/routing/routes.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../domain/lesson_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

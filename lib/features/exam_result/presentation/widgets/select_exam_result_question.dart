@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/selector_widget.dart';
 import '../../../exam/domain/entities/exam_entity.dart';
 import '../manager/exam_result_cubit/exam_result_cubit.dart';
-import '../../../../core/theming/app_colors.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SelectExamResultQuestion extends StatelessWidget {
   const SelectExamResultQuestion({

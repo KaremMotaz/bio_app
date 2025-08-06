@@ -1,6 +1,6 @@
-import 'package:bio_app/core/helpers/constants.dart';
-import 'package:bio_app/features/units/data/models/unit_model.dart';
-import 'package:bio_app/core/services/local_cache_service.dart';
+import '../../../../core/helpers/constants.dart';
+import '../models/unit_model.dart';
+import '../../../../core/services/local_cache_service.dart';
 
 abstract class UnitsLocalDataSource {
   Future<List<UnitModel>?> getUnits();

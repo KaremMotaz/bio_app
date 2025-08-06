@@ -1,5 +1,5 @@
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/features/units/presentation/manager/unit_cubit/unit_cubit.dart';
+import '../../../core/theming/app_colors.dart';
+import 'manager/unit_cubit/unit_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'widgets/unit_view_body.dart';

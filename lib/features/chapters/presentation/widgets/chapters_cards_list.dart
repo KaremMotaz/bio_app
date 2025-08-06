@@ -1,5 +1,5 @@
-import 'package:bio_app/features/chapters/domain/chapter_entity.dart';
-import 'package:bio_app/features/chapters/presentation/widgets/custom_chapter_card.dart';
+import '../../domain/chapter_entity.dart';
+import 'custom_chapter_card.dart';
 import 'package:flutter/material.dart';
 
 class ChaptersCardsList extends StatelessWidget {

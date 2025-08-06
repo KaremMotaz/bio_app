@@ -1,14 +1,14 @@
-import 'package:bio_app/core/services/local_cache_service.dart';
-import 'package:bio_app/features/chapters/data/data_source/chapters_local_data_source.dart';
-import 'package:bio_app/features/chapters/data/data_source/chapters_remote_data_source.dart';
-import 'package:bio_app/features/chapters/data/repos/chapter_repo_imp.dart';
-import 'package:bio_app/features/lessons/data/data_source/lessons_local_data_source.dart';
-import 'package:bio_app/features/lessons/data/data_source/lessons_remote_data_source.dart';
-import 'package:bio_app/features/lessons/data/repos/lesson_repo_imp.dart';
-import 'package:bio_app/features/quiz/domain/logic/quiz_helpers.dart';
-import 'package:bio_app/features/units/data/data_source/units_local_data_source.dart';
-import 'package:bio_app/features/units/data/data_source/units_remote_data_source.dart';
-import 'package:bio_app/features/units/data/repos/unit_repo_imp.dart';
+import 'local_cache_service.dart';
+import '../../features/chapters/data/data_source/chapters_local_data_source.dart';
+import '../../features/chapters/data/data_source/chapters_remote_data_source.dart';
+import '../../features/chapters/data/repos/chapter_repo_imp.dart';
+import '../../features/lessons/data/data_source/lessons_local_data_source.dart';
+import '../../features/lessons/data/data_source/lessons_remote_data_source.dart';
+import '../../features/lessons/data/repos/lesson_repo_imp.dart';
+import '../../features/quiz/domain/logic/quiz_helpers.dart';
+import '../../features/units/data/data_source/units_local_data_source.dart';
+import '../../features/units/data/data_source/units_remote_data_source.dart';
+import '../../features/units/data/repos/unit_repo_imp.dart';
 
 import '../../features/exam/domain/repos/exam_repo.dart';
 import 'package:get_it/get_it.dart';

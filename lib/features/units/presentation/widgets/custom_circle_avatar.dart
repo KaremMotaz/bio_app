@@ -1,5 +1,6 @@
-import '../../../../core/theming/assets_data.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/theming/assets_data.dart';
 
 class CustomCircleAvatar extends StatelessWidget {
   const CustomCircleAvatar({super.key});

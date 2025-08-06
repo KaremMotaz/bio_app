@@ -1,5 +1,5 @@
-import 'package:bio_app/features/chapters/data/repos/chapter_repo_imp.dart';
-import 'package:bio_app/features/chapters/domain/chapter_entity.dart';
+import '../../../data/repos/chapter_repo_imp.dart';
+import '../../../domain/chapter_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'chapter_state.dart';

@@ -1,5 +1,5 @@
-import 'package:bio_app/core/services/get_it_service.dart';
-import 'package:bio_app/features/quiz/domain/logic/quiz_helpers.dart';
+import '../../../../core/services/get_it_service.dart';
+import '../../domain/logic/quiz_helpers.dart';
 
 import '../../../../core/entities/base_question_entity.dart';
 import '../../../../core/theming/option_style.dart';

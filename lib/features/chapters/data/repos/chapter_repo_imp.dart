@@ -1,10 +1,10 @@
 import 'dart:developer';
-import 'package:bio_app/core/errors/server_failure.dart';
-import 'package:bio_app/core/errors/failure.dart';
-import 'package:bio_app/features/chapters/data/data_source/chapters_remote_data_source.dart';
+import '../../../../core/errors/server_failure.dart';
+import '../../../../core/errors/failure.dart';
+import '../data_source/chapters_remote_data_source.dart';
 import 'package:bio_app/features/chapters/data/data_source/chapters_local_data_source.dart'; // <-- by unit
-import 'package:bio_app/features/chapters/data/models/chapter_model.dart';
-import 'package:bio_app/features/chapters/domain/chapter_repo.dart';
+import '../models/chapter_model.dart';
+import '../../domain/chapter_repo.dart';
 import 'package:dartz/dartz.dart';
 
 class ChapterRepoImpl implements ChapterRepo {

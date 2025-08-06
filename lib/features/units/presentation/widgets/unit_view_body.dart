@@ -1,4 +1,4 @@
-import 'package:bio_app/features/units/domain/unit_entity.dart';
+import '../../domain/unit_entity.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';

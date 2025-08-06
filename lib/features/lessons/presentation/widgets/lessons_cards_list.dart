@@ -1,5 +1,5 @@
-import 'package:bio_app/features/lessons/domain/lesson_entity.dart';
-import 'package:bio_app/features/lessons/presentation/widgets/custom_lesson_card.dart';
+import '../../domain/lesson_entity.dart';
+import 'custom_lesson_card.dart';
 import 'package:flutter/material.dart';
 
 class LessonsCardsList extends StatelessWidget {

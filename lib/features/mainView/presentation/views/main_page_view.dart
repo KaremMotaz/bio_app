@@ -1,6 +1,6 @@
-import 'package:bio_app/core/services/get_it_service.dart';
-import 'package:bio_app/features/units/data/repos/unit_repo_imp.dart';
-import 'package:bio_app/features/units/presentation/manager/unit_cubit/unit_cubit.dart';
+import '../../../../core/services/get_it_service.dart';
+import '../../../units/data/repos/unit_repo_imp.dart';
+import '../../../units/presentation/manager/unit_cubit/unit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../exam/presentation/views/available_exams_view.dart';

@@ -1,4 +1,4 @@
-import 'package:bio_app/features/units/domain/unit_entity.dart';
+import '../../domain/unit_entity.dart';
 
 class UnitModel extends UnitEntity {
   

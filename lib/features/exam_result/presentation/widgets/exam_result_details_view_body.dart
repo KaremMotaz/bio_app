@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+
+import '../../../exam/domain/entities/exam_entity.dart';
+import 'exam_result_details_page_view.dart';
 import 'exam_result_footer.dart';
 import 'exam_result_header.dart';
-import 'exam_result_details_page_view.dart';
-import '../../../exam/domain/entities/exam_entity.dart';
-import 'package:flutter/material.dart';
 
 class ExamResultDetailsViewBody extends StatefulWidget {
   const ExamResultDetailsViewBody({
