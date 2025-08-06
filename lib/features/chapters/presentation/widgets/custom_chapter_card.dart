@@ -11,11 +11,11 @@ class CustomChapterCard extends StatelessWidget {
     super.key,
     required this.chapter,
     required this.chapterSelectedIndex,
-    required this.unitSelectedIndex,
+    required this.unitId,
   });
   final ChapterEntity chapter;
   final int chapterSelectedIndex;
-  final int unitSelectedIndex;
+  final int unitId;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +25,7 @@ class CustomChapterCard extends StatelessWidget {
       onTap: () {
         GoRouter.of(context).push(
           Routes.lessonsView,
-          extra: {
-            'chapterIndex': chapter.id,
-            'unitIndex': unitSelectedIndex,
-          },
+          extra: {'chapterIndex': chapter.id, 'unitIndex': unitId},
         );
       },
       child: Stack(

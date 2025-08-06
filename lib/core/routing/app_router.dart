@@ -151,14 +151,12 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.chaptersView,
           builder: (context, state) {
-            final int unitSelectedIndex = state.extra as int;
+            final int unitId = state.extra as int;
             return BlocProvider(
               create: (context) => ChapterCubit(
                 chapterRepoImpl: getIt<ChapterRepoImpl>(),
-              )..getChapters(selectedIndex: unitSelectedIndex),
-              child: ChapterView(
-                unitSelectedIndex: unitSelectedIndex,
-              ),
+              )..getChapters(unitId: unitId),
+              child: ChapterView(unitId: unitId),
             );
           },
         ),

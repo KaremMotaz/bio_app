@@ -6,10 +6,10 @@ class ChaptersCardsList extends StatelessWidget {
   const ChaptersCardsList({
     super.key,
     required this.chapters,
-    required this.unitSelectedIndex,
+    required this.unitId,
   });
   final List<ChapterEntity> chapters;
-  final int unitSelectedIndex;
+  final int unitId;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class ChaptersCardsList extends StatelessWidget {
           child: CustomChapterCard(
             chapter: chapters[index],
             chapterSelectedIndex: chapter.id,
-            unitSelectedIndex: unitSelectedIndex,
+            unitId: unitId,
           ),
         );
       }),

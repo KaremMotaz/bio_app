@@ -7,13 +7,13 @@ class ChaptersRemoteDataSource {
 
   ChaptersRemoteDataSource({required this.databaseService});
   Future<List<Map<String, dynamic>>> getFilteredChapters({
-    required int selectedIndex,
+    required int unitId,
   }) async {
     final List<Map<String, dynamic>> result = await databaseService
         .getFilteredData(
           path: BackendEndpoint.getChapters,
           field1: BackendFields.unitId,
-          value1: selectedIndex,
+          value1: unitId,
         );
     return result;
   }

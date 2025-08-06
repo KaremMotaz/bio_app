@@ -4,6 +4,6 @@ import 'package:dartz/dartz.dart';
 
 abstract class ChapterRepo {
   Future<Either<Failure, List<ChapterModel>>> getChapters({
-    required int selectedIndex,
+    required int unitId,
   });
 }

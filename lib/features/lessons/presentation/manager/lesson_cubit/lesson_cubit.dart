@@ -15,8 +15,8 @@ class LessonCubit extends Cubit<LessonState> {
   }) async {
     emit(LessonLoadingState());
     final result = await lessonRepoImp.getLessons(
-      unitSelectedIndex: unitSelectedIndex,
-      chapterSelectedIndex: chapterSelectedIndex,
+      unitId: unitSelectedIndex,
+      chapterId: chapterSelectedIndex,
     );
 
     result.fold(

@@ -1,7 +1,5 @@
 import 'package:bio_app/features/units/domain/unit_entity.dart';
-import 'package:hive/hive.dart';
 
-@HiveType(typeId: 0)
 class UnitModel extends UnitEntity {
   
   UnitModel({

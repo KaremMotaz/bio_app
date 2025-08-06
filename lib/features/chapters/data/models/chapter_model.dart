@@ -20,4 +20,13 @@ class ChapterModel extends ChapterEntity {
       unitId: json['unitId'] as int,
     );
   }
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'image': image,
+      'colorIndex': colorIndex,
+      'unitId': unitId,
+    };
+  }
 }
