@@ -1,8 +1,8 @@
+import 'package:bio_app/core/theming/text_styles.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
 import 'core/helpers/constants.dart';
 import 'core/routing/app_router.dart';
 import 'core/services/cache_helper.dart';
@@ -38,6 +38,12 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Cairo",
         scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          titleTextStyle: TextStyles.bold20,
+          iconTheme: IconThemeData(color: Colors.black),
+        ),
       ),
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
