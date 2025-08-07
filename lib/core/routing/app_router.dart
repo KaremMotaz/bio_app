@@ -27,7 +27,7 @@ import '../../features/exam_result/presentation/views/exam_result_view.dart';
 import '../../features/exam_result/presentation/views/exam_result_details_view.dart';
 import '../../features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
 import '../../features/quiz/presentation/views/quiz_view.dart';
-import '../../features/quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
+import '../../features/quiz/presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import '../../features/chapters/presentation/chapter_view.dart';
 import '../../features/lessons/presentation/lessons_view.dart';
 import '../../features/exam/presentation/views/exam_view.dart';
@@ -104,7 +104,7 @@ abstract class AppRouter {
           path: Routes.quizView,
           builder: (context, state) {
             return BlocProvider(
-              create: (_) => QuizCubit(
+              create: (_) => QuizQuestionsCubit(
                 getIt<QuizHelper>(),
                 getIt<QuizHelper>(),
                 questionsRepo: getIt<QuestionsRepoImp>(),

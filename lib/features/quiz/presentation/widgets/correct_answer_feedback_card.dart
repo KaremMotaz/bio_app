@@ -5,7 +5,7 @@ import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/feedback_messages.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../domain/entities/quiz_question_entity.dart';
-import '../manager/quiz_cubit/quiz_cubit.dart';
+import '../manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import 'custom_button.dart';
 
 class CorrectAnswerFeedbackCard extends StatelessWidget {
@@ -44,7 +44,7 @@ class CorrectAnswerFeedbackCard extends StatelessWidget {
             text: "كمل",
             isEnabled: true,
             onPressed: () {
-              context.read<QuizCubit>().nextQuestion();
+              context.read<QuizQuestionsCubit>().nextQuestion();
             },
           ),
           const SizedBox(height: 25),

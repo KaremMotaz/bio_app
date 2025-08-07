@@ -3,18 +3,21 @@ import 'package:flutter/material.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/assets_data.dart';
 import '../../../../core/theming/text_styles.dart';
-import '../manager/quiz_cubit/quiz_cubit.dart';
+import '../manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/result_data_frame.dart';
 
 class QuizResultView extends StatelessWidget {
   const QuizResultView({super.key, required this.finishedState});
-  final QuizFinishedState finishedState;
+  final QuizQuestionsFinishedState finishedState;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 24,
+        vertical: 16,
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -23,7 +26,9 @@ class QuizResultView extends StatelessWidget {
           Text(
             "لقد\n اكملت \nالدرس!",
             textAlign: TextAlign.center,
-            style: TextStyles.extraBold30.copyWith(color: Colors.amber),
+            style: TextStyles.extraBold30.copyWith(
+              color: Colors.amber,
+            ),
           ),
           Image.asset(AssetsData.finishLesson, height: 280),
           const SizedBox(height: 10),

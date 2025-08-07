@@ -1,4 +1,4 @@
-part of 'quiz_cubit.dart';
+part of 'quiz_questions_cubit.dart';
 
 class QuizAnswerState {
   final bool isSelected;

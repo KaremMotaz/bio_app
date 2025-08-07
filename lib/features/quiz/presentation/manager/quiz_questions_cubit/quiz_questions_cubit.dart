@@ -12,29 +12,30 @@ import '../../../domain/extensions/quiz_loaded_state_extension.dart';
 import '../../../domain/repos/questions_repo.dart';
 
 part 'quiz_answer_state.dart';
-part 'quiz_state.dart';
+part 'quiz_questions_state.dart';
 
-class QuizCubit extends Cubit<QuizState> {
+class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
   final QuestionsRepo questionsRepo;
   final QuizHelper _timer;
   final QuizHelper _evaluator;
 
-  QuizCubit(
+  QuizQuestionsCubit(
     this._timer,
     this._evaluator, {
     required this.questionsRepo,
-  }) : super(QuizInitialState());
+  }) : super(QuizQuestionsInitialState());
 
   Future<void> loadQuestions() async {
-    emit(QuizLoadingState());
+    emit(QuizQuestionsLoadingState());
     final Either<Failure, List<QuizQuestionModel>> questions =
         questionsRepo.getQuestions();
     questions.fold(
-      (failure) => emit(QuizErrorState(message: failure.errMessage)),
+      (failure) =>
+          emit(QuizQuestionsErrorState(message: failure.errMessage)),
       (questions) {
         _timer.startTimer();
         emit(
-          QuizLoadedState(
+          QuizQuestionsLoadedState(
             questions: questions,
             status: QuizStatus(score: 0, remainingLives: 5),
             answerState: const QuizAnswerState(
@@ -53,7 +54,7 @@ class QuizCubit extends Cubit<QuizState> {
   }
 
   void checkAnswer() {
-    final currentState = state as QuizLoadedState;
+    final currentState = state as QuizQuestionsLoadedState;
 
     final bool isCorrect = _evaluator.isCorrectAnswer(
       currentState.currentQuestion,
@@ -84,7 +85,7 @@ class QuizCubit extends Cubit<QuizState> {
   }
 
   void nextQuestion() {
-    final currentState = state as QuizLoadedState;
+    final currentState = state as QuizQuestionsLoadedState;
 
     final QuizProgress newProgress = currentState.progress.copyWith(
       currentQuestionIndex: currentState.currentQuestionIndex + 1,
@@ -105,7 +106,7 @@ class QuizCubit extends Cubit<QuizState> {
       );
     } else {
       emit(
-        QuizFinishedState(
+        QuizQuestionsFinishedState(
           result: QuizResult(
             finalScore: currentState.status.score,
             totalQuestions: currentState.totalQuestions,
@@ -117,7 +118,7 @@ class QuizCubit extends Cubit<QuizState> {
   }
 
   void selectAnswer(int index) {
-    final currentState = state as QuizLoadedState;
+    final currentState = state as QuizQuestionsLoadedState;
 
     emit(
       currentState.copyWith(
@@ -130,10 +131,10 @@ class QuizCubit extends Cubit<QuizState> {
   }
 
   void finishQuizIfLastLifeLost() {
-    final currentState = state as QuizLoadedState;
+    final currentState = state as QuizQuestionsLoadedState;
 
     emit(
-      QuizFinishedState(
+      QuizQuestionsFinishedState(
         result: QuizResult(
           finalScore: currentState.status.score,
           totalQuestions: currentState.totalQuestions,
@@ -144,6 +145,6 @@ class QuizCubit extends Cubit<QuizState> {
   }
 
   void exitToHome() {
-    emit(QuizExitToHomeState());
+    emit(QuizQuestionsExitToHomeState());
   }
 }

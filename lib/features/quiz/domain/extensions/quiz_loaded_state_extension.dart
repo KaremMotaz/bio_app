@@ -1,9 +1,9 @@
 import '../../data/models/quiz_question_model.dart';
-import '../../presentation/manager/quiz_cubit/quiz_cubit.dart';
+import '../../presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import '../entities/quiz_progress.dart';
 import '../entities/quiz_status.dart';
 
-extension QuizLoadedStateX on QuizLoadedState {
+extension QuizLoadedStateX on QuizQuestionsLoadedState {
   QuizQuestionModel get currentQuestion =>
       questions[progress.currentQuestionIndex];
 

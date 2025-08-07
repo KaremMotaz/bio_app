@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../exam/presentation/widgets/question_images.dart';
 import '../../../exam/presentation/widgets/question_widget.dart';
 import '../../domain/entities/quiz_question_entity.dart';
-import '../manager/quiz_cubit/quiz_cubit.dart';
+import '../manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import 'quiz_question_options.dart';
 
 class QuizQuestionCard extends StatelessWidget {
@@ -31,7 +31,9 @@ class QuizQuestionCard extends StatelessWidget {
             QuizQuestionOptions<QuizQuestionEntity>(
               question: question,
               onSelect: (int index) {
-                context.read<QuizCubit>().selectAnswer(index);
+                context.read<QuizQuestionsCubit>().selectAnswer(
+                  index,
+                );
               },
               answerState: answerState,
             ),

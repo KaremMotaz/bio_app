@@ -8,7 +8,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/errors/failure.dart';
 
 class LessonRepoImp implements LessonRepo {
-  LessonsRemoteDataSource lessonsRemoteDataSource;
+  final LessonsRemoteDataSource lessonsRemoteDataSource;
   final LessonsLocalDataSource lessonsLocalDataSource;
 
   LessonRepoImp({
@@ -22,7 +22,6 @@ class LessonRepoImp implements LessonRepo {
     required int chapterId,
   }) async {
     try {
-      
       // Try to get from cache first
       final cached = await lessonsLocalDataSource.getLessons(
         chapterId: chapterId,

@@ -35,27 +35,27 @@ class FirestoreService implements DatabaseService {
     }
   }
 
-@override
-Future<List<Map<String, dynamic>>> getFilteredData({
-  required String path,
-  String? field1,
-  dynamic value1,
-  String? field2,
-  dynamic value2,
-}) async {
-  Query<Map<String, dynamic>> query = firestore.collection(path);
+  @override
+  Future<List<Map<String, dynamic>>> getFilteredData({
+    required String path,
+    String? field1,
+    dynamic value1,
+    String? field2,
+    dynamic value2,
+  }) async {
+    Query<Map<String, dynamic>> query = firestore.collection(path);
 
-  if (field1 != null && value1 != null) {
-    query = query.where(field1, isEqualTo: value1);
+    if (field1 != null && value1 != null) {
+      query = query.where(field1, isEqualTo: value1);
+    }
+
+    if (field2 != null && value2 != null) {
+      query = query.where(field2, isEqualTo: value2);
+    }
+
+    QuerySnapshot<Map<String, dynamic>> snapshot = await query.get();
+    return snapshot.docs.map((doc) => doc.data()).toList();
   }
-
-  if (field2 != null && value2 != null) {
-    query = query.where(field2, isEqualTo: value2);
-  }
-
-  QuerySnapshot<Map<String, dynamic>> snapshot = await query.get();
-  return snapshot.docs.map((doc) => doc.data()).toList();
-}
 
   @override
   Future<bool> checkIfDataExists({
@@ -68,4 +68,16 @@ Future<List<Map<String, dynamic>>> getFilteredData({
         .get();
     return data.exists;
   }
+
+  // // 🔹 جديد 1: أجيب أحدث تاريخ تحديث (قراءة واحدة فقط)
+  // Future<DateTime?> getLatestUpdatedAt(String path) async {
+  //   final q = await firestore
+  //       .collection(path)
+  //       .orderBy('lastUpdated', descending: true)
+  //       .limit(1)
+  //       .get();
+  //   if (q.docs.isEmpty) return null;
+  //   final ts = q.docs.first.data()['lastUpdated'] as Timestamp?;
+  //   return ts?.toDate().toUtc();
+  // }
 }

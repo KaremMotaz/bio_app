@@ -7,6 +7,14 @@ const String kChaptersBox = "chapters_box";
 const String kChapters = "chapters";
 const String kLessonsBox = "lessons_box";
 const String kLessons = "lessons";
+const String kQuizzesBox = "quizzes_box";
+const String kQuizzes = "quizzes";
+const String kAppCacheBox = 'app_cache';
+const String kLastUpdatedTimestampsKey = 'last_updated_timestamps';
+const String kUnitsLastUpdated = 'units_last_updated';
+const String kChaptersLastUpdated = 'chapters_last_updated';
+const String kLessonsLastUpdated = 'lessons_last_updated';
+const String kQuizzesLastUpdated = 'quizzes_last_updated';
 
 String getDisplayNumber(int id) {
   const numbers = [

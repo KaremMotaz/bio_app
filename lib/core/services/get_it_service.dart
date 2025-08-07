@@ -1,3 +1,7 @@
+import 'package:bio_app/features/lessons/data/data_source/quizzes_local_data_source.dart';
+import 'package:bio_app/features/lessons/data/data_source/quizzes_remote_data_source.dart';
+import 'package:bio_app/features/lessons/data/repos/quiz_repo_imp.dart';
+
 import 'local_cache_service.dart';
 import '../../features/chapters/data/data_source/chapters_local_data_source.dart';
 import '../../features/chapters/data/data_source/chapters_remote_data_source.dart';
@@ -35,6 +39,10 @@ void setupGetIt() {
   // 🔐 Auth
   getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
   getIt.registerSingleton<DatabaseService>(FirestoreService());
+  final firestoreService = FirestoreService();
+  getIt.registerSingleton<FirestoreService>(
+    firestoreService,
+  ); // ✅ مطلوب
   getIt.registerSingleton<LocalCacheService>(LocalCacheService());
 
   getIt.registerLazySingleton<AuthRepo>(
@@ -104,5 +112,32 @@ void setupGetIt() {
         cache: getIt(),
       ),
     ),
+  );
+  getIt.registerLazySingleton<QuizRepoImp>(
+    () => QuizRepoImp(
+      quizzesRemoteDataSource: QuizzesRemoteDataSource(
+        databaseService: getIt(),
+      ),
+      quizzesLocalDataSource: QuizzesLocalDataSourceImpl(
+        cache: getIt(),
+      ),
+    ),
+  );
+
+  getIt.registerLazySingleton<UnitsLocalDataSource>(
+    () => UnitsLocalDataSourceImpl(cache: getIt<LocalCacheService>()),
+  );
+  getIt.registerLazySingleton<ChaptersLocalDataSource>(
+    () => ChaptersLocalDataSourceImpl(
+      cache: getIt<LocalCacheService>(),
+    ),
+  );
+  getIt.registerLazySingleton<LessonsLocalDataSource>(
+    () =>
+        LessonsLocalDataSourceImpl(cache: getIt<LocalCacheService>()),
+  );
+  getIt.registerLazySingleton<QuizzesLocalDataSource>(
+    () =>
+        QuizzesLocalDataSourceImpl(cache: getIt<LocalCacheService>()),
   );
 }

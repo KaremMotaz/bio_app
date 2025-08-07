@@ -1,7 +1,7 @@
 // lib/features/quiz/domain/logic/quiz_helpers.dart
 
 import '../../data/models/quiz_question_model.dart';
-import '../../presentation/manager/quiz_cubit/quiz_cubit.dart';
+import '../../presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import '../../../../../core/entities/base_question_entity.dart';
 
 class QuizHelper {

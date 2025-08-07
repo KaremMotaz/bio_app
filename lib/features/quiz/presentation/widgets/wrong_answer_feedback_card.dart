@@ -5,7 +5,7 @@ import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../data/models/quiz_question_model.dart';
 import '../../../../core/theming/feedback_messages.dart';
-import '../manager/quiz_cubit/quiz_cubit.dart';
+import '../manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import 'custom_button.dart';
 
 class WrongAnswerFeedbackCard extends StatelessWidget {
@@ -73,7 +73,7 @@ class WrongAnswerFeedbackCard extends StatelessWidget {
             color: AppColors.lightRed,
             shadowColor: AppColors.darkRed,
             onPressed: () {
-              final cubit = context.read<QuizCubit>();
+              final cubit = context.read<QuizQuestionsCubit>();
               if (isLastLifeLost) {
                 cubit.finishQuizIfLastLifeLost();
               } else {

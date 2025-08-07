@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../core/theming/assets_data.dart';
 import '../../domain/entities/quiz_progress.dart';
 import '../../domain/entities/quiz_status.dart';
-import '../manager/quiz_cubit/quiz_cubit.dart';
+import '../manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import 'custom_linear_progress_bar.dart';
 
 class QuizHeader extends StatelessWidget {
@@ -23,7 +23,7 @@ class QuizHeader extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            final quizCubit = context.read<QuizCubit>();
+            final quizCubit = context.read<QuizQuestionsCubit>();
             showDialog(
               context: context,
               builder: (context) {

@@ -1,3 +1,6 @@
+import 'package:bio_app/features/lessons/presentation/manager/quiz_cubit/quiz_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/helpers/constants.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/app_colors.dart';
@@ -21,7 +24,6 @@ class CustomLessonCard extends StatefulWidget {
 class _CustomLessonCardState extends State<CustomLessonCard> {
   bool isExpanded = false;
   int? selectedIndex;
-  List<String> quizzes = ["الاختبار 1", "الاختبار 2", "الاختبار 3"];
 
   @override
   Widget build(BuildContext context) {
@@ -58,31 +60,78 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
               setState(() {
                 isExpanded = !isExpanded;
               });
+
+              if (isExpanded) {
+                context.read<QuizCubit>().getQuizzes(
+                  lessonId: widget.lesson.id,
+                );
+              }
             },
           ),
+
+          // Expanded Section
           if (isExpanded)
-            ListView.builder(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: quizzes.length,
-              itemBuilder: (context, index) {
-                final String item = quizzes[index];
-                final bool isSelected = selectedIndex == index;
-                return Container(
-                  color: isSelected ? Colors.grey[100] : Colors.white,
-                  child: ListTile(
-                    title: Text(item),
-                    onTap: () {
-                      setState(() {
-                        selectedIndex = index;
-                        GoRouter.of(
-                          context,
-                        ).push(Routes.quizReadyView);
-                      });
+            BlocBuilder<QuizCubit, QuizState>(
+              builder: (context, state) {
+                if (state is QuizLoadingState) {
+                  return const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.mainBlue,
+                      ),
+                    ),
+                  );
+                } else if (state is QuizLoadedState) {
+                  if (state.quizzes.isEmpty) {
+                    return const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16),
+                      child: Center(
+                        child: Text(
+                          "لا يوجد كويزات حاليا",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    );
+                  }
+
+                  return ListView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: state.quizzes.length,
+                    itemBuilder: (context, index) {
+                      final bool isSelected = selectedIndex == index;
+                      return Container(
+                        color: isSelected
+                            ? Colors.grey[100]
+                            : Colors.white,
+                        child: ListTile(
+                          title: Text(
+                            "${index + 1}- ${state.quizzes[index].title}",
+                          ),
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = index;
+                              GoRouter.of(
+                                context,
+                              ).push(Routes.quizReadyView);
+                            });
+                          },
+                        ),
+                      );
                     },
-                  ),
-                );
+                  );
+                } else if (state is QuizErrorState) {
+                  return const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    child: Center(
+                      child: Text("حدث خطأ أثناء تحميل الكويزات"),
+                    ),
+                  );
+                } else {
+                  return const SizedBox.shrink();
+                }
               },
             ),
         ],

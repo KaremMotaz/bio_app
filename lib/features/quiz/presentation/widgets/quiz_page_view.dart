@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../manager/quiz_cubit/quiz_cubit.dart';
+import '../manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import 'quiz_question_card.dart';
 
 class QuizPageView extends StatefulWidget {
   const QuizPageView({super.key, required this.state});
-  final QuizLoadedState state;
+  final QuizQuestionsLoadedState state;
 
   @override
   State<QuizPageView> createState() => _QuizPageViewState();
