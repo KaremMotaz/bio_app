@@ -7,7 +7,8 @@ import '../../../core/theming/text_styles.dart';
 import '../../../core/widgets/app_text_button.dart';
 
 class QuizReadyView extends StatelessWidget {
-  const QuizReadyView({super.key});
+  const QuizReadyView({super.key, required this.quizId});
+  final int quizId;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class QuizReadyView extends StatelessWidget {
                 onPressed: () {
                   GoRouter.of(
                     context,
-                  ).pushReplacement(Routes.quizView);
+                  ).pushReplacement(Routes.quizView, extra: quizId);
                 },
               ),
             ],

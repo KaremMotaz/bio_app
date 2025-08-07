@@ -113,9 +113,10 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
                           onTap: () {
                             setState(() {
                               selectedIndex = index;
-                              GoRouter.of(
-                                context,
-                              ).push(Routes.quizReadyView);
+                              GoRouter.of(context).push(
+                                Routes.quizReadyView,
+                                extra: state.quizzes[index].id,
+                              );
                             });
                           },
                         ),

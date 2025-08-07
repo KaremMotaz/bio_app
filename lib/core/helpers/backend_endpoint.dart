@@ -6,4 +6,5 @@ class BackendEndpoint {
   static const getChapters = 'chapters';
   static const getLessons = 'lessons';
   static const getQuizzes = 'quizzes';
+  static const getQuizQuestions = 'quizQuestions';
 }

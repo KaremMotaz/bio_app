@@ -23,7 +23,7 @@ class CustomChapterCard extends StatelessWidget {
       onTap: () {
         GoRouter.of(
           context,
-        ).push(Routes.lessonsView, extra: {kChapterId: chapter.id});
+        ).push(Routes.lessonsView, extra: chapter.id);
       },
       child: Stack(
         clipBehavior: Clip.none,

@@ -1,3 +1,6 @@
+import 'package:bio_app/features/quiz_questions/data/data_source/quiz_questions_local_data_source_imp.dart';
+import 'package:bio_app/features/quiz_questions/data/data_source/quiz_questions_remote_data_source.dart';
+
 import '../../features/chapters/data/data_source/chapters_local_data_source.dart';
 import '../../features/lessons/data/data_source/lessons_local_data_source.dart';
 import '../../features/lessons/data/data_source/quizzes_local_data_source.dart';
@@ -13,7 +16,7 @@ import '../../features/chapters/data/repos/chapter_repo_imp.dart';
 import '../../features/lessons/data/data_source/lessons_local_data_source_imp.dart';
 import '../../features/lessons/data/data_source/lessons_remote_data_source.dart';
 import '../../features/lessons/data/repos/lesson_repo_imp.dart';
-import '../../features/quiz/domain/logic/quiz_helpers.dart';
+import '../../features/quiz_questions/domain/logic/quiz_helpers.dart';
 import '../../features/units/data/data_source/units_local_data_source_imp.dart';
 import '../../features/units/data/data_source/units_remote_data_source.dart';
 import '../../features/units/data/repos/unit_repo_imp.dart';
@@ -25,7 +28,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../features/auth/data/repos/auth_repo_imp.dart';
 import '../../features/auth/domain/auth_repo.dart';
 
-import '../../features/quiz/data/repos/questions_repo_imp.dart';
+import '../../features/quiz_questions/data/repos/quiz_questions_repo_imp.dart';
 import '../../features/exam/data/datasources/exam_remote_data_source.dart';
 import '../../features/exam/data/repos/exam_repo_impl.dart';
 import '../../features/exam/domain/usecases/get_exam_usecase.dart';
@@ -58,8 +61,15 @@ void setupGetIt() {
 
   // 📚 Quiz
   getIt.registerLazySingleton<QuizHelper>(() => QuizHelper());
-  getIt.registerLazySingleton<QuestionsRepoImp>(
-    () => QuestionsRepoImp(),
+  getIt.registerLazySingleton<QuizQuestionsRepoImp>(
+    () => QuizQuestionsRepoImp(
+      quizQuestionsRemoteDataSource: QuizQuestionsRemoteDataSource(
+        databaseService: getIt(),
+      ),
+      quizQuestionsLocalDataSource: QuizQuestionsLocalDataSourceImp(
+        cache: getIt(),
+      ),
+    ),
   );
 
   // 📝 Exam

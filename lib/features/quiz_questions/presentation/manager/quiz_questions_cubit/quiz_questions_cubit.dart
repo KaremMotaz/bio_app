@@ -1,21 +1,20 @@
+import 'package:bio_app/core/errors/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/errors/failure.dart';
 import '../../../data/models/quiz_question_model.dart';
 import '../../../domain/entities/quiz_progress.dart';
 import '../../../domain/entities/quiz_result.dart';
 import '../../../domain/entities/quiz_status.dart';
 import '../../../domain/extensions/quiz_loaded_state_extension.dart';
 import '../../../domain/logic/quiz_helpers.dart';
-import '../../../domain/repos/questions_repo.dart';
+import '../../../domain/repos/quiz_questions_repo.dart';
 
 part 'quiz_answer_state.dart';
 part 'quiz_questions_state.dart';
 
 class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
-  final QuestionsRepo questionsRepo;
+  final QuizQuestionsRepo questionsRepo;
   final QuizHelper _timer;
   final QuizHelper _evaluator;
 
@@ -25,11 +24,13 @@ class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
     required this.questionsRepo,
   }) : super(QuizQuestionsInitialState());
 
-  Future<void> loadQuestions() async {
+  Future<void> loadQuestions({required int quizId}) async {
     emit(QuizQuestionsLoadingState());
-    final Either<Failure, List<QuizQuestionModel>> questions =
-        questionsRepo.getQuestions();
-    questions.fold(
+
+    final Either<Failure, List<QuizQuestionModel>> quizQuestions =
+        await questionsRepo.getQuizQuestions(quizId: quizId);
+
+    quizQuestions.fold(
       (failure) =>
           emit(QuizQuestionsErrorState(message: failure.errMessage)),
       (questions) {

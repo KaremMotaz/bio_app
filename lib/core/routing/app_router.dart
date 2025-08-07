@@ -3,12 +3,12 @@ import '../../features/chapters/presentation/manager/chapter_cubit/chapter_cubit
 import '../../features/lessons/data/repos/lesson_repo_imp.dart';
 import '../../features/lessons/presentation/manager/lesson_cubit/lesson_cubit.dart';
 import '../../features/lessons/presentation/quiz_ready_view.dart';
-import '../../features/quiz/domain/logic/quiz_helpers.dart';
+import '../../features/quiz_questions/domain/logic/quiz_helpers.dart';
 import '../services/get_it_service.dart';
 import '../../features/exam/domain/usecases/get_exam_usecase.dart';
 import '../../features/exam/domain/usecases/submit_exam_usecase.dart';
 import '../../features/exam_result/data/repos/exam_result_repo_imp.dart';
-import '../../features/quiz/data/repos/questions_repo_imp.dart';
+import '../../features/quiz_questions/data/repos/quiz_questions_repo_imp.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../helpers/constants.dart';
@@ -21,13 +21,13 @@ import '../../features/auth/presentation/views/otp_verification_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/signin_view.dart';
 import '../../features/auth/presentation/views/signup_view.dart';
-import '../../features/mainView/main_view.dart';
+import '../../features/main_view/main_view.dart';
 import '../../features/profile/presentation/views/profile_view.dart';
 import '../../features/exam_result/presentation/views/exam_result_view.dart';
 import '../../features/exam_result/presentation/views/exam_result_details_view.dart';
 import '../../features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
-import '../../features/quiz/presentation/views/quiz_view.dart';
-import '../../features/quiz/presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
+import '../../features/quiz_questions/presentation/views/quiz_view.dart';
+import '../../features/quiz_questions/presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import '../../features/chapters/presentation/chapter_view.dart';
 import '../../features/lessons/presentation/lessons_view.dart';
 import '../../features/exam/presentation/views/exam_view.dart';
@@ -103,12 +103,13 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.quizView,
           builder: (context, state) {
+            final int quizId = state.extra as int;
             return BlocProvider(
               create: (_) => QuizQuestionsCubit(
                 getIt<QuizHelper>(),
                 getIt<QuizHelper>(),
-                questionsRepo: getIt<QuestionsRepoImp>(),
-              )..loadQuestions(),
+                questionsRepo: getIt<QuizQuestionsRepoImp>(),
+              )..loadQuestions(quizId: quizId),
               child: const QuizView(),
             );
           },
@@ -162,8 +163,7 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.lessonsView,
           builder: (context, state) {
-            final extra = state.extra as Map<String, int>;
-            final int chapterId = extra[kChapterId]!;
+            final int chapterId = state.extra as int;
             return BlocProvider(
               create: (context) =>
                   LessonCubit(lessonRepoImp: getIt<LessonRepoImp>())
@@ -175,7 +175,8 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.quizReadyView,
           builder: (context, state) {
-            return const QuizReadyView();
+            final int quizId = state.extra as int;
+            return QuizReadyView(quizId: quizId);
           },
         ),
       ],
