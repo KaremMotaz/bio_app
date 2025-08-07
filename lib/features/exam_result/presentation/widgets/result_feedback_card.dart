@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '../../../../core/entities/base_question_entity.dart';
 import 'correct_answer_card.dart';
 import 'wrong_answer_card.dart';
-import 'package:flutter/material.dart';
 
 class ResultFeedbackCard<T extends BaseQuestionEntity>
     extends StatelessWidget {

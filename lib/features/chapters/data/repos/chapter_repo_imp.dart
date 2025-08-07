@@ -1,8 +1,8 @@
 import 'dart:developer';
+import '../data_source/chapters_local_data_source.dart';
 import '../../../../core/errors/server_failure.dart';
 import '../../../../core/errors/failure.dart';
 import '../data_source/chapters_remote_data_source.dart';
-import 'package:bio_app/features/chapters/data/data_source/chapters_local_data_source.dart'; // <-- by unit
 import '../models/chapter_model.dart';
 import '../../domain/chapter_repo.dart';
 import 'package:dartz/dartz.dart';

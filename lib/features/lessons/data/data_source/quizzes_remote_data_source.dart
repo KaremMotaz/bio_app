@@ -12,8 +12,8 @@ class QuizzesRemoteDataSource {
     final List<Map<String, dynamic>> result = await databaseService
         .getFilteredData(
           path: BackendEndpoint.getQuizzes,
-          field1: BackendFields.lessonId,
-          value1: lessonId,
+          field: BackendFields.lessonId,
+          value: lessonId,
         );
     return result;
   }

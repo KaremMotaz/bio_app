@@ -1,20 +1,17 @@
 import 'dart:developer';
-
-import 'package:bio_app/core/helpers/backend_endpoint.dart';
-import 'package:bio_app/core/services/firestore_service.dart';
-import 'package:bio_app/core/services/get_it_service.dart';
-import 'package:bio_app/features/chapters/data/data_source/chapters_local_data_source.dart';
-import 'package:bio_app/features/chapters/data/models/chapter_model.dart';
-import 'package:bio_app/features/lessons/data/data_source/lessons_local_data_source.dart';
-import 'package:bio_app/features/lessons/data/data_source/quizzes_local_data_source.dart';
-import 'package:bio_app/features/lessons/data/models/lesson_model.dart';
-import 'package:bio_app/features/lessons/data/models/quiz_model.dart';
-import 'package:bio_app/features/units/data/data_source/units_local_data_source.dart';
-import 'package:bio_app/features/units/data/models/unit_model.dart';
+import '../helpers/backend_endpoint.dart';
+import '../services/firestore_service.dart';
+import '../services/get_it_service.dart';
+import '../../features/chapters/data/data_source/chapters_local_data_source.dart';
+import '../../features/chapters/data/models/chapter_model.dart';
+import '../../features/lessons/data/data_source/lessons_local_data_source.dart';
+import '../../features/lessons/data/data_source/quizzes_local_data_source.dart';
+import '../../features/lessons/data/models/lesson_model.dart';
+import '../../features/lessons/data/models/quiz_model.dart';
+import '../../features/units/data/data_source/units_local_data_source.dart';
+import '../../features/units/data/models/unit_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hive/hive.dart';
-
-// constants
 import '../../../../core/helpers/constants.dart';
 
 Future<void> fetchAndCacheData() async {

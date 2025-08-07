@@ -1,10 +1,11 @@
-import '../../domain/entities/quiz_question_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/feedback_messages.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../data/models/quiz_question_model.dart';
-import '../../../../core/theming/feedback_messages.dart';
+import '../../domain/entities/quiz_question_entity.dart';
 import '../manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import 'custom_button.dart';
 

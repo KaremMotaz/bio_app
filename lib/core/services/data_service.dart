@@ -9,10 +9,8 @@ abstract class DatabaseService {
 
   Future<List<Map<String, dynamic>>> getFilteredData({
     required String path,
-    String? field1,
-    dynamic value1,
-    String? field2,
-    dynamic value2,
+    String? field,
+    dynamic value,
   });
 
   Future<bool> checkIfDataExists({

@@ -6,10 +6,8 @@ class ChapterViewBody extends StatelessWidget {
   const ChapterViewBody({
     super.key,
     required this.chapters,
-    required this.unitId,
   });
   final List<ChapterEntity> chapters;
-  final int unitId;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +18,7 @@ class ChapterViewBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text("Chapters"),
-            ChaptersCardsList(chapters: chapters, unitId: unitId),
+            ChaptersCardsList(chapters: chapters),
           ],
         ),
       ),

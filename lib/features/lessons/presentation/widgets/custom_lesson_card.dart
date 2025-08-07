@@ -1,4 +1,4 @@
-import 'package:bio_app/features/lessons/presentation/manager/quiz_cubit/quiz_cubit.dart';
+import '../manager/quiz_cubit/quiz_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/helpers/constants.dart';

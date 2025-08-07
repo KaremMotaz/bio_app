@@ -1,8 +1,8 @@
 // lib/features/quiz/domain/logic/quiz_helpers.dart
 
+import '../../../../../core/entities/base_question_entity.dart';
 import '../../data/models/quiz_question_model.dart';
 import '../../presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
-import '../../../../../core/entities/base_question_entity.dart';
 
 class QuizHelper {
   DateTime? _startTime;

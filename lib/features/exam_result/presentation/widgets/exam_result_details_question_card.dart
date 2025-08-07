@@ -1,9 +1,10 @@
-import 'exam_question_result_options.dart';
-import 'result_feedback_card.dart';
+import 'package:flutter/material.dart';
+
 import '../../../exam/domain/entities/exam_question_entity.dart';
 import '../../../exam/presentation/widgets/question_images.dart';
 import '../../../exam/presentation/widgets/question_widget.dart';
-import 'package:flutter/material.dart';
+import 'exam_question_result_options.dart';
+import 'result_feedback_card.dart';
 
 class ExamResultDetailsQuestionCard extends StatelessWidget {
   const ExamResultDetailsQuestionCard({

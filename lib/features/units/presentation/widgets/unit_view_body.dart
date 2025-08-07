@@ -1,11 +1,12 @@
-import '../../domain/unit_entity.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
-import 'units_cards_list.dart';
+import '../../domain/unit_entity.dart';
 import 'custom_circle_avatar.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'units_cards_list.dart';
 
 class UnitViewBody extends StatelessWidget {
   const UnitViewBody({super.key, required this.units});

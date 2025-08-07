@@ -1,6 +1,7 @@
 import 'dart:developer';
-import '../../../../core/errors/server_failure.dart';
 import '../data_source/lessons_local_data_source.dart';
+
+import '../../../../core/errors/server_failure.dart';
 import '../data_source/lessons_remote_data_source.dart';
 import '../models/lesson_model.dart';
 import '../../domain/lesson_repo.dart';
@@ -18,7 +19,6 @@ class LessonRepoImp implements LessonRepo {
 
   @override
   Future<Either<Failure, List<LessonModel>>> getLessons({
-    required int unitId,
     required int chapterId,
   }) async {
     try {
@@ -33,8 +33,7 @@ class LessonRepoImp implements LessonRepo {
       //  No data in cache, fetch from remote
       final List<Map<String, dynamic>> result =
           await lessonsRemoteDataSource.getFilteredLessons(
-            unitSelectedIndex: unitId,
-            chapterSelectedIndex: chapterId,
+            chapterId: chapterId,
           );
       final List<LessonModel> lessons = result
           .map((json) => LessonModel.fromJson(json))

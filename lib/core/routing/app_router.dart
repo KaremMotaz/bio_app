@@ -155,7 +155,7 @@ abstract class AppRouter {
               create: (context) => ChapterCubit(
                 chapterRepoImpl: getIt<ChapterRepoImpl>(),
               )..getChapters(unitId: unitId),
-              child: ChapterView(unitId: unitId),
+              child: const ChapterView(),
             );
           },
         ),
@@ -163,15 +163,11 @@ abstract class AppRouter {
           path: Routes.lessonsView,
           builder: (context, state) {
             final extra = state.extra as Map<String, int>;
-            final int chapterSelectedIndex = extra['chapterIndex']!;
-            final int unitSelectedIndex = extra['unitIndex']!;
+            final int chapterId = extra[kChapterId]!;
             return BlocProvider(
               create: (context) =>
                   LessonCubit(lessonRepoImp: getIt<LessonRepoImp>())
-                    ..getLessons(
-                      chapterSelectedIndex: chapterSelectedIndex,
-                      unitSelectedIndex: unitSelectedIndex,
-                    ),
+                    ..getLessons(chapterId: chapterId),
               child: const LessonsView(),
             );
           },

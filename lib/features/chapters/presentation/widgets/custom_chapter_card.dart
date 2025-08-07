@@ -11,11 +11,9 @@ class CustomChapterCard extends StatelessWidget {
     super.key,
     required this.chapter,
     required this.chapterSelectedIndex,
-    required this.unitId,
   });
   final ChapterEntity chapter;
   final int chapterSelectedIndex;
-  final int unitId;
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +21,9 @@ class CustomChapterCard extends StatelessWidget {
         AppColors.predefinedColorPairsForChapters[chapter.colorIndex];
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(
-          Routes.lessonsView,
-          extra: {'chapterIndex': chapter.id, 'unitIndex': unitId},
-        );
+        GoRouter.of(
+          context,
+        ).push(Routes.lessonsView, extra: {kChapterId: chapter.id});
       },
       child: Stack(
         clipBehavior: Clip.none,

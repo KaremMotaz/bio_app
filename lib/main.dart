@@ -1,4 +1,4 @@
-import 'package:bio_app/core/theming/text_styles.dart';
+import 'core/theming/text_styles.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

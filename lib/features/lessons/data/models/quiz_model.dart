@@ -1,4 +1,4 @@
-import 'package:bio_app/features/lessons/domain/quiz_entity.dart';
+import '../../domain/quiz_entity.dart';
 
 class QuizModel extends QuizEntity {
   final int lessonId;

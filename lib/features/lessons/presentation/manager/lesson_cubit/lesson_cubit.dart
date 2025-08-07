@@ -1,7 +1,9 @@
-import '../../../data/repos/lesson_repo_imp.dart';
-import '../../../domain/lesson_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../data/repos/lesson_repo_imp.dart';
+import '../../../domain/lesson_entity.dart';
+
 part 'lesson_state.dart';
 
 class LessonCubit extends Cubit<LessonState> {
@@ -9,14 +11,10 @@ class LessonCubit extends Cubit<LessonState> {
     : super(LessonInitialState());
   final LessonRepoImp lessonRepoImp;
 
-  Future<void> getLessons({
-    required int unitSelectedIndex,
-    required int chapterSelectedIndex,
-  }) async {
+  Future<void> getLessons({required int chapterId}) async {
     emit(LessonLoadingState());
     final result = await lessonRepoImp.getLessons(
-      unitId: unitSelectedIndex,
-      chapterId: chapterSelectedIndex,
+      chapterId: chapterId,
     );
 
     result.fold(

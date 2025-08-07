@@ -3,13 +3,8 @@ import 'custom_chapter_card.dart';
 import 'package:flutter/material.dart';
 
 class ChaptersCardsList extends StatelessWidget {
-  const ChaptersCardsList({
-    super.key,
-    required this.chapters,
-    required this.unitId,
-  });
+  const ChaptersCardsList({super.key, required this.chapters});
   final List<ChapterEntity> chapters;
-  final int unitId;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +16,6 @@ class ChaptersCardsList extends StatelessWidget {
           child: CustomChapterCard(
             chapter: chapters[index],
             chapterSelectedIndex: chapter.id,
-            unitId: unitId,
           ),
         );
       }),

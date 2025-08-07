@@ -5,6 +5,7 @@ const String kUnitsBox = "units_box";
 const String kUnits = "units";
 const String kChaptersBox = "chapters_box";
 const String kChapters = "chapters";
+const String kChapterId = "chapterId";
 const String kLessonsBox = "lessons_box";
 const String kLessons = "lessons";
 const String kQuizzesBox = "quizzes_box";

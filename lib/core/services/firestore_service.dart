@@ -38,19 +38,13 @@ class FirestoreService implements DatabaseService {
   @override
   Future<List<Map<String, dynamic>>> getFilteredData({
     required String path,
-    String? field1,
-    dynamic value1,
-    String? field2,
-    dynamic value2,
+    String? field,
+    dynamic value,
   }) async {
     Query<Map<String, dynamic>> query = firestore.collection(path);
 
-    if (field1 != null && value1 != null) {
-      query = query.where(field1, isEqualTo: value1);
-    }
-
-    if (field2 != null && value2 != null) {
-      query = query.where(field2, isEqualTo: value2);
+    if (field != null && value != null) {
+      query = query.where(field, isEqualTo: value);
     }
 
     QuerySnapshot<Map<String, dynamic>> snapshot = await query.get();

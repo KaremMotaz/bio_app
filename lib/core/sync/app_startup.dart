@@ -1,4 +1,4 @@
-import 'package:bio_app/core/sync/fetch_and_cache_data.dart';
+import 'fetch_and_cache_data.dart';
 
 class AppStartup {
   // Singleton: نسخة واحدة فقط من الكلاس

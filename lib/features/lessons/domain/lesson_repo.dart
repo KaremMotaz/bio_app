@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 
 abstract class LessonRepo {
   Future<Either<Failure, List<LessonModel>>> getLessons({
-    required int unitId,
     required int chapterId,
   });
 }
