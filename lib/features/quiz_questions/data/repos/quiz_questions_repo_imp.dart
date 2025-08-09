@@ -3,7 +3,6 @@ import 'package:bio_app/features/quiz_questions/data/data_source/quiz_questions_
 import 'package:bio_app/features/quiz_questions/data/models/quiz_question_model.dart';
 import 'package:bio_app/features/quiz_questions/domain/repos/quiz_questions_repo.dart';
 import 'package:dartz/dartz.dart';
-import 'dart:developer';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';
 
@@ -42,7 +41,6 @@ class QuizQuestionsRepoImp implements QuizQuestionsRepo {
 
       return Right(quizQuestions);
     } catch (e) {
-      log("from repo $e");
       return Left(ServerFailure(e.toString()));
     }
   }

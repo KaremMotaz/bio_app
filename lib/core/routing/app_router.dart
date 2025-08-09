@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import '../../features/chapters/data/repos/chapter_repo_imp.dart';
 import '../../features/chapters/presentation/manager/chapter_cubit/chapter_cubit.dart';
 import '../../features/lessons/data/repos/lesson_repo_imp.dart';
@@ -106,7 +104,6 @@ abstract class AppRouter {
           path: Routes.quizView,
           builder: (context, state) {
             final String quizId = state.extra as String;
-            log("quizId: $quizId");
             return BlocProvider(
               create: (_) => QuizQuestionsCubit(
                 getIt<QuizHelper>(),
@@ -155,7 +152,6 @@ abstract class AppRouter {
           path: Routes.chaptersView,
           builder: (context, state) {
             final String unitId = state.extra as String;
-            log(unitId);
             return BlocProvider(
               create: (context) => ChapterCubit(
                 chapterRepoImpl: getIt<ChapterRepoImpl>(),
