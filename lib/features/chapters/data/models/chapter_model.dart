@@ -1,6 +1,7 @@
 import '../../domain/chapter_entity.dart';
 
 class ChapterModel extends ChapterEntity {
+
   ChapterModel({
     required super.id,
     required super.index,
