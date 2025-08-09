@@ -1,4 +1,5 @@
 import 'package:bio_app/features/lessons/data/models/lesson_model.dart';
+
 import '../../../../core/helpers/backend_endpoint.dart';
 import '../../../../core/services/data_service.dart';
 
@@ -10,15 +11,14 @@ class LessonsRemoteDataSource {
     required String unitId,
     required String chapterId,
   }) async {
-    final List<LessonModel> result = await databaseService
+    final List<Map<String, dynamic>> result = await databaseService
         .fetchDoubleSubcollection(
           parentCollection: BackendEndpoint.getUnits,
           parentDocId: unitId,
           firstSubcollection: BackendEndpoint.getChapters,
           firstSubDocId: chapterId,
           secondSubcollection: BackendEndpoint.getLessons,
-          fromDocument: (doc) => LessonModel.fromDocument(doc),
         );
-    return result;
+    return result.map((e) => LessonModel.fromJson(e)).toList();
   }
 }

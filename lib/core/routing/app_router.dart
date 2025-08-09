@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../../features/chapters/data/repos/chapter_repo_imp.dart';
 import '../../features/chapters/presentation/manager/chapter_cubit/chapter_cubit.dart';
 import '../../features/lessons/data/repos/lesson_repo_imp.dart';
@@ -152,19 +154,23 @@ abstract class AppRouter {
           path: Routes.chaptersView,
           builder: (context, state) {
             final String unitId = state.extra as String;
+            log(unitId);
             return BlocProvider(
               create: (context) => ChapterCubit(
                 chapterRepoImpl: getIt<ChapterRepoImpl>(),
               )..getChapters(unitId: unitId),
-              child: const ChapterView(),
+              child: ChapterView(unitId: unitId),
             );
           },
         ),
         GoRoute(
           path: Routes.lessonsView,
           builder: (context, state) {
-            final String chapterId = state.extra as String;
-            final String unitId = state.extra as String;
+            final args =
+                GoRouterState.of(context).extra
+                    as Map<String, dynamic>;
+            final chapterId = args['chapterId'];
+            final unitId = args['unitId'];
             return BlocProvider(
               create: (context) => LessonCubit(
                 lessonRepoImp: getIt<LessonRepoImp>(),
@@ -176,7 +182,7 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.quizReadyView,
           builder: (context, state) {
-            final int quizId = state.extra as int;
+            final String quizId = state.extra as String;
             return QuizReadyView(quizId: quizId);
           },
         ),

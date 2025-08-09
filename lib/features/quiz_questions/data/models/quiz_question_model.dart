@@ -2,7 +2,7 @@ import '../../domain/entities/quiz_question_entity.dart';
 
 class QuizQuestionModel extends QuizQuestionEntity {
   QuizQuestionModel({
-    required super.id,
+    required super.index,
     required super.questionText,
     required super.options,
     required super.correctIndex,
@@ -23,13 +23,13 @@ class QuizQuestionModel extends QuizQuestionEntity {
       scenario: json['scenario'],
       explanation: json['explanation'],
       images: json['images'],
-      id: json['id'],
+      index: json['index'],
       title: json['title'],
     );
   }
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'index': index,
       'text': questionText,
       'options': options,
       'correctAnswerIndex': correctIndex,

@@ -1,5 +1,5 @@
 abstract class BaseQuestionEntity {
-  int get id;
+  int get index;
   String? get title;
   String? get scenario;
   String get questionText;

@@ -4,6 +4,6 @@ import 'package:dartz/dartz.dart';
 
 abstract class QuizRepo {
   Future<Either<Failure, List<QuizModel>>> getQuizzes({
-    required int lessonId,
+    required String lessonId,
   });
 }

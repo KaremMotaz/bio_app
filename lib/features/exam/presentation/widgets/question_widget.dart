@@ -16,7 +16,7 @@ class QuestionWidget<T extends BaseQuestionEntity>
       children: [
         if (question.scenario != null) ...[
           Text(
-            "${question.id + 1}- ${question.scenario}",
+            "${question.index + 1}- ${question.scenario}",
             style: TextStyles.bold17,
           ),
           const SizedBox(height: 5),
@@ -26,7 +26,7 @@ class QuestionWidget<T extends BaseQuestionEntity>
           ),
         ] else ...[
           Text(
-            "${question.id + 1}- ${question.questionText}",
+            "${question.index + 1}- ${question.questionText}",
             style: TextStyles.bold17,
           ),
         ],

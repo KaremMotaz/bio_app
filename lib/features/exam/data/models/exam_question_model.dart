@@ -2,7 +2,7 @@ import '../../domain/entities/exam_question_entity.dart';
 
 class ExamQuestionModel extends ExamQuestionEntity {
   ExamQuestionModel({
-    required super.id,
+    required super.index,
     required super.questionText,
     required super.options,
     required super.correctIndex,
@@ -16,7 +16,7 @@ class ExamQuestionModel extends ExamQuestionEntity {
 
   factory ExamQuestionModel.fromMap(Map<String, dynamic> map) {
     return ExamQuestionModel(
-      id: map['id'],
+      index: map['index'],
       title: map['title'],
       scenario: map['scenario'],
       questionText: map['text'],

@@ -19,8 +19,7 @@ class LessonsCardsList extends StatelessWidget {
           padding: const EdgeInsets.only(top: 20),
           child: BlocProvider(
             create: (context) =>
-                QuizCubit(quizRepoImp: getIt<QuizRepoImp>())
-                  ..getQuizzes(lessonId: lessons[index].id),
+                QuizCubit(quizRepoImp: getIt<QuizRepoImp>()),
             child: CustomLessonCard(
               lesson: lessons[index],
               index: index,

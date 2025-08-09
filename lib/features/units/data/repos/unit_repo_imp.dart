@@ -29,10 +29,8 @@ class UnitRepoImpl implements UnitRepo {
       }
 
       //  No data in cache, fetch from remote
-      final result = await unitsRemoteDataSource.getUnits();
-      final units = result
-          .map((json) => UnitModel.fromJson(json))
-          .toList();
+      final List<UnitModel> units = await unitsRemoteDataSource
+          .getUnits();
 
       // Cache the data
       await unitsLocalDataSource.cacheUnits(units);

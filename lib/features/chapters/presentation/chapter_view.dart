@@ -6,7 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 class ChapterView extends StatelessWidget {
-  const ChapterView({super.key});
+  const ChapterView({super.key, required this.unitId});
+  final String unitId;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,7 @@ class ChapterView extends StatelessWidget {
               case ChapterLoadedState():
                 return ChapterViewBody(
                   chapters: state.chapters,
+                  unitId: unitId,
                 );
 
               case ChapterErrorState(:final message):

@@ -9,7 +9,7 @@ class QuizCubit extends Cubit<QuizState> {
   final QuizRepoImp quizRepoImp;
 
   Future<void> getQuizzes({
-    required int lessonId,
+    required String lessonId,
   }) async {
     emit(QuizLoadingState());
 

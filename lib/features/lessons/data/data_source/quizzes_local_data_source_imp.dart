@@ -9,10 +9,10 @@ class QuizzesLocalDataSourceImpl implements QuizzesLocalDataSource {
 
   QuizzesLocalDataSourceImpl({required this.cache});
 
-  String _keyFor(int lessonId) => '$kQuizzes:$lessonId';
+  String _keyFor(String lessonId) => '$kQuizzes:$lessonId';
 
   @override
-  Future<List<QuizModel>?> getQuizzes({required int lessonId}) async {
+  Future<List<QuizModel>?> getQuizzes({required String lessonId}) async {
     final list = await cache.getList(
       key: _keyFor(lessonId),
       boxName: kQuizzesBox,
@@ -30,7 +30,7 @@ class QuizzesLocalDataSourceImpl implements QuizzesLocalDataSource {
   @override
   Future<void> cacheQuizzes({
     required List<QuizModel> quizzes,
-    required int lessonId,
+    required String lessonId,
   }) async {
     final list = quizzes.map((l) => l.toJson()).toList();
     await cache.saveList(
@@ -41,7 +41,7 @@ class QuizzesLocalDataSourceImpl implements QuizzesLocalDataSource {
   }
 
   @override
-  Future<void> clearQuizzes({required int lessonId}) async {
+  Future<void> clearQuizzes({required String lessonId}) async {
     await cache.clear(key: _keyFor(lessonId), boxName: kQuizzesBox);
   }
 }

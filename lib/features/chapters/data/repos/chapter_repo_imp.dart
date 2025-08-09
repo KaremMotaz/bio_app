@@ -30,14 +30,10 @@ class ChapterRepoImpl implements ChapterRepo {
       }
 
       //  No data in cache, fetch from remote
-      final List<Map<String, dynamic>> result =
+      final List<ChapterModel> chapters =
           await chaptersRemoteDataSource.getFilteredChapters(
             unitId: unitId,
           );
-
-      final chapters = result
-          .map((json) => ChapterModel.fromJson(json))
-          .toList();
 
       // Cache the data
       await chaptersLocalDataSource.cacheChapters(

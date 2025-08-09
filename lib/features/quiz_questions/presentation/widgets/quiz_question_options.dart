@@ -26,7 +26,7 @@ class QuizQuestionOptions<T extends BaseQuestionEntity>
   @override
   Widget build(BuildContext context) {
     final selectedIndex =
-        answerState.selectedAnswers[question.id.toString()] ?? -1;
+        answerState.selectedAnswers[question.index.toString()] ?? -1;
 
     OptionStyle getOptionStyle(int index) {
       final QuizHelper helper = getIt<QuizHelper>();

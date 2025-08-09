@@ -3,7 +3,7 @@ import '../../data/models/quiz_question_model.dart';
 
 class QuizQuestionEntity implements BaseQuestionEntity {
   @override
-  final int id;
+  final int index;
   @override
   final String? title;
   @override
@@ -24,7 +24,7 @@ class QuizQuestionEntity implements BaseQuestionEntity {
   final QuizQuestionType type;
 
   QuizQuestionEntity({
-    required this.id,
+    required this.index,
     required this.questionText,
     required this.options,
     required this.correctIndex,

@@ -3,6 +3,7 @@ import 'data_service.dart';
 
 class FirestoreService implements DatabaseService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+
   @override
   Future<void> addData({
     required String path,
@@ -17,13 +18,16 @@ class FirestoreService implements DatabaseService {
   }
 
   @override
-  Future getData({required String path, String? documentId}) async {
+  Future<dynamic> getData({
+    required String path,
+    String? documentId,
+  }) async {
     if (documentId != null) {
       DocumentSnapshot<Map<String, dynamic>> data = await firestore
           .collection(path)
           .doc(documentId)
           .get();
-      return data.data();
+      return {...?data.data(), 'id': data.id};
     } else {
       QuerySnapshot<Map<String, dynamic>> data = await firestore
           .collection(path)
@@ -41,58 +45,50 @@ class FirestoreService implements DatabaseService {
     required String subCollection,
     String? orderByField,
   }) async {
-    CollectionReference<Map<String, dynamic>> subColRef = firestore
+    Query<Map<String, dynamic>> query = firestore
         .collection(parentCollection)
         .doc(parentDocId)
         .collection(subCollection);
-
-    // Add orderBy if needed
-    Query<Map<String, dynamic>> query = orderByField != null
-        ? subColRef.orderBy(orderByField)
-        : subColRef;
-
-    // تنفيذ الجلب
-    final snap = await query.get();
-
-    // Add id to each document and return the list of documents with id
-    return snap.docs.map((d) => {...d.data(), 'id': d.id}).toList();
-  }
-
-  @override
-  Future<List<T>> fetchDoubleSubcollection<T>({
-    required String parentCollection,
-    required String parentDocId,
-    required String firstSubcollection,
-    required String firstSubDocId,
-    required String secondSubcollection,
-    String? orderByField,
-    required T Function(DocumentSnapshot<Map<String, dynamic>> doc)
-    fromDocument,
-  }) async {
-    CollectionReference<Map<String, dynamic>> subColRef = firestore
-        .collection(parentCollection)
-        .doc(parentDocId)
-        .collection(firstSubcollection)
-        .doc(firstSubDocId)
-        .collection(secondSubcollection);
-
-    Query<Map<String, dynamic>> query = subColRef;
 
     if (orderByField != null) {
       query = query.orderBy(orderByField);
     }
 
     final snap = await query.get();
-    return snap.docs.map((doc) => fromDocument(doc)).toList();
+    return snap.docs.map((d) => {...d.data(), 'id': d.id}).toList();
   }
 
   @override
-  Future<List<T>> getFilteredData<T>({
+  Future<List<Map<String, dynamic>>> fetchDoubleSubcollection({
+    required String parentCollection,
+    required String parentDocId,
+    required String firstSubcollection,
+    required String firstSubDocId,
+    required String secondSubcollection,
+    String? orderByField,
+  }) async {
+    Query<Map<String, dynamic>> query = firestore
+        .collection(parentCollection)
+        .doc(parentDocId)
+        .collection(firstSubcollection)
+        .doc(firstSubDocId)
+        .collection(secondSubcollection);
+
+    if (orderByField != null) {
+      query = query.orderBy(orderByField);
+    }
+
+    final snap = await query.get();
+    return snap.docs
+        .map((doc) => {...doc.data(), 'id': doc.id})
+        .toList();
+  }
+
+  @override
+  Future<List<Map<String, dynamic>>> getFilteredData({
     required String path,
     String? field,
     dynamic value,
-    required T Function(DocumentSnapshot<Map<String, dynamic>> doc)
-    fromDocument,
   }) async {
     Query<Map<String, dynamic>> query = firestore.collection(path);
 
@@ -100,9 +96,10 @@ class FirestoreService implements DatabaseService {
       query = query.where(field, isEqualTo: value);
     }
 
-    final snapshot = await query.get();
-
-    return snapshot.docs.map((doc) => fromDocument(doc)).toList();
+    final snap = await query.get();
+    return snap.docs
+        .map((doc) => {...doc.data(), 'id': doc.id})
+        .toList();
   }
 
   @override
@@ -116,16 +113,4 @@ class FirestoreService implements DatabaseService {
         .get();
     return data.exists;
   }
-
-  // // 🔹 جديد 1: أجيب أحدث تاريخ تحديث (قراءة واحدة فقط)
-  // Future<DateTime?> getLatestUpdatedAt(String path) async {
-  //   final q = await firestore
-  //       .collection(path)
-  //       .orderBy('lastUpdated', descending: true)
-  //       .limit(1)
-  //       .get();
-  //   if (q.docs.isEmpty) return null;
-  //   final ts = q.docs.first.data()['lastUpdated'] as Timestamp?;
-  //   return ts?.toDate().toUtc();
-  // }
 }

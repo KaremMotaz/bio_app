@@ -32,7 +32,7 @@ class ExamQuestionCard extends StatelessWidget {
               question: question,
               onSelect: (int index) {
                 context.read<ExamCubit>().selectAnswer(
-                  question.id,
+                  question.index,
                   index,
                 );
               },

@@ -9,7 +9,7 @@ class CalculateResultUseCase {
       if (question.type == ExamOptionsType.textOptions ||
           question.type ==
               ExamOptionsType.trueFalseOptions) {
-        if (answers[question.id.toString()] ==
+        if (answers[question.index.toString()] ==
             question.correctIndex) {
           score += question.marks;
         }

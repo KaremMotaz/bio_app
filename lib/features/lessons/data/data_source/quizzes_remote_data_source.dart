@@ -9,15 +9,15 @@ class QuizzesRemoteDataSource {
 
   QuizzesRemoteDataSource({required this.databaseService});
   Future<List<QuizModel>> getFilteredQuizzes({
-    required int lessonId,
+    required String lessonId,
   }) async {
-    final List<QuizModel> result = await databaseService
+    final List<Map<String, dynamic>> result = await databaseService
         .getFilteredData(
           path: BackendEndpoint.getQuizzes,
           field: BackendFields.lessonId,
           value: lessonId,
-          fromDocument: (doc) => QuizModel.fromDocument(doc),
         );
-    return result;
+
+    return result.map((e) => QuizModel.fromJson(e)).toList();
   }
 }

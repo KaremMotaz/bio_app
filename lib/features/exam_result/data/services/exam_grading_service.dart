@@ -9,7 +9,7 @@ class ExamGradingService {
     int totalScore = 0;
 
     for (final question in exam.questions) {
-      final studentAnswer = studentAnswers[question.id.toString()];
+      final studentAnswer = studentAnswers[question.index.toString()];
       if (studentAnswer != null &&
           studentAnswer == question.correctIndex) {
         totalScore += question.marks;
@@ -42,7 +42,7 @@ class ExamGradingService {
     ExamQuestionEntity question,
     Map<String, int> answers,
   ) {
-    final studentAnswer = answers[question.id.toString()];
+    final studentAnswer = answers[question.index.toString()];
     return studentAnswer != null &&
         studentAnswer == question.correctIndex;
   }

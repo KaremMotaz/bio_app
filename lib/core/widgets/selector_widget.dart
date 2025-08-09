@@ -39,7 +39,7 @@ class SelectorWidget extends StatelessWidget {
               ),
           itemBuilder: (context, index) {
             final bool isCurrent = index == currentPageIndex;
-            final String questionId = exam.questions[index].id.toString();
+            final String questionId = exam.questions[index].index.toString();
             final bool isAnswered = answers?.containsKey(questionId) ?? false;
 
             Color bgColor;

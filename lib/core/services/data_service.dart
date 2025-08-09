@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 abstract class DatabaseService {
   Future<void> addData({
     required String path,
@@ -9,12 +7,10 @@ abstract class DatabaseService {
 
   Future<dynamic> getData({required String path, String? documentId});
 
-  Future<List<T>> getFilteredData<T>({
+  Future<List<Map<String, dynamic>>> getFilteredData({
     required String path,
     String? field,
     dynamic value,
-    required T Function(DocumentSnapshot<Map<String, dynamic>> doc)
-    fromDocument,
   });
 
   Future<List<Map<String, dynamic>>> fetchSubcollection({
@@ -24,15 +20,13 @@ abstract class DatabaseService {
     String? orderByField,
   });
 
-  Future<List<T>> fetchDoubleSubcollection<T>({
+  Future<List<Map<String, dynamic>>> fetchDoubleSubcollection({
     required String parentCollection,
     required String parentDocId,
     required String firstSubcollection,
     required String firstSubDocId,
     required String secondSubcollection,
     String? orderByField,
-    required T Function(DocumentSnapshot<Map<String, dynamic>> doc)
-    fromDocument,
   });
 
   Future<bool> checkIfDataExists({

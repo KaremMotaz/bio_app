@@ -1,10 +1,10 @@
 class QuizEntity {
-  final int id;
+  final String id;
+  final int index;
   final String title;
-  final String quizId;
   QuizEntity({
     required this.id,
+    required this.index,
     required this.title,
-    required this.quizId,
   });
 }

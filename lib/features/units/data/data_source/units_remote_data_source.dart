@@ -1,3 +1,5 @@
+import 'package:bio_app/features/units/data/models/unit_model.dart';
+
 import '../../../../core/helpers/backend_endpoint.dart';
 import '../../../../core/services/data_service.dart';
 
@@ -5,10 +7,10 @@ class UnitsRemoteDataSource {
   final DatabaseService databaseService;
 
   UnitsRemoteDataSource({required this.databaseService});
-  Future<List<Map<String, dynamic>>> getUnits() async {
-    final result = await databaseService.getData(
-      path: BackendEndpoint.getUnits,
-    );
-    return result;
+  Future<List<UnitModel>> getUnits() async {
+    final List<Map<String, dynamic>> result = await databaseService
+        .getData(path: BackendEndpoint.getUnits);
+
+    return result.map((e) => UnitModel.fromJson(e)).toList();
   }
 }

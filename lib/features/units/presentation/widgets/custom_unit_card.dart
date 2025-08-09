@@ -9,10 +9,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomUnitCard extends StatelessWidget {
-  const CustomUnitCard({
-    super.key,
-    required this.unit,
-  });
+  const CustomUnitCard({super.key, required this.unit});
   final UnitEntity unit;
 
   @override
@@ -67,7 +64,7 @@ class CustomUnitCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  "الباب ${getDisplayNumber(unit.id)}",
+                  "الباب ${getDisplayNumber(unit.index)}",
                   style: TextStyles.bold14.copyWith(
                     color: Colors.white,
                   ),

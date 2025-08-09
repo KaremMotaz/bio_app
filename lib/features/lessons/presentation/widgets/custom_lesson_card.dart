@@ -62,7 +62,7 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
               });
 
               if (isExpanded) {
-                context.read<QuizCubit>().getQuizzes(
+                context.read<QuizCubit>().getQuizzes(                
                   lessonId: widget.lesson.id,
                 );
               }
@@ -115,7 +115,7 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
                               selectedIndex = index;
                               GoRouter.of(context).push(
                                 Routes.quizReadyView,
-                                extra: state.quizzes[index].quizId,
+                                extra: state.quizzes[index].id,
                               );
                             });
                           },

@@ -21,7 +21,7 @@ class ExamQuestionResultOptions<T extends BaseQuestionEntity>
 
   @override
   Widget build(BuildContext context) {
-    int? selectedIndex = answers[question.id.toString()];
+    int? selectedIndex = answers[question.index.toString()];
     switch (question.type) {
       case ExamOptionsType.textOptions:
         return McqOptions(

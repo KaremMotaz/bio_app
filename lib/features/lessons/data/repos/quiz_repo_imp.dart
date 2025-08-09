@@ -18,7 +18,7 @@ class QuizRepoImp implements QuizRepo {
 
   @override
   Future<Either<Failure, List<QuizModel>>> getQuizzes({
-    required int lessonId,
+    required String lessonId,
   }) async {
     try {
       // Try to get from cache first
