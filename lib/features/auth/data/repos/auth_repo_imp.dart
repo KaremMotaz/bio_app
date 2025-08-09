@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -61,8 +62,11 @@ class AuthRepoImp extends AuthRepo {
 
       return right(UserEntity(email: email, uid: user!.uid));
     } on FirebaseAuthException catch (e) {
+      log(e.toString());
       return left(AuthFailure.fromCode(e.code));
     } catch (e) {
+            log(e.toString());
+
       return left(AuthFailure(e.toString()));
     }
   }

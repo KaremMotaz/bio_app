@@ -21,7 +21,7 @@ import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/auth/presentation/views/fill_profile_view.dart';
 import '../../features/auth/presentation/views/otp_verification_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
-import '../../features/auth/presentation/views/signin_view.dart';
+import '../../features/auth/presentation/views/login_view.dart';
 import '../../features/auth/presentation/views/signup_view.dart';
 import '../../features/main_view/main_view.dart';
 import '../../features/profile/presentation/views/profile_view.dart';
@@ -106,6 +106,7 @@ abstract class AppRouter {
           path: Routes.quizView,
           builder: (context, state) {
             final String quizId = state.extra as String;
+            log("quizId: $quizId");
             return BlocProvider(
               create: (_) => QuizQuestionsCubit(
                 getIt<QuizHelper>(),

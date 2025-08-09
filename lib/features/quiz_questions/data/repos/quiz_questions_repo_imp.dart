@@ -30,8 +30,9 @@ class QuizQuestionsRepoImp implements QuizQuestionsRepo {
 
       //  No data in cache, fetch from remote
       final List<QuizQuestionModel> quizQuestions =
-          await quizQuestionsRemoteDataSource
-              .getFilteredQuizQuestions(quizId: quizId);
+          await quizQuestionsRemoteDataSource.getQuizQuestions(
+            quizId: quizId,
+          );
 
       // Cache the data
       await quizQuestionsLocalDataSource.cacheQuizQuestions(
@@ -41,7 +42,7 @@ class QuizQuestionsRepoImp implements QuizQuestionsRepo {
 
       return Right(quizQuestions);
     } catch (e) {
-      log(e.toString());
+      log("from repo " + e.toString());
       return Left(ServerFailure(e.toString()));
     }
   }
