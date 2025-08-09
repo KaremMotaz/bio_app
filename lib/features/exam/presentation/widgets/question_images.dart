@@ -16,7 +16,7 @@ class QuestionImages<T extends BaseQuestionEntity> extends StatelessWidget {
           ) {
             return ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.asset(
+              child: Image.network(
                 question.images![index],
                 height: 230,
                 width: 300,

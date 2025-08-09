@@ -17,7 +17,7 @@ class QuizQuestionEntity implements BaseQuestionEntity {
   @override
   final String? explanation;
   @override
-  final int marks;
+  final int? marks ;
   @override
   final int correctIndex;
   @override

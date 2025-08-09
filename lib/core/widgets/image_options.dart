@@ -61,7 +61,7 @@ class ImageOptions extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
-                    child: Image.asset(
+                    child: Image.network(
                       options[index],
                       height: 150,
                       fit: BoxFit.contain,

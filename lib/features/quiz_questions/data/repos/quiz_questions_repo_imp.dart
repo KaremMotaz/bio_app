@@ -42,7 +42,7 @@ class QuizQuestionsRepoImp implements QuizQuestionsRepo {
 
       return Right(quizQuestions);
     } catch (e) {
-      log("from repo " + e.toString());
+      log("from repo $e");
       return Left(ServerFailure(e.toString()));
     }
   }

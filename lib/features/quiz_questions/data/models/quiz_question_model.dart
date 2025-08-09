@@ -11,22 +11,27 @@ class QuizQuestionModel extends QuizQuestionEntity {
     super.explanation,
     super.images,
     super.title,
-    super.marks = 1,
+    super.marks,
   });
 
   factory QuizQuestionModel.fromJson(Map<String, dynamic> json) {
     return QuizQuestionModel(
-      questionText: json['text'],
-      options: List<String>.from(json['options']),
-      correctIndex: json['correctAnswerIndex'],
-      type: QuizQuestionType.values.byName(json['type']),
-      scenario: json['scenario'],
-      explanation: json['explanation'],
-      images: json['images'],
-      index: json['index'],
-      title: json['title'],
+      index: json['index'] as int,
+      questionText: json['questionText'] as String,
+      options: (json['options'] as List<dynamic>)
+          .map((e) => e.toString())
+          .toList(),
+      correctIndex: json['correctIndex'] as int,
+      type: QuizQuestionType.values.byName(json['type'] as String),
+      scenario: json['scenario'] as String?,
+      explanation: json['explanation'] as String?,
+      images: (json['images'] as List<dynamic>?)
+          ?.map((e) => e.toString())
+          .toList(),
+      marks: (json['marks'] as num?)?.toInt(),
     );
   }
+
   Map<String, dynamic> toJson() {
     return {
       'index': index,
@@ -38,7 +43,7 @@ class QuizQuestionModel extends QuizQuestionEntity {
       'explanation': explanation,
       'images': images,
       'marks': marks,
-      "title": title,
+      'title': title,
     };
   }
 }
