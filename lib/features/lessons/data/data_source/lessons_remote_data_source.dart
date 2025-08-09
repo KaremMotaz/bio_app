@@ -1,19 +1,23 @@
+import 'package:bio_app/features/lessons/data/models/lesson_model.dart';
 import '../../../../core/helpers/backend_endpoint.dart';
-import '../../../../core/helpers/backend_fields.dart';
 import '../../../../core/services/data_service.dart';
 
 class LessonsRemoteDataSource {
   final DatabaseService databaseService;
 
   LessonsRemoteDataSource({required this.databaseService});
-  Future<List<Map<String, dynamic>>> getFilteredLessons({
-    required int chapterId,
+  Future<List<LessonModel>> getFilteredLessons({
+    required String unitId,
+    required String chapterId,
   }) async {
-    final List<Map<String, dynamic>> result = await databaseService
-        .getFilteredData(
-          path: BackendEndpoint.getLessons,
-          field: BackendFields.chapterId,
-          value: chapterId,
+    final List<LessonModel> result = await databaseService
+        .fetchDoubleSubcollection(
+          parentCollection: BackendEndpoint.getUnits,
+          parentDocId: unitId,
+          firstSubcollection: BackendEndpoint.getChapters,
+          firstSubDocId: chapterId,
+          secondSubcollection: BackendEndpoint.getLessons,
+          fromDocument: (doc) => LessonModel.fromDocument(doc),
         );
     return result;
   }

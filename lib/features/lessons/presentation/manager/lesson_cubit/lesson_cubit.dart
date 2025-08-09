@@ -11,10 +11,14 @@ class LessonCubit extends Cubit<LessonState> {
     : super(LessonInitialState());
   final LessonRepoImp lessonRepoImp;
 
-  Future<void> getLessons({required int chapterId}) async {
+  Future<void> getLessons({
+    required String chapterId,
+    required String unitId,
+  }) async {
     emit(LessonLoadingState());
     final result = await lessonRepoImp.getLessons(
       chapterId: chapterId,
+      unitId: unitId,
     );
 
     result.fold(

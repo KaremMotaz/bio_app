@@ -5,6 +5,6 @@ import '../data/models/chapter_model.dart';
 
 abstract class ChapterRepo {
   Future<Either<Failure, List<ChapterModel>>> getChapters({
-    required int unitId,
+    required String unitId,
   });
 }

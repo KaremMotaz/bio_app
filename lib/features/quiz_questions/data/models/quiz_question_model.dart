@@ -10,6 +10,7 @@ class QuizQuestionModel extends QuizQuestionEntity {
     super.scenario,
     super.explanation,
     super.images,
+    super.title,
     super.marks = 1,
   });
 
@@ -23,6 +24,7 @@ class QuizQuestionModel extends QuizQuestionEntity {
       explanation: json['explanation'],
       images: json['images'],
       id: json['id'],
+      title: json['title'],
     );
   }
   Map<String, dynamic> toJson() {
@@ -36,8 +38,9 @@ class QuizQuestionModel extends QuizQuestionEntity {
       'explanation': explanation,
       'images': images,
       'marks': marks,
+      "title": title,
     };
   }
 }
 
-enum QuizQuestionType { textChoices, imageChoices, trueFalse }
+enum QuizQuestionType { textOptions, imageOptions, trueFalseOptions }

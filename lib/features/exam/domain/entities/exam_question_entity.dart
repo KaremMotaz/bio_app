@@ -1,5 +1,5 @@
 import '../../../../core/entities/base_question_entity.dart';
-import '../../../../core/models/exam_question_model.dart';
+import '../../data/models/exam_question_model.dart';
 
 class ExamQuestionEntity implements BaseQuestionEntity {
   @override

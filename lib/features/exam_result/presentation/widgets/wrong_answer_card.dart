@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/entities/base_question_entity.dart';
-import '../../../../core/models/exam_question_model.dart';
+import '../../../exam/data/models/exam_question_model.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 

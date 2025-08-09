@@ -18,7 +18,7 @@ class ChapterRepoImpl implements ChapterRepo {
 
   @override
   Future<Either<Failure, List<ChapterModel>>> getChapters({
-    required int unitId,
+    required String unitId,
   }) async {
     try {
       // Try to get from cache first

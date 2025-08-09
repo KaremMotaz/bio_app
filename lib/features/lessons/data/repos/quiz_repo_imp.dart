@@ -30,13 +30,8 @@ class QuizRepoImp implements QuizRepo {
       }
 
       //  No data in cache, fetch from remote
-      final List<Map<String, dynamic>> result =
-          await quizzesRemoteDataSource.getFilteredQuizzes(
-            lessonId: lessonId,
-          );
-      final List<QuizModel> quizzes = result
-          .map((json) => QuizModel.fromJson(json))
-          .toList();
+      final List<QuizModel> quizzes = await quizzesRemoteDataSource
+          .getFilteredQuizzes(lessonId: lessonId);
 
       // Cache the data
       await quizzesLocalDataSource.cacheQuizzes(

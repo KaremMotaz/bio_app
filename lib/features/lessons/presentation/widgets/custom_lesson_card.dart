@@ -115,7 +115,7 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
                               selectedIndex = index;
                               GoRouter.of(context).push(
                                 Routes.quizReadyView,
-                                extra: state.quizzes[index].id,
+                                extra: state.quizzes[index].quizId,
                               );
                             });
                           },

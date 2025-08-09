@@ -24,7 +24,7 @@ class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
     required this.questionsRepo,
   }) : super(QuizQuestionsInitialState());
 
-  Future<void> loadQuestions({required int quizId}) async {
+  Future<void> loadQuestions({required String quizId}) async {
     emit(QuizQuestionsLoadingState());
 
     final Either<Failure, List<QuizQuestionModel>> quizQuestions =

@@ -42,19 +42,19 @@ class QuizQuestionOptions<T extends BaseQuestionEntity>
     final options = question.options;
 
     switch (question.type) {
-      case QuizQuestionType.textChoices:
+      case QuizQuestionType.textOptions:
         return McqOptions(
           options: options,
           onSelect: onSelect,
           styleBuilder: getOptionStyle,
         );
-      case QuizQuestionType.trueFalse:
+      case QuizQuestionType.trueFalseOptions:
         return TrueFalseOptions(
           options: options,
           onSelect: onSelect,
           styleBuilder: getOptionStyle,
         );
-      case QuizQuestionType.imageChoices:
+      case QuizQuestionType.imageOptions:
         return ImageOptions(
           options: options,
           onSelect: onSelect,

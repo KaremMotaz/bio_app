@@ -8,11 +8,11 @@ class ChaptersLocalDataSourceImpl implements ChaptersLocalDataSource {
 
   ChaptersLocalDataSourceImpl({required this.cache});
 
-  String _keyFor(int unitId) => '$kChapters:$unitId';
+  String _keyFor(String unitId) => '$kChapters:$unitId';
 
   @override
   Future<List<ChapterModel>?> getChapters({
-    required int unitId,
+    required String unitId,
   }) async {
     final list = await cache.getList(
       key: _keyFor(unitId),
@@ -31,7 +31,7 @@ class ChaptersLocalDataSourceImpl implements ChaptersLocalDataSource {
   @override
   Future<void> cacheChapters({
     required List<ChapterModel> chapters,
-    required int unitId,
+    required String unitId,
   }) async {
     final list = chapters.map((c) => c.toJson()).toList();
     await cache.saveList(
@@ -42,7 +42,7 @@ class ChaptersLocalDataSourceImpl implements ChaptersLocalDataSource {
   }
 
   @override
-  Future<void> clearChapters({required int unitId}) async {
+  Future<void> clearChapters({required String unitId}) async {
     await cache.clear(key: _keyFor(unitId), boxName: kChaptersBox);
   }
 }

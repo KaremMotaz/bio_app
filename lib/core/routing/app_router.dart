@@ -103,7 +103,7 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.quizView,
           builder: (context, state) {
-            final int quizId = state.extra as int;
+            final String quizId = state.extra as String;
             return BlocProvider(
               create: (_) => QuizQuestionsCubit(
                 getIt<QuizHelper>(),
@@ -151,7 +151,7 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.chaptersView,
           builder: (context, state) {
-            final int unitId = state.extra as int;
+            final String unitId = state.extra as String;
             return BlocProvider(
               create: (context) => ChapterCubit(
                 chapterRepoImpl: getIt<ChapterRepoImpl>(),
@@ -163,11 +163,12 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.lessonsView,
           builder: (context, state) {
-            final int chapterId = state.extra as int;
+            final String chapterId = state.extra as String;
+            final String unitId = state.extra as String;
             return BlocProvider(
-              create: (context) =>
-                  LessonCubit(lessonRepoImp: getIt<LessonRepoImp>())
-                    ..getLessons(chapterId: chapterId),
+              create: (context) => LessonCubit(
+                lessonRepoImp: getIt<LessonRepoImp>(),
+              )..getLessons(chapterId: chapterId, unitId: unitId),
               child: const LessonsView(),
             );
           },

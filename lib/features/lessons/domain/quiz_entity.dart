@@ -1,6 +1,10 @@
 class QuizEntity {
   final int id;
   final String title;
-
-  QuizEntity({required this.id, required this.title});
+  final String quizId;
+  QuizEntity({
+    required this.id,
+    required this.title,
+    required this.quizId,
+  });
 }

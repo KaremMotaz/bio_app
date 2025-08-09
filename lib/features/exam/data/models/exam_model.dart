@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../../core/models/exam_question_model.dart';
+import 'exam_question_model.dart';
 import '../../domain/entities/exam_entity.dart';
 import '../datasources/mock_exam_data.dart';
 

@@ -61,7 +61,7 @@ Future<void> fetchAndCacheData() async {
     final chaptersLocal = getIt<ChaptersLocalDataSource>();
 
     // تخزين كل Unit مع فصوله
-    final byUnit = <int, List<ChapterModel>>{};
+    final byUnit = <String, List<ChapterModel>>{};
     for (final c in chapters) {
       byUnit.putIfAbsent(c.unitId, () => []).add(c);
     }
@@ -117,7 +117,7 @@ Future<void> fetchAndCacheData() async {
     final lessonsLocal = getIt<LessonsLocalDataSource>();
 
     // تخزين كل Chapter مع دروسه
-    final byChapter = <int, List<LessonModel>>{};
+    final byChapter = <String, List<LessonModel>>{};
     for (final l in lessons) {
       byChapter.putIfAbsent(l.chapterId, () => []).add(l);
     }
@@ -125,6 +125,7 @@ Future<void> fetchAndCacheData() async {
       await lessonsLocal.cacheLessons(
         lessons: entry.value,
         chapterId: entry.key,
+        unitId: entry.key,
       );
     }
 

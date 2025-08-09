@@ -43,7 +43,7 @@ class WrongAnswerFeedbackCard extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            question.type == QuizQuestionType.imageChoices
+            question.type == QuizQuestionType.imageOptions
                 ? "الإختيار رقم ${question.correctIndex + 1}"
                 : question.options[question.correctIndex],
             style: TextStyles.semiBold18.copyWith(

@@ -5,6 +5,6 @@ import '../../data/models/quiz_question_model.dart';
 
 abstract class QuizQuestionsRepo {
   Future<Either<Failure, List<QuizQuestionModel>>> getQuizQuestions({
-    required int quizId,
+    required String quizId,
   });
 }

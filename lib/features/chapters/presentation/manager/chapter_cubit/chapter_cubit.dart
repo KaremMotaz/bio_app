@@ -11,7 +11,7 @@ class ChapterCubit extends Cubit<ChapterState> {
     : super(ChapterInitialState());
   final ChapterRepoImpl chapterRepoImpl;
 
-  Future<void> getChapters({required int unitId}) async {
+  Future<void> getChapters({required String unitId}) async {
     emit(ChapterLoadingState());
     final result = await chapterRepoImpl.getChapters(unitId: unitId);
     result.fold(

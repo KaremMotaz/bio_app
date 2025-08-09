@@ -2,11 +2,11 @@ import 'package:bio_app/features/quiz_questions/data/models/quiz_question_model.
 
 abstract class QuizQuestionsLocalDataSource {
   Future<List<QuizQuestionModel>?> getQuizQuestions({
-    required int quizId,
+    required String quizId,
   });
   Future<void> cacheQuizQuestions({
     required List<QuizQuestionModel> quizQuestions,
-    required int quizId,
+    required String quizId,
   });
-  Future<void> clearQuizQuestions({required int quizId});
+  Future<void> clearQuizQuestions({required String quizId});
 }

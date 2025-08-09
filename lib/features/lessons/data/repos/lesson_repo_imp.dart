@@ -19,30 +19,28 @@ class LessonRepoImp implements LessonRepo {
 
   @override
   Future<Either<Failure, List<LessonModel>>> getLessons({
-    required int chapterId,
+    required String chapterId,
+    required String unitId,
   }) async {
     try {
       // Try to get from cache first
       final cached = await lessonsLocalDataSource.getLessons(
         chapterId: chapterId,
+        unitId: unitId,
       );
       if (cached != null && cached.isNotEmpty) {
         return Right(cached);
       }
 
       //  No data in cache, fetch from remote
-      final List<Map<String, dynamic>> result =
-          await lessonsRemoteDataSource.getFilteredLessons(
-            chapterId: chapterId,
-          );
-      final List<LessonModel> lessons = result
-          .map((json) => LessonModel.fromJson(json))
-          .toList();
+      final List<LessonModel> lessons = await lessonsRemoteDataSource
+          .getFilteredLessons(chapterId: chapterId, unitId: unitId);
 
       // Cache the data
       await lessonsLocalDataSource.cacheLessons(
         lessons: lessons,
         chapterId: chapterId,
+        unitId: unitId,
       );
 
       return Right(lessons);

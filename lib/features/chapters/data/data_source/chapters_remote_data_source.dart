@@ -1,5 +1,4 @@
 import '../../../../core/helpers/backend_endpoint.dart';
-import '../../../../core/helpers/backend_fields.dart';
 import '../../../../core/services/data_service.dart';
 
 class ChaptersRemoteDataSource {
@@ -7,13 +6,13 @@ class ChaptersRemoteDataSource {
 
   ChaptersRemoteDataSource({required this.databaseService});
   Future<List<Map<String, dynamic>>> getFilteredChapters({
-    required int unitId,
+    required String unitId,
   }) async {
     final List<Map<String, dynamic>> result = await databaseService
-        .getFilteredData(
-          path: BackendEndpoint.getChapters,
-          field: BackendFields.unitId,
-          value: unitId,
+        .fetchSubcollection(
+          parentCollection: BackendEndpoint.getUnits,
+          parentDocId: unitId,
+          subCollection: BackendEndpoint.getChapters,
         );
     return result;
   }

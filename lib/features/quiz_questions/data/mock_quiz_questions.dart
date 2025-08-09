@@ -15,7 +15,7 @@ final List<QuizQuestionModel> mockQuizQuestions = [
       AssetsData.choiceFour,
     ],
     correctIndex: 2,
-    type: QuizQuestionType.imageChoices,
+    type: QuizQuestionType.imageOptions,
   ),
   QuizQuestionModel(
     id: 1,
@@ -24,7 +24,7 @@ final List<QuizQuestionModel> mockQuizQuestions = [
     correctIndex: 2,
     explanation: "نخاع العظم هو المسؤول عن إنتاج خلايا الدم الحمراء.",
     images: [AssetsData.redBloodCells],
-    type: QuizQuestionType.textChoices,
+    type: QuizQuestionType.textOptions,
   ),
   QuizQuestionModel(
     id: 2,
@@ -32,21 +32,21 @@ final List<QuizQuestionModel> mockQuizQuestions = [
     options: ["23", "46", "44", "22"],
     correctIndex: 1,
     images: [AssetsData.chromosome],
-    type: QuizQuestionType.textChoices,
+    type: QuizQuestionType.textOptions,
   ),
   QuizQuestionModel(
     id: 3,
     questionText: "ما هو أصغر عظم في جسم الإنسان؟",
     options: ["عظمة الركاب", "العضد", "الفخذ", "الترقوة"],
     correctIndex: 0,
-    type: QuizQuestionType.textChoices,
+    type: QuizQuestionType.textOptions,
   ),
   QuizQuestionModel(
     id: 4,
     questionText: "ما هو الجزء المسؤول عن التنفس؟",
     options: ["القلب", "الكبد", "الرئتين", "الكلى"],
     correctIndex: 2,
-    type: QuizQuestionType.textChoices,
+    type: QuizQuestionType.textOptions,
   ),
 
   QuizQuestionModel(
@@ -56,7 +56,7 @@ final List<QuizQuestionModel> mockQuizQuestions = [
     correctIndex: 0,
     explanation:
         "الخلايا النباتية تحتوي على جدار خلوي يوفر لها الدعم والحماية.",
-    type: QuizQuestionType.trueFalse,
+    type: QuizQuestionType.trueFalseOptions,
   ),
   QuizQuestionModel(
     id: 6,
@@ -65,7 +65,7 @@ final List<QuizQuestionModel> mockQuizQuestions = [
     correctIndex: 1,
     explanation:
         "الغدد الصماء مثل الغدة الدرقية والكظرية هي المسؤولة عن إنتاج الهرمونات.",
-    type: QuizQuestionType.trueFalse,
+    type: QuizQuestionType.trueFalseOptions,
   ),
   QuizQuestionModel(
     id: 7,
@@ -79,7 +79,7 @@ final List<QuizQuestionModel> mockQuizQuestions = [
     correctIndex: 1,
     explanation: "الأحماض الأمينية ترتبط لتكوين البروتينات.",
     images: [AssetsData.protein],
-    type: QuizQuestionType.textChoices,
+    type: QuizQuestionType.textOptions,
   ),
   QuizQuestionModel(
     id: 8,
@@ -90,7 +90,7 @@ final List<QuizQuestionModel> mockQuizQuestions = [
     explanation:
         "الكبد يقوم بتخزين الجلوكوز الزائد على هيئة جلايكوجين.",
     images: [AssetsData.glucose],
-    type: QuizQuestionType.textChoices,
+    type: QuizQuestionType.textOptions,
   ),
   QuizQuestionModel(
     id: 9,
@@ -99,15 +99,6 @@ final List<QuizQuestionModel> mockQuizQuestions = [
     correctIndex: 0,
     explanation:
         "الميتوكوندريا تقوم بإنتاج الطاقة من خلال التنفس الخلوي.",
-    type: QuizQuestionType.trueFalse,
-  ),
-  QuizQuestionModel(
-    id: 10,
-    questionText: "ما هو الإنزيم الذي يهضم النشويات في الفم؟",
-    options: ["الببسين", "الأميليز", "الليباز", "التربسين"],
-    correctIndex: 1,
-    explanation:
-        "الأميليز يُفرز من الغدد اللعابية ويبدأ بهضم النشويات في الفم.",
-    type: QuizQuestionType.textChoices,
+    type: QuizQuestionType.trueFalseOptions,
   ),
 ];
