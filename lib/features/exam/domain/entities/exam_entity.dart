@@ -5,7 +5,7 @@ class ExamEntity {
   final String lesson;
   final DateTime endTime;
   final double passPercentage;
-  final bool isDraft;
+  final bool isPublished;
 
   ExamEntity({
     required this.id,
@@ -14,6 +14,6 @@ class ExamEntity {
     required this.lesson,
     required this.endTime,
     required this.passPercentage,
-    required this.isDraft,
+    required this.isPublished,
   });
 }

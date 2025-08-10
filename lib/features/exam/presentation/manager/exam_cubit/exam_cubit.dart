@@ -1,62 +1,74 @@
 import 'dart:async';
-
+import 'package:bio_app/core/errors/failure.dart';
+import 'package:bio_app/features/exam/data/repos/exam_repo_impl.dart';
 import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
 import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../domain/usecases/get_exam_usecase.dart';
-import '../../../domain/usecases/submit_exam_usecase.dart';
 
 part 'exam_state.dart';
 
 class ExamCubit extends Cubit<ExamState> {
-  final GetExamUseCase getExamUseCase;
-  final SubmitExamUseCase submitExamUseCase;
+  final ExamRepoImpl examRepoImpl;
 
   Timer? _timer;
   late DateTime _endTime;
 
-  ExamCubit({
-    required this.getExamUseCase,
-    required this.submitExamUseCase,
-  }) : super(ExamInitialState());
+  ExamCubit({required this.examRepoImpl}) : super(ExamInitialState());
 
-  Future<void> loadExam(String examId) async {
+  Future<void> getExams({
+    required String examId,
+    required int examIndex,
+  }) async {
     emit(ExamLoadingState());
 
-    try {
-      final List<ExamQuestionEntity> examQuestions =
-          await getExamUseCase(examId);
+    final Either<Failure, List<ExamEntity>> eitherExam =
+        await examRepoImpl.getExams();
 
-      final ExamEntity exam = await getExamUseCase(examId);
+    await eitherExam.fold(
+      (failure) {
+        emit(ExamErrorState(failure.toString()));
+        return;
+      },
+      (exam) async {
+        final eitherQuestions = await examRepoImpl.getExamQuestions(
+          examId: examId,
+        );
 
-      _endTime = exam.endTime;
+        eitherQuestions.fold(
+          (failure) {
+            emit(ExamErrorState(failure.toString()));
+          },
+          (questions) {
+            _endTime = exam[examIndex].endTime;
 
-      emit(
-        ExamRunningState(
-          examQuestions: examQuestions,
-          answers: {},
-          remainingTimeInSeconds: _endTime
-              .difference(DateTime.now())
-              .inSeconds,
-          exam: exam,
-        ),
-      );
+            emit(
+              ExamRunningState(
+                examQuestions: questions,
+                answers: {},
+                remainingTimeInSeconds: _endTime
+                    .difference(DateTime.now())
+                    .inSeconds,
+                exam: exam[examIndex],
+              ),
+            );
 
-      _startTimer();
-    } catch (e) {
-      emit(ExamErrorState(e.toString()));
-    }
-  }
-
-  void _startTimer() {
-    _tick(); // Immediate first tick
-    _timer = Timer.periodic(
-      const Duration(seconds: 1),
-      (_) => _tick(),
+            _startTimer(examId: examId);
+          },
+        );
+      },
     );
   }
 
-  void _tick() {
+  void _startTimer({required String examId}) {
+    _tick(examId: examId); // Immediate first tick
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (_) => _tick(examId: examId),
+    );
+  }
+
+  void _tick({required String examId}) {
     final now = DateTime.now();
     final remaining = _endTime.difference(now).inSeconds;
 
@@ -67,7 +79,7 @@ class ExamCubit extends Cubit<ExamState> {
           currentState.copyWith(remainingTimeInSeconds: remaining),
         );
       } else {
-        submitExam(); // Time is up
+        submitExam(examId: examId); // Time is up
       }
     }
   }
@@ -94,17 +106,19 @@ class ExamCubit extends Cubit<ExamState> {
     }
   }
 
-  Future<void> submitExam() async {
+  Future<void> submitExam({required String examId}) async {
     stopTimer();
     final currentState = state;
     if (currentState is ExamRunningState) {
       emit(ExamSubmittingState());
 
       try {
-        await submitExamUseCase(
-          currentState.exam.id,
-          currentState.answers,
+        
+        await examRepoImpl.submitAnswers(
+          examId: examId,
+          answers: currentState.answers,
         );
+
         emit(ExamSubmittedState());
       } catch (e) {
         emit(ExamErrorState(e.toString()));

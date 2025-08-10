@@ -1,3 +1,7 @@
+import 'package:bio_app/core/errors/failure.dart';
+import 'package:bio_app/features/units/data/models/unit_model.dart';
+import 'package:dartz/dartz.dart';
+
 import '../../../data/repos/unit_repo_imp.dart';
 import '../../../domain/unit_entity.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +14,10 @@ class UnitCubit extends Cubit<UnitState> {
 
   Future<void> getUnits() async {
     emit(UnitLoadingState());
-    final result = await unitRepoImpl.getUnits();
+    
+    final Either<Failure, List<UnitModel>> result = await unitRepoImpl
+        .getUnits();
+
     result.fold(
       (failure) => emit(UnitErrorState(message: failure.errMessage)),
       (units) {

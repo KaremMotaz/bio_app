@@ -52,7 +52,7 @@ class CustomFooterWidget<T extends Cubit> extends StatelessWidget {
                 if (isLastPage) {
                   if (isEnabled ?? true) {
                     if (cubit is ExamCubit) {
-                      (cubit as ExamCubit).submitExam();
+                      (cubit as ExamCubit).submitExam(examId: examId);
                     }
                   } else {
                     GoRouter.of(context).pop(context);

@@ -1,3 +1,5 @@
+import 'package:bio_app/features/exam/data/repos/exam_repo_impl.dart';
+
 import '../../features/chapters/data/repos/chapter_repo_imp.dart';
 import '../../features/chapters/presentation/manager/chapter_cubit/chapter_cubit.dart';
 import '../../features/lessons/data/repos/lesson_repo_imp.dart';
@@ -5,8 +7,6 @@ import '../../features/lessons/presentation/manager/lesson_cubit/lesson_cubit.da
 import '../../features/lessons/presentation/quiz_ready_view.dart';
 import '../../features/quiz_questions/domain/logic/quiz_helpers.dart';
 import '../services/get_it_service.dart';
-import '../../features/exam/domain/usecases/get_exam_usecase.dart';
-import '../../features/exam/domain/usecases/submit_exam_usecase.dart';
 import '../../features/exam_result/data/repos/exam_result_repo_imp.dart';
 import '../../features/quiz_questions/data/repos/quiz_questions_repo_imp.dart';
 import 'package:go_router/go_router.dart';
@@ -118,10 +118,9 @@ abstract class AppRouter {
           path: Routes.examView,
           builder: (context, state) {
             return BlocProvider(
-              create: (_) => ExamCubit(
-                getExamUseCase: getIt<GetExamUseCase>(),
-                submitExamUseCase: getIt<SubmitExamUseCase>(),
-              )..loadExam("0"),
+              create: (_) =>
+                  ExamCubit(examRepoImpl: getIt<ExamRepoImpl>())
+                    ..getExams(examId: examId, examIndex: examIndex),
               child: const ExamView(),
             );
           },
@@ -131,7 +130,6 @@ abstract class AppRouter {
           builder: (context, state) {
             return BlocProvider(
               create: (_) => ExamResultCubit(
-                getExamUseCase: getIt<GetExamUseCase>(),
                 examResultRepo: getIt<ExamResultRepoImpl>(),
               )..getResult(examId: 0),
               child: const ExamResultView(),

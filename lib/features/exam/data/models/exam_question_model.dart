@@ -14,19 +14,33 @@ class ExamQuestionModel extends ExamQuestionEntity {
     super.explanation,
   });
 
-  factory ExamQuestionModel.fromMap(Map<String, dynamic> map) {
+  factory ExamQuestionModel.fromJson(Map<String, dynamic> json) {
     return ExamQuestionModel(
-      index: map['index'],
-      title: map['title'],
-      scenario: map['scenario'],
-      questionText: map['text'],
-      options: List<String>.from(map['options']),
-      correctIndex: map['correctIndex'],
-      type: map['type'],
-      marks: map['marks'],
-      images: map['images'],
-      explanation: map['explanation'],
+      index: json['index'],
+      title: json['title'],
+      scenario: json['scenario'],
+      questionText: json['text'],
+      options: List<String>.from(json['options']),
+      correctIndex: json['correctIndex'],
+      type: json['type'],
+      marks: json['marks'],
+      images: json['images'],
+      explanation: json['explanation'],
     );
+  }
+  Map<String, dynamic> toJson() {
+    return {
+      'index': index,
+      'title': title,
+      'scenario': scenario,
+      'text': questionText,
+      'options': options,
+      'correctIndex': correctIndex,
+      'type': type,
+      'marks': marks,
+      'images': images,
+      'explanation': explanation,
+    };
   }
 }
 

@@ -20,20 +20,14 @@ import '../../features/quiz_questions/domain/logic/quiz_helpers.dart';
 import '../../features/units/data/data_source/units_local_data_source_imp.dart';
 import '../../features/units/data/data_source/units_remote_data_source.dart';
 import '../../features/units/data/repos/unit_repo_imp.dart';
-
 import '../../features/exam/domain/repos/exam_repo.dart';
 import 'package:get_it/get_it.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../../features/auth/data/repos/auth_repo_imp.dart';
 import '../../features/auth/domain/auth_repo.dart';
-
 import '../../features/quiz_questions/data/repos/quiz_questions_repo_imp.dart';
 import '../../features/exam/data/datasources/exam_remote_data_source.dart';
 import '../../features/exam/data/repos/exam_repo_impl.dart';
-import '../../features/exam/domain/usecases/get_exam_usecase.dart';
-import '../../features/exam/domain/usecases/submit_exam_usecase.dart';
-
 import '../../features/exam_result/data/repos/exam_result_repo_imp.dart';
 
 import 'firebase_auth_service.dart';
@@ -74,19 +68,11 @@ void setupGetIt() {
 
   // 📝 Exam
   getIt.registerLazySingleton<ExamRemoteDataSource>(
-    () => ExamRemoteDataSource(firestore: FirebaseFirestore.instance),
+    () => ExamRemoteDataSource(databaseService: getIt()),
   );
 
   getIt.registerLazySingleton<ExamRepo>(
     () => ExamRepoImpl(examRemoteDataSource: getIt()),
-  );
-
-  getIt.registerLazySingleton<GetExamUseCase>(
-    () => GetExamUseCase(examRepo: getIt()),
-  );
-
-  getIt.registerLazySingleton<SubmitExamUseCase>(
-    () => SubmitExamUseCase(examRepo: getIt()),
   );
 
   // 📊 Exam Result

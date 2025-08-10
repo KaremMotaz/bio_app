@@ -9,18 +9,18 @@ class ExamModel extends ExamEntity {
     required super.lesson,
     required super.endTime,
     required super.passPercentage,
-    required super.isDraft,
+    required super.isPublished,
   });
 
-  factory ExamModel.fromMap(Map<String, dynamic> map) {
+  factory ExamModel.fromJson(Map<String, dynamic> json) {
     return ExamModel(
-      id: map['id'],
-      title: map['title'],
-      unit: map['unit'],
-      lesson: map['lesson'],
-      endTime: (map['endTime'] as Timestamp).toDate(),
-      passPercentage: (map['passPercentage'] as num).toDouble(),
-      isDraft: map['isDraft'],
+      id: json['id'],
+      title: json['title'],
+      unit: json['unit'],
+      lesson: json['lesson'],
+      endTime: (json['endTime'] as Timestamp).toDate(),
+      passPercentage: (json['passPercentage'] as num).toDouble(),
+      isPublished: json['isPublished'],
     );
   }
 }

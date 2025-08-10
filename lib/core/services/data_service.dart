@@ -4,6 +4,12 @@ abstract class DatabaseService {
     required Map<String, dynamic> data,
     String? documentId,
   });
+  Future<void> addToSubcollection({
+    required String parentCollection,
+    required String parentDocId,
+    required String subCollection,
+    required Map<String, dynamic> data,
+  });
 
   Future<dynamic> getData({required String path, String? documentId});
 

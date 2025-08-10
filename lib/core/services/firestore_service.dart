@@ -18,6 +18,22 @@ class FirestoreService implements DatabaseService {
   }
 
   @override
+  Future<void> addToSubcollection({
+    required String parentCollection,
+    required String parentDocId,
+    required String subCollection,
+    required Map<String, dynamic> data,
+  }) {
+    final docRef = FirebaseFirestore.instance
+        .collection(parentCollection)
+        .doc(parentDocId)
+        .collection(subCollection)
+        .doc();
+
+    return docRef.set(data);
+  }
+
+  @override
   Future<dynamic> getData({
     required String path,
     String? documentId,
