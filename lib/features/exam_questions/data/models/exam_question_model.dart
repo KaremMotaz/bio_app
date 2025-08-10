@@ -16,16 +16,20 @@ class ExamQuestionModel extends ExamQuestionEntity {
 
   factory ExamQuestionModel.fromJson(Map<String, dynamic> json) {
     return ExamQuestionModel(
-      index: json['index'],
-      title: json['title'],
-      scenario: json['scenario'],
-      questionText: json['text'],
-      options: List<String>.from(json['options']),
-      correctIndex: json['correctIndex'],
-      type: json['type'],
+      index: json['index'] as int,
+      title: json['title'] as String?,
+      scenario: json['scenario'] as String?,
+      questionText: json['text'] as String,
+      options: (json['options'] as List<dynamic>)
+          .map((e) => e.toString())
+          .toList(),
+      correctIndex: json['correctIndex'] as int,
+      type: ExamOptionsType.values.byName(json['type'] as String),
       marks: json['marks'],
-      images: json['images'],
-      explanation: json['explanation'],
+      images: (json['images'] as List<dynamic>?)
+          ?.map((e) => e.toString())
+          .toList(),
+      explanation: json['explanation'] as String?,
     );
   }
   Map<String, dynamic> toJson() {

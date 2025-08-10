@@ -30,7 +30,7 @@ class ExamQuestionsRemoteDataSource {
     if (currentUser == null) return;
 
     final baseData = {
-      ...answers,
+      'answers': answers,
       'timestamp': FieldValue.serverTimestamp(),
     };
 

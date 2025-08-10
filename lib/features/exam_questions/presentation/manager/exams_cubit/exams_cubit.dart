@@ -12,7 +12,7 @@ class ExamsCubit extends Cubit<ExamsState> {
   ExamsCubit({required this.examRepoImpl})
     : super(ExamsInitialState());
 
-  void getExams(List<ExamEntity> exams) async {
+  void getExams() async {
     emit(ExamsLoadingState());
 
     final Either<Failure, List<ExamEntity>> exams = await examRepoImpl

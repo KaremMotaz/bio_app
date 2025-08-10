@@ -33,16 +33,31 @@ class ExamResultRemoteDataSourceImp {
     return result.map((e) => ExamQuestionModel.fromJson(e)).toList();
   }
 
-  Future<List<Map<String, dynamic>>> getStudentAnswers() async {
+  Future<List<Map<String, int>>> getStudentAnswers() async {
     final currentUser = FirebaseAuth.instance.currentUser;
-    if (currentUser == null) return const [{}];
+    if (currentUser == null) return [];
 
-    final List<Map<String, dynamic>> studentAnswers =
+    final List<Map<String, dynamic>> rawAnswers =
         await databaseService.fetchSubcollection(
           parentCollection: BackendEndpoint.addUserAnswers,
           parentDocId: currentUser.uid,
           subCollection: BackendEndpoint.getExamsResults,
         );
+
+    final List<Map<String, int>> studentAnswers = rawAnswers.map((
+      map,
+    ) {
+      final filtered = <String, int>{};
+
+      map.forEach((key, value) {
+        if (value is int) {
+          filtered[key] = value;
+        }
+      });
+
+      return filtered;
+    }).toList();
+
     return studentAnswers;
   }
 }

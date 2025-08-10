@@ -35,7 +35,7 @@ class MainPageView extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) =>
-              ExamsCubit(examRepoImpl: getIt<ExamRepoImpl>()),
+              ExamsCubit(examRepoImpl: getIt<ExamRepoImpl>())..getExams(),
           child: const ExamsView(),
         ),
         const LeaderboardView(),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bio_app/core/errors/failure.dart';
 import 'package:bio_app/core/errors/server_failure.dart';
 import 'package:bio_app/features/exam_questions/domain/entities/exam_entity.dart';
@@ -41,14 +43,15 @@ class ExamResultRepoImpl implements ExamResultRepo {
   }
 
   @override
-  Future<Either<Failure, List<Map<String, dynamic>>>>
-  getStudentAnswers({required String examId}) async {
+  Future<Either<Failure, List<Map<String, int>>>>
+  getStudentAnswers() async {
     try {
-      final List<Map<String, dynamic>> answers =
+      final List<Map<String, int>> answers =
           await examResultRemoteDataSourceImp.getStudentAnswers();
 
       return Right(answers);
     } catch (e) {
+      log(e.toString());
       return Left(ServerFailure(e.toString()));
     }
   }

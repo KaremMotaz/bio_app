@@ -8,7 +8,12 @@ import 'exam_finished_view.dart';
 
 class ExamQuestionsView extends StatelessWidget {
   final int examIndex;
-  const ExamQuestionsView({super.key, required this.examIndex});
+  final String examId;
+  const ExamQuestionsView({
+    super.key,
+    required this.examIndex,
+    required this.examId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +36,7 @@ class ExamQuestionsView extends StatelessWidget {
               return ExamQuestionsViewBody(
                 examQuestions: runningState.examQuestions,
                 answers: runningState.answers,
-                examId: runningState.exams[examIndex].id,
+                examId: examId,
               );
 
             case const (ExamQuestionsSubmittedState):

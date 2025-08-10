@@ -8,7 +8,9 @@ import 'package:dartz/dartz.dart';
 class ExamQuestionsRepoImpl implements ExamQuestionsRepo {
   final ExamQuestionsRemoteDataSource examQuestionsRemoteDataSource;
 
-  ExamQuestionsRepoImpl({required this.examQuestionsRemoteDataSource});
+  ExamQuestionsRepoImpl({
+    required this.examQuestionsRemoteDataSource,
+  });
 
   @override
   Future<Either<Failure, List<ExamQuestionEntity>>> getExamQuestions({
@@ -32,7 +34,10 @@ class ExamQuestionsRepoImpl implements ExamQuestionsRepo {
     required Map<String, int> answers,
   }) async {
     try {
-      await examQuestionsRemoteDataSource.submitAnswers(examId, answers);
+      await examQuestionsRemoteDataSource.submitAnswers(
+        examId,
+        answers,
+      );
 
       return const Right(null);
     } catch (e) {

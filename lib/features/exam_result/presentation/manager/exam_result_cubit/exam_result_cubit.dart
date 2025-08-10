@@ -32,7 +32,7 @@ class ExamResultCubit extends Cubit<ExamResultState> {
           },
           (exams) async {
             final answersEither = await examResultRepo
-                .getStudentAnswers(examId: examId);
+                .getStudentAnswers();
             answersEither.fold(
               (failure) {
                 emit(

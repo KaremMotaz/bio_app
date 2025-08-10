@@ -1,6 +1,5 @@
 import 'package:bio_app/features/exam_questions/data/datasources/exam_questions_remote_data_source.dart';
 import 'package:bio_app/features/exam_questions/data/repos/exam_questions_repo_impl.dart';
-import 'package:bio_app/features/exam_questions/domain/repos/exam_questions_repo.dart';
 import 'package:bio_app/features/exam_result/data/datasources/exam_result_remote_data_source.dart';
 import 'package:bio_app/features/quiz_questions/data/data_source/quiz_questions_local_data_source_imp.dart';
 import 'package:bio_app/features/quiz_questions/data/data_source/quiz_questions_remote_data_source.dart';
@@ -24,7 +23,6 @@ import '../../features/quiz_questions/domain/logic/quiz_helpers.dart';
 import '../../features/units/data/data_source/units_local_data_source_imp.dart';
 import '../../features/units/data/data_source/units_remote_data_source.dart';
 import '../../features/units/data/repos/unit_repo_imp.dart';
-import '../../features/exam_questions/domain/repos/exam_repo.dart';
 import 'package:get_it/get_it.dart';
 import '../../features/auth/data/repos/auth_repo_imp.dart';
 import '../../features/auth/domain/auth_repo.dart';
@@ -72,7 +70,7 @@ void setupGetIt() {
     () => ExamRemoteDataSource(databaseService: getIt()),
   );
 
-  getIt.registerLazySingleton<ExamRepo>(
+  getIt.registerLazySingleton<ExamRepoImpl>(
     () => ExamRepoImpl(examRemoteDataSource: getIt()),
   );
 
@@ -81,7 +79,7 @@ void setupGetIt() {
     () => ExamQuestionsRemoteDataSource(databaseService: getIt()),
   );
 
-  getIt.registerLazySingleton<ExamQuestionsRepo>(
+  getIt.registerLazySingleton<ExamQuestionsRepoImpl>(
     () =>
         ExamQuestionsRepoImpl(examQuestionsRemoteDataSource: getIt()),
   );

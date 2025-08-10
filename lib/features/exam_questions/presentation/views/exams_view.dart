@@ -28,65 +28,68 @@ class ExamsView extends StatelessWidget {
                 ),
               );
             } else if (state is ExamsLoadedState) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ListView.builder(
-                    itemCount: state.exams.length,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return TextButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.blueGrey,
-                        ),
-                        onPressed: () {
-                          GoRouter.of(context).push(
-                            Routes.examQuestionsView,
-                            extra: {
-                              'examId': state.exams[index].id,
-                              'examIndex': index,
-                              'exams': state.exams,
-                            },
-                          );
-                        },
-                        child: const Text(
-                          "Go to Exam",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 30),
-                  ListView.builder(
-                    itemCount: state.exams.length,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return TextButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: AppColors.mainBlue,
-                        ),
-                        onPressed: () {
-                          GoRouter.of(context).push(
-                            Routes.examResultView,
-                            extra: {
-                              'examId': state.exams[index].id,
-                              'resultExamIndex': index,
-                            },
-                          );
-                        },
-                        child: const Text(
-                          "Go to Exam Result",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      );
-                    },
-                  ),
-                ],
+              return Padding(
+                padding: const EdgeInsets.all(32),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ListView.builder(
+                      itemCount: state.exams.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.blueGrey,
+                          ),
+                          onPressed: () {
+                            GoRouter.of(context).push(
+                              Routes.examQuestionsView,
+                              extra: {
+                                'examId': state.exams[index].id,
+                                'examIndex': index,
+                                'exams': state.exams,
+                              },
+                            );
+                          },
+                          child: const Text(
+                            "Go to Exam",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 30),
+                    ListView.builder(
+                      itemCount: state.exams.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: AppColors.mainBlue,
+                          ),
+                          onPressed: () {
+                            GoRouter.of(context).push(
+                              Routes.examResultView,
+                              extra: {
+                                'examId': state.exams[index].id,
+                                'resultExamIndex': index,
+                              },
+                            );
+                          },
+                          child: const Text(
+                            "Go to Exam Result",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               );
             } else if (state is ExamsErrorState) {
               return Center(child: Text(state.message));
             } else {
-              return const SizedBox.shrink();
+              return const Text("data is null");
             }
           },
         ),

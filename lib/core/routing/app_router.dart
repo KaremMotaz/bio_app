@@ -134,7 +134,10 @@ abstract class AppRouter {
                     examIndex: examIndex,
                     exams: exams,
                   ),
-              child: ExamQuestionsView(examIndex: examIndex),
+              child: ExamQuestionsView(
+                examIndex: examIndex,
+                examId: examId,
+              ),
             );
           },
         ),

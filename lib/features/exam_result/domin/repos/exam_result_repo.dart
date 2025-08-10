@@ -10,6 +10,5 @@ abstract class ExamResultRepo {
     required String examId,
   });
 
-  Future<Either<Failure, List<Map<String, dynamic>>>>
-  getStudentAnswers({required String examId});
+  Future<Either<Failure, List<Map<String, int>>>> getStudentAnswers();
 }
