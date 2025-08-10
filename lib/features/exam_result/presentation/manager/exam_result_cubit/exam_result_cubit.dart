@@ -1,3 +1,4 @@
+import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,6 +21,8 @@ class ExamResultCubit extends Cubit<ExamResultState> {
   void getResult({required int examId}) async {
     emit(ExamResultLoadingState());
 
+    final List<ExamQuestionEntity> examQuestions =
+        await getExamUseCase(examId.toString());
     final ExamEntity exam = await getExamUseCase(examId.toString());
 
     final Map<String, int> studentAnswers = await examResultRepo
@@ -27,11 +30,11 @@ class ExamResultCubit extends Cubit<ExamResultState> {
     try {
       final int studentScore =
           ExamGradingService.calculateStudentScore(
-            exam: exam,
+            examQuestions: examQuestions,
             studentAnswers: studentAnswers,
           );
       final int maxScore = ExamGradingService.calculateMaxScore(
-        exam: exam,
+        examQuestions: examQuestions,
       );
       final double studentPercentage =
           ExamGradingService.calculatePercentage(
@@ -45,7 +48,7 @@ class ExamResultCubit extends Cubit<ExamResultState> {
 
       emit(
         ExamResultLoadedState(
-          exam: exam,
+          examQuestions: examQuestions,
           studentScore: studentScore,
           maxScore: maxScore,
           percentage: studentPercentage,

@@ -8,6 +8,7 @@ class ExamLoadingState extends ExamState {}
 
 class ExamRunningState extends ExamState {
   final ExamEntity exam;
+  final List<ExamQuestionEntity> examQuestions;
   final Map<String, int> answers;
   final int remainingTimeInSeconds;
 
@@ -15,20 +16,22 @@ class ExamRunningState extends ExamState {
     required this.exam,
     required this.answers,
     required this.remainingTimeInSeconds,
+    required this.examQuestions,
   });
 
   ExamRunningState copyWith({
     ExamEntity? exam,
+    List<ExamQuestionEntity>? examQuestions,
     int? currentPageIndex,
     Map<String, int>? answers,
     int? remainingTimeInSeconds,
   }) {
     return ExamRunningState(
       exam: exam ?? this.exam,
+      examQuestions: this.examQuestions,
       answers: answers ?? this.answers,
       remainingTimeInSeconds:
-          remainingTimeInSeconds ??
-          this.remainingTimeInSeconds,
+          remainingTimeInSeconds ?? this.remainingTimeInSeconds,
     );
   }
 }

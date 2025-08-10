@@ -1,3 +1,4 @@
+
 import 'package:hive/hive.dart';
 
 class LocalCacheService {
@@ -12,14 +13,16 @@ class LocalCacheService {
     if (data is! List) return null;
 
     try {
-      final normalized = data.map<Map<String, dynamic>>((e) {
-        if (e is Map) {
-          return e.map<String, dynamic>(
-            (k, v) => MapEntry(k.toString(), v),
-          );
-        }
-        throw const FormatException('List item is not a Map');
-      }).toList();
+      final List<Map<String, dynamic>> normalized = data
+          .map<Map<String, dynamic>>((e) {
+            if (e is Map) {
+              return e.map<String, dynamic>(
+                (k, v) => MapEntry(k.toString(), v),
+              );
+            }
+            throw const FormatException('List item is not a Map');
+          })
+          .toList();
       return normalized;
     } catch (_) {
       return null;

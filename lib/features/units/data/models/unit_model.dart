@@ -21,6 +21,7 @@ class UnitModel extends UnitEntity {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'index': index,
       'title': title,
       'image': image,

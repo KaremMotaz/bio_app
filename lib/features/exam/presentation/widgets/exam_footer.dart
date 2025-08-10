@@ -1,21 +1,20 @@
+import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/widgets/custom_footer_widget.dart';
-import '../../domain/entities/exam_entity.dart';
 import '../manager/exam_cubit/exam_cubit.dart';
 
 class ExamFooter extends StatelessWidget {
   const ExamFooter({
     super.key,
     required PageController pageController,
-    required this.exam,
     required this.currentPageIndex,
     this.isEnabled,
+    required this.examQuestions,
   }) : _pageController = pageController;
 
   final PageController _pageController;
-  final ExamEntity exam;
+  final List<ExamQuestionEntity> examQuestions;
   final int currentPageIndex;
   final bool? isEnabled;
   @override
@@ -28,7 +27,7 @@ class ExamFooter extends StatelessWidget {
 
         final cubit = context.read<ExamCubit>();
         final isLastPage =
-            currentPageIndex == exam.questions.length - 1;
+            currentPageIndex == examQuestions.length - 1;
         final isFirstPage = currentPageIndex == 0;
 
         return CustomFooterWidget(

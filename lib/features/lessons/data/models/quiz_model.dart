@@ -9,13 +9,13 @@ class QuizModel extends QuizEntity {
 
   factory QuizModel.fromJson(Map<String, dynamic> json) {
     return QuizModel(
-      index: json['index'] as int,
       id: json['id'] as String,
+      index: json['index'] as int,
       title: json['title'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
-    return {'index': index, 'title': title};
+    return {'id': id, 'index': index, 'title': title};
   }
 }

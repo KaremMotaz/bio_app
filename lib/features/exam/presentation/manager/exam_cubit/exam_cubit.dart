@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
+import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../domain/entities/exam_entity.dart';
 import '../../../domain/usecases/get_exam_usecase.dart';
 import '../../../domain/usecases/submit_exam_usecase.dart';
 
@@ -24,14 +24,21 @@ class ExamCubit extends Cubit<ExamState> {
     emit(ExamLoadingState());
 
     try {
-      final exam = await getExamUseCase(examId);
+      final List<ExamQuestionEntity> examQuestions =
+          await getExamUseCase(examId);
+
+      final ExamEntity exam = await getExamUseCase(examId);
+
       _endTime = exam.endTime;
 
       emit(
         ExamRunningState(
-          exam: exam,
+          examQuestions: examQuestions,
           answers: {},
-          remainingTimeInSeconds: _endTime.difference(DateTime.now()).inSeconds,
+          remainingTimeInSeconds: _endTime
+              .difference(DateTime.now())
+              .inSeconds,
+          exam: exam,
         ),
       );
 
@@ -43,7 +50,10 @@ class ExamCubit extends Cubit<ExamState> {
 
   void _startTimer() {
     _tick(); // Immediate first tick
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _tick());
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (_) => _tick(),
+    );
   }
 
   void _tick() {
@@ -53,7 +63,9 @@ class ExamCubit extends Cubit<ExamState> {
     final currentState = state;
     if (currentState is ExamRunningState) {
       if (remaining > 0) {
-        emit(currentState.copyWith(remainingTimeInSeconds: remaining));
+        emit(
+          currentState.copyWith(remainingTimeInSeconds: remaining),
+        );
       } else {
         submitExam(); // Time is up
       }
@@ -73,7 +85,9 @@ class ExamCubit extends Cubit<ExamState> {
   void selectAnswer(int questionId, int selectedIndex) {
     final currentState = state;
     if (currentState is ExamRunningState) {
-      final updatedAnswers = Map<String, int>.from(currentState.answers);
+      final updatedAnswers = Map<String, int>.from(
+        currentState.answers,
+      );
       updatedAnswers[questionId.toString()] = selectedIndex;
 
       emit(currentState.copyWith(answers: updatedAnswers));
@@ -87,7 +101,10 @@ class ExamCubit extends Cubit<ExamState> {
       emit(ExamSubmittingState());
 
       try {
-        await submitExamUseCase(currentState.exam.id, currentState.answers);
+        await submitExamUseCase(
+          currentState.exam.id,
+          currentState.answers,
+        );
         emit(ExamSubmittedState());
       } catch (e) {
         emit(ExamErrorState(e.toString()));

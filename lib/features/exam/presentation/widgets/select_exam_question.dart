@@ -1,20 +1,19 @@
+import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/selector_widget.dart';
-import '../../domain/entities/exam_entity.dart';
 import '../manager/exam_cubit/exam_cubit.dart';
 
 class SelectExamQuestion extends StatelessWidget {
   const SelectExamQuestion({
     super.key,
-    required this.exam,
     required this.pageController,
     required this.currentPageIndex,
+    required this.examQuestions,
   });
 
-  final ExamEntity exam;
+  final List<ExamQuestionEntity> examQuestions;
   final PageController pageController;
   final int currentPageIndex;
 
@@ -38,7 +37,7 @@ class SelectExamQuestion extends StatelessWidget {
                   }
 
                   return SelectorWidget(
-                    exam: exam,
+                    examQuestions: examQuestions,
                     currentPageIndex: currentPageIndex,
                     pageController: pageController,
                     answers: state.answers,

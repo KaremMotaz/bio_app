@@ -12,7 +12,7 @@ final class ExamResultInitialState extends ExamResultState {}
 final class ExamResultLoadingState extends ExamResultState {}
 
 class ExamResultLoadedState extends ExamResultState {
-  final ExamEntity exam;
+  final List<ExamQuestionEntity> examQuestions;
   final Map<String, int> answers;
   final int studentScore;
   final int maxScore;
@@ -20,7 +20,7 @@ class ExamResultLoadedState extends ExamResultState {
   final bool isPassed;
 
   const ExamResultLoadedState({
-    required this.exam,
+    required this.examQuestions,
     required this.studentScore,
     required this.maxScore,
     required this.percentage,

@@ -10,12 +10,16 @@ class UnitsLocalDataSourceImpl implements UnitsLocalDataSource {
 
   @override
   Future<List<UnitModel>?> getUnits() async {
-    final list = await cache.getList(key: kUnits, boxName: kUnitsBox);
-    if (list == null) return null;
-
     try {
+      final List<Map<String, dynamic>>? list = await cache.getList(
+        key: kUnits,
+        boxName: kUnitsBox,
+      );
+      if (list == null) {
+        return null;
+      }
       return list.map((e) => UnitModel.fromJson(e)).toList();
-    } catch (_) {
+    } catch (e) {
       await clearUnits();
       return null;
     }
@@ -23,7 +27,9 @@ class UnitsLocalDataSourceImpl implements UnitsLocalDataSource {
 
   @override
   Future<void> cacheUnits(List<UnitModel> units) async {
-    final list = units.map((u) => u.toJson()).toList();
+    final List<Map<String, dynamic>> list = units
+        .map((u) => u.toJson())
+        .toList();
     await cache.saveList(
       key: kUnits,
       boxName: kUnitsBox,

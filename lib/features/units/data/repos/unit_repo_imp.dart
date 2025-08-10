@@ -1,5 +1,5 @@
 import 'dart:developer';
-import '../../../../core/sync/app_startup.dart';
+// import '../../../../core/sync/app_startup.dart';
 import '../data_source/units_local_data_source.dart';
 import '../../../../core/errors/server_failure.dart';
 import '../../../../core/errors/failure.dart';
@@ -20,10 +20,11 @@ class UnitRepoImpl implements UnitRepo {
   @override
   Future<Either<Failure, List<UnitModel>>> getUnits() async {
     try {
-      await AppStartup.instance.runOnce();
+      // await AppStartup.instance.runOnce();
 
-      // Try to get from cache first
-      final cached = await unitsLocalDataSource.getUnits();
+      // Try to get data from cache first
+      final List<UnitModel>? cached = await unitsLocalDataSource
+          .getUnits();
       if (cached != null && cached.isNotEmpty) {
         return Right(cached);
       }

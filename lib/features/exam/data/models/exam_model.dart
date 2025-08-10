@@ -1,8 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-import 'exam_question_model.dart';
 import '../../domain/entities/exam_entity.dart';
-import '../datasources/mock_exam_data.dart';
 
 class ExamModel extends ExamEntity {
   ExamModel({
@@ -12,7 +9,6 @@ class ExamModel extends ExamEntity {
     required super.lesson,
     required super.endTime,
     required super.passPercentage,
-    required super.questions,
     required super.isDraft,
   });
 
@@ -25,10 +21,6 @@ class ExamModel extends ExamEntity {
       endTime: (map['endTime'] as Timestamp).toDate(),
       passPercentage: (map['passPercentage'] as num).toDouble(),
       isDraft: map['isDraft'],
-      questions: List<Map<String, dynamic>>.from(
-        biologyQuestions,
-        // map['questions'],
-      ).map((q) => ExamQuestionModel.fromMap(q)).toList(),
     );
   }
 }

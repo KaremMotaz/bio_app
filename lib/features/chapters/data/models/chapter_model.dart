@@ -21,6 +21,7 @@ class ChapterModel extends ChapterEntity {
   }
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'index': index,
       'title': title,
       'image': image,

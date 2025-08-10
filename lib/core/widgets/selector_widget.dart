@@ -1,19 +1,18 @@
+import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
 import 'package:flutter/material.dart';
-
-import '../../features/exam/domain/entities/exam_entity.dart';
 import '../theming/app_colors.dart';
 import '../theming/text_styles.dart';
 
 class SelectorWidget extends StatelessWidget {
   const SelectorWidget({
     super.key,
-    required this.exam,
     required this.currentPageIndex,
     required this.pageController,
     this.answers,
+    required this.examQuestions,
   });
 
-  final ExamEntity exam;
+  final List<ExamQuestionEntity> examQuestions;
   final int currentPageIndex;
   final PageController pageController;
   final Map<String, dynamic>? answers;
@@ -30,7 +29,7 @@ class SelectorWidget extends StatelessWidget {
         width: double.maxFinite,
         child: GridView.builder(
           shrinkWrap: true,
-          itemCount: exam.questions.length,
+          itemCount: examQuestions.length,
           gridDelegate:
               const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 5,
@@ -39,8 +38,10 @@ class SelectorWidget extends StatelessWidget {
               ),
           itemBuilder: (context, index) {
             final bool isCurrent = index == currentPageIndex;
-            final String questionId = exam.questions[index].index.toString();
-            final bool isAnswered = answers?.containsKey(questionId) ?? false;
+            final String questionId = examQuestions[index].index
+                .toString();
+            final bool isAnswered =
+                answers?.containsKey(questionId) ?? false;
 
             Color bgColor;
             if (isCurrent) {

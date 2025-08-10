@@ -1,14 +1,13 @@
-import '../../../exam/domain/entities/exam_entity.dart';
 import '../../../exam/domain/entities/exam_question_entity.dart';
 
 class ExamGradingService {
   static int calculateStudentScore({
-    required ExamEntity exam,
+    required List<ExamQuestionEntity> examQuestions,
     required Map<String, int> studentAnswers,
   }) {
     int totalScore = 0;
 
-    for (final question in exam.questions) {
+    for (final question in examQuestions) {
       final studentAnswer = studentAnswers[question.index.toString()];
       if (studentAnswer != null &&
           studentAnswer == question.correctIndex) {
@@ -19,8 +18,10 @@ class ExamGradingService {
     return totalScore;
   }
 
-  static int calculateMaxScore({required ExamEntity exam}) {
-    return exam.questions.fold(0, (sum, q) => sum + q.marks);
+  static int calculateMaxScore({
+    required List<ExamQuestionEntity> examQuestions,
+  }) {
+    return examQuestions.fold(0, (sum, q) => sum + q.marks);
   }
 
   static double calculatePercentage({

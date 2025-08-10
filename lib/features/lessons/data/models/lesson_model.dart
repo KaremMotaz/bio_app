@@ -11,6 +11,6 @@ class LessonModel extends LessonEntity {
   }
 
   Map<String, dynamic> toJson() {
-    return {'title': title};
+    return {'id': id, 'title': title};
   }
 }

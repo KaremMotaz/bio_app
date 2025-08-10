@@ -1,6 +1,5 @@
+import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
 import 'package:flutter/material.dart';
-
-import '../../domain/entities/exam_entity.dart';
 import 'exam_footer.dart';
 import 'exam_header.dart';
 import 'exam_page_view.dart';
@@ -8,11 +7,11 @@ import 'exam_page_view.dart';
 class ExamViewBody extends StatefulWidget {
   const ExamViewBody({
     super.key,
-    required this.exam,
+    required this.examQuestions,
     required this.answers,
   });
 
-  final ExamEntity exam;
+  final List<ExamQuestionEntity> examQuestions;
   final Map<String, int> answers;
 
   @override
@@ -41,20 +40,20 @@ class _ExamViewBodyState extends State<ExamViewBody> {
       child: Column(
         children: [
           ExamHeader(
-            exam: widget.exam,
+            examQuestions: widget.examQuestions,
             pageController: _pageController,
             currentPageIndex: currentPageIndex,
           ),
           ExamPageView(
-            exam: widget.exam,
             pageController: _pageController,
             onPageChanged: onPageChanged,
             answers: widget.answers,
+            questions: widget.examQuestions,
           ),
           const SizedBox(height: 12),
           ExamFooter(
             pageController: _pageController,
-            exam: widget.exam,
+            examQuestions: widget.examQuestions,
             currentPageIndex: currentPageIndex,
           ),
           const SizedBox(height: 18),

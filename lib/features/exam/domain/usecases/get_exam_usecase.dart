@@ -1,10 +1,10 @@
-import '../entities/exam_entity.dart';
+import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
 import '../repos/exam_repo.dart';
 
 class GetExamUseCase {
   final ExamRepo examRepo;
   GetExamUseCase({required this.examRepo});
 
-  Future<ExamEntity> call(String id) =>
+  Future<ExamQuestionEntity> call(String id) =>
       examRepo.getExamById(id);
 }

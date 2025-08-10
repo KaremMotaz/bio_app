@@ -28,7 +28,7 @@ class ExamView extends StatelessWidget {
             case const (ExamRunningState):
               final runningState = state as ExamRunningState;
               return ExamViewBody(
-                exam: runningState.exam,
+                examQuestions: runningState.examQuestions,
                 answers: runningState.answers,
               );
 

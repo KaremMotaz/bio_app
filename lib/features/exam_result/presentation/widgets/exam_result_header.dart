@@ -1,20 +1,19 @@
+import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
-import '../../../exam/domain/entities/exam_entity.dart';
 import 'select_exam_result_question.dart';
 
 class ExamResultHeader extends StatelessWidget {
   const ExamResultHeader({
     super.key,
     required this.pageController,
-    required this.exam,
+    required this.examQuestions,
     required this.currentPageIndex,
   });
   final PageController pageController;
-  final ExamEntity exam;
+  final List<ExamQuestionEntity> examQuestions;
   final int currentPageIndex;
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class ExamResultHeader extends StatelessWidget {
           ),
           const Text("النتيجة", style: TextStyles.semiBold16),
           SelectExamResultQuestion(
-            exam: exam,
+            examQuestions: examQuestions,
             pageController: pageController,
             currentPageIndex: currentPageIndex,
           ),

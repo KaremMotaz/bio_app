@@ -29,15 +29,16 @@ class QuizQuestionModel extends QuizQuestionEntity {
           ?.map((e) => e.toString())
           .toList(),
       marks: (json['marks'] as num?)?.toInt(),
+      title: json['title'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'index': index,
-      'text': questionText,
+      'questionText': questionText,
       'options': options,
-      'correctAnswerIndex': correctIndex,
+      'correctIndex': correctIndex,
       'type': type.name,
       'scenario': scenario,
       'explanation': explanation,
