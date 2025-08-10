@@ -1,4 +1,5 @@
 import 'package:bio_app/features/exam_questions/domain/entities/exam_question_entity.dart';
+import 'package:bio_app/features/exam_questions/domain/repos/exam_repo.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/services/exam_grading_service.dart';
@@ -7,9 +8,12 @@ part 'exam_result_state.dart';
 
 class ExamResultCubit extends Cubit<ExamResultState> {
   final ExamResultRepo examResultRepo;
+  final ExamRepo examRepo;
 
-  ExamResultCubit({required this.examResultRepo})
-    : super(ExamResultInitialState());
+  ExamResultCubit({
+    required this.examResultRepo,
+    required this.examRepo,
+  }) : super(ExamResultInitialState());
 
   void getResult({
     required String examId,
@@ -25,7 +29,7 @@ class ExamResultCubit extends Cubit<ExamResultState> {
         emit(ExamResultErrorState(message: failure.toString()));
       },
       (examQuestions) async {
-        final examsEither = await examResultRepo.getExams();
+        final examsEither = await examRepo.getExams();
         examsEither.fold(
           (failure) {
             emit(ExamResultErrorState(message: failure.toString()));
@@ -48,12 +52,12 @@ class ExamResultCubit extends Cubit<ExamResultState> {
                 final maxScore = ExamGradingService.calculateMaxScore(
                   examQuestions: examQuestions,
                 );
-                final studentPercentage =
+                final double studentPercentage =
                     ExamGradingService.calculatePercentage(
                       studentScore: studentScore,
                       maxScore: maxScore,
                     );
-                final passed = ExamGradingService.isPassed(
+                final bool passed = ExamGradingService.isPassed(
                   studentPercentage: studentPercentage,
                   passPercentage:
                       exams[resultExamIndex].passPercentage,

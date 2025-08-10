@@ -8,7 +8,7 @@ class ExamGradingService {
     int totalScore = 0;
 
     for (final question in examQuestions) {
-      final studentAnswer = studentAnswers[question.index.toString()];
+      final studentAnswer = studentAnswers["${question.index}"];
       if (studentAnswer != null &&
           studentAnswer == question.correctIndex) {
         totalScore += question.marks;

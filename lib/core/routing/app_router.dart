@@ -1,4 +1,5 @@
 import 'package:bio_app/features/exam_questions/data/repos/exam_questions_repo_impl.dart';
+import 'package:bio_app/features/exam_questions/data/repos/exam_repo_impl.dart';
 import 'package:bio_app/features/exam_questions/domain/entities/exam_entity.dart';
 
 import '../../features/chapters/data/repos/chapter_repo_imp.dart';
@@ -153,6 +154,7 @@ abstract class AppRouter {
               create: (_) =>
                   ExamResultCubit(
                     examResultRepo: getIt<ExamResultRepoImpl>(),
+                    examRepo: getIt<ExamRepoImpl>(),
                   )..getResult(
                     examId: examId,
                     resultExamIndex: resultExamIndex,
