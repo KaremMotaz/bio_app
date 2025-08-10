@@ -8,7 +8,7 @@ class Routes {
   static const String otpVerificationView = '/otpVerificationView';
   static const String profileView = '/profileView';
   static const String quizView = '/quizView';
-  static const String examView = '/examView';
+  static const String examQuestionsView = '/examQuestionsView';
   static const String examResultView = '/examResultView';
   static const String examResultDetailsView =
       '/examResultDetailsView';

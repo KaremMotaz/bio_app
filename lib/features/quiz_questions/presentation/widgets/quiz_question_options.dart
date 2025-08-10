@@ -1,6 +1,5 @@
+import 'package:bio_app/features/quiz_questions/domain/entities/quiz_question_entity.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/entities/base_question_entity.dart';
 import '../../../../core/services/get_it_service.dart';
 import '../../../../core/theming/option_style.dart';
 import '../../../../core/widgets/image_options.dart';
@@ -10,8 +9,7 @@ import '../../data/models/quiz_question_model.dart';
 import '../../domain/logic/quiz_helpers.dart';
 import '../manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 
-class QuizQuestionOptions<T extends BaseQuestionEntity>
-    extends StatelessWidget {
+class QuizQuestionOptions extends StatelessWidget {
   const QuizQuestionOptions({
     super.key,
     required this.question,
@@ -19,7 +17,7 @@ class QuizQuestionOptions<T extends BaseQuestionEntity>
     required this.answerState,
   });
 
-  final T question;
+  final QuizQuestionEntity question;
   final void Function(int) onSelect;
   final QuizAnswerState answerState;
 
@@ -60,8 +58,6 @@ class QuizQuestionOptions<T extends BaseQuestionEntity>
           onSelect: onSelect,
           styleBuilder: getOptionStyle,
         );
-      default:
-        return const SizedBox.shrink();
     }
   }
 }

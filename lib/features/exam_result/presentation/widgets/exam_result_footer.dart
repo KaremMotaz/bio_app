@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
+import 'package:bio_app/features/exam_questions/domain/entities/exam_question_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/widgets/custom_footer_widget.dart';
@@ -37,6 +37,7 @@ class ExamResultFooter extends StatelessWidget {
           isLastPage: isLastPage,
           isEnabled: isEnabled,
           cubit: cubit,
+          examId: '',
         );
       },
     );

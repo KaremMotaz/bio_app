@@ -1,13 +1,12 @@
+import 'package:bio_app/features/exam_questions/domain/entities/exam_question_entity.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/entities/base_question_entity.dart';
-import '../../../exam/data/models/exam_question_model.dart';
+import '../../../exam_questions/data/models/exam_question_model.dart';
 import '../../../../core/theming/option_style.dart';
 import '../../../../core/widgets/image_options.dart';
 import '../../../../core/widgets/mcq_options.dart';
 import '../../../../core/widgets/true_false_options.dart';
 
-class ExamQuestionResultOptions<T extends BaseQuestionEntity>
+class ExamQuestionResultOptions
     extends StatelessWidget {
   const ExamQuestionResultOptions({
     super.key,
@@ -15,7 +14,7 @@ class ExamQuestionResultOptions<T extends BaseQuestionEntity>
     required this.onSelect,
     required this.answers,
   });
-  final T question;
+  final ExamQuestionEntity question;
   final void Function(int) onSelect;
   final Map<String, int> answers;
 
@@ -56,8 +55,6 @@ class ExamQuestionResultOptions<T extends BaseQuestionEntity>
             );
           },
         );
-      default:
-        return const SizedBox.shrink();
-    }
+      }
   }
 }

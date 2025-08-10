@@ -1,9 +1,12 @@
+import 'package:bio_app/features/exam_questions/data/repos/exam_repo_impl.dart';
+import 'package:bio_app/features/exam_questions/presentation/manager/exams_cubit/exams_cubit.dart';
+
 import '../../../../core/services/get_it_service.dart';
 import '../../../units/data/repos/unit_repo_imp.dart';
 import '../../../units/presentation/manager/unit_cubit/unit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../exam/presentation/views/available_exams_view.dart';
+import '../../../exam_questions/presentation/views/exams_view.dart';
 import '../../../units/presentation/unit_view.dart';
 import '../../../leaderboard/presentation/views/leaderboard_view.dart';
 import '../../../settings/presentation/views/settings_view.dart';
@@ -30,7 +33,11 @@ class MainPageView extends StatelessWidget {
                 ..getUnits(),
           child: const UnitView(),
         ),
-        const AvailableExamsView(),
+        BlocProvider(
+          create: (context) =>
+              ExamsCubit(examRepoImpl: getIt<ExamRepoImpl>()),
+          child: const ExamsView(),
+        ),
         const LeaderboardView(),
         const SettingsView(),
       ],

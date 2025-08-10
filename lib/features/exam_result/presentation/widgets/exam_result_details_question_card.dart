@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../exam/domain/entities/exam_question_entity.dart';
-import '../../../exam/presentation/widgets/question_images.dart';
-import '../../../exam/presentation/widgets/question_widget.dart';
+import '../../../exam_questions/domain/entities/exam_question_entity.dart';
+import '../../../exam_questions/presentation/widgets/question_images.dart';
+import '../../../exam_questions/presentation/widgets/question_widget.dart';
 import 'exam_question_result_options.dart';
 import 'result_feedback_card.dart';
 
@@ -29,13 +29,13 @@ class ExamResultDetailsQuestionCard extends StatelessWidget {
             const SizedBox(height: 10),
             QuestionImages<ExamQuestionEntity>(question: question),
             const SizedBox(height: 20),
-            ExamQuestionResultOptions<ExamQuestionEntity>(
+            ExamQuestionResultOptions(
               question: question,
               onSelect: (int index) {},
               answers: answers,
             ),
             const SizedBox(height: 20),
-            ResultFeedbackCard<ExamQuestionEntity>(
+            ResultFeedbackCard(
               isCorrect: isCorrect,
               question: question,
             ),

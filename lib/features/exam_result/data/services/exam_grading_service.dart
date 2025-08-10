@@ -1,9 +1,9 @@
-import '../../../exam/domain/entities/exam_question_entity.dart';
+import '../../../exam_questions/domain/entities/exam_question_entity.dart';
 
 class ExamGradingService {
   static int calculateStudentScore({
     required List<ExamQuestionEntity> examQuestions,
-    required Map<String, int> studentAnswers,
+    required Map<String, dynamic> studentAnswers,
   }) {
     int totalScore = 0;
 

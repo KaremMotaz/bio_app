@@ -1,36 +1,55 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:bio_app/core/errors/failure.dart';
+import 'package:bio_app/core/errors/server_failure.dart';
+import 'package:bio_app/features/exam_questions/domain/entities/exam_entity.dart';
+import 'package:bio_app/features/exam_questions/domain/entities/exam_question_entity.dart';
+import 'package:bio_app/features/exam_result/data/datasources/exam_result_remote_data_source.dart';
+import 'package:dartz/dartz.dart';
 
 import '../../domin/repos/exam_result_repo.dart';
 
 class ExamResultRepoImpl implements ExamResultRepo {
-  final FirebaseFirestore firestore;
+  final ExamResultRemoteDataSourceImp examResultRemoteDataSourceImp;
 
-  ExamResultRepoImpl({required this.firestore});
+  ExamResultRepoImpl({required this.examResultRemoteDataSourceImp});
 
-@override
-Future<Map<String, int>> getStudentAnswers(String examId) async {
-  try {
-    final querySnapshot = await firestore
-        .collection('submissions')
-        .where('examId', isEqualTo: examId)
-        .limit(1)
-        .get();
+  @override
+  Future<Either<Failure, List<ExamEntity>>> getExams() async {
+    try {
+      final List<ExamEntity> exam =
+          await examResultRemoteDataSourceImp.fetchExam();
 
-    if (querySnapshot.docs.isEmpty) {
-      throw Exception('Submission not found');
+      return Right(exam);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
     }
-
-    final data = querySnapshot.docs.first.data();
-    final rawAnswers = data['answers'] as Map<String, dynamic>?;
-
-    if (rawAnswers == null) return {};
-
-    return rawAnswers.map(
-      (key, value) => MapEntry(key.toString(), value as int),
-    );
-  } catch (e) {
-    throw Exception('Failed to fetch student answers: $e');
   }
-}
 
+  @override
+  Future<Either<Failure, List<ExamQuestionEntity>>> getExamQuestions({
+    required String examId,
+  }) async {
+    try {
+      final List<ExamQuestionEntity> questions =
+          await examResultRemoteDataSourceImp.fetchExamQuestions(
+            examId: examId,
+          );
+
+      return Right(questions);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Map<String, dynamic>>>>
+  getStudentAnswers({required String examId}) async {
+    try {
+      final List<Map<String, dynamic>> answers =
+          await examResultRemoteDataSourceImp.getStudentAnswers();
+
+      return Right(answers);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
 }

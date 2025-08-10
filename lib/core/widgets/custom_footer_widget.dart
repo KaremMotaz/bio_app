@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
+import '../../features/exam_questions/presentation/manager/exam_questions_cubit/exam_questions_cubit.dart';
 import 'app_text_button.dart';
 
 class CustomFooterWidget<T extends Cubit> extends StatelessWidget {
@@ -14,6 +14,7 @@ class CustomFooterWidget<T extends Cubit> extends StatelessWidget {
     required this.isLastPage,
     required this.isEnabled,
     required this.cubit,
+    required this.examId,
   }) : _pageController = pageController;
 
   final bool isFirstPage;
@@ -21,6 +22,7 @@ class CustomFooterWidget<T extends Cubit> extends StatelessWidget {
   final int currentPageIndex;
   final bool isLastPage;
   final bool? isEnabled;
+  final String examId;
   final T cubit;
 
   @override
@@ -51,8 +53,10 @@ class CustomFooterWidget<T extends Cubit> extends StatelessWidget {
               onPressed: () {
                 if (isLastPage) {
                   if (isEnabled ?? true) {
-                    if (cubit is ExamCubit) {
-                      (cubit as ExamCubit).submitExam(examId: examId);
+                    if (cubit is ExamQuestionsCubit) {
+                      (cubit as ExamQuestionsCubit).submitExam(
+                        examId: examId,
+                      );
                     }
                   } else {
                     GoRouter.of(context).pop(context);

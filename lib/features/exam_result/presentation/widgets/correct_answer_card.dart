@@ -1,11 +1,11 @@
-import '../../../../core/entities/base_question_entity.dart';
+import 'package:bio_app/features/exam_questions/domain/entities/exam_question_entity.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 
-class CorrectAnswerCard<T extends BaseQuestionEntity> extends StatelessWidget {
+class CorrectAnswerCard extends StatelessWidget {
   const CorrectAnswerCard({super.key, required this.question});
-  final T question;
+  final ExamQuestionEntity question;
 
   @override
   Widget build(BuildContext context) {

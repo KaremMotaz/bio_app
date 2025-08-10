@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../exam/presentation/widgets/question_images.dart';
-import '../../../exam/presentation/widgets/question_widget.dart';
+import '../../../exam_questions/presentation/widgets/question_images.dart';
+import '../../../exam_questions/presentation/widgets/question_widget.dart';
 import '../../domain/entities/quiz_question_entity.dart';
 import '../manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import 'quiz_question_options.dart';
@@ -28,7 +28,7 @@ class QuizQuestionCard extends StatelessWidget {
             const SizedBox(height: 10),
             QuestionImages<QuizQuestionEntity>(question: question),
             const SizedBox(height: 20),
-            QuizQuestionOptions<QuizQuestionEntity>(
+            QuizQuestionOptions(
               question: question,
               onSelect: (int index) {
                 context.read<QuizQuestionsCubit>().selectAnswer(

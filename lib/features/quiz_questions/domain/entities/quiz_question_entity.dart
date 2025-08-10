@@ -1,7 +1,8 @@
-import '../../../../core/entities/base_question_entity.dart';
+import 'package:bio_app/core/entities/base_question_entity.dart';
+
 import '../../data/models/quiz_question_model.dart';
 
-class QuizQuestionEntity implements BaseQuestionEntity {
+class QuizQuestionEntity extends BaseQuestionEntity {
   @override
   final int index;
   @override
@@ -17,7 +18,7 @@ class QuizQuestionEntity implements BaseQuestionEntity {
   @override
   final String? explanation;
   @override
-  final int? marks ;
+  final int? marks;
   @override
   final int correctIndex;
   @override

@@ -1,4 +1,5 @@
-import 'package:bio_app/features/exam/data/repos/exam_repo_impl.dart';
+import 'package:bio_app/features/exam_questions/data/repos/exam_questions_repo_impl.dart';
+import 'package:bio_app/features/exam_questions/domain/entities/exam_entity.dart';
 
 import '../../features/chapters/data/repos/chapter_repo_imp.dart';
 import '../../features/chapters/presentation/manager/chapter_cubit/chapter_cubit.dart';
@@ -26,12 +27,12 @@ import '../../features/profile/presentation/views/profile_view.dart';
 import '../../features/exam_result/presentation/views/exam_result_view.dart';
 import '../../features/exam_result/presentation/views/exam_result_details_view.dart';
 import '../../features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
-import '../../features/quiz_questions/presentation/views/quiz_view.dart';
+import '../../features/quiz_questions/presentation/views/quiz_questions_view.dart';
 import '../../features/quiz_questions/presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import '../../features/chapters/presentation/chapter_view.dart';
 import '../../features/lessons/presentation/lessons_view.dart';
-import '../../features/exam/presentation/views/exam_view.dart';
-import '../../features/exam/presentation/manager/exam_cubit/exam_cubit.dart';
+import '../../features/exam_questions/presentation/views/exam_questions_view.dart';
+import '../../features/exam_questions/presentation/manager/exam_questions_cubit/exam_questions_cubit.dart';
 
 abstract class AppRouter {
   static GoRouter createRouter() {
@@ -110,28 +111,49 @@ abstract class AppRouter {
                 getIt<QuizHelper>(),
                 questionsRepo: getIt<QuizQuestionsRepoImp>(),
               )..loadQuestions(quizId: quizId),
-              child: const QuizView(),
+              child: const QuizQuestionsView(),
             );
           },
         ),
         GoRoute(
-          path: Routes.examView,
+          path: Routes.examQuestionsView,
           builder: (context, state) {
+            final args =
+                GoRouterState.of(context).extra
+                    as Map<String, dynamic>;
+            final String examId = args['examId'];
+            final int examIndex = args['examIndex'];
+            final List<ExamEntity> exams = args['exams'];
             return BlocProvider(
               create: (_) =>
-                  ExamCubit(examRepoImpl: getIt<ExamRepoImpl>())
-                    ..getExams(examId: examId, examIndex: examIndex),
-              child: const ExamView(),
+                  ExamQuestionsCubit(
+                    examQuestionsRepoImpl:
+                        getIt<ExamQuestionsRepoImpl>(),
+                  )..getExamQuestions(
+                    examId: examId,
+                    examIndex: examIndex,
+                    exams: exams,
+                  ),
+              child: ExamQuestionsView(examIndex: examIndex),
             );
           },
         ),
         GoRoute(
           path: Routes.examResultView,
           builder: (context, state) {
+            final args =
+                GoRouterState.of(context).extra
+                    as Map<String, dynamic>;
+            final String examId = args['examId'];
+            final int resultExamIndex = args['resultExamIndex'];
             return BlocProvider(
-              create: (_) => ExamResultCubit(
-                examResultRepo: getIt<ExamResultRepoImpl>(),
-              )..getResult(examId: 0),
+              create: (_) =>
+                  ExamResultCubit(
+                    examResultRepo: getIt<ExamResultRepoImpl>(),
+                  )..getResult(
+                    examId: examId,
+                    resultExamIndex: resultExamIndex,
+                  ),
               child: const ExamResultView(),
             );
           },
@@ -164,8 +186,9 @@ abstract class AppRouter {
             final args =
                 GoRouterState.of(context).extra
                     as Map<String, dynamic>;
-            final chapterId = args['chapterId'];
-            final unitId = args['unitId'];
+            final String chapterId = args['chapterId'];
+            final String unitId = args['unitId'];
+
             return BlocProvider(
               create: (context) => LessonCubit(
                 lessonRepoImp: getIt<LessonRepoImp>(),

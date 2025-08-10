@@ -1,6 +1,7 @@
 // lib/features/quiz/domain/logic/quiz_helpers.dart
 
-import '../../../../../core/entities/base_question_entity.dart';
+import 'package:bio_app/features/quiz_questions/domain/entities/quiz_question_entity.dart';
+
 import '../../data/models/quiz_question_model.dart';
 import '../../presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 
@@ -16,19 +17,19 @@ class QuizHelper {
     return DateTime.now().difference(_startTime!);
   }
 
-
-  bool isCorrectAnswer(QuizQuestionModel question, int? selectedIndex) {
+  bool isCorrectAnswer(
+    QuizQuestionModel question,
+    int? selectedIndex,
+  ) {
     return selectedIndex == question.correctIndex;
   }
-
 
   int updateRemainingLives(bool isCorrect, int currentLives) {
     return isCorrect ? currentLives : currentLives - 1;
   }
 
-
   QuizAnswerState getAnswerStateForOption({
-    required BaseQuestionEntity question,
+    required QuizQuestionEntity question,
     required int selectedIndex,
     required int optionIndex,
     required QuizAnswerState currentAnswerState,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../exam/domain/entities/exam_question_entity.dart';
+import '../../../exam_questions/domain/entities/exam_question_entity.dart';
 import '../../data/services/exam_grading_service.dart';
 import 'exam_result_details_question_card.dart';
 

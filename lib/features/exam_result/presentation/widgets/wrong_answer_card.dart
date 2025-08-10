@@ -1,13 +1,12 @@
+import 'package:bio_app/features/exam_questions/domain/entities/exam_question_entity.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/entities/base_question_entity.dart';
-import '../../../exam/data/models/exam_question_model.dart';
+import '../../../exam_questions/data/models/exam_question_model.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 
-class WrongAnswerCard<T extends BaseQuestionEntity> extends StatelessWidget {
+class WrongAnswerCard extends StatelessWidget {
   const WrongAnswerCard({super.key, required this.question});
-  final T question;
+  final ExamQuestionEntity question;
 
   @override
   Widget build(BuildContext context) {
