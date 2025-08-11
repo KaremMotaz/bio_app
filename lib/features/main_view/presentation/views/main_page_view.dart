@@ -1,5 +1,5 @@
-import 'package:bio_app/features/exam/data/repos/exam_repo_impl.dart';
-import 'package:bio_app/features/exam/presentation/manager/exams_cubit/exams_cubit.dart';
+import '../../../exam/data/repos/exam_repo_impl.dart';
+import '../../../exam/presentation/manager/exams_cubit/exams_cubit.dart';
 
 import '../../../../core/services/get_it_service.dart';
 import '../../../units/data/repos/unit_repo_imp.dart';

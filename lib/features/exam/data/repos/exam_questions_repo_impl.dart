@@ -1,10 +1,10 @@
-import 'package:bio_app/core/errors/failure.dart';
-import 'package:bio_app/core/errors/server_failure.dart';
-import 'package:bio_app/features/exam/data/datasources/exam_questions_remote_data_source.dart';
-import 'package:bio_app/features/exam/data/datasources/exams_questions_local_data_source.dart';
-import 'package:bio_app/features/exam/data/models/exam_question_model.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
-import 'package:bio_app/features/exam/domain/repos/exam_questions_repo.dart';
+import '../../../../core/errors/failure.dart';
+import '../../../../core/errors/server_failure.dart';
+import '../datasources/exam_questions_remote_data_source.dart';
+import '../datasources/exams_questions_local_data_source.dart';
+import '../models/exam_question_model.dart';
+import '../../domain/entities/exam_question_entity.dart';
+import '../../domain/repos/exam_questions_repo.dart';
 import 'package:dartz/dartz.dart';
 
 class ExamQuestionsRepoImp implements ExamQuestionsRepo {

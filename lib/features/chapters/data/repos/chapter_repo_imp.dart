@@ -1,11 +1,13 @@
 import 'dart:developer';
-import '../data_source/chapters_local_data_source.dart';
-import '../../../../core/errors/server_failure.dart';
+
+import 'package:dartz/dartz.dart';
+
 import '../../../../core/errors/failure.dart';
+import '../../../../core/errors/server_failure.dart';
+import '../../domain/chapter_repo.dart';
+import '../data_source/chapters_local_data_source.dart';
 import '../data_source/chapters_remote_data_source.dart';
 import '../models/chapter_model.dart';
-import '../../domain/chapter_repo.dart';
-import 'package:dartz/dartz.dart';
 
 class ChapterRepoImpl implements ChapterRepo {
   final ChaptersRemoteDataSource chaptersRemoteDataSource;

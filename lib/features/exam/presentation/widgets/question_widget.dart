@@ -1,4 +1,4 @@
-import 'package:bio_app/core/entities/base_question_entity.dart';
+import '../../../../core/entities/base_question_entity.dart';
 
 import '../../../../core/theming/text_styles.dart';
 import 'package:flutter/material.dart';

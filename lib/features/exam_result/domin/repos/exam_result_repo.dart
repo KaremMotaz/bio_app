@@ -1,6 +1,6 @@
-import 'package:bio_app/core/errors/failure.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
-import 'package:bio_app/features/exam_result/data/models/exams_answers_model.dart';
+import '../../../../core/errors/failure.dart';
+import '../../../exam/domain/entities/exam_question_entity.dart';
+import '../../data/models/exams_answers_model.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class ExamResultRepo {

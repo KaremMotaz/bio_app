@@ -1,11 +1,11 @@
-import 'package:bio_app/features/exam/data/datasources/exam_questions_remote_data_source.dart';
-import 'package:bio_app/features/exam/data/datasources/exams_local_data_source_imp.dart';
-import 'package:bio_app/features/exam/data/datasources/exams_questions_local_data_source_imp.dart';
-import 'package:bio_app/features/exam/data/repos/exam_questions_repo_impl.dart';
-import 'package:bio_app/features/exam_result/data/datasources/exams_result_local_data_source_imp.dart';
-import 'package:bio_app/features/exam_result/data/datasources/exams_result_remote_data_source.dart';
-import 'package:bio_app/features/quiz_questions/data/data_source/quiz_questions_local_data_source_imp.dart';
-import 'package:bio_app/features/quiz_questions/data/data_source/quiz_questions_remote_data_source.dart';
+import '../../features/exam/data/datasources/exam_questions_remote_data_source.dart';
+import '../../features/exam/data/datasources/exams_local_data_source_imp.dart';
+import '../../features/exam/data/datasources/exams_questions_local_data_source_imp.dart';
+import '../../features/exam/data/repos/exam_questions_repo_impl.dart';
+import '../../features/exam_result/data/datasources/exams_result_local_data_source_imp.dart';
+import '../../features/exam_result/data/datasources/exams_result_remote_data_source.dart';
+import '../../features/quiz_questions/data/data_source/quiz_questions_local_data_source_imp.dart';
+import '../../features/quiz_questions/data/data_source/quiz_questions_remote_data_source.dart';
 
 import '../../features/chapters/data/data_source/chapters_local_data_source.dart';
 import '../../features/lessons/data/data_source/lessons_local_data_source.dart';

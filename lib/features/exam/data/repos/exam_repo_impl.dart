@@ -1,7 +1,7 @@
-import 'package:bio_app/core/errors/failure.dart';
-import 'package:bio_app/core/errors/server_failure.dart';
-import 'package:bio_app/features/exam/data/datasources/exams_local_data_source.dart';
-import 'package:bio_app/features/exam/data/models/exam_model.dart';
+import '../../../../core/errors/failure.dart';
+import '../../../../core/errors/server_failure.dart';
+import '../datasources/exams_local_data_source.dart';
+import '../models/exam_model.dart';
 import 'package:dartz/dartz.dart';
 import '../../domain/entities/exam_entity.dart';
 import '../../domain/repos/exam_repo.dart';

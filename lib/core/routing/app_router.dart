@@ -1,6 +1,6 @@
-import 'package:bio_app/features/exam/data/repos/exam_questions_repo_impl.dart';
-import 'package:bio_app/features/exam/data/repos/exam_repo_impl.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
+import '../../features/exam/data/repos/exam_questions_repo_impl.dart';
+import '../../features/exam/data/repos/exam_repo_impl.dart';
+import '../../features/exam/domain/entities/exam_entity.dart';
 
 import '../../features/chapters/data/repos/chapter_repo_imp.dart';
 import '../../features/chapters/presentation/manager/chapter_cubit/chapter_cubit.dart';

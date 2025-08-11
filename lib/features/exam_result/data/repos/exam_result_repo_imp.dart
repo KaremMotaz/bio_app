@@ -1,12 +1,12 @@
-import 'package:bio_app/core/errors/failure.dart';
-import 'package:bio_app/core/errors/server_failure.dart';
-import 'package:bio_app/features/exam/data/datasources/exam_questions_remote_data_source.dart';
-import 'package:bio_app/features/exam/data/datasources/exams_questions_local_data_source.dart';
-import 'package:bio_app/features/exam/data/models/exam_question_model.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
-import 'package:bio_app/features/exam_result/data/datasources/exams_result_local_data_source.dart';
-import 'package:bio_app/features/exam_result/data/datasources/exams_result_remote_data_source.dart';
-import 'package:bio_app/features/exam_result/data/models/exams_answers_model.dart';
+import '../../../../core/errors/failure.dart';
+import '../../../../core/errors/server_failure.dart';
+import '../../../exam/data/datasources/exam_questions_remote_data_source.dart';
+import '../../../exam/data/datasources/exams_questions_local_data_source.dart';
+import '../../../exam/data/models/exam_question_model.dart';
+import '../../../exam/domain/entities/exam_question_entity.dart';
+import '../datasources/exams_result_local_data_source.dart';
+import '../datasources/exams_result_remote_data_source.dart';
+import '../models/exams_answers_model.dart';
 import 'package:dartz/dartz.dart';
 import '../../domin/repos/exam_result_repo.dart';
 

@@ -1,9 +1,9 @@
-import '../../../core/theming/app_colors.dart';
-import 'manager/unit_cubit/unit_cubit.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/theming/app_colors.dart';
+import 'manager/unit_cubit/unit_cubit.dart';
 import 'widgets/unit_view_body.dart';
-import 'package:flutter/material.dart';
 
 class UnitView extends StatelessWidget {
   const UnitView({super.key});

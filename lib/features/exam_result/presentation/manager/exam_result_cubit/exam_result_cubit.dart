@@ -1,5 +1,5 @@
-import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
-import 'package:bio_app/features/exam/domain/repos/exam_repo.dart';
+import '../../../../exam/domain/entities/exam_question_entity.dart';
+import '../../../../exam/domain/repos/exam_repo.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/services/exam_grading_service.dart';

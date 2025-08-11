@@ -1,5 +1,5 @@
-import 'package:bio_app/core/errors/failure.dart';
-import 'package:bio_app/features/units/data/models/unit_model.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../../data/models/unit_model.dart';
 import 'package:dartz/dartz.dart';
 import '../../../data/repos/unit_repo_imp.dart';
 import '../../../domain/unit_entity.dart';

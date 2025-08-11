@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
+import '../../../exam/domain/entities/exam_question_entity.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import 'package:flutter/material.dart';

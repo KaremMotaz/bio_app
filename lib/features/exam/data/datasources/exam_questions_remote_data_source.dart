@@ -1,6 +1,6 @@
-import 'package:bio_app/core/helpers/backend_endpoint.dart';
-import 'package:bio_app/core/services/data_service.dart';
-import 'package:bio_app/features/exam/data/models/exam_question_model.dart';
+import '../../../../core/helpers/backend_endpoint.dart';
+import '../../../../core/services/data_service.dart';
+import '../models/exam_question_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

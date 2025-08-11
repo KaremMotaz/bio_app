@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../core/theming/app_colors.dart';
 import '../../../core/theming/text_styles.dart';
 import 'manager/chapter_cubit/chapter_cubit.dart';
 import 'widgets/chapter_view_body.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/material.dart';
 
 class ChapterView extends StatelessWidget {
   const ChapterView({super.key, required this.unitId});

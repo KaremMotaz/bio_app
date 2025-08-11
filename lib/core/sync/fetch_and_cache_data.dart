@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:bio_app/features/units/data/repos/unit_repo_imp.dart';
+import '../../features/units/data/repos/unit_repo_imp.dart';
 import '../services/firestore_service.dart';
 import '../services/get_it_service.dart';
 import '../../features/chapters/data/data_source/chapters_local_data_source.dart';

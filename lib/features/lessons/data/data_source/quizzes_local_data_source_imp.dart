@@ -1,8 +1,7 @@
-import 'quizzes_local_data_source.dart';
-import '../models/quiz_model.dart';
-
 import '../../../../core/helpers/constants.dart';
 import '../../../../core/services/local_cache_service.dart';
+import '../models/quiz_model.dart';
+import 'quizzes_local_data_source.dart';
 
 class QuizzesLocalDataSourceImpl implements QuizzesLocalDataSource {
   final LocalCacheService cache;

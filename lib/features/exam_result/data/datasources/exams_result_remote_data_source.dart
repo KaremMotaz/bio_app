@@ -1,5 +1,5 @@
-import 'package:bio_app/core/helpers/backend_endpoint.dart';
-import 'package:bio_app/core/services/data_service.dart';
+import '../../../../core/helpers/backend_endpoint.dart';
+import '../../../../core/services/data_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/exams_answers_model.dart'; // عدل المسار حسب مشروعك
 

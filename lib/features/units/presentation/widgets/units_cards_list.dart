@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '../../domain/unit_entity.dart';
 import 'custom_unit_card.dart';
-import 'package:flutter/material.dart';
 
 class UnitsCardsList extends StatelessWidget {
   const UnitsCardsList({super.key, required this.units});

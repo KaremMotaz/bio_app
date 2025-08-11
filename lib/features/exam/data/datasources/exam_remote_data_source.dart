@@ -1,6 +1,6 @@
-import 'package:bio_app/core/helpers/backend_endpoint.dart';
-import 'package:bio_app/core/helpers/backend_fields.dart';
-import 'package:bio_app/core/services/data_service.dart';
+import '../../../../core/helpers/backend_endpoint.dart';
+import '../../../../core/helpers/backend_fields.dart';
+import '../../../../core/services/data_service.dart';
 import '../models/exam_model.dart';
 
 class ExamsRemoteDataSource {

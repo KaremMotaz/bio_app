@@ -1,12 +1,12 @@
-import '../manager/quiz_cubit/quiz_cubit.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/helpers/constants.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../domain/lesson_entity.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import '../manager/quiz_cubit/quiz_cubit.dart';
 
 class CustomLessonCard extends StatefulWidget {
   const CustomLessonCard({

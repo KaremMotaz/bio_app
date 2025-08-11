@@ -1,4 +1,4 @@
-import 'package:bio_app/features/quiz_questions/data/models/quiz_question_model.dart';
+import '../models/quiz_question_model.dart';
 
 import '../../../../core/helpers/backend_endpoint.dart';
 import '../../../../core/services/data_service.dart';

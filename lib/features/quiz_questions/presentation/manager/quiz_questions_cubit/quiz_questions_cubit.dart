@@ -1,4 +1,4 @@
-import 'package:bio_app/core/errors/failure.dart';
+import '../../../../../core/errors/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

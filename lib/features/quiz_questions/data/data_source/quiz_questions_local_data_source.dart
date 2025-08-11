@@ -1,4 +1,4 @@
-import 'package:bio_app/features/quiz_questions/data/models/quiz_question_model.dart';
+import '../models/quiz_question_model.dart';
 
 abstract class QuizQuestionsLocalDataSource {
   Future<List<QuizQuestionModel>?> getQuizQuestions({

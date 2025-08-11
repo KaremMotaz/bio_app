@@ -1,4 +1,4 @@
-import 'package:bio_app/features/lessons/data/models/quiz_model.dart';
+import '../models/quiz_model.dart';
 
 import '../../../../core/helpers/backend_endpoint.dart';
 import '../../../../core/helpers/backend_fields.dart';

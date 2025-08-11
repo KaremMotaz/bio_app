@@ -1,5 +1,4 @@
-import 'package:bio_app/features/chapters/data/models/chapter_model.dart';
-
+import '../models/chapter_model.dart';
 import '../../../../core/helpers/backend_endpoint.dart';
 import '../../../../core/services/data_service.dart';
 

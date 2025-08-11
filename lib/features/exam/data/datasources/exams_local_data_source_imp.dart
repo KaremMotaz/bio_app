@@ -1,5 +1,5 @@
-import 'package:bio_app/features/exam/data/datasources/exams_local_data_source.dart';
-import 'package:bio_app/features/exam/data/models/exam_model.dart';
+import 'exams_local_data_source.dart';
+import '../models/exam_model.dart';
 import '../../../../core/helpers/constants.dart';
 import '../../../../core/services/local_cache_service.dart';
 
