@@ -18,7 +18,9 @@ class ExamModel extends ExamEntity {
       title: json['title'],
       unit: json['unit'],
       lesson: json['lesson'],
-      endTime: (json['endTime'] as Timestamp).toDate(),
+      endTime: json['endTime'] is Timestamp
+          ? (json['endTime'] as Timestamp).toDate()
+          : (json['endTime'] as DateTime),
       passPercentage: (json['passPercentage'] as num).toDouble(),
       isPublished: json['isPublished'],
     );
