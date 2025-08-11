@@ -1,0 +1,41 @@
+import 'package:bio_app/core/errors/failure.dart';
+import 'package:bio_app/core/errors/server_failure.dart';
+import 'package:bio_app/features/exam/data/datasources/exams_local_data_source.dart';
+import 'package:bio_app/features/exam/data/models/exam_model.dart';
+import 'package:dartz/dartz.dart';
+import '../../domain/entities/exam_entity.dart';
+import '../../domain/repos/exam_repo.dart';
+import '../datasources/exam_remote_data_source.dart';
+
+class ExamRepoImpl implements ExamRepo {
+  final ExamsRemoteDataSource examsRemoteDataSource;
+  final ExamsLocalDataSource examsLocalDataSource;
+
+  ExamRepoImpl({
+    required this.examsRemoteDataSource,
+    required this.examsLocalDataSource,
+  });
+
+  @override
+  Future<Either<Failure, List<ExamEntity>>> getExams() async {
+    try {
+      // Try to get data from cache first
+      final List<ExamModel>? cached = await examsLocalDataSource
+          .getExams();
+      if (cached != null && cached.isNotEmpty) {
+        return Right(cached);
+      }
+
+      //  No data in cache, fetch from remote
+      final List<ExamModel> exams = await examsRemoteDataSource
+          .fetchExam();
+
+      // Cache the data
+      await examsLocalDataSource.cacheExams(exams);
+
+      return Right(exams);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+}

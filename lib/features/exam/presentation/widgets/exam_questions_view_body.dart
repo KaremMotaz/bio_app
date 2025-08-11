@@ -1,25 +1,28 @@
 import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
 import 'package:flutter/material.dart';
-import 'exam_result_details_page_view.dart';
-import 'exam_result_footer.dart';
-import 'exam_result_header.dart';
+import 'exam_questions_footer.dart';
+import 'exam_questions_header.dart';
+import 'exam_questions_page_view.dart';
 
-class ExamResultDetailsViewBody extends StatefulWidget {
-  const ExamResultDetailsViewBody({
+class ExamQuestionsViewBody extends StatefulWidget {
+  const ExamQuestionsViewBody({
     super.key,
-    required this.answers,
     required this.examQuestions,
+    required this.answers,
+    required this.examId,
   });
+
   final List<ExamQuestionEntity> examQuestions;
   final Map<String, int> answers;
+  final String examId;
 
   @override
-  State<ExamResultDetailsViewBody> createState() =>
-      _ExamResultDetailsViewBodyState();
+  State<ExamQuestionsViewBody> createState() =>
+      _ExamQuestionsViewBodyState();
 }
 
-class _ExamResultDetailsViewBodyState
-    extends State<ExamResultDetailsViewBody> {
+class _ExamQuestionsViewBodyState
+    extends State<ExamQuestionsViewBody> {
   final PageController _pageController = PageController();
   int currentPageIndex = 0;
 
@@ -40,23 +43,23 @@ class _ExamResultDetailsViewBodyState
     return SafeArea(
       child: Column(
         children: [
-          ExamResultHeader(
+          ExamQuestionsHeader(
             examQuestions: widget.examQuestions,
             pageController: _pageController,
             currentPageIndex: currentPageIndex,
           ),
-          ExamResultDetailsPageView(
-            examQuestions: widget.examQuestions,
-            onPageChanged: onPageChanged,
+          ExamQuestionsPageView(
             pageController: _pageController,
+            onPageChanged: onPageChanged,
             answers: widget.answers,
+            questions: widget.examQuestions,
           ),
           const SizedBox(height: 12),
-          ExamResultFooter(
+          ExamQuestionsFooter(
             pageController: _pageController,
             examQuestions: widget.examQuestions,
             currentPageIndex: currentPageIndex,
-            isEnabled: false,
+            examId: widget.examId,
           ),
           const SizedBox(height: 18),
         ],

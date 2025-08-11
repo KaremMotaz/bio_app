@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theming/app_colors.dart';
-import '../../../exam_questions/presentation/manager/exam_questions_cubit/exam_questions_cubit.dart';
+import '../../../exam/presentation/manager/exam_questions_cubit/exam_questions_cubit.dart';
 import '../manager/exam_result_cubit/exam_result_cubit.dart';
 import '../widgets/exam_result_details_view_body.dart';
 

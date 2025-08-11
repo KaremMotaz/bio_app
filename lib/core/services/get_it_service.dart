@@ -1,5 +1,6 @@
-import 'package:bio_app/features/exam_questions/data/datasources/exam_questions_remote_data_source.dart';
-import 'package:bio_app/features/exam_questions/data/repos/exam_questions_repo_impl.dart';
+import 'package:bio_app/features/exam/data/datasources/exam_questions_remote_data_source.dart';
+import 'package:bio_app/features/exam/data/datasources/exams_local_data_source_imp.dart';
+import 'package:bio_app/features/exam/data/repos/exam_questions_repo_impl.dart';
 import 'package:bio_app/features/exam_result/data/datasources/exam_result_remote_data_source.dart';
 import 'package:bio_app/features/quiz_questions/data/data_source/quiz_questions_local_data_source_imp.dart';
 import 'package:bio_app/features/quiz_questions/data/data_source/quiz_questions_remote_data_source.dart';
@@ -27,8 +28,8 @@ import 'package:get_it/get_it.dart';
 import '../../features/auth/data/repos/auth_repo_imp.dart';
 import '../../features/auth/domain/auth_repo.dart';
 import '../../features/quiz_questions/data/repos/quiz_questions_repo_imp.dart';
-import '../../features/exam_questions/data/datasources/exam_remote_data_source.dart';
-import '../../features/exam_questions/data/repos/exam_repo_impl.dart';
+import '../../features/exam/data/datasources/exam_remote_data_source.dart';
+import '../../features/exam/data/repos/exam_repo_impl.dart';
 import '../../features/exam_result/data/repos/exam_result_repo_imp.dart';
 
 import 'firebase_auth_service.dart';
@@ -66,12 +67,15 @@ void setupGetIt() {
   );
 
   // 📝 Exam
-  getIt.registerLazySingleton<ExamRemoteDataSource>(
-    () => ExamRemoteDataSource(databaseService: getIt()),
+  getIt.registerLazySingleton<ExamsRemoteDataSource>(
+    () => ExamsRemoteDataSource(databaseService: getIt()),
   );
 
   getIt.registerLazySingleton<ExamRepoImpl>(
-    () => ExamRepoImpl(examRemoteDataSource: getIt()),
+    () => ExamRepoImpl(
+      examsRemoteDataSource: getIt(),
+      examsLocalDataSource: ExamsLocalDataSourceImp(cache: getIt()),
+    ),
   );
 
   // 📝 Exam Questions
@@ -79,15 +83,18 @@ void setupGetIt() {
     () => ExamQuestionsRemoteDataSource(databaseService: getIt()),
   );
 
-  getIt.registerLazySingleton<ExamQuestionsRepoImpl>(
+  getIt.registerLazySingleton<ExamQuestionsRepoImp>(
     () =>
-        ExamQuestionsRepoImpl(examQuestionsRemoteDataSource: getIt()),
+        ExamQuestionsRepoImp(examQuestionsRemoteDataSource: getIt()),
   );
 
   // 📊 Exam Result
-  getIt.registerLazySingleton<ExamResultRepoImpl>(
-    () => ExamResultRepoImpl(
+  getIt.registerLazySingleton<ExamResultRepoImp>(
+    () => ExamResultRepoImp(
       examResultRemoteDataSourceImp: ExamResultRemoteDataSourceImp(
+        databaseService: getIt(),
+      ),
+      examQuestionsRemoteDataSourceImp: ExamQuestionsRemoteDataSource(
         databaseService: getIt(),
       ),
     ),

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/selector_widget.dart';
-import '../manager/exam_result_cubit/exam_result_cubit.dart';
+import '../manager/exam_questions_cubit/exam_questions_cubit.dart';
 
-class SelectExamResultQuestion extends StatelessWidget {
-  const SelectExamResultQuestion({
+class SelectExamQuestion extends StatelessWidget {
+  const SelectExamQuestion({
     super.key,
     required this.pageController,
     required this.currentPageIndex,
@@ -21,26 +21,30 @@ class SelectExamResultQuestion extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        final examCubit = context.read<ExamResultCubit>();
+        final examCubit = context.read<ExamQuestionsCubit>();
 
         showDialog(
           context: context,
           builder: (dialogContext) {
             return BlocProvider.value(
               value: examCubit,
-              child: BlocBuilder<ExamResultCubit, ExamResultState>(
-                builder: (context, state) {
-                  if (state is! ExamResultLoadedState) {
-                    return const SizedBox.shrink();
-                  }
-                  return SelectorWidget(
-                    examQuestions: examQuestions,
-                    currentPageIndex: currentPageIndex,
-                    pageController: pageController,
-                    answers: const {},
-                  );
-                },
-              ),
+              child:
+                  BlocBuilder<ExamQuestionsCubit, ExamQuestionsState>(
+                    builder: (context, state) {
+                      if (state is! ExamQuestionsRunningState) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+
+                      return SelectorWidget(
+                        examQuestions: examQuestions,
+                        currentPageIndex: currentPageIndex,
+                        pageController: pageController,
+                        answers: state.answers,
+                      );
+                    },
+                  ),
             );
           },
         );

@@ -1,21 +1,20 @@
 import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
 import 'package:flutter/material.dart';
-import '../../../exam/data/models/exam_question_model.dart';
+import '../../data/models/exam_question_model.dart';
 import '../../../../core/theming/option_style.dart';
 import '../../../../core/widgets/image_options.dart';
 import '../../../../core/widgets/mcq_options.dart';
 import '../../../../core/widgets/true_false_options.dart';
 
-class ExamQuestionResultOptions
-    extends StatelessWidget {
-  const ExamQuestionResultOptions({
+class ExamQuestionOptions extends StatelessWidget {
+  const ExamQuestionOptions({
     super.key,
     required this.question,
     required this.onSelect,
     required this.answers,
   });
   final ExamQuestionEntity question;
-  final void Function(int) onSelect;
+  final void Function(int index) onSelect;
   final Map<String, int> answers;
 
   @override
@@ -27,9 +26,8 @@ class ExamQuestionResultOptions
           options: question.options,
           onSelect: onSelect,
           styleBuilder: (int index) {
-            return OptionStyle.examResultQuestionStyle(
+            return OptionStyle.examQuestionStyle(
               isSelected: selectedIndex == index,
-              isCorrect: question.correctIndex == index,
             );
           },
         );
@@ -38,9 +36,8 @@ class ExamQuestionResultOptions
           options: question.options,
           onSelect: onSelect,
           styleBuilder: (int index) {
-            return OptionStyle.examResultQuestionStyle(
+            return OptionStyle.examQuestionStyle(
               isSelected: selectedIndex == index,
-              isCorrect: question.correctIndex == index,
             );
           },
         );
@@ -49,12 +46,11 @@ class ExamQuestionResultOptions
           options: question.options,
           onSelect: onSelect,
           styleBuilder: (int index) {
-            return OptionStyle.examResultQuestionStyle(
+            return OptionStyle.examQuestionStyle(
               isSelected: selectedIndex == index,
-              isCorrect: question.correctIndex == index,
             );
           },
         );
-      }
+    }
   }
 }

@@ -17,6 +17,12 @@ const String kUnitsLastUpdated = 'units_last_updated';
 const String kChaptersLastUpdated = 'chapters_last_updated';
 const String kLessonsLastUpdated = 'lessons_last_updated';
 const String kQuizzesLastUpdated = 'quizzes_last_updated';
+const String kExams = "exams";
+const String kExamsBox = "exams_box";
+const String kExamsQuestions = "examsQuestions";
+const String kExamsQuestionsBox = "exams_questions_box";
+const String kExamsAnswers = "examsAnswers";
+const String kExamsAnswersBox = "exams_answers_box";
 
 String getDisplayNumber(int id) {
   const numbers = [

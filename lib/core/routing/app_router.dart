@@ -1,6 +1,6 @@
-import 'package:bio_app/features/exam_questions/data/repos/exam_questions_repo_impl.dart';
-import 'package:bio_app/features/exam_questions/data/repos/exam_repo_impl.dart';
-import 'package:bio_app/features/exam_questions/domain/entities/exam_entity.dart';
+import 'package:bio_app/features/exam/data/repos/exam_questions_repo_impl.dart';
+import 'package:bio_app/features/exam/data/repos/exam_repo_impl.dart';
+import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
 
 import '../../features/chapters/data/repos/chapter_repo_imp.dart';
 import '../../features/chapters/presentation/manager/chapter_cubit/chapter_cubit.dart';
@@ -32,8 +32,8 @@ import '../../features/quiz_questions/presentation/views/quiz_questions_view.dar
 import '../../features/quiz_questions/presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import '../../features/chapters/presentation/chapter_view.dart';
 import '../../features/lessons/presentation/lessons_view.dart';
-import '../../features/exam_questions/presentation/views/exam_questions_view.dart';
-import '../../features/exam_questions/presentation/manager/exam_questions_cubit/exam_questions_cubit.dart';
+import '../../features/exam/presentation/views/exam_questions_view.dart';
+import '../../features/exam/presentation/manager/exam_questions_cubit/exam_questions_cubit.dart';
 
 abstract class AppRouter {
   static GoRouter createRouter() {
@@ -129,7 +129,7 @@ abstract class AppRouter {
               create: (_) =>
                   ExamQuestionsCubit(
                     examQuestionsRepoImpl:
-                        getIt<ExamQuestionsRepoImpl>(),
+                        getIt<ExamQuestionsRepoImp>(),
                   )..getExamQuestions(
                     examId: examId,
                     examIndex: examIndex,
@@ -153,7 +153,7 @@ abstract class AppRouter {
             return BlocProvider(
               create: (_) =>
                   ExamResultCubit(
-                    examResultRepo: getIt<ExamResultRepoImpl>(),
+                    examResultRepo: getIt<ExamResultRepoImp>(),
                     examRepo: getIt<ExamRepoImpl>(),
                   )..getResult(
                     examId: examId,

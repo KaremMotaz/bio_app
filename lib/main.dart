@@ -19,6 +19,9 @@ void main() async {
   await Hive.openBox(kQuizzesBox);
   await Hive.openBox(kQuizQuestionsBox);
   await Hive.openBox(kAppCacheBox);
+  await Hive.openBox(kExamsBox);
+  await Hive.openBox(kExamsQuestionsBox);
+  await Hive.openBox(kExamsAnswersBox);
   await SupabaseStorageService.initSupabase();
   await SupabaseStorageService.createBuckets(kBucketName);
   await Firebase.initializeApp(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../exam_questions/presentation/widgets/question_images.dart';
-import '../../../exam_questions/presentation/widgets/question_widget.dart';
+import '../../../exam/presentation/widgets/question_images.dart';
+import '../../../exam/presentation/widgets/question_widget.dart';
 import '../../domain/entities/quiz_question_entity.dart';
 import '../manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import 'quiz_question_options.dart';

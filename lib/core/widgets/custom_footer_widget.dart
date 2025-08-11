@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../features/exam_questions/presentation/manager/exam_questions_cubit/exam_questions_cubit.dart';
+import '../../features/exam/presentation/manager/exam_questions_cubit/exam_questions_cubit.dart';
 import 'app_text_button.dart';
 
 class CustomFooterWidget<T extends Cubit> extends StatelessWidget {

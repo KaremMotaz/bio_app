@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam_questions/domain/entities/exam_question_entity.dart';
+import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
 import 'package:flutter/material.dart';
 import 'correct_answer_card.dart';
 import 'wrong_answer_card.dart';
