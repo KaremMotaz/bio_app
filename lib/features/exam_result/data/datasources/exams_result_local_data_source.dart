@@ -1,7 +1,9 @@
-import 'package:bio_app/features/exam_result/data/models/answers_model.dart';
+import 'package:bio_app/features/exam_result/data/models/exams_answers_model.dart';
 
-abstract class ExamResultLocalDataSource {
-  Future<List<AnswersModel>?> getExamsResult();
-  Future<void> cacheExamsResult(List<AnswersModel> exams);
+abstract class ExamsResultLocalDataSource {
+  Future<List<ExamsAnswersModel>?> getExamsResult();
+  Future<void> cacheExamsResult({
+    required List<ExamsAnswersModel> examsResults,
+  });
   Future<void> clearExamsResult();
 }

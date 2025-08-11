@@ -1,16 +1,16 @@
 import 'package:bio_app/features/exam_result/data/datasources/exams_result_local_data_source.dart';
-import 'package:bio_app/features/exam_result/data/models/answers_model.dart';
+import 'package:bio_app/features/exam_result/data/models/exams_answers_model.dart';
 import '../../../../core/helpers/constants.dart';
 import '../../../../core/services/local_cache_service.dart';
 
 class ExamsResultLocalDataSourceImp
-    implements ExamResultLocalDataSource {
+    implements ExamsResultLocalDataSource {
   final LocalCacheService cache;
 
   ExamsResultLocalDataSourceImp({required this.cache});
 
   @override
-  Future<List<AnswersModel>?> getExamsResult() async {
+  Future<List<ExamsAnswersModel>?> getExamsResult() async {
     try {
       final List<Map<String, dynamic>>? list = await cache.getList(
         key: kExamsAnswers,
@@ -19,7 +19,7 @@ class ExamsResultLocalDataSourceImp
       if (list == null) {
         return null;
       }
-      return list.map((e) => AnswersModel.fromJson(e)).toList();
+      return list.map((e) => ExamsAnswersModel.fromJson(e)).toList();
     } catch (e) {
       await clearExamsResult();
       return null;
@@ -27,16 +27,17 @@ class ExamsResultLocalDataSourceImp
   }
 
   @override
-  Future<void> cacheExamsResult(
-    List<AnswersModel> examsAnswers,
-  ) async {
-    final List<Map<String, dynamic>> list = examsAnswers
+  Future<void> cacheExamsResult({
+    required List<ExamsAnswersModel> examsResults,
+  }) async {
+    final List<Map<String, dynamic>> list = examsResults
         .map((u) => u.toJson())
         .toList();
+
     await cache.saveList(
       key: kExamsAnswers,
       boxName: kExamsAnswersBox,
-      list: List<Map<String, dynamic>>.from(list),
+      list: list,
     );
   }
 

@@ -1,19 +1,27 @@
 import 'package:bio_app/core/errors/failure.dart';
 import 'package:bio_app/core/errors/server_failure.dart';
 import 'package:bio_app/features/exam/data/datasources/exam_questions_remote_data_source.dart';
+import 'package:bio_app/features/exam/data/datasources/exams_questions_local_data_source.dart';
+import 'package:bio_app/features/exam/data/models/exam_question_model.dart';
 import 'package:bio_app/features/exam/domain/entities/exam_question_entity.dart';
-import 'package:bio_app/features/exam_result/data/datasources/exam_result_remote_data_source.dart';
+import 'package:bio_app/features/exam_result/data/datasources/exams_result_local_data_source.dart';
+import 'package:bio_app/features/exam_result/data/datasources/exams_result_remote_data_source.dart';
+import 'package:bio_app/features/exam_result/data/models/exams_answers_model.dart';
 import 'package:dartz/dartz.dart';
 import '../../domin/repos/exam_result_repo.dart';
 
 class ExamResultRepoImp implements ExamResultRepo {
-  final ExamResultRemoteDataSourceImp examResultRemoteDataSourceImp;
+  final ExamsResultRemoteDataSourceImp examResultRemoteDataSourceImp;
+  final ExamsQuestionsLocalDataSource examsQuestionsLocalDataSource;
+  final ExamsResultLocalDataSource examsResultLocalDataSource;
   final ExamQuestionsRemoteDataSource
   examQuestionsRemoteDataSourceImp;
 
   ExamResultRepoImp({
     required this.examResultRemoteDataSourceImp,
     required this.examQuestionsRemoteDataSourceImp,
+    required this.examsQuestionsLocalDataSource,
+    required this.examsResultLocalDataSource,
   });
 
   @override
@@ -21,26 +29,51 @@ class ExamResultRepoImp implements ExamResultRepo {
     required String examId,
   }) async {
     try {
-      
-      final List<ExamQuestionEntity> questions =
+      // Try to get data from cache first
+      final List<ExamQuestionsModel>? cached =
+          await examsQuestionsLocalDataSource.getExamsQuestions();
+      if (cached != null && cached.isNotEmpty) {
+        return Right(cached);
+      }
+
+      //  No data in cache, fetch from remote
+      final List<ExamQuestionsModel> examsquestions =
           await examQuestionsRemoteDataSourceImp.fetchExamQuestions(
             examId: examId,
           );
 
-      return Right(questions);
+      // Cache the data
+      await examsQuestionsLocalDataSource.cacheExamsQuestions(
+        examsquestions,
+      );
+
+      return Right(examsquestions);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, List<Map<String, int>>>>
+  Future<Either<Failure, List<ExamsAnswersModel>>>
   getStudentAnswers() async {
     try {
-      final List<Map<String, int>> answers =
+      // Try to get data from cache first
+      final List<ExamsAnswersModel>? cached =
+          await examsResultLocalDataSource.getExamsResult();
+      if (cached != null && cached.isNotEmpty) {
+        return Right(cached);
+      }
+
+      //  No data in cache, fetch from remote
+      final List<ExamsAnswersModel> examsAnswers =
           await examResultRemoteDataSourceImp.getStudentAnswers();
 
-      return Right(answers);
+      // Cache the data
+      await examsResultLocalDataSource.cacheExamsResult(
+        examsResults: examsAnswers,
+      );
+
+      return Right(examsAnswers);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }

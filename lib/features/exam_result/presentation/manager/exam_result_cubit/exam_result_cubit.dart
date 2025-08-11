@@ -47,7 +47,8 @@ class ExamResultCubit extends Cubit<ExamResultState> {
                 final studentScore =
                     ExamGradingService.calculateStudentScore(
                       examQuestions: examQuestions,
-                      studentAnswers: studentAnswers[resultExamIndex],
+                      studentAnswers:
+                          studentAnswers[resultExamIndex].answers,
                     );
                 final maxScore = ExamGradingService.calculateMaxScore(
                   examQuestions: examQuestions,
@@ -70,7 +71,7 @@ class ExamResultCubit extends Cubit<ExamResultState> {
                     maxScore: maxScore,
                     percentage: studentPercentage,
                     isPassed: passed,
-                    answers: studentAnswers[resultExamIndex],
+                    answers: studentAnswers[resultExamIndex].answers,
                   ),
                 );
               },

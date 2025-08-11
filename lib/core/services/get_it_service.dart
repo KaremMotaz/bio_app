@@ -1,7 +1,9 @@
 import 'package:bio_app/features/exam/data/datasources/exam_questions_remote_data_source.dart';
 import 'package:bio_app/features/exam/data/datasources/exams_local_data_source_imp.dart';
+import 'package:bio_app/features/exam/data/datasources/exams_questions_local_data_source_imp.dart';
 import 'package:bio_app/features/exam/data/repos/exam_questions_repo_impl.dart';
-import 'package:bio_app/features/exam_result/data/datasources/exam_result_remote_data_source.dart';
+import 'package:bio_app/features/exam_result/data/datasources/exams_result_local_data_source_imp.dart';
+import 'package:bio_app/features/exam_result/data/datasources/exams_result_remote_data_source.dart';
 import 'package:bio_app/features/quiz_questions/data/data_source/quiz_questions_local_data_source_imp.dart';
 import 'package:bio_app/features/quiz_questions/data/data_source/quiz_questions_remote_data_source.dart';
 
@@ -84,18 +86,28 @@ void setupGetIt() {
   );
 
   getIt.registerLazySingleton<ExamQuestionsRepoImp>(
-    () =>
-        ExamQuestionsRepoImp(examQuestionsRemoteDataSource: getIt()),
+    () => ExamQuestionsRepoImp(
+      examQuestionsRemoteDataSource: getIt(),
+      examsQuestionsLocalDataSource: ExamsQuestionsLocalDataSourceImp(
+        cache: getIt(),
+      ),
+    ),
   );
 
   // 📊 Exam Result
   getIt.registerLazySingleton<ExamResultRepoImp>(
     () => ExamResultRepoImp(
-      examResultRemoteDataSourceImp: ExamResultRemoteDataSourceImp(
+      examResultRemoteDataSourceImp: ExamsResultRemoteDataSourceImp(
         databaseService: getIt(),
       ),
       examQuestionsRemoteDataSourceImp: ExamQuestionsRemoteDataSource(
         databaseService: getIt(),
+      ),
+      examsQuestionsLocalDataSource: ExamsQuestionsLocalDataSourceImp(
+        cache: getIt(),
+      ),
+      examsResultLocalDataSource: ExamsResultLocalDataSourceImp(
+        cache: getIt(),
       ),
     ),
   );
