@@ -40,7 +40,7 @@ class ExamQuestionsModel extends ExamQuestionEntity {
       'text': questionText,
       'options': options,
       'correctIndex': correctIndex,
-      'type': type,
+      'type': type.name,
       'marks': marks,
       'images': images,
       'explanation': explanation,

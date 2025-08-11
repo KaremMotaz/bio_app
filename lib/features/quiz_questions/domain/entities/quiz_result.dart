@@ -1,16 +1,16 @@
 
 class QuizResult {
   final int finalScore;
-  final int totalQuestions;
+  final int totalMaxScore;
   final Duration duration;
 
   QuizResult({
     required this.finalScore,
-    required this.totalQuestions,
+    required this.totalMaxScore,
     required this.duration,
   });
 
-  int get accuracy => ((finalScore / totalQuestions) * 100).round();
+  int get accuracy => ((finalScore / totalMaxScore) * 100).round();
 
   String get formattedDuration {
     final minutes = duration.inMinutes;

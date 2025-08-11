@@ -34,4 +34,16 @@ class ExamModel extends ExamEntity {
       'isPublished': isPublished,
     };
   }
+
+  Map<String, dynamic> toJsonForHive() {
+    return {
+      'id': id,
+      'title': title,
+      'unit': unit,
+      'lesson': lesson,
+      'endTime': endTime, // DateTime مباشرة
+      'passPercentage': passPercentage,
+      'isPublished': isPublished,
+    };
+  }
 }

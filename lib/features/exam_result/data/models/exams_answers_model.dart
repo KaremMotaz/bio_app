@@ -25,6 +25,10 @@ class ExamsAnswersModel {
   }
 
   Map<String, dynamic> toJson() {
-    return {'answers': answers, 'timestamp': timestamp, 'id': id};
+    return {
+      'answers': answers,
+      'timestamp': timestamp.toDate().toIso8601String(),
+      'id': id,
+    };
   }
 }

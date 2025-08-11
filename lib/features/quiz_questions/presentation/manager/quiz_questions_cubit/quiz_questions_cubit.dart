@@ -71,7 +71,8 @@ class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
       currentState.copyWith(
         status: currentState.status.copyWith(
           score: isCorrect
-              ? currentState.status.score + 1
+              ? currentState.status.score +
+                    (currentState.currentQuestion.marks ?? 1)
               : currentState.status.score,
           remainingLives: newRemainingLives,
         ),
@@ -106,11 +107,16 @@ class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
         ),
       );
     } else {
+      final totalMaxScore = currentState.questions.fold(
+        0,
+        (sum, question) => sum + (question.marks ?? 1),
+      );
+
       emit(
         QuizQuestionsFinishedState(
           result: QuizResult(
             finalScore: currentState.status.score,
-            totalQuestions: currentState.totalQuestions,
+            totalMaxScore: totalMaxScore,
             duration: _timer.getDuration(),
           ),
         ),
@@ -134,11 +140,16 @@ class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
   void finishQuizIfLastLifeLost() {
     final currentState = state as QuizQuestionsLoadedState;
 
+    final totalMaxScore = currentState.questions.fold(
+      0,
+      (sum, question) => sum + (question.marks ?? 1),
+    );
+
     emit(
       QuizQuestionsFinishedState(
         result: QuizResult(
           finalScore: currentState.status.score,
-          totalQuestions: currentState.totalQuestions,
+          totalMaxScore: totalMaxScore,
           duration: _timer.getDuration(),
         ),
       ),

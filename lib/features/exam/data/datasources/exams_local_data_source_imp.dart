@@ -28,7 +28,7 @@ class ExamsLocalDataSourceImp implements ExamsLocalDataSource {
   @override
   Future<void> cacheExams(List<ExamModel> exams) async {
     final List<Map<String, dynamic>> list = exams
-        .map((u) => u.toJson())
+        .map((u) => u.toJsonForHive())
         .toList();
     await cache.saveList(
       key: kExams,
