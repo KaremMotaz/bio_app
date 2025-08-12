@@ -1,4 +1,5 @@
 import 'package:bio_app/core/theming/text_styles.dart';
+import 'package:bio_app/features/leaderboard/data/mock_leaderboard.dart';
 import 'package:bio_app/features/leaderboard/presentation/widgets/custom_tabs.dart';
 import 'package:bio_app/features/leaderboard/presentation/widgets/leaderboard_tab.dart';
 import 'package:flutter/material.dart';
@@ -44,10 +45,10 @@ class _LeaderboardViewState extends State<LeaderboardView>
       ),
       body: TabBarView(
         controller: _tabController,
-        children: const [
-          LeaderboardTab(type: 'حاليا'),
-          LeaderboardTab(type: 'اسبوعيا'),
-          LeaderboardTab(type: 'شهريا'),
+        children: [
+          NowLeaderboardTab(nowLeaderboardList: nowLeaderboardList),
+          NowLeaderboardTab(nowLeaderboardList: nowLeaderboardList),
+          NowLeaderboardTab(nowLeaderboardList: nowLeaderboardList),
         ],
       ),
     );

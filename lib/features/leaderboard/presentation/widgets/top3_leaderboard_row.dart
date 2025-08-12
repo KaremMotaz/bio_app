@@ -1,3 +1,4 @@
+import 'package:bio_app/features/leaderboard/domain/leaderboard_entity.dart';
 import 'package:bio_app/features/leaderboard/presentation/widgets/leaderboard_user_badge.dart';
 import 'package:flutter/material.dart';
 
@@ -6,14 +7,15 @@ class Top3LeaderboardRow extends StatelessWidget {
     super.key,
     required this.leaderboardList,
   });
-  final List<Map<String, dynamic>> leaderboardList;
+  final List<LeaderboardEntity> leaderboardList;
+
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         LeaderboardUserBadge(
-          nowLeaderboardList: leaderboardList,
+          leaderboardList: leaderboardList,
           index: 1,
           outerCircleBorderColor: const Color(0xffb5b2b0),
           rankCircleGradientColors: const [
@@ -22,14 +24,14 @@ class Top3LeaderboardRow extends StatelessWidget {
           ],
         ),
         LeaderboardUserBadge(
-          nowLeaderboardList: leaderboardList,
+          leaderboardList: leaderboardList,
           index: 0,
           avatarRadius: 48,
           outerCircleSize: 110,
           rankCircleSize: 35,
         ),
         LeaderboardUserBadge(
-          nowLeaderboardList: leaderboardList,
+          leaderboardList: leaderboardList,
           index: 2,
           outerCircleBorderColor: const Color(0xffa88c61),
           rankCircleGradientColors: const [

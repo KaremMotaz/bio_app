@@ -1,11 +1,12 @@
 import 'package:bio_app/core/theming/assets_data.dart';
 import 'package:bio_app/core/theming/text_styles.dart';
+import 'package:bio_app/features/leaderboard/domain/leaderboard_entity.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardUserBadge extends StatelessWidget {
   const LeaderboardUserBadge({
     super.key,
-    required this.nowLeaderboardList,
+    required this.leaderboardList,
     required this.index,
     this.avatarRadius = 38,
     this.outerCircleSize = 90,
@@ -17,7 +18,7 @@ class LeaderboardUserBadge extends StatelessWidget {
     ],
   });
 
-  final List<Map<String, dynamic>> nowLeaderboardList;
+  final List<LeaderboardEntity> leaderboardList;
   final int index;
   final double avatarRadius;
   final double outerCircleSize;
@@ -30,7 +31,7 @@ class LeaderboardUserBadge extends StatelessWidget {
     return Column(
       children: [
         Visibility(
-          visible: nowLeaderboardList[index]['rank'] == 1,
+          visible: leaderboardList[index].rank == 1,
           maintainSize: true,
           maintainAnimation: true,
           maintainState: true,
@@ -61,7 +62,7 @@ class LeaderboardUserBadge extends StatelessWidget {
               radius: avatarRadius,
               backgroundColor: Colors.white,
               backgroundImage: AssetImage(
-                nowLeaderboardList[index]['avatarUrl'],
+                leaderboardList[index].avatarUrl,
               ),
             ),
             Positioned(
@@ -83,7 +84,7 @@ class LeaderboardUserBadge extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  "${nowLeaderboardList[index]['rank']}",
+                  "${leaderboardList[index].rank}",
                   style: TextStyles.bold16.copyWith(
                     color: Colors.white,
                   ),
@@ -94,11 +95,11 @@ class LeaderboardUserBadge extends StatelessWidget {
         ),
         const SizedBox(height: 14),
         Text(
-          "${nowLeaderboardList[index]['name']}",
+          leaderboardList[index].name,
           style: TextStyles.bold16.copyWith(color: Colors.black),
         ),
         Text(
-          "${nowLeaderboardList[index]['score']}",
+          "${leaderboardList[index].score}",
           style: TextStyles.bold14.copyWith(color: Colors.black),
         ),
       ],
