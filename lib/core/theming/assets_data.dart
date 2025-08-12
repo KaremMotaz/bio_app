@@ -41,4 +41,8 @@ class AssetsData {
   static const String leaderboardIcon =
       'assets/images/leaderboard.png';
   static const String settingsIcon = 'assets/images/settings.png';
+  static const String crownIcon = 'assets/images/crown.png';
+  static const String profile1 = 'assets/images/profile1.jpeg';
+  static const String profile2 = 'assets/images/profile2.jpeg';
+  static const String profile3 = 'assets/images/profile3.jpeg';
 }
