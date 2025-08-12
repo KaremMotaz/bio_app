@@ -43,11 +43,13 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Cairo",
         scaffoldBackgroundColor: Colors.white,
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           backgroundColor: Colors.white,
           elevation: 0,
-          titleTextStyle: TextStyles.bold20,
-          iconTheme: IconThemeData(color: Colors.black),
+          titleTextStyle: TextStyles.bold18.copyWith(
+            color: Colors.black,
+          ),
+          iconTheme: const IconThemeData(color: Colors.black),
         ),
       ),
       localizationsDelegates: const [

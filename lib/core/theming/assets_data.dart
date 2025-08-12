@@ -45,4 +45,5 @@ class AssetsData {
   static const String profile1 = 'assets/images/profile1.jpeg';
   static const String profile2 = 'assets/images/profile2.jpeg';
   static const String profile3 = 'assets/images/profile3.jpeg';
+  static const String profile4 = 'assets/images/profile4.jpeg';
 }

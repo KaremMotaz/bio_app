@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/services/get_it_service.dart';
-import '../../../../core/theming/text_styles.dart';
 import '../../../auth/domain/auth_repo.dart';
 import '../../../auth/presentation/manager/log_out_cubit/log_out_cubit.dart';
 import 'widgets/settings_view_body.dart';
@@ -20,8 +18,7 @@ class SettingsView extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: const Text(
-            "Settings",
-            style: TextStyles.medium16,
+            "الإعدادات",
           ),
           centerTitle: true,
         ),

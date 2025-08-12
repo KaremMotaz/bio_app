@@ -23,12 +23,21 @@ final List<LeaderboardModel> nowLeaderboardList = [
     rank: 3,
     avatarUrl: AssetsData.profile3,
   ),
+
   const LeaderboardModel(
-    id: "user04",
+    id: "ZJjPRzU0IpWscRE8c1MvV4PJCAz1",
     name: "Said Omar",
-    score: 85,
+    score: 10,
+    rank: 17,
+    avatarUrl: AssetsData.profile4,
+  ),
+
+  const LeaderboardModel(
+    id: "user03",
+    name: "Amany Hossam",
+    score: 120,
     rank: 4,
-    avatarUrl: AssetsData.profileImage,
+    avatarUrl: AssetsData.profile3,
   ),
   const LeaderboardModel(
     id: "user05",

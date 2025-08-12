@@ -46,9 +46,9 @@ class _LeaderboardViewState extends State<LeaderboardView>
       body: TabBarView(
         controller: _tabController,
         children: [
-          NowLeaderboardTab(nowLeaderboardList: nowLeaderboardList),
-          NowLeaderboardTab(nowLeaderboardList: nowLeaderboardList),
-          NowLeaderboardTab(nowLeaderboardList: nowLeaderboardList),
+          LeaderboardTab(nowLeaderboardList: nowLeaderboardList),
+          LeaderboardTab(nowLeaderboardList: nowLeaderboardList),
+          LeaderboardTab(nowLeaderboardList: nowLeaderboardList),
         ],
       ),
     );

@@ -5,7 +5,12 @@ import 'package:bio_app/core/theming/text_styles.dart';
 class LeaderboardCard extends StatelessWidget {
   final LeaderboardEntity leaderboardEntity;
 
-  const LeaderboardCard({super.key, required this.leaderboardEntity});
+  const LeaderboardCard({
+    super.key,
+    required this.leaderboardEntity,
+    required this.isCurrentUser,
+  });
+  final bool isCurrentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +18,24 @@ class LeaderboardCard extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16, right: 10),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xffe8f9f9),
+        color: isCurrentUser ? Colors.white : const Color(0xffe8f9f9),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xffe8f9f9), width: 2),
+        boxShadow: [
+          BoxShadow(
+            color: isCurrentUser
+                ? const Color(0xffededed)
+                : const Color(0xffe8f9f9),
+            spreadRadius: 0,
+            blurRadius: 2,
+            offset: const Offset(0, 2),
+          ),
+        ],
+        border: Border.all(
+          color: isCurrentUser
+              ? const Color(0xffededed)
+              : const Color(0xffe8f9f9),
+          width: 3,
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -25,7 +45,7 @@ class LeaderboardCard extends StatelessWidget {
               Column(
                 children: [
                   Transform.translate(
-                    offset: const Offset(0, 15),
+                    offset: const Offset(1, 15),
                     child: Text(
                       leaderboardEntity.rank.toString(),
                       style: TextStyles.semiBold18,
@@ -52,7 +72,7 @@ class LeaderboardCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 16),
                   Text(
-                    leaderboardEntity.name,
+                  isCurrentUser? "ترتيبك الحالي":  leaderboardEntity.name,
                     style: TextStyles.semiBold15,
                   ),
                 ],
@@ -60,14 +80,18 @@ class LeaderboardCard extends StatelessWidget {
             ],
           ),
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12,
+              vertical: 8,
+            ),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               color: const Color(0xffd7e4e5),
             ),
             child: Text(
-              leaderboardEntity.score.toString(),
+              textDirection: TextDirection.ltr,
+              "${leaderboardEntity.score} XP",
               style: TextStyles.semiBold15,
             ),
           ),
