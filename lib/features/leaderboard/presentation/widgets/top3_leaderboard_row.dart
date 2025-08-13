@@ -27,6 +27,7 @@ class Top3LeaderboardRow extends StatelessWidget {
           leaderboardList: leaderboardList,
           index: 0,
           avatarRadius: 48,
+          fontSize: 35,
           outerCircleSize: 110,
           rankCircleSize: 35,
         ),

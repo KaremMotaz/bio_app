@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class UserAvatar extends StatelessWidget {
   final String name;
-  final Color savedColor;
+  final int savedColor;
   final String? imageUrl;
   final double? radius;
   final double? fontSize;
@@ -17,7 +17,7 @@ class UserAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (imageUrl != null && imageUrl!.isNotEmpty) {
+    if (imageUrl != null && imageUrl!.isNotEmpty && imageUrl != "null") {
       return CircleAvatar(
         backgroundImage: NetworkImage(imageUrl!),
         radius: radius,
@@ -29,7 +29,7 @@ class UserAvatar extends StatelessWidget {
 
     return CircleAvatar(
       radius: radius,
-      backgroundColor: savedColor,
+      backgroundColor: Color(savedColor),
       child: Text(
         initial,
         style: TextStyle(

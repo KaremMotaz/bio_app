@@ -1,5 +1,6 @@
 import 'package:bio_app/core/theming/assets_data.dart';
 import 'package:bio_app/core/theming/text_styles.dart';
+import 'package:bio_app/core/widgets/user_avatar.dart';
 import 'package:bio_app/features/leaderboard/domain/leaderboard_entity.dart';
 import 'package:flutter/material.dart';
 
@@ -16,10 +17,12 @@ class LeaderboardUserBadge extends StatelessWidget {
       Color(0xfffdbe00),
       Color(0xfffad75a),
     ],
+    this.fontSize = 25,
   });
 
   final List<LeaderboardEntity> leaderboardList;
   final int index;
+  final double? fontSize;
   final double avatarRadius;
   final double outerCircleSize;
   final double rankCircleSize;
@@ -58,12 +61,12 @@ class LeaderboardUserBadge extends StatelessWidget {
                 ),
               ),
             ),
-            CircleAvatar(
+            UserAvatar(
+              name: leaderboardList[index].name,
+              savedColor: leaderboardList[index].savedColor,
+              imageUrl: leaderboardList[index].avatarUrl,
               radius: avatarRadius,
-              backgroundColor: Colors.white,
-              backgroundImage: AssetImage(
-                leaderboardList[index].avatarUrl,
-              ),
+              fontSize: fontSize,
             ),
             Positioned(
               bottom: -rankCircleSize / 3,

@@ -1,3 +1,4 @@
+import 'package:bio_app/core/widgets/user_avatar.dart';
 import 'package:bio_app/features/leaderboard/domain/leaderboard_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:bio_app/core/theming/text_styles.dart';
@@ -63,16 +64,18 @@ class LeaderboardCard extends StatelessWidget {
               ),
               Row(
                 children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage(
-                      leaderboardEntity.avatarUrl,
-                    ),
+                  UserAvatar(
+                    name: leaderboardEntity.name,
+                    savedColor: leaderboardEntity.savedColor,
+                    imageUrl: leaderboardEntity.avatarUrl,
                     radius: 25,
+                    fontSize: 22,
                   ),
                   const SizedBox(width: 16),
                   Text(
-                  isCurrentUser? "ترتيبك الحالي":  leaderboardEntity.name,
+                    isCurrentUser
+                        ? "ترتيبك الحالي"
+                        : leaderboardEntity.name,
                     style: TextStyles.semiBold15,
                   ),
                 ],

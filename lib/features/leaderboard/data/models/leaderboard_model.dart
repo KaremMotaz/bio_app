@@ -7,6 +7,7 @@ class LeaderboardModel extends LeaderboardEntity {
     required super.score,
     required super.rank,
     required super.avatarUrl,
+    required super.savedColor,
   });
 
   factory LeaderboardModel.fromJson(Map<String, dynamic> json) {
@@ -16,6 +17,7 @@ class LeaderboardModel extends LeaderboardEntity {
       score: json['score'] as int,
       rank: json['rank'] as int,
       avatarUrl: json['avatarUrl'] as String,
+      savedColor: json['savedColor'] as int,
     );
   }
 

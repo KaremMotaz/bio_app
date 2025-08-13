@@ -3,13 +3,15 @@ class LeaderboardEntity {
   final String name;
   final int score;
   final int rank;
-  final String avatarUrl;
+  final int savedColor;
+  final String? avatarUrl;
 
-  const LeaderboardEntity({
+  const LeaderboardEntity( {
     required this.id,
     required this.name,
     required this.score,
     required this.rank,
     required this.avatarUrl,
+    required this.savedColor
   });
 }

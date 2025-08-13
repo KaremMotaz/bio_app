@@ -1,12 +1,11 @@
 import 'package:bio_app/core/helpers/get_user.dart';
+import 'package:bio_app/core/widgets/user_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../domain/unit_entity.dart';
-import 'custom_circle_avatar.dart';
 import 'units_cards_list.dart';
 
 class UnitViewBody extends StatelessWidget {
@@ -27,7 +26,13 @@ class UnitViewBody extends StatelessWidget {
                 onTap: () {
                   GoRouter.of(context).push(Routes.profileView);
                 },
-                child: const CustomCircleAvatar(),
+                child: UserAvatar(
+                  name: getUser().firstName!,
+                  savedColor: getUser().avatarColor!,
+                  imageUrl: getUser().imageUrl,
+                  fontSize: 28,
+                  radius: 28,
+                ),
               ),
             ),
             Text(

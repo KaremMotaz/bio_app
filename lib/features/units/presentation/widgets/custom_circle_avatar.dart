@@ -1,6 +1,6 @@
+import 'package:bio_app/core/helpers/get_user.dart';
+import 'package:bio_app/core/widgets/user_avatar.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/theming/assets_data.dart';
 
 class CustomCircleAvatar extends StatelessWidget {
   const CustomCircleAvatar({super.key});
@@ -30,9 +30,11 @@ class CustomCircleAvatar extends StatelessWidget {
             shape: BoxShape.circle,
             color: Colors.white,
           ),
-          child: const CircleAvatar(
-            radius: 32,
-            backgroundImage: AssetImage(AssetsData.profileImage),
+
+          child: UserAvatar(
+            name: getUser().firstName!,
+            savedColor: getUser().avatarColor!,
+            fontSize: 28,
           ),
         ),
       ],

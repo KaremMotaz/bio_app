@@ -1,3 +1,4 @@
+import 'package:bio_app/core/helpers/get_user.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/widgets/user_avatar.dart';
 import 'edit_profile_list_tile.dart';
@@ -36,16 +37,22 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
           ),
           child: Column(
             children: [
-              const Align(
+              Align(
                 child: UserAvatar(
-                  name: 'Karim Motaz',
-                  savedColor: Colors.green,
+                  name: getUser().firstName!,
+                  imageUrl: getUser().imageUrl,
+                  savedColor: getUser().avatarColor!,
                 ),
               ),
               const SizedBox(height: 20),
               EditProfileListTile(
                 title: "الاسم",
-                subTitle: const Text('Karim Motaz'),
+                subTitle: Text(
+                  {
+                    getUser().firstName!,
+                    getUser().lastName!,
+                  }.join(" "),
+                ),
                 onTap: () {
                   // editProfileDialog(
                   //   context: context,
@@ -86,7 +93,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                   // );
                 },
                 icon: Icons.phone,
-                subTitle: const Text('01010424919'),
+                subTitle: Text(getUser().phoneNumber!),
               ),
             ],
           ),
