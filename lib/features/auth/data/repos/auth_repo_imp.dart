@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -68,6 +69,7 @@ class AuthRepoImp extends AuthRepo {
     } on FirebaseAuthException catch (e) {
       return left(AuthFailure.fromCode(e.code));
     } catch (e) {
+      log(e.toString());
       return left(AuthFailure(e.toString()));
     }
   }
@@ -168,7 +170,7 @@ class AuthRepoImp extends AuthRepo {
   }) async {
     await databaseService.addData(
       path: BackendEndpoint.addUserData,
-      data: UserModel.fromEntity(userEntity).toMap(),
+      data: UserModel.fromEntity(userEntity).toFirestoreMap(),
       documentId: userEntity.uid,
     );
     return right(userEntity);
@@ -176,17 +178,17 @@ class AuthRepoImp extends AuthRepo {
 
   @override
   Future<UserEntity> getUserData({required String uid}) async {
-    UserEntity userData = await databaseService.getData(
+    final Map<String, dynamic> userData = await databaseService.getData(
       path: BackendEndpoint.getUserData,
       documentId: uid,
     );
-    return UserModel.fromEntity(userData);
+    return UserModel.fromJson(userData);
   }
 
   @override
   Future saveUserData({required UserEntity userEntity}) async {
     String jsonData = jsonEncode(
-      UserModel.fromEntity(userEntity).toMap(),
+      UserModel.fromEntity(userEntity).toJson(),
     );
     await CacheHelper.set(key: kUserData, value: jsonData);
   }

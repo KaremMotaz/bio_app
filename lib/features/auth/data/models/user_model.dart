@@ -18,42 +18,55 @@ class UserModel extends UserEntity {
     super.createdAt,
   });
 
+  /// من FirebaseAuth User
   factory UserModel.fromFirebaseUser(User user) {
-    return UserModel(email: user.email ?? '', uid: user.uid);
+    return UserModel(
+      email: user.email ?? '',
+      uid: user.uid,
+    );
   }
 
+  /// من Firestore JSON
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      email: json["email"],
+      email: json["email"] ?? '',
       firstName: json["firstName"],
       lastName: json["lastName"],
       imageUrl: json["imageUrl"],
       phoneNumber: json["phoneNumber"],
       oldUser: json["oldUser"],
-      uid: json["uid"],
+      uid: json["uid"] ?? '',
       isPremiumUser: json["isPremiumUser"],
       avatarColor: json["avatarColor"],
-      createdAt: (json['createdAt'] as Timestamp?)?.toDate(),
+      createdAt: (json['createdAt'] is Timestamp)
+          ? (json['createdAt'] as Timestamp).toDate()
+          : (json['createdAt'] is String)
+              ? DateTime.tryParse(json['createdAt'])
+              : null,
     );
   }
 
-  factory UserModel.fromEntity(UserEntity student) {
+  /// من الـ Entity
+  factory UserModel.fromEntity(UserEntity user) {
     return UserModel(
-      email: student.email,
-      firstName: student.firstName,
-      lastName: student.lastName,
-      imageUrl: student.imageUrl,
-      phoneNumber: student.phoneNumber,
-      oldUser: student.oldUser,
-      isPremiumUser: student.isPremiumUser,
-      uid: student.uid,
-      avatarColor: student.avatarColor,
-      createdAt: student.createdAt,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      imageUrl: user.imageUrl,
+      phoneNumber: user.phoneNumber,
+      oldUser: user.oldUser,
+      isPremiumUser: user.isPremiumUser,
+      uid: user.uid,
+      avatarColor: user.avatarColor,
+      createdAt: user.createdAt,
     );
   }
+
+  /// لون افتراضي في حال ما كانش متخزن
   final Color color = AppColors.getRandomColor();
 
-  Map<String, dynamic> toMap() {
+  /// للتحويل لفايرستور
+  Map<String, dynamic> toFirestoreMap() {
     return {
       'email': email,
       'firstName': firstName,
@@ -63,8 +76,24 @@ class UserModel extends UserEntity {
       'isPremiumUser': isPremiumUser,
       'uid': uid,
       'imageUrl': imageUrl,
-      'avatarColor': color.toARGB32(),
+      'avatarColor': avatarColor ?? color.toARGB32(),
       'createdAt': FieldValue.serverTimestamp(),
+    };
+  }
+
+  
+  Map<String, dynamic> toJson() {
+    return {
+      'email': email,
+      'firstName': firstName,
+      'lastName': lastName,
+      'phoneNumber': phoneNumber,
+      'oldUser': oldUser,
+      'isPremiumUser': isPremiumUser,
+      'uid': uid,
+      'imageUrl': imageUrl,
+      'avatarColor': avatarColor ?? color.toARGB32(),
+      'createdAt': createdAt?.toIso8601String(),
     };
   }
 }
