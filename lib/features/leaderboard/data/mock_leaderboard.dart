@@ -4,7 +4,7 @@ import 'package:bio_app/features/leaderboard/data/models/leaderboard_model.dart'
 final List<LeaderboardModel> nowLeaderboardList = [
   const LeaderboardModel(
     id: "user01",
-    name: "Karim Motaz",
+    name: "Fares Mohamed",
     score: 100,
     rank: 1,
     avatarUrl: "null",
