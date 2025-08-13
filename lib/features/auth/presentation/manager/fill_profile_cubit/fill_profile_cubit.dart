@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,8 +8,7 @@ import '../../../domain/user_entity.dart';
 part 'fill_profile_state.dart';
 
 class FillProfileCubit extends Cubit<FillProfileState> {
-  FillProfileCubit(this.authRepo)
-    : super(FillProfileInitialState());
+  FillProfileCubit(this.authRepo) : super(FillProfileInitialState());
 
   final AuthRepo authRepo;
   final User user = FirebaseAuth.instance.currentUser!;
@@ -30,7 +28,7 @@ class FillProfileCubit extends Cubit<FillProfileState> {
         lastName: lastNameController.text,
         phoneNumber: phoneNumberController.text,
         oldUser: true,
-        imageUrl: "",
+        imageUrl: null,
       ),
     );
     result.fold(

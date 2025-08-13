@@ -5,10 +5,10 @@ class UserEntity {
   final String? firstName;
   final String? lastName;
   final String? phoneNumber;
-  final String? grade;
-  final String role;
   final bool oldUser;
   final bool isPremiumUser;
+  final int? avatarColor;
+  final DateTime? createdAt;
 
   UserEntity({
     this.email,
@@ -16,10 +16,10 @@ class UserEntity {
     this.imageUrl,
     this.firstName,
     this.lastName,
-    this.grade,
     this.phoneNumber,
-    this.role = 'Student',
     this.oldUser = false,
     this.isPremiumUser = false,
+    this.avatarColor,
+    this.createdAt,
   });
 }

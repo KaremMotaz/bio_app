@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-
+import '../../../../../core/widgets/user_avatar.dart';
 import 'edit_profile_list_tile.dart';
 
 class ProfileViewBody extends StatefulWidget {
   const ProfileViewBody({super.key});
 
   @override
-  State<ProfileViewBody> createState() =>
-      _ProfileViewBodyState();
+  State<ProfileViewBody> createState() => _ProfileViewBodyState();
 }
 
 class _ProfileViewBodyState extends State<ProfileViewBody> {
@@ -17,6 +16,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
       TextEditingController(text: "1234567890");
   final TextEditingController emailController =
       TextEditingController();
+
   @override
   void dispose() {
     fullNameController.dispose();
@@ -32,12 +32,17 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
-            vertical: 20,
+            vertical: 10,
           ),
           child: Column(
             children: [
-              // const Align(child: CustomCircleAvatar()),
-              const SizedBox(height: 30),
+              const Align(
+                child: UserAvatar(
+                  name: 'Karim Motaz',
+                  savedColor: Colors.green,
+                ),
+              ),
+              const SizedBox(height: 20),
               EditProfileListTile(
                 title: "الاسم",
                 subTitle: const Text('Karim Motaz'),

@@ -7,6 +7,10 @@ abstract class TextStyles {
     fontSize: 30,
     fontWeight: FontWeightHelper.extraBold,
   );
+  static const TextStyle bold35 = TextStyle(
+    fontSize: 35,
+    fontWeight: FontWeightHelper.bold,
+  );
   static const TextStyle bold28 = TextStyle(
     fontSize: 28,
     fontWeight: FontWeightHelper.bold,

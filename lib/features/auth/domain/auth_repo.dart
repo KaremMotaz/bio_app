@@ -27,4 +27,10 @@ abstract class AuthRepo {
   });
   Future saveUserData({required UserEntity userEntity});
   Future<UserEntity> getUserData({required String uid});
+  Future deleteUser();
+
+  Future<Either<Failure, Unit>> updateUserData({
+    required UserEntity userEntity,
+  });
+  Future<bool> checkIfDataExists({required String documentId});
 }

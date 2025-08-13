@@ -39,13 +39,14 @@ class AuthRepoImp extends AuthRepo {
         email: email,
         uid: user!.uid,
       );
-      await addUserData(userEntity: userEntity);
       return right(userEntity);
     } on FirebaseAuthException catch (e) {
       return left(AuthFailure.fromCode(e.code));
     } on FirestoreFailure catch (e) {
+      await deleteUser();
       return left(FirestoreFailure.fromCode(e.errMessage));
     } catch (e) {
+      await deleteUser();
       return left(AuthFailure(e.toString()));
     }
   }
@@ -61,8 +62,9 @@ class AuthRepoImp extends AuthRepo {
         email: email,
         password: password,
       );
-
-      return right(UserEntity(email: email, uid: user!.uid));
+      UserEntity userEntity = await getUserData(uid: user!.uid);
+      await saveUserData(userEntity: userEntity);
+      return right(userEntity);
     } on FirebaseAuthException catch (e) {
       return left(AuthFailure.fromCode(e.code));
     } catch (e) {
@@ -75,10 +77,22 @@ class AuthRepoImp extends AuthRepo {
     User? user;
     try {
       user = await firebaseAuthService.signinWithGoogle();
-      UserEntity studentEntity = UserModel.fromFirebaseUser(user);
-      await addUserData(userEntity: studentEntity);
-      return right(studentEntity);
+      UserEntity userEntity = UserModel.fromFirebaseUser(user);
+
+      final bool isUserExists = await checkIfDataExists(
+        documentId: user.uid,
+      );
+
+      if (isUserExists) {
+        UserEntity userEntity = await getUserData(uid: user.uid);
+        await saveUserData(userEntity: userEntity);
+      } else {
+        await addUserData(userEntity: userEntity);
+      }
+
+      return right(userEntity);
     } on FirebaseAuthException catch (e) {
+      await deleteUser();
       return left(AuthFailure.fromCode(e.code));
     } catch (e) {
       return left(AuthFailure(e.toString()));
@@ -90,10 +104,22 @@ class AuthRepoImp extends AuthRepo {
     User? user;
     try {
       user = await firebaseAuthService.signinWithFacebook();
-      UserEntity studentEntity = UserModel.fromFirebaseUser(user);
-      await addUserData(userEntity: studentEntity);
-      return right(studentEntity);
+      UserEntity userEntity = UserModel.fromFirebaseUser(user);
+      await addUserData(userEntity: userEntity);
+      final bool isUserExists = await checkIfDataExists(
+        documentId: user.uid,
+      );
+
+      if (isUserExists) {
+        UserEntity userEntity = await getUserData(uid: user.uid);
+        await saveUserData(userEntity: userEntity);
+      } else {
+        await addUserData(userEntity: userEntity);
+      }
+
+      return right(userEntity);
     } on FirebaseAuthException catch (e) {
+      await deleteUser();
       return left(AuthFailure.fromCode(e.code));
     } catch (e) {
       return left(AuthFailure(e.toString()));
@@ -150,18 +176,38 @@ class AuthRepoImp extends AuthRepo {
 
   @override
   Future<UserEntity> getUserData({required String uid}) async {
-    var studentData = await databaseService.getData(
+    UserEntity userData = await databaseService.getData(
       path: BackendEndpoint.getUserData,
       documentId: uid,
     );
-    return UserModel.fromJson(studentData);
+    return UserModel.fromEntity(userData);
   }
 
   @override
   Future saveUserData({required UserEntity userEntity}) async {
-    var jsonData = jsonEncode(
+    String jsonData = jsonEncode(
       UserModel.fromEntity(userEntity).toMap(),
     );
     await CacheHelper.set(key: kUserData, value: jsonData);
+  }
+
+  @override
+  Future deleteUser() async {
+    return await firebaseAuthService.deleteAccount();
+  }
+
+  @override
+  Future<bool> checkIfDataExists({required String documentId}) async {
+    return await databaseService.checkIfDataExists(
+      path: BackendEndpoint.checkIfDataExists,
+      documentId: documentId,
+    );
+  }
+
+  @override
+  Future<Either<Failure, Unit>> updateUserData({
+    required UserEntity userEntity,
+  }) {
+    throw UnimplementedError();
   }
 }

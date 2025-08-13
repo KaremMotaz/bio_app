@@ -1,3 +1,4 @@
+import 'package:bio_app/core/helpers/get_user.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -30,7 +31,7 @@ class UnitViewBody extends StatelessWidget {
               ),
             ),
             Text(
-              "اهلا بك...احمد",
+              "أهلاً بك ${getUser().firstName}!",
               style: TextStyles.bold20.copyWith(
                 color: AppColors.moreDarkerBlue,
               ),
