@@ -24,7 +24,7 @@ class QuizRepoImp implements QuizRepo {
       // Try to get from cache first
       final List<QuizModel>? cached = await quizzesLocalDataSource
           .getQuizzes(lessonId: lessonId);
-      if (cached != null) {
+      if (cached != null && cached.isNotEmpty) {
         return Right(cached);
       }
 

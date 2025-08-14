@@ -1,6 +1,6 @@
 import 'package:bio_app/core/helpers/get_user.dart';
+import 'package:bio_app/features/profile/presentation/widgets/profile_avatar.dart';
 import 'package:flutter/material.dart';
-import '../../../../../core/widgets/user_avatar.dart';
 import 'edit_profile_list_tile.dart';
 
 class ProfileViewBody extends StatefulWidget {
@@ -37,13 +37,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
           ),
           child: Column(
             children: [
-              Align(
-                child: UserAvatar(
-                  name: getUser().firstName!,
-                  imageUrl: getUser().imageUrl,
-                  savedColor: getUser().avatarColor!,
-                ),
-              ),
+              const ProfileAvatar(),
               const SizedBox(height: 20),
               EditProfileListTile(
                 title: "الاسم",
@@ -102,3 +96,5 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
     );
   }
 }
+
+

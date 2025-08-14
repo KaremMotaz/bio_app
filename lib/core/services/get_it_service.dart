@@ -1,3 +1,7 @@
+import 'package:bio_app/core/services/storage_service.dart';
+import 'package:bio_app/features/profile/data/repos/images_repo_imp.dart';
+import 'package:bio_app/features/profile/domain/repos/images_repo.dart';
+
 import '../../features/exam/data/datasources/exam_questions_remote_data_source.dart';
 import '../../features/exam/data/datasources/exams_local_data_source_imp.dart';
 import '../../features/exam/data/datasources/exams_questions_local_data_source_imp.dart';
@@ -54,6 +58,8 @@ void setupGetIt() {
       databaseService: getIt(),
     ),
   );
+  getIt.registerLazySingleton<StorageService>(() => StorageService());
+  getIt.registerLazySingleton<ImagesRepo>(() => ImagesRepoImp(storageService: getIt()));
 
   // 📚 Quiz
   getIt.registerLazySingleton<QuizHelper>(() => QuizHelper());

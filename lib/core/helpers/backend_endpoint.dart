@@ -13,4 +13,6 @@ class BackendEndpoint {
   static const getExams = 'exams';
   static const getExamResults = 'examResults';
   static const getExamsResults = 'examsResult';
+  static const uploadUsersImages = 'usersImages';
+  static const getUsersImages = 'usersImages';
 }
