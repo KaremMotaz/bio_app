@@ -10,7 +10,6 @@ import 'package:go_router/go_router.dart';
 
 void showAvatarsDialog({
   required BuildContext context,
-  required ChangeProfileImageCubit changeProfileImageCubit,
 }) {
   List<String> avatarPaths = List.generate(8, (index) {
     return "assets/avatars/avatar${index + 1}.png";

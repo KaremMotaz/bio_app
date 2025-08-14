@@ -1,7 +1,6 @@
 import 'package:bio_app/core/helpers/get_user.dart';
 import 'package:bio_app/core/widgets/user_avatar.dart';
 import 'package:bio_app/features/profile/presentation/helpers/choose_image_source_dialog.dart';
-import 'package:bio_app/features/profile/presentation/helpers/image_picker_helper.dart';
 import 'package:bio_app/features/profile/presentation/manager/cubit/change_profile_image_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,9 +30,9 @@ class ProfileAvatar extends StatelessWidget {
                   chooseImageSourceDialog(
                     context: context,
                     pickImageFromGallery: () {
-                      return pickImageFromGallery(
-                        cubit: changeProfileImageCubit(),
-                      );
+                      return context
+                          .read<ChangeProfileImageCubit>()
+                          .selectImageFromGallery();
                     },
                   );
                 },

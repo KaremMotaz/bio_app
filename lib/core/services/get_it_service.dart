@@ -1,4 +1,5 @@
 import 'package:bio_app/core/services/storage_service.dart';
+import 'package:bio_app/core/services/supabase_storage_service.dart';
 import 'package:bio_app/features/profile/data/repos/images_repo_imp.dart';
 import 'package:bio_app/features/profile/domain/repos/images_repo.dart';
 
@@ -58,7 +59,7 @@ void setupGetIt() {
       databaseService: getIt(),
     ),
   );
-  getIt.registerLazySingleton<StorageService>(() => StorageService());
+  getIt.registerLazySingleton<StorageService>(() => SupabaseStorageService());
   getIt.registerLazySingleton<ImagesRepo>(() => ImagesRepoImp(storageService: getIt()));
 
   // 📚 Quiz

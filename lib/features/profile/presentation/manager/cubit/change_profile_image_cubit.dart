@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:bio_app/core/theming/assets_data.dart';
 import 'package:bio_app/features/profile/domain/repos/images_repo.dart';
 import 'package:bio_app/features/profile/presentation/helpers/assets_to_file.dart';
+import 'package:bio_app/features/profile/presentation/helpers/image_picker_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,6 +30,13 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
         selectedAvatarPath: selectedAvatarPath!,
       ),
     );
+  }
+
+  Future<void> selectImageFromGallery() async {
+    final image = await pickImageFromGallery();
+    if (image != null) {
+      selectImage(image: image, avatarPath: null);
+    }
   }
 
   Future<void> uploadImage() async {
