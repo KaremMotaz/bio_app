@@ -27,14 +27,7 @@ class ProfileAvatar extends StatelessWidget {
               bottom: 0,
               child: GestureDetector(
                 onTap: () {
-                  chooseImageSourceDialog(
-                    context: context,
-                    pickImageFromGallery: () {
-                      return context
-                          .read<ChangeProfileImageCubit>()
-                          .selectImageFromGallery();
-                    },
-                  );
+                  chooseImageSourceDialog(context: context);
                 },
                 child: Container(
                   padding: const EdgeInsets.all(5),

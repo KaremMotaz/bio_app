@@ -1,16 +1,13 @@
 import 'package:bio_app/core/functions/build_snack_bar.dart';
-import 'package:bio_app/core/services/get_it_service.dart';
 import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:bio_app/core/theming/text_styles.dart';
 import 'package:bio_app/core/widgets/app_text_button.dart';
-import 'package:bio_app/features/profile/domain/repos/images_repo.dart';
 import 'package:bio_app/features/profile/presentation/manager/cubit/change_profile_image_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-void showAvatarsDialog({
-  required BuildContext context,
-}) {
+void showAvatarsDialog({required BuildContext context}) {
   List<String> avatarPaths = List.generate(8, (index) {
     return "assets/avatars/avatar${index + 1}.png";
   });
@@ -21,6 +18,7 @@ void showAvatarsDialog({
     context: context,
     builder: (context) {
       return Dialog(
+        backgroundColor: Colors.white,
         child: Padding(
           padding: const EdgeInsetsDirectional.only(
             start: 16,
@@ -96,12 +94,12 @@ void showAvatarsDialog({
                   ),
                   onPressed: () async {
                     if (selectedIndex != null) {
-                      ChangeProfileImageCubit(
-                        imagesRepo: getIt<ImagesRepo>(),
-                      ).selectImage(
-                        image: null,
-                        avatarPath: avatarPaths[selectedIndex!],
-                      );
+                      context
+                          .read<ChangeProfileImageCubit>()
+                          .selectImage(
+                            image: null,
+                            avatarPath: avatarPaths[selectedIndex!],
+                          );
 
                       successSnackBar(
                         context: context,
