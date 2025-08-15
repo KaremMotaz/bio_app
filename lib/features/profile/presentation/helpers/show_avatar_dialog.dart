@@ -96,8 +96,7 @@ void showAvatarsDialog({required BuildContext context}) {
                     if (selectedIndex != null) {
                       context
                           .read<ChangeProfileImageCubit>()
-                          .selectImage(
-                            image: null,
+                          .changeProfileImageFromAvatar(
                             avatarPath: avatarPaths[selectedIndex!],
                           );
 

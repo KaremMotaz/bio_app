@@ -17,6 +17,19 @@ class FirestoreService implements DatabaseService {
     }
   }
 
+  Future<String> editField({
+    required String collectionName,
+    required String docId,
+    required String fieldName,
+    required String value,
+  }) async {
+    await firestore.collection(collectionName).doc(docId).update({
+      fieldName: value,
+    });
+
+    return value;
+  }
+
   @override
   Future<void> addToSubcollection({
     required String parentCollection,

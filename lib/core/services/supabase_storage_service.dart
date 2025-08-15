@@ -9,7 +9,8 @@ class SupabaseStorageService implements StorageService {
   static late Supabase _supabase;
 
   static createBuckets(String bucketName) async {
-    List<Bucket> bucket = await _supabase.client.storage.listBuckets();
+    List<Bucket> bucket = await _supabase.client.storage
+        .listBuckets();
 
     bool isBucketExist = false;
 
@@ -47,5 +48,15 @@ class SupabaseStorageService implements StorageService {
         .from(kBucketName)
         .getPublicUrl('$path/$fileName');
     return urlFromSupabase;
+  }
+
+  @override
+  Future<void> deleteImageFromStorage({
+    required String bucket,
+    required String filePath,
+  }) async {
+    final supabase = Supabase.instance.client;
+
+    await supabase.storage.from(bucket).remove([filePath]);
   }
 }

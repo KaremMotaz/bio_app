@@ -1,8 +1,15 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:bio_app/core/errors/failure.dart';
 import 'package:bio_app/core/errors/server_failure.dart';
 import 'package:bio_app/core/helpers/backend_endpoint.dart';
+import 'package:bio_app/core/helpers/constants.dart';
+import 'package:bio_app/core/helpers/get_user.dart';
+import 'package:bio_app/core/services/cache_helper.dart';
+import 'package:bio_app/core/services/firestore_service.dart';
 import 'package:bio_app/core/services/storage_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../domain/repos/images_repo.dart';
 
@@ -10,13 +17,21 @@ import 'package:dartz/dartz.dart';
 
 class ImagesRepoImp implements ImagesRepo {
   final StorageService storageService;
-  ImagesRepoImp({required this.storageService});
+  final FirestoreService firestoreService;
+  ImagesRepoImp({
+    required this.storageService,
+    required this.firestoreService,
+  });
 
   @override
-  Future<Either<Failure, File>> uploadImage({required File? imageUrl}) async {
+  Future<Either<Failure, File>> uploadImageToStorage({
+    required File? imageFile,
+  }) async {
     try {
       File url = await storageService.uploadFile(
-          imageUrl!, BackendEndpoint.uploadUsersImages);
+        imageFile!,
+        BackendEndpoint.uploadUsersImages,
+      );
       return right(url);
     } catch (e) {
       return left(ServerFailure(e.toString()));
@@ -24,13 +39,73 @@ class ImagesRepoImp implements ImagesRepo {
   }
 
   @override
-  Future<Either<Failure, String>> getImage({required File? imageUrl}) async {
+  Future<Either<Failure, String>> getImage({
+    required File? imageFile,
+  }) async {
     try {
       String getUrl = await storageService.getImage(
-          imageUrl!, BackendEndpoint.getUsersImages);
+        imageFile!,
+        BackendEndpoint.getUsersImages,
+      );
       return right(getUrl);
     } catch (e) {
       return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> uploadImageToDatabase({
+    required String imageUrl,
+  }) async {
+    try {
+      final String userId = FirebaseAuth.instance.currentUser!.uid;
+      String getUrl = await firestoreService.editField(
+        collectionName: BackendEndpoint.editField,
+        docId: userId,
+        fieldName: 'imageUrl',
+        value: imageUrl,
+      );
+      return right(getUrl);
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<void> updateCachedUserProfileImage(
+    String newImageUrl,
+  ) async {
+    // 1️⃣ قراءة بيانات المستخدم القديمة من الكاش
+    final String userJson = CacheHelper.getString(key: kUserData);
+    if (userJson.isEmpty) return; // مفيش بيانات
+
+    // 2️⃣ فك JSON ل Map
+    final Map<String, dynamic> userMap = jsonDecode(userJson);
+    log(userMap.toString());
+    // 3️⃣ تعديل قيمة imageUrl
+    userMap['imageUrl'] = newImageUrl;
+
+    // 4️⃣ إعادة الحفظ في الكاش
+    await CacheHelper.set(key: kUserData, value: jsonEncode(userMap));
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteImageFromStorage() async {
+    try {
+      final currentUser = getUser();
+      final uri = Uri.parse(currentUser.imageUrl!);
+      if (uri.pathSegments.length < 6) return const Right(null);
+
+      final bucketName = uri.pathSegments[4];
+      final filePath = uri.pathSegments.sublist(5).join('/');
+      await storageService.deleteImageFromStorage(
+        bucket: bucketName,
+        filePath: filePath,
+      );
+
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
     }
   }
 }

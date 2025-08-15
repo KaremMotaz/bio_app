@@ -59,8 +59,15 @@ void setupGetIt() {
       databaseService: getIt(),
     ),
   );
-  getIt.registerLazySingleton<StorageService>(() => SupabaseStorageService());
-  getIt.registerLazySingleton<ImagesRepo>(() => ImagesRepoImp(storageService: getIt()));
+  getIt.registerLazySingleton<StorageService>(
+    () => SupabaseStorageService(),
+  );
+  getIt.registerLazySingleton<ImagesRepo>(
+    () => ImagesRepoImp(
+      storageService: getIt(),
+      firestoreService: getIt(),
+    ),
+  );
 
   // 📚 Quiz
   getIt.registerLazySingleton<QuizHelper>(() => QuizHelper());
