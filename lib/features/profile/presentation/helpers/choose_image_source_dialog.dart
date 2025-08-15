@@ -17,11 +17,7 @@ void chooseImageSourceDialog({required BuildContext parentContext}) {
         value: cubit,
         child: Dialog(
           child: Container(
-            padding: const EdgeInsetsDirectional.symmetric(
-              horizontal: 20,
-            ),
-            width: 180,
-            height: 220,
+            height: 210,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(20)),
               color: AppColors.lighterGray,
@@ -29,30 +25,38 @@ void chooseImageSourceDialog({required BuildContext parentContext}) {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                const SizedBox(height: 5),
                 const CloseIcon(),
                 const SizedBox(height: 10),
-                AppTextButton(
-                  buttonText: "من الصور الرمزية",
-                  backgroundColor: AppColors.gray,
-                  textStyle: TextStyles.semiBold16.copyWith(
-                    color: Colors.white,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    children: [
+                      AppTextButton(
+                        buttonText: "من الصور الرمزية",
+                        backgroundColor: Colors.grey,
+                        textStyle: TextStyles.semiBold16.copyWith(
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          GoRouter.of(context).pop();
+                          showAvatarsDialog(context: parentContext);
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      AppTextButton(
+                        buttonText: "من المعرض",
+                        backgroundColor: Colors.grey,
+                        textStyle: TextStyles.semiBold16.copyWith(
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          cubit.changeProfileImageFromGallery();
+                          GoRouter.of(context).pop();
+                        },
+                      ),
+                    ],
                   ),
-                  onPressed: () {
-                    GoRouter.of(context).pop();
-                    showAvatarsDialog(context: parentContext);
-                  },
-                ),
-                const SizedBox(height: 20),
-                AppTextButton(
-                  buttonText: "من المعرض",
-                  backgroundColor: AppColors.gray,
-                  textStyle: TextStyles.semiBold16.copyWith(
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    cubit.changeProfileImageFromGallery();
-                    GoRouter.of(context).pop();
-                  },
                 ),
               ],
             ),

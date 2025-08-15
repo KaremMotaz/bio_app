@@ -17,9 +17,8 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
   /// العملية الكاملة من المعرض
   Future<void> changeProfileImageFromGallery() async {
     emit(ChangeProfileImageLoadingState());
-
     try {
-      //  اختيار صورة من المعرض
+      // 1️⃣ اختيار صورة من المعرض
       final image = await pickImageFromGallery();
       if (image == null) {
         emit(
@@ -31,10 +30,10 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
       }
       _selectedImageFile = image;
 
-      //  حذف الصورة القديمة من Storage
+      // 2️⃣ حذف الصورة القديمة من Storage
       await imagesRepo.deleteImageFromStorage();
 
-      //  رفع الصورالجديدة لـ Storage
+      // 3️⃣ رفع الصورة الجديدة لـ Storage
       final uploadResult = await imagesRepo.uploadImageToStorage(
         imageFile: _selectedImageFile!,
       );
@@ -48,12 +47,11 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
         return;
       }
 
-      //  جلب رابط الصورة
+      // 4️⃣ جلب رابط الصورة الجديدة
       final getResult = await imagesRepo.getImage(
         imageFile: _selectedImageFile!,
       );
       String imageUrl = getResult.getOrElse(() => "");
-
       if (imageUrl.isEmpty) {
         emit(
           const ChangeProfileImageErrorState(
@@ -65,7 +63,7 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
 
       emit(ChangeProfileImageLoadedState(imageUrl: imageUrl));
 
-      //  رفع الرابط لقاعدة البيانات
+      // 5️⃣ حفظ الرابط في قاعدة البيانات
       final uploadToDbResult = await imagesRepo.uploadImageToDatabase(
         imageUrl: imageUrl,
       );
@@ -77,9 +75,10 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
         return;
       }
 
-      //  تحديث الكاش المحلي
+      // 6️⃣ تحديث الكاش المحلي
       await imagesRepo.updateCachedUserProfileImage(imageUrl);
 
+      // 7️⃣ إنهاء العملية بنجاح
       emit(ChangeProfileImageSuccessState());
     } catch (e) {
       emit(ChangeProfileImageErrorState(error: e.toString()));
@@ -96,10 +95,10 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
       final avatarFile = await assetToFile(avatarPath);
       _selectedImageFile = avatarFile;
 
-      //  حذف الصورة القديمة من Storage
+      // 2️⃣ حذف الصورة القديمة من Storage
       await imagesRepo.deleteImageFromStorage();
 
-      //  رفع الصورالجديدة لـ Storage
+      // 3️⃣ رفع الصورة الجديدة لـ Storage
       final uploadResult = await imagesRepo.uploadImageToStorage(
         imageFile: avatarFile,
       );
@@ -113,12 +112,11 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
         return;
       }
 
-      // 3️⃣ جلب الرابط
+      // 4️⃣ جلب رابط الصورة
       final getResult = await imagesRepo.getImage(
         imageFile: avatarFile,
       );
       String imageUrl = getResult.getOrElse(() => "");
-
       if (imageUrl.isEmpty) {
         emit(
           const ChangeProfileImageErrorState(
@@ -130,7 +128,7 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
 
       emit(ChangeProfileImageLoadedState(imageUrl: imageUrl));
 
-      // 4️⃣ رفع الرابط لقاعدة البيانات
+      // 5️⃣ حفظ الرابط في قاعدة البيانات
       final uploadToDbResult = await imagesRepo.uploadImageToDatabase(
         imageUrl: imageUrl,
       );
@@ -142,9 +140,10 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
         return;
       }
 
-      // 5️⃣ تحديث الكاش المحلي
+      // 6️⃣ تحديث الكاش المحلي
       await imagesRepo.updateCachedUserProfileImage(imageUrl);
 
+      // 7️⃣ إنهاء العملية بنجاح
       emit(ChangeProfileImageSuccessState());
     } catch (e) {
       emit(ChangeProfileImageErrorState(error: e.toString()));
