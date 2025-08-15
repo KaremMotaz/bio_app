@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class UserAvatar extends StatelessWidget {
@@ -21,8 +22,16 @@ class UserAvatar extends StatelessWidget {
         imageUrl!.isNotEmpty &&
         imageUrl != "null") {
       return CircleAvatar(
-        backgroundImage: NetworkImage(imageUrl!),
+        backgroundColor: AppColors.lighterGray,
         radius: radius,
+        child: ClipOval(
+          child: Image.network(
+            imageUrl!,
+            fit: BoxFit.fill,
+            width: radius! * 2,
+            height: radius! * 2,
+          ),
+        ),
       );
     }
     final String initial = name.isNotEmpty

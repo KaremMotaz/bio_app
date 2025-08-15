@@ -1,3 +1,4 @@
+import 'package:bio_app/core/functions/build_snack_bar.dart';
 import 'package:bio_app/core/helpers/get_user.dart';
 import 'package:bio_app/core/widgets/user_avatar.dart';
 import 'package:bio_app/features/profile/presentation/helpers/choose_image_source_dialog.dart';
@@ -10,10 +11,20 @@ class ProfileAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<
+    return BlocConsumer<
       ChangeProfileImageCubit,
       ChangeProfileImageState
     >(
+      listener: (context, state) {
+        if (state is ChangeProfileImageSuccessState) {
+          successSnackBar(
+            context: context,
+            message: "تم تغيير الصورة بنجاح",
+          );
+        } else if (state is ChangeProfileImageErrorState) {
+          errorSnackBar(context: context, message: state.error);
+        }
+      },
       builder: (context, state) {
         return Stack(
           children: [
@@ -27,7 +38,7 @@ class ProfileAvatar extends StatelessWidget {
               bottom: 0,
               child: GestureDetector(
                 onTap: () {
-                  chooseImageSourceDialog(context: context);
+                  chooseImageSourceDialog(parentContext: context);
                 },
                 child: Container(
                   padding: const EdgeInsets.all(5),

@@ -19,7 +19,7 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
     emit(ChangeProfileImageLoadingState());
 
     try {
-      // 1️⃣ اختيار صورة من المعرض
+      //  اختيار صورة من المعرض
       final image = await pickImageFromGallery();
       if (image == null) {
         emit(
@@ -31,10 +31,10 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
       }
       _selectedImageFile = image;
 
-      // 2️⃣ حذف الصورة القديمة من Storage
+      //  حذف الصورة القديمة من Storage
       await imagesRepo.deleteImageFromStorage();
 
-      // 2️⃣ رفع الصورالجديدة لـ Storage
+      //  رفع الصورالجديدة لـ Storage
       final uploadResult = await imagesRepo.uploadImageToStorage(
         imageFile: _selectedImageFile!,
       );
@@ -48,7 +48,7 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
         return;
       }
 
-      // 3️⃣ جلب رابط الصورة
+      //  جلب رابط الصورة
       final getResult = await imagesRepo.getImage(
         imageFile: _selectedImageFile!,
       );
@@ -65,7 +65,7 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
 
       emit(ChangeProfileImageLoadedState(imageUrl: imageUrl));
 
-      // 4️⃣ رفع الرابط لقاعدة البيانات
+      //  رفع الرابط لقاعدة البيانات
       final uploadToDbResult = await imagesRepo.uploadImageToDatabase(
         imageUrl: imageUrl,
       );
@@ -77,7 +77,7 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
         return;
       }
 
-      // 5️⃣ تحديث الكاش المحلي
+      //  تحديث الكاش المحلي
       await imagesRepo.updateCachedUserProfileImage(imageUrl);
 
       emit(ChangeProfileImageSuccessState());
@@ -96,7 +96,10 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
       final avatarFile = await assetToFile(avatarPath);
       _selectedImageFile = avatarFile;
 
-      // 2️⃣ رفع الصورة
+      //  حذف الصورة القديمة من Storage
+      await imagesRepo.deleteImageFromStorage();
+
+      //  رفع الصورالجديدة لـ Storage
       final uploadResult = await imagesRepo.uploadImageToStorage(
         imageFile: avatarFile,
       );
