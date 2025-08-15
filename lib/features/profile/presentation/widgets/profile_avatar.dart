@@ -1,5 +1,6 @@
 import 'package:bio_app/core/functions/build_snack_bar.dart';
 import 'package:bio_app/core/helpers/get_user.dart';
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:bio_app/core/widgets/user_avatar.dart';
 import 'package:bio_app/features/profile/presentation/helpers/choose_image_source_dialog.dart';
 import 'package:bio_app/features/profile/presentation/manager/cubit/change_profile_image_cubit.dart';
@@ -26,36 +27,48 @@ class ProfileAvatar extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return Stack(
-          children: [
-            UserAvatar(
-              name: getUser().firstName!,
-              imageUrl: getUser().imageUrl,
-              savedColor: getUser().avatarColor!,
-            ),
-            Positioned(
-              right: 0,
-              bottom: 0,
-              child: GestureDetector(
-                onTap: () {
-                  chooseImageSourceDialog(parentContext: context);
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(5),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.edit,
+        return state is ChangeProfileImageLoadingState
+            ? const CircleAvatar(
+                radius: 45,
+                backgroundColor: AppColors.lighterGray,
+                child: Center(
+                  child: CircularProgressIndicator(
                     color: Colors.grey,
-                    size: 20,
                   ),
                 ),
-              ),
-            ),
-          ],
-        );
+              )
+            : Stack(
+                children: [
+                  UserAvatar(
+                    name: getUser().firstName!,
+                    imageUrl: getUser().imageUrl,
+                    savedColor: getUser().avatarColor!,
+                  ),
+                  Positioned(
+                    right: 0,
+                    bottom: 0,
+                    child: GestureDetector(
+                      onTap: () {
+                        chooseImageSourceDialog(
+                          parentContext: context,
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.edit,
+                          color: Colors.grey,
+                          size: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
       },
     );
   }

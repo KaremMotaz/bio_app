@@ -16,7 +16,6 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
 
   /// العملية الكاملة من المعرض
   Future<void> changeProfileImageFromGallery() async {
-    emit(ChangeProfileImageLoadingState());
     try {
       // 1️⃣ اختيار صورة من المعرض
       final image = await pickImageFromGallery();
@@ -29,7 +28,7 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
         return;
       }
       _selectedImageFile = image;
-
+      emit(ChangeProfileImageLoadingState());
       // 2️⃣ حذف الصورة القديمة من Storage
       await imagesRepo.deleteImageFromStorage();
 
@@ -61,8 +60,6 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
         return;
       }
 
-      emit(ChangeProfileImageLoadedState(imageUrl: imageUrl));
-
       // 5️⃣ حفظ الرابط في قاعدة البيانات
       final uploadToDbResult = await imagesRepo.uploadImageToDatabase(
         imageUrl: imageUrl,
@@ -89,11 +86,12 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
   Future<void> changeProfileImageFromAvatar({
     required String avatarPath,
   }) async {
-    emit(ChangeProfileImageLoadingState());
     try {
+
       // 1️⃣ تحويل الـ Asset لملف
       final avatarFile = await assetToFile(avatarPath);
       _selectedImageFile = avatarFile;
+      emit(ChangeProfileImageLoadingState());
 
       // 2️⃣ حذف الصورة القديمة من Storage
       await imagesRepo.deleteImageFromStorage();
