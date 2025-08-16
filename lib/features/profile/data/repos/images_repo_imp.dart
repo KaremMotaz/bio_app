@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 import 'package:bio_app/core/errors/failure.dart';
 import 'package:bio_app/core/errors/server_failure.dart';
@@ -7,12 +6,10 @@ import 'package:bio_app/core/helpers/backend_endpoint.dart';
 import 'package:bio_app/core/helpers/constants.dart';
 import 'package:bio_app/core/helpers/get_user.dart';
 import 'package:bio_app/core/services/cache_helper.dart';
+import 'package:bio_app/core/services/firebase_auth_service.dart';
 import 'package:bio_app/core/services/firestore_service.dart';
 import 'package:bio_app/core/services/storage_service.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
 import '../../domain/repos/images_repo.dart';
-
 import 'package:dartz/dartz.dart';
 
 class ImagesRepoImp implements ImagesRepo {
@@ -54,18 +51,17 @@ class ImagesRepoImp implements ImagesRepo {
   }
 
   @override
-  Future<Either<Failure, String>> uploadImageToDatabase({
+  Future<Either<Failure, Unit>> uploadImageToDatabase({
     required String imageUrl,
   }) async {
     try {
-      final String userId = FirebaseAuth.instance.currentUser!.uid;
-      String getUrl = await firestoreService.editField(
+      await firestoreService.editField(
         collectionName: BackendEndpoint.editField,
-        docId: userId,
+        docId: FirebaseAuthService.userId,
         fieldName: 'imageUrl',
         value: imageUrl,
       );
-      return right(getUrl);
+      return right(unit);
     } catch (e) {
       return left(ServerFailure(e.toString()));
     }
@@ -81,7 +77,7 @@ class ImagesRepoImp implements ImagesRepo {
 
     // 2️⃣ فك JSON ل Map
     final Map<String, dynamic> userMap = jsonDecode(userJson);
-    log(userMap.toString());
+
     // 3️⃣ تعديل قيمة imageUrl
     userMap['imageUrl'] = newImageUrl;
 

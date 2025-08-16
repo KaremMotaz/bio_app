@@ -17,7 +17,8 @@ class FirestoreService implements DatabaseService {
     }
   }
 
-  Future<String> editField({
+  @override
+  Future<void> editField({
     required String collectionName,
     required String docId,
     required String fieldName,
@@ -26,8 +27,6 @@ class FirestoreService implements DatabaseService {
     await firestore.collection(collectionName).doc(docId).update({
       fieldName: value,
     });
-
-    return value;
   }
 
   @override

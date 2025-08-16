@@ -1,4 +1,5 @@
 import 'package:bio_app/core/helpers/get_user.dart';
+import 'package:bio_app/features/profile/presentation/widgets/edit_profile_dialog.dart';
 import 'package:bio_app/features/profile/presentation/widgets/profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'edit_profile_list_tile.dart';
@@ -40,7 +41,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
               const ProfileAvatar(),
               const SizedBox(height: 20),
               EditProfileListTile(
-                title: "الاسم",
+                title: "الأسم الأول",
                 subTitle: Text(
                   {
                     getUser().firstName!,
@@ -48,21 +49,19 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                   }.join(" "),
                 ),
                 onTap: () {
-                  // editProfileDialog(
-                  //   context: context,
-                  //   textInputType: TextInputType.name,
-                  //   title: S.of(context).enter_name_title,
-                  //   hintText: S.of(context).name_hint,
-                  //   controller: fullNameController,
-                  //   validator: (value) {
-                  //     if (value == null || value.isEmpty) {
-                  //       return S
-                  //           .of(context)
-                  //           .name_validation;
-                  //     }
-                  //     return null;
-                  //   },
-                  // );
+                  editProfileDialog(
+                    context: context,
+                    textInputType: TextInputType.name,
+                    title: "تعديل الأسم الأول",
+                    hintText: "أدخل الأسم الأول",
+                    controller: fullNameController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "هذا الحقل مطلوب";
+                      }
+                      return null;
+                    },
+                  );
                 },
                 icon: Icons.person,
               ),
@@ -70,21 +69,22 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
               EditProfileListTile(
                 title: "الهاتف",
                 onTap: () {
-                  // editProfileDialog(
-                  //   context: context,
-                  //   textInputType: TextInputType.phone,
-                  //   title: S.of(context).enter_phone_title,
-                  //   hintText: S.of(context).phone_hint,
-                  //   controller: phoneNumberController,
-                  //   validator: (value) {
-                  //     if (value == null || value.isEmpty) {
-                  //       phoneNumberController.clear();
-                  //       return S
-                  //           .of(context)
-                  //           .phone_validation;
-                  //     }
-                  //   },
-                  // );
+                  editProfileDialog(
+                    context: context,
+                    textInputType: TextInputType.phone,
+                    title: "تعديل رقم الهاتف",
+                    hintText: "أدخل رقم الهاتف",
+                    controller: phoneNumberController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        phoneNumberController.clear();
+                        return "هذا الحقل مطلوب";
+                      } else if (value.length < 10) {
+                        return "رقم الهاتف يجب أن يكون 10 أرقام";
+                      }
+                      return null;
+                    },
+                  );
                 },
                 icon: Icons.phone,
                 subTitle: Text(getUser().phoneNumber!),
@@ -96,5 +96,3 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
     );
   }
 }
-
-

@@ -114,6 +114,7 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
       final getResult = await imagesRepo.getImage(
         imageFile: avatarFile,
       );
+      
       String imageUrl = getResult.getOrElse(() => "");
       if (imageUrl.isEmpty) {
         emit(

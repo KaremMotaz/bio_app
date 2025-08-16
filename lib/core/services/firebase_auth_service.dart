@@ -3,6 +3,8 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthService {
+  static String userId = FirebaseAuth.instance.currentUser!.uid;
+
   Future<User?> signUpWithEmailAndPassword({
     required String email,
     required String password,
@@ -20,16 +22,13 @@ class FirebaseAuthService {
     required String password,
   }) async {
     final credential = await FirebaseAuth.instance
-        .signInWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
+        .signInWithEmailAndPassword(email: email, password: password);
     return credential.user;
   }
 
   Future<User> signinWithGoogle() async {
-    final GoogleSignInAccount googleUser =
-        await GoogleSignIn.instance.authenticate();
+    final GoogleSignInAccount googleUser = await GoogleSignIn.instance
+        .authenticate();
 
     final GoogleSignInAuthentication googleAuth =
         googleUser.authentication;
@@ -38,15 +37,14 @@ class FirebaseAuthService {
       idToken: googleAuth.idToken,
     );
 
-    return (await FirebaseAuth.instance
-            .signInWithCredential(credential))
-        .user!;
+    return (await FirebaseAuth.instance.signInWithCredential(
+      credential,
+    )).user!;
   }
 
   Future<User> signinWithFacebook() async {
     // Trigger the sign-in flow
-    final LoginResult loginResult = await FacebookAuth
-        .instance
+    final LoginResult loginResult = await FacebookAuth.instance
         .login();
 
     // Create a credential from the access token
@@ -56,22 +54,19 @@ class FirebaseAuthService {
         );
 
     // Once signed in, return the UserCredential
-    return (await FirebaseAuth.instance
-            .signInWithCredential(facebookAuthCredential))
-        .user!;
+    return (await FirebaseAuth.instance.signInWithCredential(
+      facebookAuthCredential,
+    )).user!;
   }
 
   Future<void> sendLinkToResetPassword({
     required String email,
   }) async {
-    await FirebaseAuth.instance.sendPasswordResetEmail(
-      email: email,
-    );
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
   }
 
   Future<void> sendEmailVerification() async {
-    await FirebaseAuth.instance.currentUser!
-        .sendEmailVerification();
+    await FirebaseAuth.instance.currentUser!.sendEmailVerification();
   }
 
   Future<void> deleteAccount() async {

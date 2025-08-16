@@ -1,5 +1,5 @@
 import 'package:bio_app/features/profile/domain/repos/images_repo.dart';
-import 'package:bio_app/features/profile/presentation/manager/cubit/change_profile_image_cubit.dart';
+import 'package:bio_app/features/profile/presentation/manager/change_profile_image_cubit/change_profile_image_cubit.dart';
 
 import '../../features/exam/data/repos/exam_questions_repo_impl.dart';
 import '../../features/exam/data/repos/exam_repo_impl.dart';

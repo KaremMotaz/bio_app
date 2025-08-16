@@ -4,6 +4,14 @@ abstract class DatabaseService {
     required Map<String, dynamic> data,
     String? documentId,
   });
+
+  Future<void> editField({
+    required String collectionName,
+    required String docId,
+    required String fieldName,
+    required String value,
+  });
+
   Future<void> addToSubcollection({
     required String parentCollection,
     required String parentDocId,

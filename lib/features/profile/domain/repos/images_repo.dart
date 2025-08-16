@@ -9,7 +9,7 @@ abstract class ImagesRepo {
   Future<Either<Failure, String>> getImage({
     required File? imageFile,
   });
-  Future<Either<Failure, String>> uploadImageToDatabase({
+  Future<Either<Failure, Unit>> uploadImageToDatabase({
     required String imageUrl,
   });
 
