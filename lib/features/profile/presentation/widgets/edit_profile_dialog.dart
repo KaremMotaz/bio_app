@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 
 editProfileDialog({
   required BuildContext context,
-  // required void Function() onPressed,
+  required void Function() onPressed,
   required String title,
   required String hintText,
   required TextEditingController controller,
@@ -109,6 +109,7 @@ editProfileDialog({
                         ),
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
+                            onPressed();
                             controller.clear();
                             GoRouter.of(context).pop();
                           }

@@ -1,6 +1,7 @@
 import 'package:bio_app/core/services/storage_service.dart';
 import 'package:bio_app/core/services/supabase_storage_service.dart';
 import 'package:bio_app/features/profile/data/repos/images_repo_imp.dart';
+import 'package:bio_app/features/profile/data/repos/user_data_repo_imp.dart';
 import 'package:bio_app/features/profile/domain/repos/images_repo.dart';
 
 import '../../features/exam/data/datasources/exam_questions_remote_data_source.dart';
@@ -67,6 +68,10 @@ void setupGetIt() {
       storageService: getIt(),
       firestoreService: getIt(),
     ),
+  );
+
+  getIt.registerLazySingleton<UserDataRepoImp>(
+    () => UserDataRepoImp(databaseService: getIt()),
   );
 
   // 📚 Quiz
