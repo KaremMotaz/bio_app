@@ -33,7 +33,7 @@ class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
 
     quizQuestions.fold(
       (failure) =>
-          emit(QuizQuestionsErrorState(message: failure.errMessage)),
+          emit(QuizQuestionsErrorState(message: failure.message)),
       (questions) {
         _timer.startTimer();
         emit(

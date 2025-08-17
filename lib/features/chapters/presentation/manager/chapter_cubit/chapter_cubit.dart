@@ -15,8 +15,7 @@ class ChapterCubit extends Cubit<ChapterState> {
     emit(ChapterLoadingState());
     final result = await chapterRepoImpl.getChapters(unitId: unitId);
     result.fold(
-      (failure) =>
-          emit(ChapterErrorState(message: failure.errMessage)),
+      (failure) => emit(ChapterErrorState(message: failure.message)),
       (chapters) => emit(ChapterLoadedState(chapters: chapters)),
     );
   }

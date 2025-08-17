@@ -1,3 +1,6 @@
+import 'package:bio_app/core/functions/build_snack_bar.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+
 import '../../../../core/helpers/app_regex.dart';
 import '../../../../core/helpers/get_user.dart';
 import '../manager/edit_profile_cubit/edit_profile_cubit.dart';
@@ -32,22 +35,34 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 10,
-          ),
-          child: BlocBuilder<EditProfileCubit, EditProfileState>(
-            builder: (context, state) {
-              return Column(
+    return BlocConsumer<EditProfileCubit, EditProfileState>(
+      listener: (context, state) {
+        if (state is EditProfileSuccessState) {
+          successSnackBar(
+            context: context,
+            message: "تم تحديث الملف الشخصي بنجاح.",
+          );
+          setState(() {});
+        } else if (state is EditProfileErrorState) {
+          errorSnackBar(context: context, message: state.message);
+        }
+      },
+      builder: (context, state) {
+        return ModalProgressHUD(
+          inAsyncCall: state is EditProfileLoadingState,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+              child: Column(
                 children: [
                   const ProfileAvatar(),
                   const SizedBox(height: 20),
                   EditProfileListTile(
                     title: "الأسم الأول",
-                    subTitle: Text(getUser().firstName!),
+                    subTitle: Text(getUser().firstName ?? ""),
                     onTap: () {
                       editProfileDialog(
                         context: context,
@@ -76,7 +91,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                   const SizedBox(height: 20),
                   EditProfileListTile(
                     title: "الأسم الأخير",
-                    subTitle: Text(getUser().lastName!),
+                    subTitle: Text(getUser().lastName ?? ""),
                     onTap: () {
                       editProfileDialog(
                         context: context,
@@ -104,6 +119,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                   const SizedBox(height: 10),
                   EditProfileListTile(
                     title: "الهاتف",
+                    subTitle: Text(getUser().phoneNumber ?? ""),
                     onTap: () {
                       editProfileDialog(
                         context: context,
@@ -115,10 +131,9 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                           if (value == null || value.isEmpty) {
                             phoneNumberController.clear();
                             return "يرجي أدخال رقم الهاتف";
-                          } else if (AppRegex.isPhoneNumberValid(
-                                value,
-                              ) ==
-                              false) {
+                          } else if (!AppRegex.isPhoneNumberValid(
+                            value,
+                          )) {
                             return "رقم الهاتف غير صالح";
                           }
                           return null;
@@ -134,14 +149,13 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                       );
                     },
                     icon: Icons.phone,
-                    subTitle: Text(getUser().phoneNumber!),
                   ),
                 ],
-              );
-            },
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

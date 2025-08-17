@@ -20,7 +20,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     );
     result.fold(
       (failure) {
-        emit(ResetPasswordFailureState(message: failure.errMessage));
+        emit(ResetPasswordFailureState(message: failure.message));
       },
       (unit) {
         emit(ResetPasswordSuccessState());

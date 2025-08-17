@@ -10,15 +10,13 @@ class QuizCubit extends Cubit<QuizState> {
   QuizCubit({required this.quizRepoImp}) : super(QuizInitialState());
   final QuizRepoImp quizRepoImp;
 
-  Future<void> getQuizzes({
-    required String lessonId,
-  }) async {
+  Future<void> getQuizzes({required String lessonId}) async {
     emit(QuizLoadingState());
 
     final result = await quizRepoImp.getQuizzes(lessonId: lessonId);
 
     result.fold(
-      (failure) => emit(QuizErrorState(message: failure.errMessage)),
+      (failure) => emit(QuizErrorState(message: failure.message)),
       (quizzes) => emit(QuizLoadedState(quizzes: quizzes)),
     );
   }

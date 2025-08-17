@@ -22,8 +22,7 @@ class LessonCubit extends Cubit<LessonState> {
     );
 
     result.fold(
-      (failure) =>
-          emit(LessonErrorState(message: failure.errMessage)),
+      (failure) => emit(LessonErrorState(message: failure.message)),
       (lessons) => emit(LessonLoadedState(lessons: lessons)),
     );
   }

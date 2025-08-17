@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'failure.dart';
 
 class ServerFailure extends Failure {
-  const ServerFailure(super.errMessage);
+  const ServerFailure(super.message);
 
   /// للتعامل مع HTTP responses (لو احتجتها لاحقًا)
   factory ServerFailure.fromResponse(
@@ -39,7 +39,7 @@ class ServerFailure extends Failure {
   factory ServerFailure.fromPlatformException(PlatformException e) {
     return ServerFailure(e.message ?? "A platform error occurred.");
   }
-  
+
   factory ServerFailure.unknown([String? details]) =>
       ServerFailure("Unexpected server error ${details ?? ""}");
 }

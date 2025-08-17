@@ -1,4 +1,4 @@
 abstract class Failure {
-  final String errMessage;
-  const Failure(this.errMessage);
+  final String message;
+  const Failure(this.message);
 }

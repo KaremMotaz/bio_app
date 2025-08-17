@@ -33,7 +33,7 @@ class FillProfileCubit extends Cubit<FillProfileState> {
     );
     result.fold(
       (failure) {
-        emit(FillProfileFailureState(message: failure.errMessage));
+        emit(FillProfileFailureState(message: failure.message));
       },
       (userEntity) {
         emit(FillProfileSuccessState(userEntity: userEntity));

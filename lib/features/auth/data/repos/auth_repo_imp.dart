@@ -45,7 +45,7 @@ class AuthRepoImp extends AuthRepo {
       return left(AuthFailure.fromCode(e.code));
     } on FirestoreFailure catch (e) {
       await deleteUser();
-      return left(FirestoreFailure.fromCode(e.errMessage));
+      return left(FirestoreFailure.fromCode(e.message));
     } catch (e) {
       await deleteUser();
       return left(AuthFailure(e.toString()));
@@ -178,10 +178,8 @@ class AuthRepoImp extends AuthRepo {
 
   @override
   Future<UserEntity> getUserData({required String uid}) async {
-    final Map<String, dynamic> userData = await databaseService.getData(
-      path: BackendEndpoint.getUserData,
-      documentId: uid,
-    );
+    final Map<String, dynamic> userData = await databaseService
+        .getData(path: BackendEndpoint.getUserData, documentId: uid);
     return UserModel.fromJson(userData);
   }
 

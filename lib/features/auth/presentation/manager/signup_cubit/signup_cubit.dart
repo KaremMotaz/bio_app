@@ -22,7 +22,7 @@ class SignupCubit extends Cubit<SignupState> {
     );
     result.fold(
       (failure) {
-        emit(SignupFailureState(message: failure.errMessage));
+        emit(SignupFailureState(message: failure.message));
       },
       (userEntity) async {
         await authRepo.sendEmailVerification();

@@ -19,7 +19,7 @@ class UnitCubit extends Cubit<UnitState> {
         .getUnits();
 
     result.fold(
-      (failure) => emit(UnitErrorState(message: failure.errMessage)),
+      (failure) => emit(UnitErrorState(message: failure.message)),
       (units) {
         final unitEntities = units
             .map((model) => model.toEntity())

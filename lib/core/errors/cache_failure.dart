@@ -1,7 +1,7 @@
 import 'failure.dart';
 
 class CacheFailure extends Failure {
-  const CacheFailure(super.errMessage);
+  const CacheFailure(super.message);
 
   /// Factory methods for common cases
   factory CacheFailure.empty() =>

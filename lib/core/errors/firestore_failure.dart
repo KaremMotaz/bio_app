@@ -1,7 +1,7 @@
 import 'failure.dart';
 
 class FirestoreFailure extends Failure {
-  FirestoreFailure(super.errMessage);
+  FirestoreFailure(super.message);
 
   factory FirestoreFailure.fromCode(String code) {
     switch (code) {
@@ -14,9 +14,13 @@ class FirestoreFailure extends Failure {
           "The service is temporarily unavailable. Please try again later.",
         );
       case "deadline-exceeded":
-        return FirestoreFailure("The request took too long. Please try again.");
+        return FirestoreFailure(
+          "The request took too long. Please try again.",
+        );
       case "not-found":
-        return FirestoreFailure("The requested document was not found.");
+        return FirestoreFailure(
+          "The requested document was not found.",
+        );
       case "already-exists":
         return FirestoreFailure("This document already exists.");
       case "cancelled":
@@ -24,7 +28,9 @@ class FirestoreFailure extends Failure {
       case "invalid-argument":
         return FirestoreFailure("The provided argument is invalid.");
       case "resource-exhausted":
-        return FirestoreFailure("Too many requests. Please try again later.");
+        return FirestoreFailure(
+          "Too many requests. Please try again later.",
+        );
       case "failed-precondition":
         return FirestoreFailure(
           "The request cannot be processed due to a failed condition.",
@@ -32,7 +38,9 @@ class FirestoreFailure extends Failure {
       case "aborted":
         return FirestoreFailure("The operation was aborted.");
       case "out-of-range":
-        return FirestoreFailure("The value provided is out of range.");
+        return FirestoreFailure(
+          "The value provided is out of range.",
+        );
       case "data-loss":
         return FirestoreFailure("Data loss has occurred.");
       case "unauthenticated":

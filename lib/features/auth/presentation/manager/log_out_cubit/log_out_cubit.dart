@@ -14,7 +14,7 @@ class LogOutCubit extends Cubit<LogOutState> {
     final result = await authRepo.logOut();
     result.fold(
       (failure) {
-        emit(LogOutFailureState(message: failure.errMessage));
+        emit(LogOutFailureState(message: failure.message));
       },
       (unit) {
         emit(LogOutSuccessState());

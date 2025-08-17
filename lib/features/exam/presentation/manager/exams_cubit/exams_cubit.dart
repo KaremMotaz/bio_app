@@ -21,7 +21,7 @@ class ExamsCubit extends Cubit<ExamsState> {
         .getExams();
 
     exams.fold(
-      (failure) => emit(ExamsErrorState(message: failure.errMessage)),
+      (failure) => emit(ExamsErrorState(message: failure.message)),
       (exams) => emit(ExamsLoadedState(exams)),
     );
   }

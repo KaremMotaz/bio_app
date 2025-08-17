@@ -1,50 +1,74 @@
-import '../../../data/repos/user_data_repo_imp.dart';
 import 'package:flutter/material.dart';
+
+import '../../../data/repos/user_data_repo_imp.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'edit_profile_state.dart';
 
 class EditProfileCubit extends Cubit<EditProfileState> {
-  UserDataRepoImp userDataRepoImp;
+  final UserDataRepoImp userDataRepoImp;
 
   EditProfileCubit({required this.userDataRepoImp})
     : super(EditProfileInitialState());
 
-  void updateFirstName({required String newFirstName}) async {
+  Future<void> updateFirstName({required String newFirstName}) async {
     emit(EditProfileLoadingState());
-    await userDataRepoImp.updateData(
+    final result = await userDataRepoImp.updateData(
       value: newFirstName,
       fieldName: 'firstName',
     );
-    await userDataRepoImp.updateCachedUser(
-      fieldName: 'firstName',
-      value: newFirstName,
+
+    result.fold(
+      (failure) =>
+          emit(EditProfileErrorState(message: failure.message)),
+      (_) async {
+        await userDataRepoImp.updateCachedUser(
+          fieldName: 'firstName',
+          value: newFirstName,
+        );
+        emit(EditProfileSuccessState());
+      },
     );
-    emit(EditProfileSuccessState());
   }
 
-  void updateLastName({required String newLastName}) async {
+  Future<void> updateLastName({required String newLastName}) async {
     emit(EditProfileLoadingState());
-    await userDataRepoImp.updateData(
+    final result = await userDataRepoImp.updateData(
       value: newLastName,
       fieldName: 'lastName',
     );
-    await userDataRepoImp.updateCachedUser(
-      fieldName: 'lastName',
-      value: newLastName,
+
+    result.fold(
+      (failure) =>
+          emit(EditProfileErrorState(message: failure.message)),
+      (_) async {
+        await userDataRepoImp.updateCachedUser(
+          fieldName: 'lastName',
+          value: newLastName,
+        );
+        emit(EditProfileSuccessState());
+      },
     );
-    emit(EditProfileSuccessState());
   }
 
-  void updatePhoneNumber({required String newPhoneNumber}) async {
+  Future<void> updatePhoneNumber({
+    required String newPhoneNumber,
+  }) async {
     emit(EditProfileLoadingState());
-    await userDataRepoImp.updateData(
+    final result = await userDataRepoImp.updateData(
       value: newPhoneNumber,
       fieldName: 'phoneNumber',
     );
-    await userDataRepoImp.updateCachedUser(
-      fieldName: 'phoneNumber',
-      value: newPhoneNumber,
+
+    result.fold(
+      (failure) =>
+          emit(EditProfileErrorState(message: failure.message)),
+      (_) async {
+        await userDataRepoImp.updateCachedUser(
+          fieldName: 'phoneNumber',
+          value: newPhoneNumber,
+        );
+        emit(EditProfileSuccessState());
+      },
     );
-    emit(EditProfileSuccessState());
   }
 }
