@@ -1,13 +1,14 @@
-import 'core/theming/text_styles.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
 import 'core/helpers/constants.dart';
 import 'core/routing/app_router.dart';
 import 'core/services/cache_helper.dart';
 import 'core/services/get_it_service.dart';
 import 'core/services/supabase_storage_service.dart';
+import 'core/theming/text_styles.dart';
 import 'firebase_options.dart';
 
 void main() async {

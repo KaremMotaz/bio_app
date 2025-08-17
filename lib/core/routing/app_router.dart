@@ -1,7 +1,7 @@
-import 'package:bio_app/features/profile/data/repos/user_data_repo_imp.dart';
-import 'package:bio_app/features/profile/domain/repos/images_repo.dart';
-import 'package:bio_app/features/profile/presentation/manager/change_profile_image_cubit/change_profile_image_cubit.dart';
-import 'package:bio_app/features/profile/presentation/manager/edit_profile_cubit/edit_profile_cubit.dart';
+import '../../features/profile/data/repos/user_data_repo_imp.dart';
+import '../../features/profile/domain/repos/images_repo.dart';
+import '../../features/profile/presentation/manager/change_profile_image_cubit/change_profile_image_cubit.dart';
+import '../../features/profile/presentation/manager/edit_profile_cubit/edit_profile_cubit.dart';
 
 import '../../features/exam/data/repos/exam_questions_repo_impl.dart';
 import '../../features/exam/data/repos/exam_repo_impl.dart';

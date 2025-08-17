@@ -1,7 +1,7 @@
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/features/leaderboard/data/mock_leaderboard.dart';
-import 'package:bio_app/features/leaderboard/presentation/widgets/custom_tabs.dart';
-import 'package:bio_app/features/leaderboard/presentation/widgets/leaderboard_tab.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../data/mock_leaderboard.dart';
+import '../widgets/custom_tabs.dart';
+import '../widgets/leaderboard_tab.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardView extends StatefulWidget {

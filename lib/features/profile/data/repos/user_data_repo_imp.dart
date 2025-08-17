@@ -1,35 +1,60 @@
 import 'dart:convert';
-
-import 'package:bio_app/core/helpers/backend_endpoint.dart';
-import 'package:bio_app/core/helpers/constants.dart';
-import 'package:bio_app/core/services/cache_helper.dart';
-import 'package:bio_app/core/services/data_service.dart';
-import 'package:bio_app/core/services/firebase_auth_service.dart';
+import '../../../../core/errors/cache_failure.dart';
+import '../../../../core/errors/failure.dart';
+import '../../../../core/errors/server_failure.dart';
+import '../../../../core/helpers/backend_endpoint.dart';
+import '../../../../core/helpers/constants.dart';
+import '../../../../core/services/cache_helper.dart';
+import '../../../../core/services/data_service.dart';
+import '../../../../core/services/firebase_auth_service.dart';
+import 'package:dartz/dartz.dart';
 
 class UserDataRepoImp {
-  DatabaseService databaseService;
+  final DatabaseService databaseService;
 
   UserDataRepoImp({required this.databaseService});
-  Future<void> updateData({
+
+  Future<Either<Failure, void>> updateData({
     required String value,
     required String fieldName,
   }) async {
-    await databaseService.editField(
-      collectionName: BackendEndpoint.editField,
-      docId: FirebaseAuthService.userId,
-      fieldName: fieldName,
-      value: value,
-    );
+    try {
+      await databaseService.editField(
+        collectionName: BackendEndpoint.editField,
+        docId: FirebaseAuthService.userId,
+        fieldName: fieldName,
+        value: value,
+      );
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure.unknown(e.toString()));
+    }
   }
 
-  Future<void> updateCachedUser({
+  Future<Either<Failure, void>> updateCachedUser({
     required String fieldName,
     required String value,
   }) async {
-    final String userJson = CacheHelper.getString(key: kUserData);
-    if (userJson.isEmpty) return;
-    final Map<String, dynamic> userMap = jsonDecode(userJson);
-    userMap[fieldName] = value;
-    await CacheHelper.set(key: kUserData, value: jsonEncode(userMap));
+    try {
+      final String userJson = CacheHelper.getString(key: kUserData);
+
+      if (userJson.isEmpty) {
+        return Left(CacheFailure.empty());
+      }
+
+      final Map<String, dynamic> userMap = jsonDecode(userJson);
+      userMap[fieldName] = value;
+
+      await CacheHelper.set(
+        key: kUserData,
+        value: jsonEncode(userMap),
+      );
+
+      return const Right(null);
+    } on FormatException {
+      return Left(CacheFailure.invalidFormat());
+    } catch (e) {
+      return Left(CacheFailure.unknown(e.toString()));
+    }
   }
 }

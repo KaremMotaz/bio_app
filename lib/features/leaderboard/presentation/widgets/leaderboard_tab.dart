@@ -1,6 +1,6 @@
-import 'package:bio_app/features/leaderboard/domain/leaderboard_entity.dart';
-import 'package:bio_app/features/leaderboard/presentation/widgets/leaderboard_list_view.dart';
-import 'package:bio_app/features/leaderboard/presentation/widgets/top3_leaderboard_row.dart';
+import '../../domain/leaderboard_entity.dart';
+import 'leaderboard_list_view.dart';
+import 'top3_leaderboard_row.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardTab extends StatelessWidget {

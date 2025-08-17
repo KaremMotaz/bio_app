@@ -1,7 +1,8 @@
-import 'package:bio_app/core/helpers/get_user.dart';
-import 'package:bio_app/features/profile/presentation/manager/edit_profile_cubit/edit_profile_cubit.dart';
-import 'package:bio_app/features/profile/presentation/widgets/edit_profile_dialog.dart';
-import 'package:bio_app/features/profile/presentation/widgets/profile_avatar.dart';
+import '../../../../core/helpers/app_regex.dart';
+import '../../../../core/helpers/get_user.dart';
+import '../manager/edit_profile_cubit/edit_profile_cubit.dart';
+import 'edit_profile_dialog.dart';
+import 'profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'edit_profile_list_tile.dart';
@@ -56,7 +57,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                         controller: firstNameController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "يجب أدخال الأسم الأول";
+                            return "يرجي أدخال الأسم الأول";
                           }
                           return null;
                         },
@@ -85,7 +86,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                         controller: lastNameController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "هذا الحقل مطلوب";
+                            return "يرجي أدخال الأسم الأخير";
                           }
                           return null;
                         },
@@ -113,9 +114,12 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             phoneNumberController.clear();
-                            return "هذا الحقل مطلوب";
-                          } else if (value.length < 10) {
-                            return "رقم الهاتف يجب أن يكون 10 أرقام";
+                            return "يرجي أدخال رقم الهاتف";
+                          } else if (AppRegex.isPhoneNumberValid(
+                                value,
+                              ) ==
+                              false) {
+                            return "رقم الهاتف غير صالح";
                           }
                           return null;
                         },

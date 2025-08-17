@@ -1,4 +1,4 @@
-import 'package:bio_app/features/leaderboard/domain/leaderboard_entity.dart';
+import '../../domain/leaderboard_entity.dart';
 
 class LeaderboardModel extends LeaderboardEntity {
   const LeaderboardModel({

@@ -1,12 +1,13 @@
-import '../../../../core/helpers/constants.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../domain/unit_entity.dart';
-import '../../../../core/routing/routes.dart';
-import '../../../../core/theming/assets_data.dart';
-import '../../../../core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../core/helpers/constants.dart';
+import '../../../../core/routing/routes.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/assets_data.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../domain/unit_entity.dart';
 
 class CustomUnitCard extends StatelessWidget {
   const CustomUnitCard({super.key, required this.unit});

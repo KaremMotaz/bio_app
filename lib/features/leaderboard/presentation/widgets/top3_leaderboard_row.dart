@@ -1,5 +1,5 @@
-import 'package:bio_app/features/leaderboard/domain/leaderboard_entity.dart';
-import 'package:bio_app/features/leaderboard/presentation/widgets/leaderboard_user_badge.dart';
+import '../../domain/leaderboard_entity.dart';
+import 'leaderboard_user_badge.dart';
 import 'package:flutter/material.dart';
 
 class Top3LeaderboardRow extends StatelessWidget {

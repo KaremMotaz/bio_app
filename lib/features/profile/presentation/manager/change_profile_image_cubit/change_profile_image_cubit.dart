@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:bio_app/features/profile/domain/repos/images_repo.dart';
-import 'package:bio_app/features/profile/presentation/helpers/assets_to_file.dart';
-import 'package:bio_app/features/profile/presentation/helpers/image_picker_helper.dart';
+import '../../../domain/repos/images_repo.dart';
+import '../../helpers/assets_to_file.dart';
+import '../../helpers/image_picker_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'change_profile_image_state.dart';

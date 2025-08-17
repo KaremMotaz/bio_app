@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '../../domain/lesson_entity.dart';
 import 'lessons_cards_list.dart';
-import 'package:flutter/material.dart';
 
 class LessonsViewBody extends StatelessWidget {
   const LessonsViewBody({super.key, required this.lessons});

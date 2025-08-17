@@ -1,7 +1,6 @@
-import '../models/lesson_model.dart';
-
 import '../../../../core/helpers/backend_endpoint.dart';
 import '../../../../core/services/data_service.dart';
+import '../models/lesson_model.dart';
 
 class LessonsRemoteDataSource {
   final DatabaseService databaseService;

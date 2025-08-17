@@ -1,7 +1,7 @@
-import '../../../../core/entities/base_question_entity.dart';
-
-import '../../../../core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/entities/base_question_entity.dart';
+import '../../../../core/theming/text_styles.dart';
 
 class QuestionWidget<T extends BaseQuestionEntity>
     extends StatelessWidget {

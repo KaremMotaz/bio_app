@@ -1,7 +1,7 @@
-import 'package:bio_app/core/widgets/user_avatar.dart';
-import 'package:bio_app/features/leaderboard/domain/leaderboard_entity.dart';
+import '../../../../core/widgets/user_avatar.dart';
+import '../../domain/leaderboard_entity.dart';
 import 'package:flutter/material.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
+import '../../../../core/theming/text_styles.dart';
 
 class LeaderboardCard extends StatelessWidget {
   final LeaderboardEntity leaderboardEntity;

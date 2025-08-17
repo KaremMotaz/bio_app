@@ -1,7 +1,7 @@
-import 'package:bio_app/core/theming/assets_data.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/core/widgets/user_avatar.dart';
-import 'package:bio_app/features/leaderboard/domain/leaderboard_entity.dart';
+import '../../../../core/theming/assets_data.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../../../core/widgets/user_avatar.dart';
+import '../../domain/leaderboard_entity.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardUserBadge extends StatelessWidget {

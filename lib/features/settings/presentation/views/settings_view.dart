@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/services/get_it_service.dart';
 import '../../../auth/domain/auth_repo.dart';
 import '../../../auth/presentation/manager/log_out_cubit/log_out_cubit.dart';

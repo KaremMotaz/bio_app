@@ -1,9 +1,9 @@
-import 'package:bio_app/core/functions/build_snack_bar.dart';
-import 'package:bio_app/core/helpers/get_user.dart';
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/core/widgets/user_avatar.dart';
-import 'package:bio_app/features/profile/presentation/helpers/choose_image_source_dialog.dart';
-import 'package:bio_app/features/profile/presentation/manager/change_profile_image_cubit/change_profile_image_cubit.dart';
+import '../../../../core/functions/build_snack_bar.dart';
+import '../../../../core/helpers/get_user.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/widgets/user_avatar.dart';
+import '../helpers/choose_image_source_dialog.dart';
+import '../manager/change_profile_image_cubit/change_profile_image_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

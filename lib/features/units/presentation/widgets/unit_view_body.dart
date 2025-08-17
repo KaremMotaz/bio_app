@@ -1,5 +1,5 @@
-import 'package:bio_app/core/helpers/get_user.dart';
-import 'package:bio_app/core/widgets/user_avatar.dart';
+import '../../../../core/helpers/get_user.dart';
+import '../../../../core/widgets/user_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/routing/routes.dart';

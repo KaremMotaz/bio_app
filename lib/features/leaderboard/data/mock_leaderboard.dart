@@ -1,5 +1,5 @@
-import 'package:bio_app/core/helpers/get_user.dart';
-import 'package:bio_app/features/leaderboard/data/models/leaderboard_model.dart';
+import '../../../core/helpers/get_user.dart';
+import 'models/leaderboard_model.dart';
 
 final List<LeaderboardModel> nowLeaderboardList = [
   const LeaderboardModel(

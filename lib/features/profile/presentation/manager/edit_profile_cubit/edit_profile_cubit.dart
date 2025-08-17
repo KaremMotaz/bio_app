@@ -1,4 +1,4 @@
-import 'package:bio_app/features/profile/data/repos/user_data_repo_imp.dart';
+import '../../../data/repos/user_data_repo_imp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'edit_profile_state.dart';

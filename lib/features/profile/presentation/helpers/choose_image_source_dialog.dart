@@ -1,9 +1,9 @@
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/core/widgets/app_text_button.dart';
-import 'package:bio_app/core/widgets/close_icon.dart';
-import 'package:bio_app/features/profile/presentation/helpers/show_avatar_dialog.dart';
-import 'package:bio_app/features/profile/presentation/manager/change_profile_image_cubit/change_profile_image_cubit.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../../../core/widgets/app_text_button.dart';
+import '../../../../core/widgets/close_icon.dart';
+import 'show_avatar_dialog.dart';
+import '../manager/change_profile_image_cubit/change_profile_image_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

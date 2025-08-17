@@ -1,11 +1,11 @@
-import '../../../../core/services/get_it_service.dart';
-import '../../data/repos/quiz_repo_imp.dart';
-import '../manager/quiz_cubit/quiz_cubit.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/services/get_it_service.dart';
+import '../../data/repos/quiz_repo_imp.dart';
 import '../../domain/lesson_entity.dart';
+import '../manager/quiz_cubit/quiz_cubit.dart';
 import 'custom_lesson_card.dart';
-import 'package:flutter/material.dart';
 
 class LessonsCardsList extends StatelessWidget {
   const LessonsCardsList({super.key, required this.lessons});
