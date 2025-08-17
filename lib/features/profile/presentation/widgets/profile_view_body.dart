@@ -1,6 +1,5 @@
 import 'package:bio_app/core/functions/build_snack_bar.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../../../../core/helpers/app_regex.dart';
 import '../../../../core/helpers/get_user.dart';
 import '../manager/edit_profile_cubit/edit_profile_cubit.dart';

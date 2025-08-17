@@ -45,10 +45,7 @@ class UserDataRepoImp {
       final Map<String, dynamic> userMap = jsonDecode(userJson);
       userMap[fieldName] = value;
 
-      await CacheHelper.set(
-        key: kUserData,
-        value: jsonEncode(userMap),
-      );
+      CacheHelper.set(key: kUserData, value: jsonEncode(userMap));
 
       return const Right(null);
     } on FormatException {

@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
+import 'package:flutter/material.dart';
 import '../../../data/repos/user_data_repo_imp.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'edit_profile_state.dart';
@@ -25,6 +26,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           fieldName: 'firstName',
           value: newFirstName,
         );
+
         emit(EditProfileSuccessState());
       },
     );

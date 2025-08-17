@@ -110,7 +110,6 @@ editProfileDialog({
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             onPressed();
-                            controller.clear();
                             GoRouter.of(context).pop();
                           }
                         },
