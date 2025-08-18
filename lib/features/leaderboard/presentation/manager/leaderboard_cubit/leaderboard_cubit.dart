@@ -5,17 +5,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'leaderboard_state.dart';
 
 class LeaderboardCubit extends Cubit<LeaderboardState> {
-  final LeaderboardRepo leaderboardRepository;
+  final LeaderboardRepo leaderboardRepo;
 
   StreamSubscription? _sub;
 
-  LeaderboardCubit({required this.leaderboardRepository})
+  LeaderboardCubit({required this.leaderboardRepo})
     : super(LeaderboardInitialState());
 
   void loadNow() {
     emit(LeaderboardLoadingState());
     _sub?.cancel();
-    _sub = leaderboardRepository.getTop10Now().listen((either) {
+    _sub = leaderboardRepo.getTop10Now().listen((either) {
       either.fold(
         (failure) =>
             emit(LeaderboardErrorState(message: failure.message)),
@@ -27,7 +27,7 @@ class LeaderboardCubit extends Cubit<LeaderboardState> {
   void loadWeek() {
     emit(LeaderboardLoadingState());
     _sub?.cancel();
-    _sub = leaderboardRepository.getTop10Week().listen((either) {
+    _sub = leaderboardRepo.getTop10Week().listen((either) {
       either.fold(
         (failure) =>
             emit(LeaderboardErrorState(message: failure.message)),
@@ -39,7 +39,7 @@ class LeaderboardCubit extends Cubit<LeaderboardState> {
   void loadMonth() {
     emit(LeaderboardLoadingState());
     _sub?.cancel();
-    _sub = leaderboardRepository.getTop10Month().listen((either) {
+    _sub = leaderboardRepo.getTop10Month().listen((either) {
       either.fold(
         (failure) =>
             emit(LeaderboardErrorState(message: failure.message)),

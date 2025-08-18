@@ -1,3 +1,6 @@
+import 'package:bio_app/features/leaderboard/data/leaderboard_repo_imp.dart';
+import 'package:bio_app/features/leaderboard/domain/leaderboard_repo.dart';
+
 import 'storage_service.dart';
 import 'supabase_storage_service.dart';
 import '../../features/profile/data/repos/images_repo_imp.dart';
@@ -190,5 +193,8 @@ void setupGetIt() {
   getIt.registerLazySingleton<QuizzesLocalDataSource>(
     () =>
         QuizzesLocalDataSourceImpl(cache: getIt<LocalCacheService>()),
+  );
+  getIt.registerLazySingleton<LeaderboardRepo>(
+    () => LeaderboardRepoImp(databaseService: getIt()),
   );
 }

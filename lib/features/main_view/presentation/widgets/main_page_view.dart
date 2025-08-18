@@ -1,3 +1,5 @@
+import 'package:bio_app/features/leaderboard/domain/leaderboard_repo.dart';
+import 'package:bio_app/features/leaderboard/presentation/manager/leaderboard_cubit/leaderboard_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,7 +41,12 @@ class MainPageView extends StatelessWidget {
                 ..getExams(),
           child: const ExamsView(),
         ),
-        const LeaderboardView(),
+        BlocProvider(
+          create: (context) => LeaderboardCubit(
+            leaderboardRepo: getIt<LeaderboardRepo>(),
+          )..loadNow(),
+          child: const LeaderboardView(),
+        ),
         const SettingsView(),
       ],
     );
