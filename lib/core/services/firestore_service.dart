@@ -1,3 +1,4 @@
+import 'package:bio_app/core/services/firebase_auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'data_service.dart';
 
@@ -140,5 +141,36 @@ class FirestoreService implements DatabaseService {
         .doc(documentId)
         .get();
     return data.exists;
+  }
+
+  @override
+  Future<void> uploadScoreToLeaderboards({
+    required double score,
+  }) async {
+    final batch = firestore.batch();
+
+    final userId = FirebaseAuthService.userId;
+
+    final allTimeRef = firestore
+        .collection("leaderboards")
+        .doc("top10_all_time");
+    final monthRef = firestore
+        .collection("leaderboards")
+        .doc("top10_month");
+    final weekRef = firestore
+        .collection("leaderboards")
+        .doc("top10_week");
+
+    batch.update(allTimeRef, {
+      "scores.$userId": FieldValue.increment(score),
+    });
+    batch.update(monthRef, {
+      "scores.$userId": FieldValue.increment(score),
+    });
+    batch.update(weekRef, {
+      "scores.$userId": FieldValue.increment(score),
+    });
+
+    await batch.commit();
   }
 }

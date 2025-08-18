@@ -17,4 +17,10 @@ class QuizQuestionsRemoteDataSource {
         );
     return result.map((e) => QuizQuestionModel.fromJson(e)).toList();
   }
+
+  Future<void> uploadScoreToLeaderboards({
+    required double score,
+  }) async {
+    await databaseService.uploadScoreToLeaderboards(score: score);
+  }
 }

@@ -12,6 +12,11 @@ abstract class DatabaseService {
     required String value,
   });
 
+  Future<void> uploadScoreToLeaderboards({
+    required double score,
+  });
+
+
   Future<void> addToSubcollection({
     required String parentCollection,
     required String parentDocId,

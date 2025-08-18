@@ -1,5 +1,5 @@
 class QuizStatus {
-  final int score;
+  final double score;
   final int remainingLives;
 
   QuizStatus({
@@ -8,7 +8,7 @@ class QuizStatus {
   });
 
   QuizStatus copyWith({
-    int? score,
+    double? score,
     int? remainingLives,
   }) {
     return QuizStatus(

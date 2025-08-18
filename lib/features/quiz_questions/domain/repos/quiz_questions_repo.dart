@@ -7,4 +7,8 @@ abstract class QuizQuestionsRepo {
   Future<Either<Failure, List<QuizQuestionModel>>> getQuizQuestions({
     required String quizId,
   });
+  Future<void> uploadScoreToLeaderboards({
+    required double score,
+  });
+
 }

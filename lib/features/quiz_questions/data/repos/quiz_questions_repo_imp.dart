@@ -45,4 +45,14 @@ class QuizQuestionsRepoImp implements QuizQuestionsRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
+  @override
+  Future<void> uploadScoreToLeaderboards({
+    required double score,
+  }) async {
+    try {
+      await quizQuestionsRemoteDataSource.uploadScoreToLeaderboards(score: score);
+    } catch (e) {
+      throw ServerFailure(e.toString());
+    }
+  }
 }

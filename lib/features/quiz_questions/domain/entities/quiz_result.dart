@@ -1,6 +1,6 @@
 
 class QuizResult {
-  final int finalScore;
+  final double finalScore;
   final int totalMaxScore;
   final Duration duration;
 
@@ -9,6 +9,8 @@ class QuizResult {
     required this.totalMaxScore,
     required this.duration,
   });
+
+
 
   int get accuracy => ((finalScore / totalMaxScore) * 100).round();
 

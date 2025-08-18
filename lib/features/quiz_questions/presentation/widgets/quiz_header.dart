@@ -65,7 +65,7 @@ class QuizHeader extends StatelessWidget {
             SvgPicture.asset(AssetsData.expIcon),
             const SizedBox(width: 4),
             Text(
-              "${status.score}",
+              "${status.score.toInt()}",
               style: const TextStyle(
                 color: Colors.amber,
                 fontWeight: FontWeight.bold,

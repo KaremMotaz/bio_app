@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/errors/failure.dart';
 import '../../../data/models/quiz_question_model.dart';
 import '../../../domain/entities/quiz_progress.dart';
@@ -87,7 +86,7 @@ class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
     );
   }
 
-  void nextQuestion() {
+  Future<void> nextQuestion() async {
     final currentState = state as QuizQuestionsLoadedState;
 
     final QuizProgress newProgress = currentState.progress.copyWith(
@@ -108,7 +107,7 @@ class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
         ),
       );
     } else {
-      final totalMaxScore = currentState.questions.fold(
+      final int totalMaxScore = currentState.questions.fold(
         0,
         (sum, question) => sum + (question.marks ?? 1),
       );
@@ -121,6 +120,9 @@ class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
             duration: _timer.getDuration(),
           ),
         ),
+      );
+      await questionsRepo.uploadScoreToLeaderboards(
+        score: currentState.status.score,
       );
     }
   }
