@@ -1,3 +1,6 @@
+import 'package:bio_app/core/services/firebase_auth_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../../../core/helpers/backend_endpoint.dart';
 import '../../../../core/services/data_service.dart';
 import '../models/quiz_question_model.dart';
@@ -18,9 +21,17 @@ class QuizQuestionsRemoteDataSource {
     return result.map((e) => QuizQuestionModel.fromJson(e)).toList();
   }
 
-  Future<void> uploadScoreToLeaderboards({
+  Future<void> updateScores({
     required double score,
   }) async {
-    await databaseService.uploadScoreToLeaderboards(score: score);
+    await databaseService.editFields(
+      collectionName: BackendEndpoint.editFields,
+      docId: FirebaseAuthService.userId,
+      fields: {
+        "scoreThisDay": FieldValue.increment(score),
+        "scoreThisWeek": FieldValue.increment(score),
+        "scoreThisMonth": FieldValue.increment(score),
+      },
+    );
   }
 }

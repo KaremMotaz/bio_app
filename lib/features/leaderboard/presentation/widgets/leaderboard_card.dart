@@ -65,9 +65,9 @@ class LeaderboardCard extends StatelessWidget {
               Row(
                 children: [
                   UserAvatar(
-                    name: leaderboardEntity.name,
-                    savedColor: leaderboardEntity.savedColor,
-                    imageUrl: leaderboardEntity.avatarUrl,
+                    name: leaderboardEntity.fullName,
+                    savedColor: leaderboardEntity.avatarColor,
+                    imageUrl: leaderboardEntity.imageUrl,
                     radius: 25,
                     fontSize: 22,
                   ),
@@ -75,7 +75,7 @@ class LeaderboardCard extends StatelessWidget {
                   Text(
                     isCurrentUser
                         ? "ترتيبك الحالي"
-                        : leaderboardEntity.name,
+                        : leaderboardEntity.fullName,
                     style: TextStyles.semiBold15,
                   ),
                 ],

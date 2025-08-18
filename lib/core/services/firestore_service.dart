@@ -1,4 +1,3 @@
-import 'package:bio_app/core/services/firebase_auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'data_service.dart';
 
@@ -19,16 +18,13 @@ class FirestoreService implements DatabaseService {
   }
 
   @override
-  Future<void> editField({
-    required String collectionName,
-    required String docId,
-    required String fieldName,
-    required String value,
-  }) async {
-    await firestore.collection(collectionName).doc(docId).update({
-      fieldName: value,
-    });
-  }
+Future<void> editFields({
+  required String collectionName,
+  required String docId,
+  required Map<String, dynamic> fields,
+}) async {
+  await firestore.collection(collectionName).doc(docId).update(fields);
+}
 
   @override
   Future<void> addToSubcollection({
@@ -143,34 +139,43 @@ class FirestoreService implements DatabaseService {
     return data.exists;
   }
 
-  @override
-  Future<void> uploadScoreToLeaderboards({
-    required double score,
-  }) async {
-    final batch = firestore.batch();
+  // @override
+  // Future<void> uploadScoreToLeaderboards({
+  //   required double score,
+  // }) async {
+  //   final batch = firestore.batch();
+  //   final userId = FirebaseAuthService.userId;
 
-    final userId = FirebaseAuthService.userId;
+  //   final allTimeRef = firestore
+  //       .collection("leaderboards")
+  //       .doc("top10_all_time");
+  //   final monthRef = firestore
+  //       .collection("leaderboards")
+  //       .doc("top10_month");
+  //   final weekRef = firestore
+  //       .collection("leaderboards")
+  //       .doc("top10_week");
 
-    final allTimeRef = firestore
-        .collection("leaderboards")
-        .doc("top10_all_time");
-    final monthRef = firestore
-        .collection("leaderboards")
-        .doc("top10_month");
-    final weekRef = firestore
-        .collection("leaderboards")
-        .doc("top10_week");
+  //   final userBaseData = {
+  //     "id": userId,
+  //     "fullName": {getUser().firstName, getUser().lastName}.join(" "),
+  //     "imageUrl": getUser().imageUrl,
+  //     "avatarColor": getUser().avatarColor,
+  //   };
 
-    batch.update(allTimeRef, {
-      "scores.$userId": FieldValue.increment(score),
-    });
-    batch.update(monthRef, {
-      "scores.$userId": FieldValue.increment(score),
-    });
-    batch.update(weekRef, {
-      "scores.$userId": FieldValue.increment(score),
-    });
+  //   void updateLeaderboard(DocumentReference ref) {
+  //     batch.set(ref, {
+  //       userId: {
+  //         ...userBaseData,
+  //         "score": FieldValue.increment(score),
+  //       },
+  //     }, SetOptions(merge: true));
+  //   }
 
-    await batch.commit();
-  }
+  //   updateLeaderboard(allTimeRef);
+  //   updateLeaderboard(monthRef);
+  //   updateLeaderboard(weekRef);
+
+  //   await batch.commit();
+  // }
 }

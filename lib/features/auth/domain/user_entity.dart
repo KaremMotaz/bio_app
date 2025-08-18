@@ -9,6 +9,9 @@ class UserEntity {
   final bool isPremiumUser;
   final int? avatarColor;
   final DateTime? createdAt;
+  final double? scoreThisDay;
+  final double? scoreThisMonth;
+  final double? scoreThisWeek;
 
   UserEntity({
     this.email,
@@ -21,5 +24,8 @@ class UserEntity {
     this.isPremiumUser = false,
     this.avatarColor,
     this.createdAt,
+    this.scoreThisDay,
+    this.scoreThisMonth,
+    this.scoreThisWeek,
   });
 }

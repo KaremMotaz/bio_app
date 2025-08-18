@@ -3,31 +3,32 @@ import '../../domain/leaderboard_entity.dart';
 class LeaderboardModel extends LeaderboardEntity {
   const LeaderboardModel({
     required super.id,
-    required super.name,
+    required super.fullName,
     required super.score,
     required super.rank,
-    required super.avatarUrl,
-    required super.savedColor,
+    required super.imageUrl,
+    required super.avatarColor,
   });
 
   factory LeaderboardModel.fromJson(Map<String, dynamic> json) {
     return LeaderboardModel(
       id: json['id'] as String,
-      name: json['name'] as String,
-      score: json['score'] as int,
+      fullName: json['fullName'] as String,
+      score: json['score'] as double,
       rank: json['rank'] as int,
-      avatarUrl: json['avatarUrl'] as String,
-      savedColor: json['savedColor'] as int,
+      imageUrl: json['imageUrl'] as String,
+      avatarColor: json['avatarColor'] as int,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'name': name,
+      'fullName': fullName,
       'score': score,
       'rank': rank,
-      'avatarUrl': avatarUrl,
+      'imageUrl': imageUrl,
+      'avatarColor': avatarColor,
     };
   }
 }

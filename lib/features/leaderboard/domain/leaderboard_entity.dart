@@ -1,17 +1,17 @@
 class LeaderboardEntity {
-  final String id;
-  final String name;
-  final int score;
+  final String id; 
+  final String fullName;
+  final double score;
   final int rank;
-  final int savedColor;
-  final String? avatarUrl;
+  final int avatarColor;
+  final String? imageUrl;
 
-  const LeaderboardEntity( {
+  const LeaderboardEntity({
     required this.id,
-    required this.name,
+    required this.fullName,
     required this.score,
     required this.rank,
-    required this.avatarUrl,
-    required this.savedColor
+    required this.imageUrl,
+    required this.avatarColor,
   });
 }

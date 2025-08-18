@@ -5,16 +5,15 @@ abstract class DatabaseService {
     String? documentId,
   });
 
-  Future<void> editField({
+  Future<void> editFields({
     required String collectionName,
     required String docId,
-    required String fieldName,
-    required String value,
+    required Map<String, dynamic> fields,
   });
 
-  Future<void> uploadScoreToLeaderboards({
-    required double score,
-  });
+  // Future<void> uploadScoreToLeaderboards({
+  //   required double score,
+  // });
 
 
   Future<void> addToSubcollection({

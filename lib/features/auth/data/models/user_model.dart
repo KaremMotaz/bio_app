@@ -16,14 +16,14 @@ class UserModel extends UserEntity {
     super.isPremiumUser,
     super.avatarColor,
     super.createdAt,
+    super.scoreThisDay,
+    super.scoreThisWeek,
+    super.scoreThisMonth,
   });
 
   /// من FirebaseAuth User
   factory UserModel.fromFirebaseUser(User user) {
-    return UserModel(
-      email: user.email ?? '',
-      uid: user.uid,
-    );
+    return UserModel(email: user.email ?? '', uid: user.uid);
   }
 
   /// من Firestore JSON
@@ -38,11 +38,14 @@ class UserModel extends UserEntity {
       uid: json["uid"] ?? '',
       isPremiumUser: json["isPremiumUser"],
       avatarColor: json["avatarColor"],
+      scoreThisDay: json["scoreThisDay"],
+      scoreThisMonth: json["scoreThisMonth"],
+      scoreThisWeek: json["scoreThisWeek"],
       createdAt: (json['createdAt'] is Timestamp)
           ? (json['createdAt'] as Timestamp).toDate()
           : (json['createdAt'] is String)
-              ? DateTime.tryParse(json['createdAt'])
-              : null,
+          ? DateTime.tryParse(json['createdAt'])
+          : null,
     );
   }
 
@@ -59,6 +62,9 @@ class UserModel extends UserEntity {
       uid: user.uid,
       avatarColor: user.avatarColor,
       createdAt: user.createdAt,
+      scoreThisDay: user.scoreThisDay ?? 0.0,
+      scoreThisMonth: user.scoreThisMonth ?? 0.0,
+      scoreThisWeek: user.scoreThisWeek ?? 0.0,
     );
   }
 
@@ -78,10 +84,12 @@ class UserModel extends UserEntity {
       'imageUrl': imageUrl,
       'avatarColor': avatarColor ?? color.toARGB32(),
       'createdAt': FieldValue.serverTimestamp(),
+      'scoreThisDay': scoreThisDay ?? 0.0,
+      'scoreThisMonth': scoreThisMonth ?? 0.0,
+      'scoreThisWeek': scoreThisWeek ?? 0.0,
     };
   }
 
-  
   Map<String, dynamic> toJson() {
     return {
       'email': email,
@@ -94,6 +102,9 @@ class UserModel extends UserEntity {
       'imageUrl': imageUrl,
       'avatarColor': avatarColor ?? color.toARGB32(),
       'createdAt': createdAt?.toIso8601String(),
+      'scoreThisDay': scoreThisDay ?? 0.0,
+      'scoreThisMonth': scoreThisMonth ?? 0.0,
+      'scoreThisWeek': scoreThisWeek ?? 0.0,
     };
   }
 }

@@ -19,11 +19,10 @@ class UserDataRepoImp {
     required String fieldName,
   }) async {
     try {
-      await databaseService.editField(
-        collectionName: BackendEndpoint.editField,
+      await databaseService.editFields(
+        collectionName: BackendEndpoint.editFields,
         docId: FirebaseAuthService.userId,
-        fieldName: fieldName,
-        value: value,
+        fields: {fieldName: value},
       );
       return const Right(null);
     } catch (e) {

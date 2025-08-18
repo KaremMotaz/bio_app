@@ -62,9 +62,9 @@ class LeaderboardUserBadge extends StatelessWidget {
               ),
             ),
             UserAvatar(
-              name: leaderboardList[index].name,
-              savedColor: leaderboardList[index].savedColor,
-              imageUrl: leaderboardList[index].avatarUrl,
+              name: leaderboardList[index].fullName,
+              savedColor: leaderboardList[index].avatarColor,
+              imageUrl: leaderboardList[index].imageUrl,
               radius: avatarRadius,
               fontSize: fontSize,
             ),
@@ -98,7 +98,7 @@ class LeaderboardUserBadge extends StatelessWidget {
         ),
         const SizedBox(height: 14),
         Text(
-          leaderboardList[index].name,
+          leaderboardList[index].fullName,
           style: TextStyles.bold16.copyWith(color: Colors.black),
         ),
         Text(
