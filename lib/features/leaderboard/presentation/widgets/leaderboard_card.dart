@@ -1,17 +1,19 @@
+import 'package:bio_app/features/auth/domain/user_entity.dart';
 import '../../../../core/widgets/user_avatar.dart';
-import '../../domain/leaderboard_entity.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/theming/text_styles.dart';
 
 class LeaderboardCard extends StatelessWidget {
-  final LeaderboardEntity leaderboardEntity;
+  final UserEntity leaderboardEntity;
 
   const LeaderboardCard({
     super.key,
     required this.leaderboardEntity,
     required this.isCurrentUser,
+    required this.score,
   });
   final bool isCurrentUser;
+  final double score;
 
   @override
   Widget build(BuildContext context) {
@@ -65,8 +67,9 @@ class LeaderboardCard extends StatelessWidget {
               Row(
                 children: [
                   UserAvatar(
-                    name: leaderboardEntity.fullName,
-                    savedColor: leaderboardEntity.avatarColor,
+                    name:
+                        "${leaderboardEntity.firstName} ${leaderboardEntity.lastName}",
+                    savedColor: leaderboardEntity.avatarColor!,
                     imageUrl: leaderboardEntity.imageUrl,
                     radius: 25,
                     fontSize: 22,
@@ -75,7 +78,7 @@ class LeaderboardCard extends StatelessWidget {
                   Text(
                     isCurrentUser
                         ? "ترتيبك الحالي"
-                        : leaderboardEntity.fullName,
+                        : "${leaderboardEntity.firstName} ${leaderboardEntity.lastName}",
                     style: TextStyles.semiBold15,
                   ),
                 ],
@@ -94,7 +97,7 @@ class LeaderboardCard extends StatelessWidget {
             ),
             child: Text(
               textDirection: TextDirection.ltr,
-              "${leaderboardEntity.score} XP",
+              "$score XP",
               style: TextStyles.semiBold15,
             ),
           ),

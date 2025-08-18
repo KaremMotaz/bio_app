@@ -18,13 +18,16 @@ class FirestoreService implements DatabaseService {
   }
 
   @override
-Future<void> editFields({
-  required String collectionName,
-  required String docId,
-  required Map<String, dynamic> fields,
-}) async {
-  await firestore.collection(collectionName).doc(docId).update(fields);
-}
+  Future<void> editFields({
+    required String collectionName,
+    required String docId,
+    required Map<String, dynamic> fields,
+  }) async {
+    await firestore
+        .collection(collectionName)
+        .doc(docId)
+        .update(fields);
+  }
 
   @override
   Future<void> addToSubcollection({
@@ -139,43 +142,22 @@ Future<void> editFields({
     return data.exists;
   }
 
-  // @override
-  // Future<void> uploadScoreToLeaderboards({
-  //   required double score,
-  // }) async {
-  //   final batch = firestore.batch();
-  //   final userId = FirebaseAuthService.userId;
+  @override
+  Stream<QuerySnapshot<Map<String, dynamic>>> streamCollection({
+    required String path,
+    String? orderBy,
+    bool descending = false,
+    int? limit,
+  }) {
+    Query<Map<String, dynamic>> query = firestore.collection(path);
 
-  //   final allTimeRef = firestore
-  //       .collection("leaderboards")
-  //       .doc("top10_all_time");
-  //   final monthRef = firestore
-  //       .collection("leaderboards")
-  //       .doc("top10_month");
-  //   final weekRef = firestore
-  //       .collection("leaderboards")
-  //       .doc("top10_week");
+    if (orderBy != null) {
+      query = query.orderBy(orderBy, descending: descending);
+    }
+    if (limit != null) {
+      query = query.limit(limit);
+    }
 
-  //   final userBaseData = {
-  //     "id": userId,
-  //     "fullName": {getUser().firstName, getUser().lastName}.join(" "),
-  //     "imageUrl": getUser().imageUrl,
-  //     "avatarColor": getUser().avatarColor,
-  //   };
-
-  //   void updateLeaderboard(DocumentReference ref) {
-  //     batch.set(ref, {
-  //       userId: {
-  //         ...userBaseData,
-  //         "score": FieldValue.increment(score),
-  //       },
-  //     }, SetOptions(merge: true));
-  //   }
-
-  //   updateLeaderboard(allTimeRef);
-  //   updateLeaderboard(monthRef);
-  //   updateLeaderboard(weekRef);
-
-  //   await batch.commit();
-  // }
+    return query.snapshots();
+  }
 }

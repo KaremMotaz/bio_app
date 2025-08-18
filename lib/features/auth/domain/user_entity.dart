@@ -12,6 +12,7 @@ class UserEntity {
   final double? scoreThisDay;
   final double? scoreThisMonth;
   final double? scoreThisWeek;
+  final int? rank;
 
   UserEntity({
     this.email,
@@ -27,5 +28,6 @@ class UserEntity {
     this.scoreThisDay,
     this.scoreThisMonth,
     this.scoreThisWeek,
+    this.rank,
   });
 }

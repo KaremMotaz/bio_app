@@ -1,8 +1,8 @@
-import '../../../../core/theming/text_styles.dart';
-import '../../data/mock_leaderboard.dart';
-import '../widgets/custom_tabs.dart';
-import '../widgets/leaderboard_tab.dart';
+import 'package:bio_app/features/leaderboard/presentation/manager/leaderboard_cubit/leaderboard_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import '../widgets/leaderboard_tab.dart';
 
 class LeaderboardView extends StatefulWidget {
   const LeaderboardView({super.key});
@@ -21,8 +21,20 @@ class _LeaderboardViewState extends State<LeaderboardView>
   void initState() {
     super.initState();
     _tabController = TabController(length: tabs.length, vsync: this);
+
+    // load اول تاب افتراضياً
+    context.read<LeaderboardCubit>().loadNow();
+
     _tabController.addListener(() {
-      setState(() {});
+      if (_tabController.indexIsChanging) {
+        if (_tabController.index == 0) {
+          context.read<LeaderboardCubit>().loadNow();
+        } else if (_tabController.index == 1) {
+          context.read<LeaderboardCubit>().loadWeek();
+        } else {
+          context.read<LeaderboardCubit>().loadMonth();
+        }
+      }
     });
   }
 
@@ -34,23 +46,45 @@ class _LeaderboardViewState extends State<LeaderboardView>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'لوحة الصدارة',
-          style: TextStyles.bold18.copyWith(color: Colors.black),
-        ),
-        centerTitle: true,
-        bottom: CustomTabs(tabs: tabs, tabController: _tabController),
-      ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          LeaderboardTab(nowLeaderboardList: nowLeaderboardList),
-          LeaderboardTab(nowLeaderboardList: nowLeaderboardList),
-          LeaderboardTab(nowLeaderboardList: nowLeaderboardList),
-        ],
-      ),
+    return BlocBuilder<LeaderboardCubit, LeaderboardState>(
+      builder: (context, state) {
+        final isLoading = state is LeaderboardLoadingState;
+        return ModalProgressHUD(
+          inAsyncCall: isLoading,
+          child: Scaffold(
+            appBar: AppBar(
+              title: const Text('لوحة الصدارة'),
+              bottom: TabBar(
+                controller: _tabController,
+                tabs: tabs.map((t) => Tab(text: t)).toList(),
+              ),
+            ),
+            body: TabBarView(
+              controller: _tabController,
+              children: [
+                _buildTab(state: state, currentTab: tabs[0]),
+                _buildTab(state: state, currentTab: tabs[1]),
+                _buildTab(state: state, currentTab: tabs[2]),
+              ],
+            ),
+          ),
+        );
+      },
     );
+  }
+
+  Widget _buildTab({
+    required LeaderboardState state,
+    required String currentTab,
+  }) {
+    if (state is LeaderboardLoadedState) {
+      return LeaderboardTab(
+        leaderboardList: state.users,
+        currentTab: currentTab,
+      );
+    } else if (state is LeaderboardErrorState) {
+      return Center(child: Text(state.message));
+    }
+    return const SizedBox.shrink();
   }
 }

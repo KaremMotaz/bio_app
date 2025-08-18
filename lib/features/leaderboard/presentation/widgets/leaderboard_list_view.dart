@@ -1,4 +1,4 @@
-import '../../domain/leaderboard_entity.dart';
+import 'package:bio_app/features/auth/domain/user_entity.dart';
 import 'leaderboard_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +7,11 @@ class LeaderboardListView extends StatelessWidget {
   const LeaderboardListView({
     super.key,
     required this.leaderboardList,
+    required this.currentTab,
   });
 
-  final List<LeaderboardEntity> leaderboardList;
+  final List<UserEntity> leaderboardList;
+  final String currentTab;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,20 @@ class LeaderboardListView extends StatelessWidget {
         final String currentUser =
             FirebaseAuth.instance.currentUser!.uid;
         final bool isCurrentUser =
-            leaderboardList[adjustedIndex].id == currentUser;
+            leaderboardList[adjustedIndex].uid == currentUser;
+
+        double getScore(UserEntity user, String tab) {
+          switch (tab) {
+            case 'حاليا':
+              return user.scoreThisDay ?? 0;
+            case 'اسبوعيا':
+              return user.scoreThisWeek ?? 0;
+            case 'شهريا':
+              return user.scoreThisMonth ?? 0;
+            default:
+              return 0;
+          }
+        }
 
         if (leaderboardList.length > 10 && index == 3) {
           return Padding(
@@ -32,6 +47,10 @@ class LeaderboardListView extends StatelessWidget {
             child: LeaderboardCard(
               leaderboardEntity: leaderboardList[adjustedIndex],
               isCurrentUser: isCurrentUser,
+              score: getScore(
+                leaderboardList[adjustedIndex],
+                currentTab,
+              ),
             ),
           );
         }
@@ -40,6 +59,10 @@ class LeaderboardListView extends StatelessWidget {
           child: LeaderboardCard(
             leaderboardEntity: leaderboardList[adjustedIndex],
             isCurrentUser: isCurrentUser,
+            score: getScore(
+              leaderboardList[adjustedIndex],
+              currentTab,
+            ),
           ),
         );
       },

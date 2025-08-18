@@ -4,6 +4,7 @@ class BackendEndpoint {
   static const addUserAnswers = 'users';
   static const checkIfDataExists = 'users';
   static const editFields = 'users';
+  static const getLeaderboardData = 'users';
   static const userImages = 'UsersImages';
   static const getUnits = 'units';
   static const getChapters = 'chapters';

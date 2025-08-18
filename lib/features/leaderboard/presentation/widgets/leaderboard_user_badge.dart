@@ -1,7 +1,7 @@
+import 'package:bio_app/features/auth/domain/user_entity.dart';
 import '../../../../core/theming/assets_data.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../../../core/widgets/user_avatar.dart';
-import '../../domain/leaderboard_entity.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardUserBadge extends StatelessWidget {
@@ -18,9 +18,10 @@ class LeaderboardUserBadge extends StatelessWidget {
       Color(0xfffad75a),
     ],
     this.fontSize = 25,
+    required this.score,
   });
 
-  final List<LeaderboardEntity> leaderboardList;
+  final List<UserEntity> leaderboardList;
   final int index;
   final double? fontSize;
   final double avatarRadius;
@@ -28,6 +29,7 @@ class LeaderboardUserBadge extends StatelessWidget {
   final double rankCircleSize;
   final Color outerCircleBorderColor;
   final List<Color> rankCircleGradientColors;
+  final double score;
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +64,9 @@ class LeaderboardUserBadge extends StatelessWidget {
               ),
             ),
             UserAvatar(
-              name: leaderboardList[index].fullName,
-              savedColor: leaderboardList[index].avatarColor,
+              name:
+                  "${leaderboardList[index].firstName} ${leaderboardList[index].lastName}",
+              savedColor: leaderboardList[index].avatarColor!,
               imageUrl: leaderboardList[index].imageUrl,
               radius: avatarRadius,
               fontSize: fontSize,
@@ -98,11 +101,11 @@ class LeaderboardUserBadge extends StatelessWidget {
         ),
         const SizedBox(height: 14),
         Text(
-          leaderboardList[index].fullName,
+          "${leaderboardList[index].firstName} ${leaderboardList[index].lastName}",
           style: TextStyles.bold16.copyWith(color: Colors.black),
         ),
         Text(
-          "${leaderboardList[index].score}",
+          "$score",
           style: TextStyles.bold14.copyWith(color: Colors.black),
         ),
       ],

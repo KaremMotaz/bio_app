@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 abstract class DatabaseService {
   Future<void> addData({
     required String path,
@@ -10,11 +12,6 @@ abstract class DatabaseService {
     required String docId,
     required Map<String, dynamic> fields,
   });
-
-  // Future<void> uploadScoreToLeaderboards({
-  //   required double score,
-  // });
-
 
   Future<void> addToSubcollection({
     required String parentCollection,
@@ -50,5 +47,12 @@ abstract class DatabaseService {
   Future<bool> checkIfDataExists({
     required String path,
     required String documentId,
+  });
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> streamCollection({
+    required String path,
+    String? orderBy,
+    bool descending = false,
+    int? limit,
   });
 }
