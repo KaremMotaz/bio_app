@@ -37,7 +37,7 @@ class Top3LeaderboardRow extends StatelessWidget {
             Color(0xffafafaf),
             Color(0xffced0cf),
           ],
-          score: getScore(leaderboardList[0]),
+          score: getScore(leaderboardList[1]),
         ),
         LeaderboardUserBadge(
           leaderboardList: leaderboardList,
@@ -46,7 +46,7 @@ class Top3LeaderboardRow extends StatelessWidget {
           fontSize: 35,
           outerCircleSize: 110,
           rankCircleSize: 35,
-          score: getScore(leaderboardList[1]),
+          score: getScore(leaderboardList[0]),
         ),
         LeaderboardUserBadge(
           leaderboardList: leaderboardList,

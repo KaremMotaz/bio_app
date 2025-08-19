@@ -1,4 +1,5 @@
 import 'package:bio_app/features/auth/domain/user_entity.dart';
+import 'package:bio_app/features/leaderboard/presentation/widgets/leaderboard_with_less_than_four_users.dart';
 import 'leaderboard_list_view.dart';
 import 'top3_leaderboard_row.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,17 @@ class LeaderboardTab extends StatelessWidget {
   final String currentTab;
   @override
   Widget build(BuildContext context) {
+    if (leaderboardList.length < 4) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          LeaderboardWithLessThanFourUsers(
+            leaderboardList: leaderboardList,
+            currentTab: currentTab,
+          ),
+        ],
+      );
+    }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: SingleChildScrollView(

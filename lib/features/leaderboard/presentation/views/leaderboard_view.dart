@@ -26,7 +26,8 @@ class _LeaderboardViewState extends State<LeaderboardView>
     context.read<LeaderboardCubit>().loadNow();
 
     _tabController.addListener(() {
-      if (_tabController.indexIsChanging) {
+      if (_tabController.index ==
+          _tabController.animation?.value.round()) {
         if (_tabController.index == 0) {
           context.read<LeaderboardCubit>().loadNow();
         } else if (_tabController.index == 1) {

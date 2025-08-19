@@ -105,7 +105,8 @@ class LeaderboardUserBadge extends StatelessWidget {
           style: TextStyles.bold16.copyWith(color: Colors.black),
         ),
         Text(
-          "$score",
+          "${score.toInt()} XP",
+          textDirection: TextDirection.ltr,
           style: TextStyles.bold14.copyWith(color: Colors.black),
         ),
       ],
