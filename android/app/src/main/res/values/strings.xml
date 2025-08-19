@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">bio_app</string>
+  <string name="facebook_app_id">743478371926689</string>
+  <string name="fb_login_protocol_scheme">fb743478371926689</string>
+  <string name="facebook_client_token">fc33110e26981000f3c7cffe24aa396d</string>
+</resources>
+
+

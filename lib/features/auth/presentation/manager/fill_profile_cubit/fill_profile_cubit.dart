@@ -1,3 +1,5 @@
+import 'package:bio_app/core/errors/failure.dart';
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,22 +22,24 @@ class FillProfileCubit extends Cubit<FillProfileState> {
   }) async {
     emit(FillProfileLoadingState());
 
-    final result = await authRepo.addUserData(
-      userEntity: UserEntity(
-        email: user.email!,
-        uid: user.uid,
-        firstName: firstNameController.text,
-        lastName: lastNameController.text,
-        phoneNumber: phoneNumberController.text,
-        oldUser: true,
-        imageUrl: null,
-      ),
-    );
+    final Either<Failure, UserEntity> result = await authRepo
+        .addUserData(
+          userEntity: UserEntity(
+            email: user.email!,
+            uid: user.uid,
+            firstName: firstNameController.text,
+            lastName: lastNameController.text,
+            phoneNumber: phoneNumberController.text,
+            oldUser: true,
+            imageUrl: null,
+          ),
+        );
     result.fold(
       (failure) {
         emit(FillProfileFailureState(message: failure.message));
       },
-      (userEntity) {
+      (userEntity) async {
+        await authRepo.saveUserData(userEntity: userEntity);
         emit(FillProfileSuccessState(userEntity: userEntity));
       },
     );

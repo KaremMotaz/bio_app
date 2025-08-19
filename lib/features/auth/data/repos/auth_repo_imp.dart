@@ -97,12 +97,9 @@ class AuthRepoImp extends AuthRepo {
 
       return right(userEntity);
     } on FirebaseAuthException catch (e) {
-      log(e.toString());
-
       await deleteUser();
       return left(AuthFailure.fromCode(e.code));
     } catch (e) {
-      log(e.toString());
       return left(AuthFailure(e.toString()));
     }
   }
