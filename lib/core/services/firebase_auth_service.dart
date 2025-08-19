@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -26,7 +28,12 @@ class FirebaseAuthService {
     return credential.user;
   }
 
-  Future<User> signinWithGoogle() async {
+  Future<User> signinWithGoogle({
+    required String serverClientId,
+  }) async {
+    final GoogleSignIn signIn = GoogleSignIn.instance;
+    signIn.initialize(serverClientId: serverClientId);
+
     final GoogleSignInAccount googleUser = await GoogleSignIn.instance
         .authenticate();
 

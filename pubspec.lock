@@ -512,6 +512,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.2"
+  flutter_sha_fingerprint:
+    dependency: "direct main"
+    description:
+      name: flutter_sha_fingerprint
+      sha256: "73b0da611cff79ef2854c6cdbf6be77178e3102e68c5684b44222d1565a3a0e8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   flutter_svg:
     dependency: "direct main"
     description:

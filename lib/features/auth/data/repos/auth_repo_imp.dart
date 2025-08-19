@@ -78,7 +78,10 @@ class AuthRepoImp extends AuthRepo {
   Future<Either<Failure, UserEntity>> signinWithGoogle() async {
     User? user;
     try {
-      user = await firebaseAuthService.signinWithGoogle();
+      user = await firebaseAuthService.signinWithGoogle(
+        serverClientId:
+            "259409221329-faud1c409bhai79em307mkse5nriuv6k.apps.googleusercontent.com",
+      );
       UserEntity userEntity = UserModel.fromFirebaseUser(user);
 
       final bool isUserExists = await checkIfDataExists(
@@ -94,9 +97,12 @@ class AuthRepoImp extends AuthRepo {
 
       return right(userEntity);
     } on FirebaseAuthException catch (e) {
+      log(e.toString());
+
       await deleteUser();
       return left(AuthFailure.fromCode(e.code));
     } catch (e) {
+      log(e.toString());
       return left(AuthFailure(e.toString()));
     }
   }

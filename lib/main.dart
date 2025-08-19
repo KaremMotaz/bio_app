@@ -10,9 +10,12 @@ import 'core/services/get_it_service.dart';
 import 'core/services/supabase_storage_service.dart';
 import 'core/theming/text_styles.dart';
 import 'firebase_options.dart';
+import 'package:flutter_sha_fingerprint/flutter_sha_fingerprint.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await FlutterShaFingerprint.getFingerprints();
+
   await Hive.initFlutter();
   await Hive.openBox(kUnitsBox);
   await Hive.openBox(kChaptersBox);
