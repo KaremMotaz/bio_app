@@ -61,6 +61,7 @@ class _CustomDropDownMenuSettingsState extends State<CustomDropDownButton> {
           ),
         );
       }).toList(),
+      // ignore: deprecated_member_use
       value: widget.items.contains(widget.selectedGrade)
           ? widget.selectedGrade
           : null,
