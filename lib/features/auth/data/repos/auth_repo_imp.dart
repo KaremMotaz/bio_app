@@ -40,8 +40,10 @@ class AuthRepoImp extends AuthRepo {
         email: email,
         uid: user!.uid,
       );
+      await addUserData(userEntity: userEntity);
       return right(userEntity);
     } on FirebaseAuthException catch (e) {
+      await deleteUser();
       return left(AuthFailure.fromCode(e.code));
     } on FirestoreFailure catch (e) {
       await deleteUser();
@@ -97,9 +99,11 @@ class AuthRepoImp extends AuthRepo {
 
       return right(userEntity);
     } on FirebaseAuthException catch (e) {
+      log(e.toString());
       await deleteUser();
       return left(AuthFailure.fromCode(e.code));
     } catch (e) {
+      log(e.toString());
       return left(AuthFailure(e.toString()));
     }
   }

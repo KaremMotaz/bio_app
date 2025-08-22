@@ -7,7 +7,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../../core/functions/build_snack_bar.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../manager/login_cubit/login_cubit.dart';
-import 'signin_view_body.dart';
+import 'login_view_body.dart';
 
 class LoginViewBodyBlocConsumer extends StatelessWidget {
   const LoginViewBodyBlocConsumer({super.key});
@@ -17,19 +17,15 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) async {
         if (state is LoginSuccessState) {
-          final currentUser =
-              FirebaseAuth.instance.currentUser!;
-          final oldStudent =
-              await BlocProvider.of<LoginCubit>(
-                context,
-              ).showUserIsOldOrNot();
+          final currentUser = FirebaseAuth.instance.currentUser!;
+          final oldStudent = await BlocProvider.of<LoginCubit>(
+            context,
+          ).showUserIsOldOrNot();
 
           // Check if user logged in via Facebook (or other providers that don't require email verification)
-          final isSocialLogin = currentUser.providerData
-              .any(
-                (userInfo) =>
-                    userInfo.providerId != 'password',
-              );
+          final isSocialLogin = currentUser.providerData.any(
+            (userInfo) => userInfo.providerId != 'password',
+          );
 
           if (!context.mounted) return;
 
@@ -43,9 +39,7 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
                 context,
               ).pushReplacement(Routes.fillProfileView);
             } else if (oldStudent == true) {
-              GoRouter.of(
-                context,
-              ).pushReplacement(Routes.mainView);
+              GoRouter.of(context).pushReplacement(Routes.mainView);
               successSnackBar(
                 context: context,
                 message: "تم تسجيل الدخول بنجاح.",
@@ -54,28 +48,21 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
           } else {
             errorSnackBar(
               context: context,
-              message:
-                  "يرجى التحقق من بريدك الإلكتروني اولا.",
+              message: "يرجى التحقق من بريدك الإلكتروني اولا.",
             );
           }
         }
         if (state is LoginFailureState) {
-          errorSnackBar(
-            context: context,
-            message: state.message,
-          );
+          errorSnackBar(context: context, message: state.message);
         }
       },
       builder: (context, state) {
         return ModalProgressHUD(
-          progressIndicator:
-              const CircularProgressIndicator(
-                color: Colors.white,
-              ),
-          inAsyncCall: state is LoginLoadingState
-              ? true
-              : false,
-          child: const SigninViewBody(),
+          progressIndicator: const CircularProgressIndicator(
+            color: Colors.white,
+          ),
+          inAsyncCall: state is LoginLoadingState ? true : false,
+          child: const LoginViewBody(),
         );
       },
     );

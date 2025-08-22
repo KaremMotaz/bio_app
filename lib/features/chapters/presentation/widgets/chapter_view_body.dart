@@ -19,7 +19,6 @@ class ChapterViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Chapters"),
             ChaptersCardsList(chapters: chapters, unitId: unitId),
           ],
         ),

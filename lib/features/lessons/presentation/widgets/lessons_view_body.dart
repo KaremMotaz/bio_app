@@ -15,7 +15,6 @@ class LessonsViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Lessons"),
             LessonsCardsList(lessons: lessons),
           ],
         ),
