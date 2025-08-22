@@ -56,16 +56,16 @@ class CustomChapterCard extends StatelessWidget {
               children: [
                 Text(
                   "الفصل ${getDisplayNumber(chapter.index)}",
-                  style: TextStyles.bold14.copyWith(
-                    color: Colors.grey.shade600,
+                  style: TextStyles.bold16.copyWith(
+                    color: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 8),
                 Text(
                   chapter.title,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyles.bold20.copyWith(
-                    color: Colors.grey.shade700,
+                    color: Colors.white,
                   ),
                 ),
                 const SizedBox(height: 8),

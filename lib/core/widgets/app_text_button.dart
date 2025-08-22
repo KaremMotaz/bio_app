@@ -14,7 +14,7 @@ class AppTextButton extends StatelessWidget {
     this.horizontalPadding,
     this.verticalPadding,
     this.buttonWidth,
-    this.buttonHieght,
+    this.buttonHeight,
   });
   final String buttonText;
   final TextStyle? textStyle;
@@ -24,7 +24,7 @@ class AppTextButton extends StatelessWidget {
   final double? horizontalPadding;
   final double? verticalPadding;
   final double? buttonWidth;
-  final double? buttonHieght;
+  final double? buttonHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class AppTextButton extends StatelessWidget {
         fixedSize: WidgetStatePropertyAll(
           Size(
             buttonWidth ?? double.maxFinite,
-            buttonHieght ?? 50,
+            buttonHeight ?? 55,
           ),
         ),
       ),

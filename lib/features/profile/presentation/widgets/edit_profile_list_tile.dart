@@ -29,7 +29,7 @@ class EditProfileListTile extends StatelessWidget {
       subtitle: subTitle,
       trailing: IconButton(
         onPressed: onTap,
-        icon: const Icon(Icons.chevron_right_rounded),
+        icon: const Icon(Icons.edit,color: Colors.grey,size: 20,),
       ),
       onTap: onTap,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),

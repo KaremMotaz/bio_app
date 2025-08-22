@@ -15,7 +15,7 @@ class CustomUnitCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<int> colorPair =
+    final List<Color> colorPair =
         AppColors.predefinedColorPairsForUnits[unit.colorIndex];
 
     return GestureDetector(
@@ -37,7 +37,7 @@ class CustomUnitCard extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
-                colors: [Color(colorPair[0]), Color(colorPair[1])],
+                colors: [colorPair[0], colorPair[1]],
               ),
               boxShadow: [
                 BoxShadow(

@@ -61,7 +61,7 @@ showConfirmDialog({
                           0xffeaeaec,
                         ),
                         verticalPadding: 5,
-                        buttonHieght: 30,
+                        buttonHeight: 30,
                         borderRadius: 12,
                         textStyle: TextStyles.semiBold16
                             .copyWith(
@@ -79,7 +79,7 @@ showConfirmDialog({
                         buttonText: buttonText,
                         backgroundColor: buttonColor,
                         verticalPadding: 5,
-                        buttonHieght: 30,
+                        buttonHeight: 30,
                         borderRadius: 12,
                         textStyle: TextStyles.semiBold16
                             .copyWith(

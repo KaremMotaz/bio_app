@@ -83,7 +83,7 @@ editProfileDialog({
                                 231,
                               ),
                         verticalPadding: 10,
-                        buttonHieght: 30,
+                        buttonHeight: 30,
                         borderRadius: 12,
                         textStyle: TextStyles.semiBold16.copyWith(
                           color: AppColors.darkModeGray,
@@ -101,7 +101,7 @@ editProfileDialog({
                         buttonText: "حفظ",
                         backgroundColor: AppColors.mainBlue,
                         verticalPadding: 10,
-                        buttonHieght: 30,
+                        buttonHeight: 30,
                         borderRadius: 12,
                         textStyle: TextStyles.semiBold16.copyWith(
                           color: Colors.white,

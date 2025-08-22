@@ -42,12 +42,13 @@ class CorrectAnswerFeedbackCard extends StatelessWidget {
           const SizedBox(height: 25),
           CustomButton(
             text: "كمل",
+            color: AppColors.mainGreen,
             isEnabled: true,
             onPressed: () {
               context.read<QuizQuestionsCubit>().nextQuestion();
             },
           ),
-          const SizedBox(height: 25),
+          const SizedBox(height: 5),
         ],
       ),
     );

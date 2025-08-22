@@ -66,17 +66,9 @@ class _CustomButtonState extends State<CustomButton> {
             : Matrix4.identity(),
         decoration: BoxDecoration(
           color: widget.isEnabled
-              ? widget.color ?? AppColors.mainGreen
+              ? widget.color ?? AppColors.mainBlue
               : AppColors.lightGray,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: widget.isEnabled
-              ? [
-                  BoxShadow(
-                    color: widget.shadowColor ?? AppColors.darkGreen,
-                    offset: _isPressed ? const Offset(0, 2) : const Offset(0, 6),
-                  ),
-                ]
-              : [],
         ),
         child: Center(
           child: Text(

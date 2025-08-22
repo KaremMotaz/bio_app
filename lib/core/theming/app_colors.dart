@@ -22,26 +22,26 @@ class AppColors {
   static const Color mainpurple = Color(0xffFF598C);
   static const Color darkModeGray = Color(0xff202124);
 
-  static final List<List<int>> predefinedColorPairsForUnits = [
-    [0xffFF79A2, 0xffFFC9D9],
-    [0xffDB65BE, 0xffFFDAF9],
-    [0xff96CD83, 0xffE4F185],
-    [0xffA19CF7, 0xffE2E1FF],
-    [0xff75E2FF, 0xffC6F5FF],
-    [0xff7BE7C3, 0xffC9FFED],
-    [0xffFFD682, 0xffFFF3D5],
-    [0xffFFAFAF, 0xffFFE0E0],
+  static final List<List<Color>> predefinedColorPairsForUnits = [
+    [const Color(0xffFF79A2), const Color(0xffFFC9D9)],
+    [const Color(0xffDB65BE), const Color(0xffFFDAF9)],
+    [const Color(0xff96CD83), const Color(0xffE4F185)],
+    [const Color(0xffA19CF7), const Color(0xffE2E1FF)],
+    [const Color(0xff75E2FF), const Color(0xffC6F5FF)],
+    [const Color(0xff7BE7C3), const Color(0xffC9FFED)],
+    [const Color(0xffFFD682), const Color(0xffFFF3D5)],
+    [const Color(0xffFFAFAF), const Color(0xffFFE0E0)],
   ];
 
   static final List<List<Color>> predefinedColorPairsForChapters = [
-    [const Color(0xffffffff), const Color(0xffFFC9D9)],
-    [const Color(0xffffffff), const Color(0xffFFDAF9)],
-    [const Color(0xffffffff), const Color(0xffE4F185)],
-    [const Color(0xffffffff), const Color(0xffE2E1FF)],
-    [const Color(0xffffffff), const Color(0xffC6F5FF)],
-    [const Color(0xffffffff), const Color(0xffC9FFED)],
-    [const Color(0xffffffff), const Color(0xffFFF3D5)],
-    [const Color(0xffffffff), const Color(0xffFFE0E0)],
+    [const Color(0xffFF79A2), const Color(0xffFFC9D9)],
+    [const Color(0xffDB65BE), const Color(0xffFFDAF9)],
+    [const Color(0xff96CD83), const Color(0xffE4F185)],
+    [const Color(0xffA19CF7), const Color(0xffE2E1FF)],
+    [const Color(0xff75E2FF), const Color(0xffC6F5FF)],
+    [const Color(0xff7BE7C3), const Color(0xffC9FFED)],
+    [const Color(0xffFFD682), const Color(0xffFFF3D5)],
+    [const Color(0xffFFAFAF), const Color(0xffFFE0E0)],
   ];
 
   static final List<Color> profileAvatarColors = [
