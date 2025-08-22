@@ -18,7 +18,7 @@ class CustomChapterCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<int> colorPair =
+    final List<Color> colorPair =
         AppColors.predefinedColorPairsForChapters[chapter.colorIndex];
     return GestureDetector(
       onTap: () {
@@ -40,7 +40,7 @@ class CustomChapterCard extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
-                colors: [Color(colorPair[0]), Color(colorPair[1])],
+                colors: [colorPair[0], colorPair[1]],
               ),
               boxShadow: [
                 BoxShadow(
@@ -65,7 +65,7 @@ class CustomChapterCard extends StatelessWidget {
                   chapter.title,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyles.bold20.copyWith(
-                    color: AppColors.mainpurple,
+                    color: Colors.grey.shade700,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -75,10 +75,14 @@ class CustomChapterCard extends StatelessWidget {
           Positioned(
             top: -45,
             left: 30,
-            child: Image.network(
-              chapter.image,
-              width: 100,
-              height: 100,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network(
+                chapter.image,
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ],

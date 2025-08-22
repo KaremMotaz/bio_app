@@ -15,7 +15,9 @@ class ChaptersCardsList extends StatelessWidget {
     return Column(
       children: List.generate(chapters.length, (index) {
         return Padding(
-          padding: const EdgeInsets.only(top: 70),
+          padding: index == 0
+              ? const EdgeInsets.only(top: 45)
+              : const EdgeInsets.only(top: 70),
           child: CustomChapterCard(
             chapter: chapters[index],
             unitId: unitId,

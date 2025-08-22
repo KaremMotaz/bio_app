@@ -33,15 +33,15 @@ class AppColors {
     [0xffFFAFAF, 0xffFFE0E0],
   ];
 
-  static final List<List<int>> predefinedColorPairsForChapters = [
-    [0xffffffff, 0xffFFC9D9],
-    [0xffffffff, 0xffFFDAF9],
-    [0xffffffff, 0xffE4F185],
-    [0xffffffff, 0xffE2E1FF],
-    [0xffffffff, 0xffC6F5FF],
-    [0xffffffff, 0xffC9FFED],
-    [0xffffffff, 0xffFFF3D5],
-    [0xffffffff, 0xffFFE0E0],
+  static final List<List<Color>> predefinedColorPairsForChapters = [
+    [const Color(0xffffffff), const Color(0xffFFC9D9)],
+    [const Color(0xffffffff), const Color(0xffFFDAF9)],
+    [const Color(0xffffffff), const Color(0xffE4F185)],
+    [const Color(0xffffffff), const Color(0xffE2E1FF)],
+    [const Color(0xffffffff), const Color(0xffC6F5FF)],
+    [const Color(0xffffffff), const Color(0xffC9FFED)],
+    [const Color(0xffffffff), const Color(0xffFFF3D5)],
+    [const Color(0xffffffff), const Color(0xffFFE0E0)],
   ];
 
   static final List<Color> profileAvatarColors = [

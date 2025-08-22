@@ -42,34 +42,40 @@ class LeaderboardWithLessThanFourUsers extends StatelessWidget {
         score: getScore(leaderboardList[0]),
       );
     } else if (leaderboardList.length == 2) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          LeaderboardUserBadge(
-            leaderboardList: leaderboardList,
-            index: 0,
-            avatarRadius: 48,
-            fontSize: 35,
-            outerCircleSize: 110,
-            rankCircleSize: 35,
-            score: getScore(leaderboardList[0]),
-          ),
-          LeaderboardUserBadge(
-            leaderboardList: leaderboardList,
-            index: 1,
-            outerCircleBorderColor: const Color(0xffb5b2b0),
-            rankCircleGradientColors: const [
-              Color(0xffafafaf),
-              Color(0xffced0cf),
-            ],
-            score: getScore(leaderboardList[1]),
-          ),
-        ],
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            LeaderboardUserBadge(
+              leaderboardList: leaderboardList,
+              index: 0,
+              avatarRadius: 48,
+              fontSize: 35,
+              outerCircleSize: 110,
+              rankCircleSize: 35,
+              score: getScore(leaderboardList[0]),
+            ),
+            LeaderboardUserBadge(
+              leaderboardList: leaderboardList,
+              index: 1,
+              outerCircleBorderColor: const Color(0xffb5b2b0),
+              rankCircleGradientColors: const [
+                Color(0xffafafaf),
+                Color(0xffced0cf),
+              ],
+              score: getScore(leaderboardList[1]),
+            ),
+          ],
+        ),
       );
     } else {
-      return Top3LeaderboardRow(
-        leaderboardList: leaderboardList,
-        currentTab: currentTab,
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Top3LeaderboardRow(
+          leaderboardList: leaderboardList,
+          currentTab: currentTab,
+        ),
       );
     }
   }

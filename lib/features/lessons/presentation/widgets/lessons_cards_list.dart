@@ -16,7 +16,9 @@ class LessonsCardsList extends StatelessWidget {
     return Column(
       children: List.generate(lessons.length, (index) {
         return Padding(
-          padding: const EdgeInsets.only(top: 20),
+          padding: index == 0
+              ? const EdgeInsets.only(top: 0)
+              : const EdgeInsets.only(top: 20),
           child: BlocProvider(
             create: (context) =>
                 QuizCubit(quizRepoImp: getIt<QuizRepoImp>()),
