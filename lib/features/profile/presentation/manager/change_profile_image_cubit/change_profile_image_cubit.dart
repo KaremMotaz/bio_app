@@ -87,7 +87,6 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
     required String avatarPath,
   }) async {
     try {
-
       // 1️⃣ تحويل الـ Asset لملف
       final avatarFile = await assetToFile(avatarPath);
       _selectedImageFile = avatarFile;

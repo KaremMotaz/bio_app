@@ -8,42 +8,18 @@ class AssetsData {
       'assets/images/email_notification.png';
   static const String forgotPassword =
       'assets/images/Forgot_password.png';
-
   static const String closeIcon = 'assets/svg/close.svg';
   static const String expIcon = 'assets/svg/exp.svg';
   static const String heartIcon = 'assets/svg/heart.svg';
   static const String targetIcon = 'assets/svg/target.svg';
   static const String timerIcon = 'assets/svg/timer.svg';
-
-  static const String chromosome = 'assets/images/chromosome.jpg';
-  static const String glucose = 'assets/images/glucose.jpg';
-  static const String protein = 'assets/images/protein.jpg';
-  static const String redBloodCells =
-      'assets/images/red_blood_cells.jpeg';
-
-  static const String choiceOne = 'assets/images/Choice_one.png';
-  static const String choiceTwo = 'assets/images/Choice_two.png';
-  static const String choiceThree = 'assets/images/Choice_three.png';
-  static const String choiceFour = 'assets/images/Choice_four.png';
-
   static const String finishLesson = 'assets/images/finishLesson.png';
-  static const String dummyUserImage =
-      'assets/images/dummy_image.png';
-  static const String profileImage = 'assets/images/profile.jpeg';
-  static const String brain = 'assets/images/brain.png';
-  static const String dna = 'assets/images/dna.png';
-  static const String earth = 'assets/images/earth.png';
   static const String openIcon = 'assets/svg/open.svg';
   static const String lockIcon = 'assets/svg/lock.svg';
-
   static const String homeIcon = 'assets/images/home.png';
   static const String examIcon = 'assets/images/exam.png';
   static const String leaderboardIcon =
       'assets/images/leaderboard.png';
   static const String settingsIcon = 'assets/images/settings.png';
   static const String crownIcon = 'assets/images/crown.png';
-  static const String profile1 = 'assets/images/profile1.jpeg';
-  static const String profile2 = 'assets/images/profile2.jpeg';
-  static const String profile3 = 'assets/images/profile3.jpeg';
-  static const String profile4 = 'assets/images/profile4.jpeg';
 }
