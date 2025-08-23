@@ -5,7 +5,7 @@ import '../../../../core/services/local_cache_service.dart';
 
 class QuizQuestionsLocalDataSourceImp
     implements QuizQuestionsLocalDataSource {
-  final LocalCacheService cache;
+  final LocalCacheServicee cache;
 
   QuizQuestionsLocalDataSourceImp({required this.cache});
 
@@ -44,6 +44,9 @@ class QuizQuestionsLocalDataSourceImp
 
   @override
   Future<void> clearQuizQuestions({required String quizId}) async {
-    await cache.clear(key: _keyFor(quizId), boxName: kQuizQuestionsBox);
+    await cache.clear(
+      key: _keyFor(quizId),
+      boxName: kQuizQuestionsBox,
+    );
   }
 }

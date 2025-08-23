@@ -5,7 +5,7 @@ import '../../../../core/services/local_cache_service.dart';
 import '../models/lesson_model.dart';
 
 class LessonsLocalDataSourceImpl implements LessonsLocalDataSource {
-  final LocalCacheService cache;
+  final LocalCacheServicee cache;
 
   LessonsLocalDataSourceImpl({required this.cache});
 

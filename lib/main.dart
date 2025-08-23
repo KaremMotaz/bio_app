@@ -1,3 +1,11 @@
+import 'package:bio_app/features/chapters/data/models/chapter_model_adapter.dart';
+import 'package:bio_app/features/exam/data/models/exam_model_adapter.dart';
+import 'package:bio_app/features/exam/data/models/exam_question_model_adapter.dart';
+import 'package:bio_app/features/exam_result/data/models/exams_answers_model_adapter.dart';
+import 'package:bio_app/features/lessons/data/models/lesson_model_adapter.dart';
+import 'package:bio_app/features/lessons/data/models/quiz_model_adapter.dart';
+import 'package:bio_app/features/quiz_questions/data/models/quiz_question_model_adapter.dart';
+import 'package:bio_app/features/units/data/models/unit_model_adapter.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -13,15 +21,23 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+  Hive.registerAdapter(UnitModelAdapter());
   await Hive.openBox(kUnitsBox);
+  Hive.registerAdapter(ChapterModelAdapter());
   await Hive.openBox(kChaptersBox);
+  Hive.registerAdapter(LessonModelAdapter());
   await Hive.openBox(kLessonsBox);
+  Hive.registerAdapter(QuizModelAdapter());
   await Hive.openBox(kQuizzesBox);
+  Hive.registerAdapter(QuizQuestionModelAdapter());
   await Hive.openBox(kQuizQuestionsBox);
-  await Hive.openBox(kAppCacheBox);
+  Hive.registerAdapter(ExamModelAdapter());
   await Hive.openBox(kExamsBox);
+  Hive.registerAdapter(ExamQuestionsModelAdapter());
   await Hive.openBox(kExamsQuestionsBox);
+  Hive.registerAdapter(ExamsAnswersModelAdapter());
   await Hive.openBox(kExamsAnswersBox);
+  await Hive.openBox(kAppCacheBox);
   await SupabaseStorageService.initSupabase();
   await SupabaseStorageService.createBuckets(kBucketName);
   await Firebase.initializeApp(
@@ -52,7 +68,6 @@ class MainApp extends StatelessWidget {
           iconTheme: const IconThemeData(color: Colors.black),
           centerTitle: true,
         ),
-          
       ),
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

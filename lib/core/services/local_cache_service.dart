@@ -1,8 +1,7 @@
-
 import 'package:hive/hive.dart';
 
-class LocalCacheService {
-  LocalCacheService();
+class LocalCacheServicee {
+  LocalCacheServicee();
 
   Future<List<Map<String, dynamic>>?> getList({
     required String key,

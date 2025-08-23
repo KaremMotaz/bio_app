@@ -1,24 +1,26 @@
+import 'package:bio_app/core/services/local_two.dart';
+
 import 'units_local_data_source.dart';
 import '../../../../core/helpers/constants.dart';
 import '../models/unit_model.dart';
-import '../../../../core/services/local_cache_service.dart';
 
 class UnitsLocalDataSourceImpl implements UnitsLocalDataSource {
-  final LocalCacheService cache;
+  // final LocalCacheService cache;
+  final LocalCacheService<UnitModel> cache;
 
   UnitsLocalDataSourceImpl({required this.cache});
 
   @override
   Future<List<UnitModel>?> getUnits() async {
     try {
-      final List<Map<String, dynamic>>? list = await cache.getList(
+      final List<UnitModel>? list = await cache.getList(
         key: kUnits,
         boxName: kUnitsBox,
       );
       if (list == null) {
         return null;
       }
-      return list.map((e) => UnitModel.fromJson(e)).toList();
+      return list;
     } catch (e) {
       await clearUnits();
       return null;
@@ -27,13 +29,10 @@ class UnitsLocalDataSourceImpl implements UnitsLocalDataSource {
 
   @override
   Future<void> cacheUnits(List<UnitModel> units) async {
-    final List<Map<String, dynamic>> list = units
-        .map((u) => u.toJson())
-        .toList();
     await cache.saveList(
       key: kUnits,
       boxName: kUnitsBox,
-      list: List<Map<String, dynamic>>.from(list),
+      list: units,
     );
   }
 

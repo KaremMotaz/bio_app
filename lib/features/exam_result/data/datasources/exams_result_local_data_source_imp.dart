@@ -5,7 +5,7 @@ import '../../../../core/services/local_cache_service.dart';
 
 class ExamsResultLocalDataSourceImp
     implements ExamsResultLocalDataSource {
-  final LocalCacheService cache;
+  final LocalCacheServicee cache;
 
   ExamsResultLocalDataSourceImp({required this.cache});
 

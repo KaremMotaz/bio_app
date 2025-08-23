@@ -4,7 +4,7 @@ import '../models/chapter_model.dart';
 import '../../../../core/services/local_cache_service.dart';
 
 class ChaptersLocalDataSourceImpl implements ChaptersLocalDataSource {
-  final LocalCacheService cache;
+  final LocalCacheServicee cache;
 
   ChaptersLocalDataSourceImpl({required this.cache});
 

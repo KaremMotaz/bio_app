@@ -4,14 +4,16 @@ import '../models/quiz_model.dart';
 import 'quizzes_local_data_source.dart';
 
 class QuizzesLocalDataSourceImpl implements QuizzesLocalDataSource {
-  final LocalCacheService cache;
+  final LocalCacheServicee cache;
 
   QuizzesLocalDataSourceImpl({required this.cache});
 
   String _keyFor(String lessonId) => '$kQuizzes:$lessonId';
 
   @override
-  Future<List<QuizModel>?> getQuizzes({required String lessonId}) async {
+  Future<List<QuizModel>?> getQuizzes({
+    required String lessonId,
+  }) async {
     final list = await cache.getList(
       key: _keyFor(lessonId),
       boxName: kQuizzesBox,

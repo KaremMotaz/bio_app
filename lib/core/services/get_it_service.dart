@@ -1,5 +1,7 @@
+import 'package:bio_app/core/services/local_two.dart';
 import 'package:bio_app/features/leaderboard/data/leaderboard_repo_imp.dart';
 import 'package:bio_app/features/leaderboard/domain/leaderboard_repo.dart';
+import 'package:bio_app/features/units/data/models/unit_model.dart';
 
 import 'storage_service.dart';
 import 'supabase_storage_service.dart';
@@ -55,7 +57,7 @@ void setupGetIt() {
   getIt.registerSingleton<DatabaseService>(FirestoreService());
   final firestoreService = FirestoreService();
   getIt.registerSingleton<FirestoreService>(firestoreService);
-  getIt.registerSingleton<LocalCacheService>(LocalCacheService());
+  getIt.registerSingleton<LocalCacheServicee>(LocalCacheServicee());
 
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImp(
@@ -177,22 +179,30 @@ void setupGetIt() {
       ),
     ),
   );
+  getIt.registerLazySingleton<LocalCacheService<UnitModel>>(
+    () => LocalCacheService<UnitModel>(),
+  );
 
   getIt.registerLazySingleton<UnitsLocalDataSource>(
-    () => UnitsLocalDataSourceImpl(cache: getIt<LocalCacheService>()),
+    () => UnitsLocalDataSourceImpl(
+      cache: getIt<LocalCacheService<UnitModel>>(),
+    ),
   );
+
   getIt.registerLazySingleton<ChaptersLocalDataSource>(
     () => ChaptersLocalDataSourceImpl(
-      cache: getIt<LocalCacheService>(),
+      cache: getIt<LocalCacheServicee>(),
     ),
   );
   getIt.registerLazySingleton<LessonsLocalDataSource>(
-    () =>
-        LessonsLocalDataSourceImpl(cache: getIt<LocalCacheService>()),
+    () => LessonsLocalDataSourceImpl(
+      cache: getIt<LocalCacheServicee>(),
+    ),
   );
   getIt.registerLazySingleton<QuizzesLocalDataSource>(
-    () =>
-        QuizzesLocalDataSourceImpl(cache: getIt<LocalCacheService>()),
+    () => QuizzesLocalDataSourceImpl(
+      cache: getIt<LocalCacheServicee>(),
+    ),
   );
   getIt.registerLazySingleton<LeaderboardRepo>(
     () => LeaderboardRepoImp(databaseService: getIt()),

@@ -1,54 +1,23 @@
 import 'package:hive/hive.dart';
 
-class LocalCacheService {
-  const LocalCacheService();
-
-  Future<List<T>> getList<T>({
-    required String boxName,
-    required String keyPrefix,
-  }) async {
-    final box = Hive.box<T>(boxName);
-    final items = <T>[];
-    for (var key in box.keys) {
-      if (key.toString().startsWith(keyPrefix)) {
-        final item = box.get(key);
-        if (item != null) {
-          items.add(item);
-        }
-      }
-    }
-    return items;
-  }
-
-  Future<T?> getItem<T>({
+class LocalCacheService<T> {
+  Future<List<T>?> getList({
     required String key,
     required String boxName,
   }) async {
-    final box = Hive.box<T>(boxName);
+    final box = Hive.box(boxName);
     final data = box.get(key);
-    if (data is T) {
-      return data;
-    }
-    return null;
+    if (data is! List) return null;
+    return data.cast<T>();
   }
 
-  Future<void> saveList<T>({
+  Future<void> saveList({
+    required String key,
     required String boxName,
     required List<T> list,
   }) async {
-    final box = Hive.box<T>(boxName);
-    for (var i = 0; i < list.length; i++) {
-      await box.put('item_$i', list[i]);
-    }
-  }
-
-  Future<void> saveItem<T>({
-    required String key,
-    required String boxName,
-    required T item,
-  }) async {
-    final box = Hive.box<T>(boxName);
-    await box.put(key, item);
+    final box = Hive.box(boxName);
+    await box.put(key, list);
   }
 
   Future<void> clear({
