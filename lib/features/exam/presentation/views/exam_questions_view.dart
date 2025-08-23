@@ -19,7 +19,6 @@ class ExamQuestionsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
       body: BlocBuilder<ExamQuestionsCubit, ExamQuestionsState>(
         builder: (context, state) {
           switch (state.runtimeType) {

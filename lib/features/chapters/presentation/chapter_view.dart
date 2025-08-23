@@ -1,3 +1,4 @@
+import 'package:bio_app/core/widgets/custom_app_bar_pop_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +15,9 @@ class ChapterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        leading: Navigator.of(context).canPop()
+            ? const CustomAppBarPopIcon()
+            : null,
         title: Text(
           "الفصول",
           style: TextStyles.bold18.copyWith(

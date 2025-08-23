@@ -85,7 +85,11 @@ class CustomUnitCard extends StatelessWidget {
           Positioned(
             top: -45,
             left: 30,
-            child: Image.network(unit.image, width: 128, height: 126),
+            child: Image.network(
+              unit.image,
+              width: 128,
+              fit: BoxFit.cover,
+            ),
           ),
         ],
       ),

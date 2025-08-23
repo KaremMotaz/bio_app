@@ -1,3 +1,5 @@
+import 'package:bio_app/core/widgets/custom_app_bar_pop_icon.dart';
+
 import '../../../core/theming/app_colors.dart';
 import '../../../core/theming/text_styles.dart';
 import 'manager/lesson_cubit/lesson_cubit.dart';
@@ -11,8 +13,13 @@ class LessonsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xfff4f7fc),
       appBar: AppBar(
         centerTitle: true,
+        backgroundColor: Colors.white,
+        leading: Navigator.of(context).canPop()
+            ? const CustomAppBarPopIcon()
+            : null,
         title: Text(
           "الدروس",
           style: TextStyles.bold18.copyWith(
@@ -46,3 +53,5 @@ class LessonsView extends StatelessWidget {
     );
   }
 }
+
+

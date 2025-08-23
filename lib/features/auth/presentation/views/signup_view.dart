@@ -1,3 +1,4 @@
+import 'package:bio_app/core/widgets/custom_app_bar_pop_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,21 +15,20 @@ class SignupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SignupCubit>(
-      create: (context) =>
-          SignupCubit(getIt.get<AuthRepo>()),
+      create: (context) => SignupCubit(getIt.get<AuthRepo>()),
       child: Scaffold(
         appBar: AppBar(
-          centerTitle: true,
           title: Text(
             "إنشاء حساب جديد",
             style: TextStyles.bold18.copyWith(
               color: AppColors.mainBlue,
             ),
           ),
+          leading: Navigator.of(context).canPop()
+              ? const CustomAppBarPopIcon()
+              : null,
         ),
-        body: const SafeArea(
-          child: SignupViewBodyBlocConsumer(),
-        ),
+        body: const SafeArea(child: SignupViewBodyBlocConsumer()),
       ),
     );
   }

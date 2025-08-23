@@ -1,3 +1,4 @@
+import 'package:bio_app/core/widgets/custom_app_bar_pop_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,13 +15,15 @@ class QuizReadyView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: Text(
           "تحدي",
           style: TextStyles.bold18.copyWith(
             color: AppColors.mainBlue,
           ),
         ),
+        leading: Navigator.of(context).canPop()
+            ? const CustomAppBarPopIcon()
+            : null,
       ),
       body: SafeArea(
         child: Padding(

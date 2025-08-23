@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -28,12 +29,13 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: const [
           BoxShadow(
-            color: Colors.grey,
+            color: AppColors.lightGray,
             blurRadius: 4,
             offset: Offset(0, 3),
           ),
@@ -42,17 +44,36 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
       child: Column(
         children: [
           ListTile(
+            contentPadding: const EdgeInsets.all(0),
             title: Text(
-              'الدرس ${getDisplayNumber(widget.index)} : ${widget.lesson.title}',
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+              'الدرس ${getDisplayNumber(widget.index)} :',
+              style:  TextStyles.bold15,
+            ),
+            subtitle: Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: Text(
+                widget.lesson.title,
+                style: TextStyles.bold15,
               ),
             ),
-            leading: const CircleAvatar(
-              backgroundColor: AppColors.mainBlue,
-              child: Icon(Icons.play_lesson, color: Colors.white),
+            leading: Container(
+              height: double.infinity,
+              width: 50,
+              decoration: BoxDecoration(
+                color: const Color(0xffebf6fc),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Center(
+                child: Text(
+                  "${widget.index + 1}",
+                  textAlign: TextAlign.center,
+                  style: TextStyles.bold22.copyWith(
+                    color: const Color(0xff35abca),
+                  ),
+                ),
+              ),
             ),
+
             trailing: isExpanded
                 ? const Icon(Icons.expand_less, size: 30)
                 : const Icon(Icons.expand_more, size: 30),
@@ -62,7 +83,7 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
               });
 
               if (isExpanded) {
-                context.read<QuizCubit>().getQuizzes(                
+                context.read<QuizCubit>().getQuizzes(
                   lessonId: widget.lesson.id,
                 );
               }

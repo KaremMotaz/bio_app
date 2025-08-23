@@ -1,3 +1,4 @@
+import 'package:bio_app/core/widgets/custom_app_bar_pop_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,11 +12,14 @@ class FillProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<FillProfileCubit>(
-      create: (context) => FillProfileCubit(
-        getIt.get<AuthRepo>(),
-      ),
+      create: (context) => FillProfileCubit(getIt.get<AuthRepo>()),
       child: Scaffold(
-        appBar: AppBar(title: const Text("تعبئة الملف الشخصي")),
+        appBar: AppBar(
+          title: const Text("تعبئة الملف الشخصي"),
+          leading: Navigator.of(context).canPop()
+              ? const CustomAppBarPopIcon()
+              : null,
+        ),
         body: const SafeArea(
           child: FillProfileViewBodyBlocConsumer(),
         ),

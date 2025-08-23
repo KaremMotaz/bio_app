@@ -1,3 +1,4 @@
+import 'package:bio_app/core/widgets/custom_app_bar_pop_icon.dart';
 import 'package:flutter/material.dart';
 import '../widgets/profile_view_body.dart';
 
@@ -9,7 +10,9 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("الملف الشخصي"),
-        centerTitle: true,
+        leading: Navigator.of(context).canPop()
+            ? const CustomAppBarPopIcon()
+            : null,
       ),
       body: const ProfileViewBody(),
     );

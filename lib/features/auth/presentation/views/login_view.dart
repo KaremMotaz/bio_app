@@ -1,3 +1,4 @@
+import 'package:bio_app/core/widgets/custom_app_bar_pop_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,11 +18,15 @@ class LoginView extends StatelessWidget {
       create: (context) => LoginCubit(getIt.get<AuthRepo>()),
       child: Scaffold(
         appBar: AppBar(
-          centerTitle: true,
           title: Text(
             "تسجيل الدخول",
-            style: TextStyles.bold18.copyWith(color: AppColors.mainBlue),
+            style: TextStyles.bold18.copyWith(
+              color: AppColors.mainBlue,
+            ),
           ),
+          leading: Navigator.of(context).canPop()
+              ? const CustomAppBarPopIcon()
+              : null,
         ),
         body: const SafeArea(child: LoginViewBodyBlocConsumer()),
       ),

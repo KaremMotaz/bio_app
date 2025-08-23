@@ -51,7 +51,9 @@ class MainApp extends StatelessWidget {
             color: Colors.black,
           ),
           iconTheme: const IconThemeData(color: Colors.black),
+          centerTitle: true,
         ),
+          
       ),
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
