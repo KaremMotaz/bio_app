@@ -1,6 +1,14 @@
-import 'package:bio_app/core/services/local_two.dart';
+import 'package:bio_app/core/services/local_cache_service.dart';
+import 'package:bio_app/features/chapters/data/models/chapter_model.dart';
+import 'package:bio_app/features/exam/data/models/exam_model.dart';
+import 'package:bio_app/features/exam/data/models/exam_question_model.dart';
+import 'package:bio_app/features/exam_result/data/models/exams_answers_model.dart';
 import 'package:bio_app/features/leaderboard/data/leaderboard_repo_imp.dart';
 import 'package:bio_app/features/leaderboard/domain/leaderboard_repo.dart';
+import 'package:bio_app/features/lessons/data/models/lesson_model.dart';
+import 'package:bio_app/features/lessons/data/models/quiz_model.dart';
+import 'package:bio_app/features/quiz_questions/data/models/quiz_question_model.dart'
+    show QuizQuestionModel;
 import 'package:bio_app/features/units/data/models/unit_model.dart';
 
 import 'storage_service.dart';
@@ -25,8 +33,6 @@ import '../../features/lessons/data/data_source/quizzes_local_data_source_imp.da
 import '../../features/lessons/data/data_source/quizzes_remote_data_source.dart';
 import '../../features/lessons/data/repos/quiz_repo_imp.dart';
 import '../../features/units/data/data_source/units_local_data_source.dart';
-
-import 'local_cache_service.dart';
 import '../../features/chapters/data/data_source/chapters_local_data_source_imp.dart';
 import '../../features/chapters/data/data_source/chapters_remote_data_source.dart';
 import '../../features/chapters/data/repos/chapter_repo_imp.dart';
@@ -57,7 +63,31 @@ void setupGetIt() {
   getIt.registerSingleton<DatabaseService>(FirestoreService());
   final firestoreService = FirestoreService();
   getIt.registerSingleton<FirestoreService>(firestoreService);
-  getIt.registerSingleton<LocalCacheServicee>(LocalCacheServicee());
+
+  getIt.registerSingleton<LocalCacheService<QuizModel>>(
+    LocalCacheService<QuizModel>(),
+  );
+  getIt.registerSingleton<LocalCacheService<QuizQuestionModel>>(
+    LocalCacheService<QuizQuestionModel>(),
+  );
+  getIt.registerSingleton<LocalCacheService<LessonModel>>(
+    LocalCacheService<LessonModel>(),
+  );
+  getIt.registerSingleton<LocalCacheService<ChapterModel>>(
+    LocalCacheService<ChapterModel>(),
+  );
+  getIt.registerSingleton<LocalCacheService<UnitModel>>(
+    LocalCacheService<UnitModel>(),
+  );
+  getIt.registerSingleton<LocalCacheService<ExamModel>>(
+    LocalCacheService<ExamModel>(),
+  );
+  getIt.registerSingleton<LocalCacheService<ExamQuestionsModel>>(
+    LocalCacheService<ExamQuestionsModel>(),
+  );
+  getIt.registerSingleton<LocalCacheService<ExamsAnswersModel>>(
+    LocalCacheService<ExamsAnswersModel>(),
+  );
 
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImp(
@@ -179,9 +209,6 @@ void setupGetIt() {
       ),
     ),
   );
-  getIt.registerLazySingleton<LocalCacheService<UnitModel>>(
-    () => LocalCacheService<UnitModel>(),
-  );
 
   getIt.registerLazySingleton<UnitsLocalDataSource>(
     () => UnitsLocalDataSourceImpl(
@@ -191,17 +218,17 @@ void setupGetIt() {
 
   getIt.registerLazySingleton<ChaptersLocalDataSource>(
     () => ChaptersLocalDataSourceImpl(
-      cache: getIt<LocalCacheServicee>(),
+      cache: getIt<LocalCacheService<ChapterModel>>(),
     ),
   );
   getIt.registerLazySingleton<LessonsLocalDataSource>(
     () => LessonsLocalDataSourceImpl(
-      cache: getIt<LocalCacheServicee>(),
+      cache: getIt<LocalCacheService<LessonModel>>(),
     ),
   );
   getIt.registerLazySingleton<QuizzesLocalDataSource>(
     () => QuizzesLocalDataSourceImpl(
-      cache: getIt<LocalCacheServicee>(),
+      cache: getIt<LocalCacheService<QuizModel>>(),
     ),
   );
   getIt.registerLazySingleton<LeaderboardRepo>(

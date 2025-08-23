@@ -1,11 +1,11 @@
+import 'package:bio_app/core/services/local_cache_service.dart';
 import '../models/quiz_question_model.dart';
 import 'quiz_questions_local_data_source.dart';
 import '../../../../core/helpers/constants.dart';
-import '../../../../core/services/local_cache_service.dart';
 
 class QuizQuestionsLocalDataSourceImp
     implements QuizQuestionsLocalDataSource {
-  final LocalCacheServicee cache;
+  final LocalCacheService<QuizQuestionModel> cache;
 
   QuizQuestionsLocalDataSourceImp({required this.cache});
 
@@ -15,14 +15,14 @@ class QuizQuestionsLocalDataSourceImp
   Future<List<QuizQuestionModel>?> getQuizQuestions({
     required String quizId,
   }) async {
-    final list = await cache.getList(
+    final List<QuizQuestionModel>? list = await cache.getList(
       key: _keyFor(quizId),
       boxName: kQuizQuestionsBox,
     );
     if (list == null) return null;
 
     try {
-      return list.map((e) => QuizQuestionModel.fromJson(e)).toList();
+      return list;
     } catch (_) {
       await clearQuizQuestions(quizId: quizId);
       return null;
@@ -34,11 +34,10 @@ class QuizQuestionsLocalDataSourceImp
     required List<QuizQuestionModel> quizQuestions,
     required String quizId,
   }) async {
-    final list = quizQuestions.map((c) => c.toJson()).toList();
     await cache.saveList(
       key: _keyFor(quizId),
       boxName: kQuizQuestionsBox,
-      list: List<Map<String, dynamic>>.from(list),
+      list: quizQuestions,
     );
   }
 

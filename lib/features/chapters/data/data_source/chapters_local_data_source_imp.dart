@@ -1,10 +1,10 @@
+import 'package:bio_app/core/services/local_cache_service.dart';
 import 'chapters_local_data_source.dart';
 import '../../../../core/helpers/constants.dart';
 import '../models/chapter_model.dart';
-import '../../../../core/services/local_cache_service.dart';
 
 class ChaptersLocalDataSourceImpl implements ChaptersLocalDataSource {
-  final LocalCacheServicee cache;
+  final LocalCacheService<ChapterModel> cache;
 
   ChaptersLocalDataSourceImpl({required this.cache});
 
@@ -21,7 +21,7 @@ class ChaptersLocalDataSourceImpl implements ChaptersLocalDataSource {
     if (list == null) return null;
 
     try {
-      return list.map((e) => ChapterModel.fromJson(e)).toList();
+      return list;
     } catch (_) {
       await clearChapters(unitId: unitId);
       return null;
@@ -33,11 +33,10 @@ class ChaptersLocalDataSourceImpl implements ChaptersLocalDataSource {
     required List<ChapterModel> chapters,
     required String unitId,
   }) async {
-    final list = chapters.map((c) => c.toJson()).toList();
     await cache.saveList(
       key: _keyFor(unitId),
       boxName: kChaptersBox,
-      list: List<Map<String, dynamic>>.from(list),
+      list: chapters,
     );
   }
 

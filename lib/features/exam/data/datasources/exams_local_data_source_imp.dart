@@ -1,24 +1,24 @@
+import 'package:bio_app/core/services/local_cache_service.dart';
 import 'exams_local_data_source.dart';
 import '../models/exam_model.dart';
 import '../../../../core/helpers/constants.dart';
-import '../../../../core/services/local_cache_service.dart';
 
 class ExamsLocalDataSourceImp implements ExamsLocalDataSource {
-  final LocalCacheServicee cache;
+  final LocalCacheService<ExamModel> cache;
 
   ExamsLocalDataSourceImp({required this.cache});
 
   @override
   Future<List<ExamModel>?> getExams() async {
     try {
-      final List<Map<String, dynamic>>? list = await cache.getList(
+      final List<ExamModel>? list = await cache.getList(
         key: kExams,
         boxName: kExamsBox,
       );
       if (list == null) {
         return null;
       }
-      return list.map((e) => ExamModel.fromJson(e)).toList();
+      return list;
     } catch (e) {
       await clearExams();
       return null;
@@ -27,13 +27,10 @@ class ExamsLocalDataSourceImp implements ExamsLocalDataSource {
 
   @override
   Future<void> cacheExams(List<ExamModel> exams) async {
-    final List<Map<String, dynamic>> list = exams
-        .map((u) => u.toJsonForHive())
-        .toList();
     await cache.saveList(
       key: kExams,
       boxName: kExamsBox,
-      list: List<Map<String, dynamic>>.from(list),
+      list: exams,
     );
   }
 

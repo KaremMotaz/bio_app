@@ -2,15 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ExamsAnswersModel {
   final Map<String, int> answers;
-  final Timestamp timestamp;
+  final DateTime dateTime;
   final String id;
 
   ExamsAnswersModel({
     required this.answers,
-    required this.timestamp,
+    required this.dateTime,
     required this.id,
   });
 
+  // ========== Firestore ==========
   factory ExamsAnswersModel.fromJson(Map<String, dynamic> json) {
     final Map<String, dynamic> answersMap = json['answers'] ?? {};
     final Map<String, int> answersParsed = answersMap.map(
@@ -19,7 +20,7 @@ class ExamsAnswersModel {
 
     return ExamsAnswersModel(
       answers: answersParsed,
-      timestamp: json['timestamp'] as Timestamp,
+      dateTime: (json['timestamp'] as Timestamp).toDate(),
       id: json['id'] as String,
     );
   }
@@ -27,7 +28,7 @@ class ExamsAnswersModel {
   Map<String, dynamic> toJson() {
     return {
       'answers': answers,
-      'timestamp': timestamp.toDate().toIso8601String(),
+      'timestamp': Timestamp.fromDate(dateTime),
       'id': id,
     };
   }

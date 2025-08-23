@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';
 import '../../../exam/data/datasources/exam_questions_remote_data_source.dart';
@@ -49,6 +51,7 @@ class ExamResultRepoImp implements ExamResultRepo {
 
       return Right(examsquestions);
     } catch (e) {
+      log('Error fetching exam questions: ${e.toString()}');
       return Left(ServerFailure(e.toString()));
     }
   }
@@ -75,6 +78,7 @@ class ExamResultRepoImp implements ExamResultRepo {
 
       return Right(examsAnswers);
     } catch (e) {
+      log('Error fetching student answers: ${e.toString()}');
       return Left(ServerFailure(e.toString()));
     }
   }

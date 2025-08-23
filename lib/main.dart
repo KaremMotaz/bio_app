@@ -35,7 +35,9 @@ void main() async {
   await Hive.openBox(kExamsBox);
   Hive.registerAdapter(ExamQuestionsModelAdapter());
   await Hive.openBox(kExamsQuestionsBox);
-  Hive.registerAdapter(ExamsAnswersModelAdapter());
+  if (!Hive.isAdapterRegistered(ExamsAnswersModelAdapter().typeId)) {
+    Hive.registerAdapter(ExamsAnswersModelAdapter());
+  }
   await Hive.openBox(kExamsAnswersBox);
   await Hive.openBox(kAppCacheBox);
   await SupabaseStorageService.initSupabase();
