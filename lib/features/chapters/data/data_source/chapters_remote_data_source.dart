@@ -10,10 +10,8 @@ class ChaptersRemoteDataSource {
     required String unitId,
   }) async {
     final List<Map<String, dynamic>> result = await databaseService
-        .fetchSubcollection(
-          parentCollection: BackendEndpoint.getUnits,
-          parentDocId: unitId,
-          subCollection: BackendEndpoint.getChapters,
+        .getData(
+          path: '${BackendEndpoint.getUnits}/$unitId/${BackendEndpoint.getChapters}',
         );
     return result.map((e) => ChapterModel.fromJson(e)).toList();
   }

@@ -186,7 +186,7 @@ class AuthRepoImp extends AuthRepo {
   @override
   Future<UserEntity> getUserData({required String uid}) async {
     final Map<String, dynamic> userData = await databaseService
-        .getData(path: BackendEndpoint.getUserData, documentId: uid);
+        .getData(path: '${BackendEndpoint.getUserData}/$uid');
     return UserModel.fromJson(userData);
   }
 
@@ -206,8 +206,7 @@ class AuthRepoImp extends AuthRepo {
   @override
   Future<bool> checkIfDataExists({required String documentId}) async {
     return await databaseService.checkIfDataExists(
-      path: BackendEndpoint.checkIfDataExists,
-      documentId: documentId,
+      path: '${BackendEndpoint.checkIfDataExists}/$documentId',
     );
   }
 

@@ -1,8 +1,8 @@
+import 'package:bio_app/core/services/data_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'data_service.dart';
 
 class FirestoreService implements DatabaseService {
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override
   Future<void> addData({
@@ -18,128 +18,53 @@ class FirestoreService implements DatabaseService {
   }
 
   @override
-  Future<void> editFields({
-    required String collectionName,
-    required String docId,
-    required Map<String, dynamic> fields,
+  Future<void> updateData({
+    required String path,
+    required Map<String, dynamic> data,
   }) async {
-    await firestore
-        .collection(collectionName)
-        .doc(docId)
-        .update(fields);
+    await firestore.doc(path).update(data);
   }
 
   @override
-  Future<void> addToSubcollection({
-    required String parentCollection,
-    required String parentDocId,
-    required String subCollection,
-    required Map<String, dynamic> data,
-  }) {
-    final docRef = FirebaseFirestore.instance
-        .collection(parentCollection)
-        .doc(parentDocId)
-        .collection(subCollection)
-        .doc();
-
-    return docRef.set(data);
+  Future<void> deleteData({required String path}) async {
+    await firestore.doc(path).delete();
   }
 
   @override
   Future<dynamic> getData({
     required String path,
-    String? documentId,
+    List<FilterCondition>? filters,
+    String? orderBy,
+    bool descending = false,
+    int? limit,
   }) async {
-    if (documentId != null) {
-      DocumentSnapshot<Map<String, dynamic>> data = await firestore
-          .collection(path)
-          .doc(documentId)
-          .get();
-      return {...?data.data(), 'id': data.id};
+    final segments = path.split('/');
+    if (segments.length.isOdd) {
+      // collection
+      Query<Map<String, dynamic>> query = firestore.collection(path);
+
+      // Apply filters
+      if (filters != null) {
+        for (final f in filters) {
+          query = query.where(f.field, isEqualTo: f.value);
+        }
+      }
+
+      // order & limit
+      if (orderBy != null) {
+        query = query.orderBy(orderBy, descending: descending);
+      }
+      if (limit != null) query = query.limit(limit);
+
+      final snapshot = await query.get();
+      return snapshot.docs
+          .map((doc) => {"id": doc.id, ...doc.data()})
+          .toList();
     } else {
-      QuerySnapshot<Map<String, dynamic>> data = await firestore
-          .collection(path)
-          .get();
-      return data.docs.map((doc) {
-        return {...doc.data(), 'id': doc.id};
-      }).toList();
+      // document
+      final doc = await firestore.doc(path).get();
+      return doc.exists ? {"id": doc.id, ...?doc.data()} : null;
     }
-  }
-
-  @override
-  Future<List<Map<String, dynamic>>> fetchSubcollection({
-    required String parentCollection,
-    required String parentDocId,
-    required String subCollection,
-    String? orderByField,
-  }) async {
-    Query<Map<String, dynamic>> query = firestore
-        .collection(parentCollection)
-        .doc(parentDocId)
-        .collection(subCollection);
-
-    if (orderByField != null) {
-      query = query.orderBy(orderByField);
-    }
-
-    final snap = await query.get();
-    return snap.docs.map((d) => {...d.data(), 'id': d.id}).toList();
-  }
-
-  @override
-  Future<List<Map<String, dynamic>>> fetchDoubleSubcollection({
-    required String parentCollection,
-    required String parentDocId,
-    required String firstSubcollection,
-    required String firstSubDocId,
-    required String secondSubcollection,
-    String? orderByField,
-  }) async {
-    Query<Map<String, dynamic>> query = firestore
-        .collection(parentCollection)
-        .doc(parentDocId)
-        .collection(firstSubcollection)
-        .doc(firstSubDocId)
-        .collection(secondSubcollection);
-
-    if (orderByField != null) {
-      query = query.orderBy(orderByField);
-    }
-
-    final snap = await query.get();
-    return snap.docs
-        .map((doc) => {...doc.data(), 'id': doc.id})
-        .toList();
-  }
-
-  @override
-  Future<List<Map<String, dynamic>>> getFilteredData({
-    required String path,
-    String? field,
-    dynamic value,
-  }) async {
-    Query<Map<String, dynamic>> query = firestore.collection(path);
-
-    if (field != null && value != null) {
-      query = query.where(field, isEqualTo: value);
-    }
-
-    final snap = await query.get();
-    return snap.docs
-        .map((doc) => {...doc.data(), 'id': doc.id})
-        .toList();
-  }
-
-  @override
-  Future<bool> checkIfDataExists({
-    required String path,
-    required String documentId,
-  }) async {
-    DocumentSnapshot<Map<String, dynamic>> data = await firestore
-        .collection(path)
-        .doc(documentId)
-        .get();
-    return data.exists;
   }
 
   @override
@@ -160,4 +85,26 @@ class FirestoreService implements DatabaseService {
 
     return query.snapshots();
   }
+
+  @override
+  Future<bool> checkIfDataExists({required String path}) async {
+    final segments = path.split('/');
+    if (segments.length.isOdd) {
+      final snapshot = await firestore
+          .collection(path)
+          .limit(1)
+          .get();
+      return snapshot.docs.isNotEmpty;
+    } else {
+      final doc = await firestore.doc(path).get();
+      return doc.exists;
+    }
+  }
+}
+
+class FilterCondition {
+  final String field;
+  final dynamic value;
+
+  FilterCondition(this.field, this.value);
 }

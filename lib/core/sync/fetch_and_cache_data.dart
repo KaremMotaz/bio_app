@@ -60,25 +60,23 @@ Future<void> fetchAndCacheData() async {
 
     for (final unit in units.getOrElse(() => [])) {
       final rawData = await firestoreService.getData(
-        path: 'units/${unit.id}/chapters', 
+        path: 'units/${unit.id}/chapters',
       );
 
-
-  final List<ChapterModel> chapters = rawData
-    .map<ChapterModel>((m) {
-      return ChapterModel.fromJson({
-        ...m as Map<String, dynamic>, 
-        'unitId': unit.id,
-      });
-    })
-    .toList();
+      final List<ChapterModel> chapters = rawData.map<ChapterModel>((
+        m,
+      ) {
+        return ChapterModel.fromJson({
+          ...m as Map<String, dynamic>,
+          'unitId': unit.id,
+        });
+      }).toList();
 
       // تخزين كل Unit مع فصوله
       await chaptersLocal.cacheChapters(
         chapters: chapters,
         unitId: unit.id,
       );
-      
 
       allChapters.addAll(chapters);
     }
@@ -87,99 +85,105 @@ Future<void> fetchAndCacheData() async {
         serverChaptersTs?.millisecondsSinceEpoch;
   }
 
-// 5. تحديث الكويزات (Quizzes)
-final serverQuizzesTs =
-    serverTimestamps[kQuizzesLastUpdated] as Timestamp?;
-final localQuizzesTs = localTimestamps[kQuizzes];
-if (_isNewer(serverQuizzesTs, localQuizzesTs)) {
-  final units = await unitRepoImpl.getUnits();
-  final quizzesLocal = getIt<QuizzesLocalDataSource>();
+  // 5. تحديث الكويزات (Quizzes)
+  final serverQuizzesTs =
+      serverTimestamps[kQuizzesLastUpdated] as Timestamp?;
+  final localQuizzesTs = localTimestamps[kQuizzes];
+  if (_isNewer(serverQuizzesTs, localQuizzesTs)) {
+    final units = await unitRepoImpl.getUnits();
+    final quizzesLocal = getIt<QuizzesLocalDataSource>();
 
-  for (final unit in units.getOrElse(() => [])) {
-    // جلب الفصول داخل كل وحدة
-    final chaptersData = await firestoreService.getData(
-      path: 'units/${unit.id}/chapters',
-    );
-
-    for (final chapterMap in chaptersData) {
-      final chapterId = chapterMap['id'] as String;
-
-      // جلب الدروس داخل كل فصل
-      final lessonsData = await firestoreService.getData(
-        path: 'units/${unit.id}/chapters/$chapterId/lessons',
+    for (final unit in units.getOrElse(() => [])) {
+      // جلب الفصول داخل كل وحدة
+      final chaptersData = await firestoreService.getData(
+        path: 'units/${unit.id}/chapters',
       );
 
-      for (final lessonMap in lessonsData) {
-        final lessonId = lessonMap['id'] as String;
+      for (final chapterMap in chaptersData) {
+        final chapterId = chapterMap['id'] as String;
 
-        // جلب الكويزات داخل كل درس
-        final quizzesData = await firestoreService.getData(
-          path: 'units/${unit.id}/chapters/$chapterId/lessons/$lessonId/quizzes',
+        // جلب الدروس داخل كل فصل
+        final lessonsData = await firestoreService.getData(
+          path: 'units/${unit.id}/chapters/$chapterId/lessons',
         );
 
-        final List<QuizModel> quizzes = quizzesData.map<QuizModel>((m) {
-          return QuizModel.fromJson({
-            ...m as Map<String, dynamic>,
-            'lessonId': lessonId,
-            'chapterId': chapterId,
-            'unitId': unit.id,
-          });
-        }).toList();
+        for (final lessonMap in lessonsData) {
+          final lessonId = lessonMap['id'] as String;
 
-        await quizzesLocal.cacheQuizzes(
-          quizzes: quizzes,
-          lessonId: lessonId,
+          // جلب الكويزات داخل كل درس
+          final quizzesData = await firestoreService.getData(
+            path:
+                'units/${unit.id}/chapters/$chapterId/lessons/$lessonId/quizzes',
+          );
+
+          final List<QuizModel> quizzes = quizzesData.map<QuizModel>((
+            m,
+          ) {
+            return QuizModel.fromJson({
+              ...m as Map<String, dynamic>,
+              'lessonId': lessonId,
+              'chapterId': chapterId,
+              'unitId': unit.id,
+            });
+          }).toList();
+
+          await quizzesLocal.cacheQuizzes(
+            quizzes: quizzes,
+            lessonId: lessonId,
+          );
+        }
+      }
+    }
+
+    localTimestamps[kQuizzes] =
+        serverQuizzesTs?.millisecondsSinceEpoch;
+  }
+
+  // 6. تحديث الدروس (Lessons)
+  final serverLessonsTs =
+      serverTimestamps[kLessonsLastUpdated] as Timestamp?;
+  final localLessonsTs = localTimestamps[kLessons];
+  if (_isNewer(serverLessonsTs, localLessonsTs)) {
+    final units = await unitRepoImpl.getUnits();
+    final lessonsLocal = getIt<LessonsLocalDataSource>();
+
+    for (final unit in units.getOrElse(() => [])) {
+      final chaptersData = await firestoreService.getData(
+        path: 'units/${unit.id}/chapters',
+      );
+
+      for (final chapterMap in chaptersData) {
+        final chapterId = chapterMap['id'] as String;
+
+        final lessonsData = await firestoreService.getData(
+          path: 'units/${unit.id}/chapters/$chapterId/lessons',
+        );
+
+        final List<LessonModel> lessons = lessonsData
+            .map<LessonModel>((m) {
+              return LessonModel.fromJson({
+                ...m as Map<String, dynamic>,
+                'chapterId': chapterId,
+                'unitId': unit.id,
+              });
+            })
+            .toList();
+
+        await lessonsLocal.cacheLessons(
+          lessons: lessons,
+          chapterId: chapterId,
+          unitId: unit.id,
         );
       }
     }
+
+    localTimestamps[kLessons] =
+        serverLessonsTs?.millisecondsSinceEpoch;
   }
 
-  localTimestamps[kQuizzes] = serverQuizzesTs?.millisecondsSinceEpoch;
-}
-
-// 6. تحديث الدروس (Lessons)
-final serverLessonsTs =
-    serverTimestamps[kLessonsLastUpdated] as Timestamp?;
-final localLessonsTs = localTimestamps[kLessons];
-if (_isNewer(serverLessonsTs, localLessonsTs)) {
-  final units = await unitRepoImpl.getUnits();
-  final lessonsLocal = getIt<LessonsLocalDataSource>();
-
-  for (final unit in units.getOrElse(() => [])) {
-    final chaptersData = await firestoreService.getData(
-      path: 'units/${unit.id}/chapters',
-    );
-
-    for (final chapterMap in chaptersData) {
-      final chapterId = chapterMap['id'] as String;
-
-      final lessonsData = await firestoreService.getData(
-        path: 'units/${unit.id}/chapters/$chapterId/lessons',
-      );
-
-      final List<LessonModel> lessons = lessonsData.map<LessonModel>((m) {
-        return LessonModel.fromJson({
-          ...m as Map<String, dynamic>,
-          'chapterId': chapterId,
-          'unitId': unit.id,
-        });
-      }).toList();
-
-      await lessonsLocal.cacheLessons(
-        lessons: lessons,
-        chapterId: chapterId,
-        unitId: unit.id,
-      );
-    }
-  }
-
-  localTimestamps[kLessons] = serverLessonsTs?.millisecondsSinceEpoch;
-}
-
-
-// 6. حفظ التوقيتات المحدثة
+  // 6. حفظ التوقيتات المحدثة
   await hiveBox.put(kLastUpdatedTimestampsKey, localTimestamps);
-}  
+}
 
 /// مقارنة توقيت السيرفر مع التوقيت المحلي
 bool _isNewer(Timestamp? server, dynamic local) {

@@ -12,12 +12,11 @@ class ExamQuestionsRemoteDataSource {
   Future<List<ExamQuestionsModel>> fetchExamQuestions({
     required String examId,
   }) async {
-    final List<Map<String, dynamic>> result = await databaseService
-        .fetchSubcollection(
-          parentCollection: BackendEndpoint.getExams,
-          parentDocId: examId,
-          subCollection: BackendEndpoint.getExamQuestions,
-        );
+    final List<Map<String, dynamic>>
+    result = await databaseService.getData(
+      path:
+          '${BackendEndpoint.getExams}/$examId/${BackendEndpoint.getExamQuestions}',
+    );
 
     return result.map((e) => ExamQuestionsModel.fromJson(e)).toList();
   }
@@ -39,16 +38,14 @@ class ExamQuestionsRemoteDataSource {
     final examData = {...baseData, 'userId': currentUser.uid};
 
     await Future.wait([
-      databaseService.addToSubcollection(
-        parentCollection: BackendEndpoint.addUserAnswers,
-        parentDocId: currentUser.uid,
-        subCollection: BackendEndpoint.getExamsResults,
+      databaseService.addData(
+        path:
+            '${BackendEndpoint.addUserAnswers}/${currentUser.uid}/${BackendEndpoint.getExamsResults}',
         data: userData,
       ),
-      databaseService.addToSubcollection(
-        parentCollection: BackendEndpoint.getExams,
-        parentDocId: examId,
-        subCollection: BackendEndpoint.getExamResults,
+      databaseService.addData(
+        path:
+            '${BackendEndpoint.getExams}/$examId/${BackendEndpoint.getExamResults}',
         data: examData,
       ),
     ]);

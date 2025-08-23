@@ -1,3 +1,4 @@
+import 'package:bio_app/core/services/firestore_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class DatabaseService {
@@ -7,52 +8,29 @@ abstract class DatabaseService {
     String? documentId,
   });
 
-  Future<void> editFields({
-    required String collectionName,
-    required String docId,
-    required Map<String, dynamic> fields,
-  });
-
-  Future<void> addToSubcollection({
-    required String parentCollection,
-    required String parentDocId,
-    required String subCollection,
+  Future<void> updateData({
+    required String path,
     required Map<String, dynamic> data,
   });
 
-  Future<dynamic> getData({required String path, String? documentId});
+  Future<void> deleteData({required String path});
 
-  Future<List<Map<String, dynamic>>> getFilteredData({
+  /// Unified fetch for both document & collection
+  Future<dynamic> getData({
     required String path,
-    String? field,
-    dynamic value,
+    List<FilterCondition>? filters,
+    String? orderBy,
+    bool descending = false,
+    int? limit,
   });
 
-  Future<List<Map<String, dynamic>>> fetchSubcollection({
-    required String parentCollection,
-    required String parentDocId,
-    required String subCollection,
-    String? orderByField,
-  });
-
-  Future<List<Map<String, dynamic>>> fetchDoubleSubcollection({
-    required String parentCollection,
-    required String parentDocId,
-    required String firstSubcollection,
-    required String firstSubDocId,
-    required String secondSubcollection,
-    String? orderByField,
-  });
-
-  Future<bool> checkIfDataExists({
-    required String path,
-    required String documentId,
-  });
-
+  /// Unified real-time stream for both doc & collection
   Stream<QuerySnapshot<Map<String, dynamic>>> streamCollection({
     required String path,
     String? orderBy,
     bool descending = false,
     int? limit,
   });
+  
+  Future<bool> checkIfDataExists({required String path});
 }

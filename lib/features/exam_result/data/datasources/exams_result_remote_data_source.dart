@@ -13,10 +13,9 @@ class ExamsResultRemoteDataSourceImp {
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser == null) return [];
 
-    final rawAnswers = await databaseService.fetchSubcollection(
-      parentCollection: BackendEndpoint.addUserAnswers,
-      parentDocId: currentUser.uid,
-      subCollection: BackendEndpoint.getExamsResults,
+    final rawAnswers = await databaseService.getData(
+      path:
+          '${BackendEndpoint.addUserAnswers}/${currentUser.uid}/${BackendEndpoint.getExamsResults}',
     );
 
     return rawAnswers.map<ExamsAnswersModel>((map) {

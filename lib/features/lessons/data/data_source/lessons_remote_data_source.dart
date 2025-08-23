@@ -10,14 +10,11 @@ class LessonsRemoteDataSource {
     required String unitId,
     required String chapterId,
   }) async {
-    final List<Map<String, dynamic>> result = await databaseService
-        .fetchDoubleSubcollection(
-          parentCollection: BackendEndpoint.getUnits,
-          parentDocId: unitId,
-          firstSubcollection: BackendEndpoint.getChapters,
-          firstSubDocId: chapterId,
-          secondSubcollection: BackendEndpoint.getLessons,
-        );
+    final List<Map<String, dynamic>>
+    result = await databaseService.getData(
+      path:
+          '${BackendEndpoint.getUnits}/$unitId/${BackendEndpoint.getChapters}/$chapterId/${BackendEndpoint.getLessons}',
+    );
     return result.map((e) => LessonModel.fromJson(e)).toList();
   }
 }

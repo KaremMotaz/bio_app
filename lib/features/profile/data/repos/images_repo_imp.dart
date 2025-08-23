@@ -55,12 +55,10 @@ class ImagesRepoImp implements ImagesRepo {
     required String imageUrl,
   }) async {
     try {
-      await firestoreService.editFields(
-        collectionName: BackendEndpoint.editFields,
-        docId: FirebaseAuthService.userId,
-        fields: {
-          'imageUrl': imageUrl,
-        },
+      await firestoreService.updateData(
+        path:
+            '${BackendEndpoint.editFields}/${FirebaseAuthService.userId}',
+        data: {'imageUrl': imageUrl},
       );
       return right(unit);
     } catch (e) {

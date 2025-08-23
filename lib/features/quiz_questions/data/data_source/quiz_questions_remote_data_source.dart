@@ -12,22 +12,19 @@ class QuizQuestionsRemoteDataSource {
   Future<List<QuizQuestionModel>> getQuizQuestions({
     required String quizId,
   }) async {
-    final List<Map<String, dynamic>> result = await databaseService
-        .fetchSubcollection(
-          parentCollection: BackendEndpoint.getQuizzes,
-          subCollection: BackendEndpoint.getQuizQuestions,
-          parentDocId: quizId,
-        );
+    final List<Map<String, dynamic>>
+    result = await databaseService.getData(
+      path:
+          '${BackendEndpoint.getQuizzes}/$quizId/${BackendEndpoint.getQuizQuestions}',
+    );
     return result.map((e) => QuizQuestionModel.fromJson(e)).toList();
   }
 
-  Future<void> updateScores({
-    required double score,
-  }) async {
-    await databaseService.editFields(
-      collectionName: BackendEndpoint.editFields,
-      docId: FirebaseAuthService.userId,
-      fields: {
+  Future<void> updateScores({required double score}) async {
+    await databaseService.updateData(
+      path:
+          '${BackendEndpoint.getQuizzes}/${FirebaseAuthService.userId}',
+      data: {
         "scoreThisDay": FieldValue.increment(score),
         "scoreThisWeek": FieldValue.increment(score),
         "scoreThisMonth": FieldValue.increment(score),

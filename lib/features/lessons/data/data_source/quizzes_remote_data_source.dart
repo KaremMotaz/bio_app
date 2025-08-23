@@ -1,3 +1,5 @@
+import 'package:bio_app/core/services/firestore_service.dart';
+
 import '../models/quiz_model.dart';
 
 import '../../../../core/helpers/backend_endpoint.dart';
@@ -12,10 +14,11 @@ class QuizzesRemoteDataSource {
     required String lessonId,
   }) async {
     final List<Map<String, dynamic>> result = await databaseService
-        .getFilteredData(
+        .getData(
           path: BackendEndpoint.getQuizzes,
-          field: BackendFields.lessonId,
-          value: lessonId,
+          filters: [
+            FilterCondition(BackendFields.lessonId, lessonId),
+          ],
         );
 
     return result.map((e) => QuizModel.fromJson(e)).toList();
