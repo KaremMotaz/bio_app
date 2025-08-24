@@ -64,7 +64,8 @@ class MainApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.white,
           elevation: 0,
-          titleTextStyle: TextStyles.bold18.copyWith(
+          titleTextStyle: TextStyles.bold17.copyWith(
+            fontFamily: 'Cairo',
             color: Colors.black,
           ),
           iconTheme: const IconThemeData(color: Colors.black),

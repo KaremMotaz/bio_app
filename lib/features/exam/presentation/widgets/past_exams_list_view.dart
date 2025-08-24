@@ -16,18 +16,22 @@ class PastExamsListView extends StatelessWidget {
         itemCount: exams.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              GoRouter.of(context).push(
-                Routes.examResultView,
-                extra: {
-                  'examId': exams[index].id,
-                  'resultExamIndex': index,
-                },
-              );
-            },
-            child: PastExamCard(exam: exams[index]),
-          );
+          if (exams[index].isResultPublished) {
+            return GestureDetector(
+              onTap: () {
+                GoRouter.of(context).push(
+                  Routes.examResultView,
+                  extra: {
+                    'examId': exams[index].id,
+                    'resultExamIndex': index,
+                  },
+                );
+              },
+              child: PastExamCard(exam: exams[index]),
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
         },
       ),
     );

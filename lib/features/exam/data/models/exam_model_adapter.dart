@@ -17,16 +17,18 @@ class ExamModelAdapter extends TypeAdapter<ExamModel> {
       title: fields[1] as String,
       unit: fields[2] as String,
       lesson: fields[3] as String,
-      endTime: fields[4] as DateTime,
-      passPercentage: fields[5] as double,
-      isPublished: fields[6] as bool,
+      startTime: fields[4] as DateTime,
+      endTime: fields[5] as DateTime,
+      passPercentage: fields[6] as double,
+      isPublished: fields[7] as bool,
+      isResultPublished: fields[8] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, ExamModel obj) {
     writer
-      ..writeByte(7) 
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -34,12 +36,16 @@ class ExamModelAdapter extends TypeAdapter<ExamModel> {
       ..writeByte(2)
       ..write(obj.unit)
       ..writeByte(3)
-      ..write(obj.lesson)
+      ..write(obj.lesson)      
       ..writeByte(4)
-      ..write(obj.endTime)
+      ..write(obj.startTime)
       ..writeByte(5)
-      ..write(obj.passPercentage)
+      ..write(obj.endTime)
       ..writeByte(6)
-      ..write(obj.isPublished);
+      ..write(obj.passPercentage)
+      ..writeByte(7)
+      ..write(obj.isPublished)
+      ..writeByte(8)
+      ..write(obj.isResultPublished);
   }
 }

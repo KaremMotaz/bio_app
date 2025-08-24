@@ -22,8 +22,25 @@ class PastExamCard extends StatelessWidget {
             Text(exam.title, style: TextStyles.bold18),
             const SizedBox(height: 8),
             Text(
-              "يبدأ: ${exam.endTime}",
+              "تاريخ الإمتحان: ${exam.endTime.toLocal().toString().split(' ')[0]}",
               style: TextStyles.regular14,
+            ),
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 6,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.green.shade100,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                "عرض النتيجة",
+                style: TextStyles.regular14.copyWith(
+                  color: Colors.green.shade800,
+                ),
+              ),
             ),
           ],
         ),

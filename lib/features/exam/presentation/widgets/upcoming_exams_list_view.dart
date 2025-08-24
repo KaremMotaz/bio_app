@@ -1,4 +1,5 @@
 import 'package:bio_app/core/routing/routes.dart';
+import 'package:bio_app/core/theming/text_styles.dart';
 import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
 import 'package:bio_app/features/exam/presentation/widgets/upcoming_exam_card.dart';
 import 'package:flutter/material.dart';
@@ -16,19 +17,26 @@ class UpcomingExamsListView extends StatelessWidget {
       child: ListView.builder(
         itemCount: exams.length,
         itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              GoRouter.of(context).push(
-                Routes.examQuestionsView,
-                extra: {
-                  'examId': exams[index].id,
-                  'examIndex': index,
-                  'exams': exams,
-                },
-              );
-            },
-            child: UpcomingExamCard(exam: exams[index]),
-          );
+          if (exams[index].isPublished) {
+            return GestureDetector(
+              onTap: () {
+                GoRouter.of(context).push(
+                  Routes.examQuestionsView,
+                  extra: {
+                    'examId': exams[index].id,
+                    'examIndex': index,
+                    'exams': exams,
+                  },
+                );
+              },
+              child: UpcomingExamCard(exam: exams[index]),
+            );
+          } else {
+            return const Text(
+              "لا توجد إمتحانات حاليا",
+              style: TextStyles.regular14,
+            );
+          }
         },
       ),
     );

@@ -7,9 +7,11 @@ class ExamModel extends ExamEntity {
     required super.title,
     required super.unit,
     required super.lesson,
+    required super.startTime,
     required super.endTime,
     required super.passPercentage,
     required super.isPublished,
+    required super.isResultPublished,
   });
 
   factory ExamModel.fromJson(Map<String, dynamic> json) {
@@ -18,11 +20,15 @@ class ExamModel extends ExamEntity {
       title: json['title'],
       unit: json['unit'],
       lesson: json['lesson'],
+      startTime: json['startTime'] is Timestamp
+          ? (json['startTime'] as Timestamp).toDate()
+          : (json['startTime'] as DateTime),
       endTime: json['endTime'] is Timestamp
           ? (json['endTime'] as Timestamp).toDate()
           : (json['endTime'] as DateTime),
       passPercentage: (json['passPercentage'] as num).toDouble(),
       isPublished: json['isPublished'],
+      isResultPublished: json['isResultPublished'],
     );
   }
   Map<String, dynamic> toJson() {
@@ -32,8 +38,10 @@ class ExamModel extends ExamEntity {
       'unit': unit,
       'lesson': lesson,
       'endTime': Timestamp.fromDate(endTime),
+      'startTime': Timestamp.fromDate(startTime),
       'passPercentage': passPercentage,
       'isPublished': isPublished,
+      'isResultPublished': isResultPublished,
     };
   }
 
@@ -43,9 +51,11 @@ class ExamModel extends ExamEntity {
       'title': title,
       'unit': unit,
       'lesson': lesson,
-      'endTime': endTime, // DateTime مباشرة
+      'endTime': endTime,
+      'startTime': startTime,
       'passPercentage': passPercentage,
       'isPublished': isPublished,
+      'isResultPublished': isResultPublished,
     };
   }
 }

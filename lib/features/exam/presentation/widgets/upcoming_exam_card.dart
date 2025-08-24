@@ -22,7 +22,7 @@ class UpcomingExamCard extends StatelessWidget {
             Text(exam.title, style: TextStyles.bold18),
             const SizedBox(height: 8),
             Text(
-              "يبدأ: ${exam.endTime}",
+              "يبدأ: ${exam.startTime}",
               style: TextStyles.regular14,
             ),
           ],
