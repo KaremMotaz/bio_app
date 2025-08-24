@@ -86,10 +86,7 @@ class FirebaseAuthService {
     return FirebaseAuth.instance.currentUser != null;
   }
 
-  Future<void> deleteAccount({
-    String? email,
-    String? password,
-  }) async {
+  Future<void> deleteAccount({String? password}) async {
     final user = FirebaseAuth.instance.currentUser;
 
     if (user == null) {
@@ -105,7 +102,7 @@ class FirebaseAuthService {
           : null;
 
       if (providerId == 'password') {
-        if (email == null || password == null) {
+        if (user.email == null || password == null) {
           throw FirebaseAuthException(
             code: 'missing-credentials',
             message:
@@ -113,7 +110,7 @@ class FirebaseAuthService {
           );
         }
         final credential = EmailAuthProvider.credential(
-          email: email,
+          email: user.email!,
           password: password,
         );
         await user.reauthenticateWithCredential(credential);

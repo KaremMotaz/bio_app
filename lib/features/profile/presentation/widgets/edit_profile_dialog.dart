@@ -5,7 +5,7 @@ import '../../../../core/widgets/app_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-editProfileDialog({
+customDialog({
   required BuildContext context,
   required void Function() onPressed,
   required String title,
@@ -13,6 +13,8 @@ editProfileDialog({
   required TextEditingController controller,
   required Function(String?) validator,
   TextInputType? textInputType,
+  bool? isObscureText,
+  Widget? suffixIcon,
 }) {
   final formKey = GlobalKey<FormState>();
   showDialog(
@@ -65,6 +67,8 @@ editProfileDialog({
                   hintText: hintText,
                   controller: controller,
                   validator: validator,
+                  isObscureText: isObscureText,
+                  suffixIcon: suffixIcon,
                 ),
                 const SizedBox(height: 20),
                 Row(

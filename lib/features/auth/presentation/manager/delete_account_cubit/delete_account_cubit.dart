@@ -8,9 +8,9 @@ class DeleteAccountCubit extends Cubit<DeleteAccountState> {
   DeleteAccountCubit({required this.authRepo})
     : super(DeleteAccountInitialState());
   final AuthRepo authRepo;
-  Future<void> deleteAccount() async {
+  Future<void> deleteAccount({String? password}) async {
     emit(DeleteAccountLoadingState());
-    final result = await authRepo.deleteUser();
+    final result = await authRepo.deleteAccount(password: password);
     result.fold(
       (failure) {
         emit(DeleteAccountFailureState(message: failure.message));

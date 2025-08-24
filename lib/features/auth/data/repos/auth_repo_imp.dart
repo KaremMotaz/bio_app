@@ -44,13 +44,13 @@ class AuthRepoImp extends AuthRepo {
       await addUserData(userEntity: userEntity);
       return right(userEntity);
     } on FirebaseAuthException catch (e) {
-      await deleteUser();
+      await deleteAccount();
       return left(AuthFailure.fromCode(e.code));
     } on FirestoreFailure catch (e) {
-      await deleteUser();
+      await deleteAccount();
       return left(FirestoreFailure.fromCode(e.message));
     } catch (e) {
-      await deleteUser();
+      await deleteAccount();
       return left(AuthFailure(e.toString()));
     }
   }
@@ -101,7 +101,7 @@ class AuthRepoImp extends AuthRepo {
       return right(userEntity);
     } on FirebaseAuthException catch (e) {
       log(e.toString());
-      await deleteUser();
+      await deleteAccount();
       return left(AuthFailure.fromCode(e.code));
     } catch (e) {
       log(e.toString());
@@ -129,7 +129,7 @@ class AuthRepoImp extends AuthRepo {
 
       return right(userEntity);
     } on FirebaseAuthException catch (e) {
-      await deleteUser();
+      await deleteAccount();
       return left(AuthFailure.fromCode(e.code));
     } catch (e) {
       return left(AuthFailure(e.toString()));
@@ -200,12 +200,18 @@ class AuthRepoImp extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, Unit>> deleteUser() async {
+  Future<Either<Failure, Unit>> deleteAccount({
+    String? password,
+  }) async {
     await databaseService.deleteData(
       path: '${BackendEndpoint.deleteUser}/$userId',
     );
+    await databaseService.deleteData(
+      path:
+          '${BackendEndpoint.deleteUser}/$userId/${BackendEndpoint.getExamsResults}',
+    );
     await deleteUserExamsResult();
-    await firebaseAuthService.deleteAccount();
+    await firebaseAuthService.deleteAccount(password: password);
     return right(unit);
   }
 

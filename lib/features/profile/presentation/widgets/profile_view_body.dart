@@ -63,7 +63,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                     title: "الأسم الأول",
                     subTitle: Text(getUser().firstName ?? ""),
                     onTap: () {
-                      editProfileDialog(
+                      customDialog(
                         context: context,
                         textInputType: TextInputType.name,
                         title: "تعديل الأسم الأول",
@@ -92,7 +92,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                     title: "الأسم الأخير",
                     subTitle: Text(getUser().lastName ?? ""),
                     onTap: () {
-                      editProfileDialog(
+                      customDialog(
                         context: context,
                         textInputType: TextInputType.name,
                         title: "تعديل الأسم الأخير",
@@ -120,7 +120,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                     title: "الهاتف",
                     subTitle: Text(getUser().phoneNumber ?? ""),
                     onTap: () {
-                      editProfileDialog(
+                      customDialog(
                         context: context,
                         textInputType: TextInputType.phone,
                         title: "تعديل رقم الهاتف",
