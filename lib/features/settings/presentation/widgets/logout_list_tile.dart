@@ -1,7 +1,7 @@
 import 'package:bio_app/core/functions/show_confirm_dialog.dart';
 import 'package:bio_app/core/routing/routes.dart';
 import 'package:bio_app/features/auth/presentation/manager/log_out_cubit/log_out_cubit.dart';
-import 'package:bio_app/features/settings/presentation/views/widgets/custom_settings_list_tile.dart';
+import 'package:bio_app/features/settings/presentation/widgets/custom_settings_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

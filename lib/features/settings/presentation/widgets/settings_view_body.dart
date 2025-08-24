@@ -1,5 +1,5 @@
-import 'package:bio_app/features/settings/presentation/views/widgets/account_section.dart';
-import 'package:bio_app/features/settings/presentation/views/widgets/settings_section.dart';
+import 'package:bio_app/features/settings/presentation/widgets/account_section.dart';
+import 'package:bio_app/features/settings/presentation/widgets/settings_section.dart';
 import 'package:flutter/material.dart';
 
 class SettingsViewBody extends StatelessWidget {

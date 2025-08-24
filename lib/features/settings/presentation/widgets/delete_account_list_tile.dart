@@ -1,0 +1,82 @@
+import 'package:bio_app/core/functions/build_snack_bar.dart';
+import 'package:bio_app/core/functions/show_confirm_dialog.dart';
+import 'package:bio_app/core/routing/routes.dart';
+import 'package:bio_app/features/auth/presentation/manager/delete_account_cubit/delete_account_cubit.dart';
+import 'package:bio_app/features/settings/presentation/helpers/show_password_dialog.dart';
+import 'package:bio_app/features/settings/presentation/widgets/custom_settings_list_tile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+
+class DeleteAccountListTile extends StatefulWidget {
+  const DeleteAccountListTile({super.key});
+
+  @override
+  State<DeleteAccountListTile> createState() =>
+      _DeleteAccountListTileState();
+}
+
+class _DeleteAccountListTileState
+    extends State<DeleteAccountListTile> {
+  final TextEditingController passwordController =
+      TextEditingController();
+
+  @override
+  void dispose() {
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<DeleteAccountCubit, DeleteAccountState>(
+      listener: (context, state) {
+        if (state is DeleteAccountSuccessState) {
+          successSnackBar(
+            context: context,
+            message: "تم حذف الحساب الشخصي بنجاح",
+          );
+          GoRouter.of(context).pushReplacement(Routes.signInView);
+        } else if (state is DeleteAccountFailureState) {
+          errorSnackBar(context: context, message: state.message);
+        }
+      },
+      builder: (context, state) {
+        return CustomSettingsListTile(
+          bgIconcolor: const Color(0xfffee9f0),
+          title: "حذف الحساب",
+          onTap: () {
+            showConfirmDialog(
+              context: context,
+              buttonText: "حذف",
+              bodyContent: "هل أنت متأكد أنك تريد حذف حسابك؟",
+              title: "حذف الحساب؟",
+              buttonColor: const Color(0xffdb2323),
+              onPressed: () async {
+                final user = FirebaseAuth.instance.currentUser;
+                if (user == null) return;
+
+                final provider = user.providerData.first.providerId;
+
+                if (provider == 'password') {
+                  return showPasswordDialog(
+                    context,
+                    passwordController,
+                  );
+                } else {
+                  await context
+                      .read<DeleteAccountCubit>()
+                      .deleteAccount();
+                }
+              },
+            );
+          },
+          trailing: const SizedBox.shrink(),
+          icon: Icons.delete_forever_rounded,
+          iconcolor: const Color(0xffd05b75),
+        );
+      },
+    );
+  }
+}
