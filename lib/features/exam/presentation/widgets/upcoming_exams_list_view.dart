@@ -1,0 +1,36 @@
+import 'package:bio_app/core/routing/routes.dart';
+import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
+import 'package:bio_app/features/exam/presentation/widgets/upcoming_exam_card.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+class UpcomingExamsListView extends StatelessWidget {
+  const UpcomingExamsListView({super.key, required this.exams});
+
+  final List<ExamEntity> exams;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 100,
+      child: ListView.builder(
+        itemCount: exams.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              GoRouter.of(context).push(
+                Routes.examQuestionsView,
+                extra: {
+                  'examId': exams[index].id,
+                  'examIndex': index,
+                  'exams': exams,
+                },
+              );
+            },
+            child: UpcomingExamCard(exam: exams[index]),
+          );
+        },
+      ),
+    );
+  }
+}

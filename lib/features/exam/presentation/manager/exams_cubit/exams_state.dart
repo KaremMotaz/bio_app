@@ -13,7 +13,7 @@ final class ExamsLoadingState extends ExamsState {}
 
 final class ExamsLoadedState extends ExamsState {
   final List<ExamEntity> exams;
-  const ExamsLoadedState(this.exams);
+  const ExamsLoadedState({required this.exams});
 }
 
 final class ExamsErrorState extends ExamsState {
