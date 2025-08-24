@@ -1,6 +1,7 @@
 import 'package:bio_app/core/functions/show_confirm_dialog.dart';
 import 'package:bio_app/core/routing/routes.dart';
 import 'package:bio_app/core/theming/text_styles.dart';
+import 'package:bio_app/features/auth/presentation/manager/delete_account_cubit/delete_account_cubit.dart';
 import 'package:bio_app/features/auth/presentation/manager/log_out_cubit/log_out_cubit.dart';
 import 'package:bio_app/features/settings/presentation/views/widgets/custom_settings_list_tile.dart';
 import 'package:flutter/material.dart';
@@ -8,9 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class SettingsSection extends StatelessWidget {
-  const SettingsSection({
-    super.key,
-  });
+  const SettingsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +25,7 @@ class SettingsSection extends StatelessWidget {
             showConfirmDialog(
               context: context,
               buttonText: "خروج",
-              bodyContent:
-                  "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+              bodyContent: "هل أنت متأكد أنك تريد تسجيل الخروج؟",
               title: "تسجيل الخروج؟",
               buttonColor: const Color(0xffdb2323),
               onPressed: () async {
@@ -55,7 +53,9 @@ class SettingsSection extends StatelessWidget {
               title: "حذف الحساب؟",
               buttonColor: const Color(0xffdb2323),
               onPressed: () async {
-                await context.read<LogOutCubit>().logOut();
+                await context
+                    .read<DeleteAccountCubit>()
+                    .deleteAccount();
                 if (!context.mounted) return;
                 GoRouter.of(
                   context,

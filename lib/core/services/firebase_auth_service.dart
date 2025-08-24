@@ -76,10 +76,6 @@ class FirebaseAuthService {
     await FirebaseAuth.instance.currentUser!.sendEmailVerification();
   }
 
-  Future<void> deleteAccount() async {
-    await FirebaseAuth.instance.currentUser!.delete();
-  }
-
   Future<void> logOut() async {
     await GoogleSignIn.instance.signOut();
     await FacebookAuth.instance.logOut();
@@ -88,5 +84,74 @@ class FirebaseAuthService {
 
   bool isLoggedIn() {
     return FirebaseAuth.instance.currentUser != null;
+  }
+
+  Future<void> deleteAccount({
+    String? email,
+    String? password,
+  }) async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      throw FirebaseAuthException(
+        code: 'no-user',
+        message: 'No user is currently signed in.',
+      );
+    }
+
+    try {
+      final providerId = user.providerData.isNotEmpty
+          ? user.providerData.first.providerId
+          : null;
+
+      if (providerId == 'password') {
+        if (email == null || password == null) {
+          throw FirebaseAuthException(
+            code: 'missing-credentials',
+            message:
+                'Email and password are required for re-authentication.',
+          );
+        }
+        final credential = EmailAuthProvider.credential(
+          email: email,
+          password: password,
+        );
+        await user.reauthenticateWithCredential(credential);
+      } else if (providerId == 'google.com') {
+        // Google user
+        final googleUser = await GoogleSignIn.instance.authenticate();
+        final googleAuth = googleUser.authentication;
+        final credential = GoogleAuthProvider.credential(
+          idToken: googleAuth.idToken,
+        );
+        await user.reauthenticateWithCredential(credential);
+      } else if (providerId == 'facebook.com') {
+        // Facebook user
+        final fbLogin = await FacebookAuth.instance.login();
+        if (fbLogin.status != LoginStatus.success) {
+          throw FirebaseAuthException(
+            code: 'cancelled',
+            message: 'Facebook sign-in was cancelled by user.',
+          );
+        }
+        final credential = FacebookAuthProvider.credential(
+          fbLogin.accessToken!.tokenString,
+        );
+        await user.reauthenticateWithCredential(credential);
+      } else {
+        throw FirebaseAuthException(
+          code: 'unsupported-provider',
+          message:
+              'Re-authentication not implemented for this provider.',
+        );
+      }
+
+      // 2️⃣ Delete user
+      await user.delete();
+    } on FirebaseAuthException catch (e) {
+      throw Exception('Failed to delete account: $e');
+    } catch (e) {
+      throw Exception('Failed to delete account: $e');
+    }
   }
 }

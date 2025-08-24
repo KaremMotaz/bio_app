@@ -19,6 +19,7 @@ import '../models/user_model.dart';
 class AuthRepoImp extends AuthRepo {
   final FirebaseAuthService firebaseAuthService;
   final DatabaseService databaseService;
+  static String userId = FirebaseAuth.instance.currentUser!.uid;
 
   AuthRepoImp({
     required this.firebaseAuthService,
@@ -199,8 +200,13 @@ class AuthRepoImp extends AuthRepo {
   }
 
   @override
-  Future deleteUser() async {
-    return await firebaseAuthService.deleteAccount();
+  Future<Either<Failure, Unit>> deleteUser() async {
+    await databaseService.deleteData(
+      path: '${BackendEndpoint.deleteUser}/$userId',
+    );
+    await deleteUserExamsResult();
+    await firebaseAuthService.deleteAccount();
+    return right(unit);
   }
 
   @override
@@ -211,9 +217,29 @@ class AuthRepoImp extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, Unit>> updateUserData({
-    required UserEntity userEntity,
-  }) {
-    throw UnimplementedError();
+  Future<void> deleteUserExamsResult() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    final exams = await databaseService.getData(
+      path: BackendEndpoint.getExams,
+    );
+    if (exams == null) return;
+
+    for (final exam in exams) {
+      final examId = exam['id'];
+
+      final userResult = await databaseService.getData(
+        path:
+            "${BackendEndpoint.getExams}/$examId/${BackendEndpoint.getExamResults}/${user.uid}",
+      );
+
+      if (userResult != null) {
+        await databaseService.deleteData(
+          path:
+              "${BackendEndpoint.getExams}/$examId/${BackendEndpoint.getExamResults}/${user.uid}",
+        );
+      }
+    }
   }
 }

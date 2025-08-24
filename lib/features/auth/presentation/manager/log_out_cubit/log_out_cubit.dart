@@ -6,7 +6,7 @@ import '../../../domain/auth_repo.dart';
 part 'log_out_state.dart';
 
 class LogOutCubit extends Cubit<LogOutState> {
-  LogOutCubit(this.authRepo) : super(LogOutInitialState());
+  LogOutCubit({required this.authRepo}) : super(LogOutInitialState());
   final AuthRepo authRepo;
 
   Future<void> logOut() async {

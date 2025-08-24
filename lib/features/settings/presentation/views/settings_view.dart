@@ -1,3 +1,4 @@
+import 'package:bio_app/features/auth/presentation/manager/delete_account_cubit/delete_account_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,16 +12,22 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<LogOutCubit>(
-      create: (context) =>
-          LogOutCubit(getIt.get<AuthRepo>()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LogOutCubit>(
+          create: (context) =>
+              LogOutCubit(authRepo: getIt.get<AuthRepo>()),
+        ),
+        BlocProvider<DeleteAccountCubit>(
+          create: (context) =>
+              DeleteAccountCubit(authRepo: getIt.get<AuthRepo>()),
+        ),
+      ],
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const Text(
-            "الإعدادات",
-          ),
+          title: const Text("الإعدادات"),
           centerTitle: true,
         ),
         body: const SafeArea(child: SettingsViewBody()),
