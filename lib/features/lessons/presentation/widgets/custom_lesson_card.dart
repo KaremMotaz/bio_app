@@ -47,7 +47,7 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
             contentPadding: const EdgeInsets.all(0),
             title: Text(
               'الدرس ${getDisplayNumber(widget.index)} :',
-              style:  TextStyles.bold15,
+              style: TextStyles.bold15,
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 4),
@@ -75,8 +75,16 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
             ),
 
             trailing: isExpanded
-                ? const Icon(Icons.expand_less, size: 30)
-                : const Icon(Icons.expand_more, size: 30),
+                ? const Icon(
+                    Icons.expand_less,
+                    size: 30,
+                    color: Colors.grey,
+                  )
+                : const Icon(
+                    Icons.expand_more,
+                    size: 30,
+                    color: Colors.grey,
+                  ),
             onTap: () {
               setState(() {
                 isExpanded = !isExpanded;

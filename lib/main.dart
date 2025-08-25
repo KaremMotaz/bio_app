@@ -66,7 +66,7 @@ class MainApp extends StatelessWidget {
           elevation: 0,
           titleTextStyle: TextStyles.bold17.copyWith(
             fontFamily: 'Cairo',
-            color: Colors.black,
+            color: Colors.grey.shade600,
           ),
           iconTheme: const IconThemeData(color: Colors.black),
           centerTitle: true,

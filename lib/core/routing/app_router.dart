@@ -1,3 +1,5 @@
+import 'package:bio_app/features/chapters/domain/chapter_entity.dart';
+import 'package:bio_app/features/units/domain/unit_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -195,12 +197,12 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.chaptersView,
           builder: (context, state) {
-            final String unitId = state.extra as String;
+            final UnitEntity unit = state.extra as UnitEntity;
             return BlocProvider(
               create: (context) => ChapterCubit(
                 chapterRepoImpl: getIt<ChapterRepoImpl>(),
-              )..getChapters(unitId: unitId),
-              child: ChapterView(unitId: unitId),
+              )..getChapters(unitId: unit.id),
+              child: ChapterView(unit: unit),
             );
           },
         ),
@@ -210,14 +212,14 @@ abstract class AppRouter {
             final args =
                 GoRouterState.of(context).extra
                     as Map<String, dynamic>;
-            final String chapterId = args['chapterId'];
+            final ChapterEntity chapter = args['chapter'];
             final String unitId = args['unitId'];
 
             return BlocProvider(
               create: (context) => LessonCubit(
                 lessonRepoImp: getIt<LessonRepoImp>(),
-              )..getLessons(chapterId: chapterId, unitId: unitId),
-              child: const LessonsView(),
+              )..getLessons(chapterId: chapter.id, unitId: unitId),
+              child: LessonsView(chapter: chapter),
             );
           },
         ),

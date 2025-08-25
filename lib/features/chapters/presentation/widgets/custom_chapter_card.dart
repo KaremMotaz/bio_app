@@ -24,7 +24,7 @@ class CustomChapterCard extends StatelessWidget {
       onTap: () {
         GoRouter.of(context).push(
           Routes.lessonsView,
-          extra: {'chapterId': chapter.id, 'unitId': unitId},
+          extra: {'chapter': chapter, 'unitId': unitId},
         );
       },
       child: Stack(

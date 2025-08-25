@@ -22,7 +22,7 @@ class CustomUnitCard extends StatelessWidget {
       onTap: () {
         GoRouter.of(
           context,
-        ).push(Routes.chaptersView, extra: unit.id);
+        ).push(Routes.chaptersView, extra: unit);
       },
       child: Stack(
         clipBehavior: Clip.none,
