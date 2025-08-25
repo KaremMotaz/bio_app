@@ -41,7 +41,7 @@ class QuizRepoImp implements QuizRepo {
       return Right(quizzes);
     } catch (e) {
       log(e.toString());
-      return Left(ServerFailure(e.toString()));
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 }

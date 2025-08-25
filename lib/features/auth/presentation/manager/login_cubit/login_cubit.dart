@@ -1,3 +1,4 @@
+import 'package:bio_app/core/services/firestore_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +15,9 @@ class LoginCubit extends Cubit<LoginState> {
   final AuthRepo authRepo;
 
   Future<bool> showUserIsOldOrNot() async {
-    if (FirebaseAuthService().isLoggedIn()) {
+    if (FirebaseAuthService(
+      databaseService: FirestoreService(),
+    ).isLoggedIn()) {
       String uid = FirebaseAuth.instance.currentUser!.uid;
       UserEntity userData = await authRepo.getUserData(uid: uid);
       bool oldUser = userData.oldUser;

@@ -31,7 +31,7 @@ class ImagesRepoImp implements ImagesRepo {
       );
       return right(url);
     } catch (e) {
-      return left(ServerFailure(e.toString()));
+      return left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -46,7 +46,7 @@ class ImagesRepoImp implements ImagesRepo {
       );
       return right(getUrl);
     } catch (e) {
-      return left(ServerFailure(e.toString()));
+      return left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -62,7 +62,7 @@ class ImagesRepoImp implements ImagesRepo {
       );
       return right(unit);
     } catch (e) {
-      return left(ServerFailure(e.toString()));
+      return left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -100,7 +100,7 @@ class ImagesRepoImp implements ImagesRepo {
 
       return const Right(null);
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 }

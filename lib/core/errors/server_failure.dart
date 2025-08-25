@@ -1,45 +1,50 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
-
 import 'failure.dart';
 
 class ServerFailure extends Failure {
-  const ServerFailure(super.message);
+  const ServerFailure({
+    required super.message,
+    super.code = "SERVER_FAILURE",
+  });
 
-  /// للتعامل مع HTTP responses (لو احتجتها لاحقًا)
   factory ServerFailure.fromResponse(
     int statusCode,
     dynamic response,
   ) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(response['error']['message']);
+      return ServerFailure(message: response['error']['message']);
     } else if (statusCode == 404) {
       return const ServerFailure(
-        "Your request was not found, please try again later!",
+        message:
+            "Your request was not found, please try again later!",
       );
     } else if (statusCode == 500) {
       return const ServerFailure(
-        "Internal server error, please try again later!",
+        message: "Internal server error, please try again later!",
       );
     } else {
       return const ServerFailure(
-        "Oops, there was an error. Please try again later!",
+        message: "Oops, there was an error. Please try again later!",
       );
     }
   }
 
-  /// للتعامل مع Firebase/FirebaseException
+
   factory ServerFailure.fromFirebaseException(FirebaseException e) {
     return ServerFailure(
-      e.message ?? "Unexpected Firebase error occurred.",
+      message: e.message ?? "Unexpected Firebase error occurred.",
     );
   }
 
-  /// للتعامل مع PlatformException
+
   factory ServerFailure.fromPlatformException(PlatformException e) {
-    return ServerFailure(e.message ?? "A platform error occurred.");
+    return ServerFailure(
+      message: e.message ?? "A platform error occurred.",
+    );
   }
 
-  factory ServerFailure.unknown([String? details]) =>
-      ServerFailure("Unexpected server error ${details ?? ""}");
+  factory ServerFailure.unknown([String? details]) => ServerFailure(
+    message: "Unexpected server error ${details ?? ""}",
+  );
 }

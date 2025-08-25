@@ -46,7 +46,7 @@ class LessonRepoImp implements LessonRepo {
       return Right(lessons);
     } catch (e) {
       log(e.toString());
-      return Left(ServerFailure(e.toString()));
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 }

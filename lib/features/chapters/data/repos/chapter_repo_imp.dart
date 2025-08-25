@@ -46,7 +46,7 @@ class ChapterRepoImpl implements ChapterRepo {
       return Right(chapters);
     } catch (e, st) {
       log(e.toString(), stackTrace: st);
-      return Left(ServerFailure(e.toString()));
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 }

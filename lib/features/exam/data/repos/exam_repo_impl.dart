@@ -36,7 +36,7 @@ class ExamRepoImpl implements ExamRepo {
 
       return Right(exams);
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 }

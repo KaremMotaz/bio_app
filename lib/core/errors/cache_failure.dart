@@ -1,18 +1,21 @@
 import 'failure.dart';
 
 class CacheFailure extends Failure {
-  const CacheFailure(super.message);
+  const CacheFailure({
+    required super.message,
+    super.code = "CACHE_FAILURE",
+  });
 
-  /// Factory methods for common cases
   factory CacheFailure.empty() =>
-      const CacheFailure("No cached data found");
+      const CacheFailure(message: "No cached data found");
 
   factory CacheFailure.invalidFormat() =>
-      const CacheFailure("Invalid cached data format");
+      const CacheFailure(message: "Invalid cached data format");
 
   factory CacheFailure.writeError() =>
-      const CacheFailure("Failed to write data to cache");
+      const CacheFailure(message: "Failed to write data to cache");
 
-  factory CacheFailure.unknown([String? details]) =>
-      CacheFailure("Unexpected cache error ${details ?? ""}");
+  factory CacheFailure.unknown([String? details]) => CacheFailure(
+    message: "Unexpected cache error ${details ?? ""}",
+  );
 }

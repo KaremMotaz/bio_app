@@ -41,7 +41,7 @@ class ExamQuestionsRepoImp implements ExamQuestionsRepo {
 
       return Right(examsquestions);
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -58,7 +58,7 @@ class ExamQuestionsRepoImp implements ExamQuestionsRepo {
 
       return const Right(null);
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 }

@@ -42,7 +42,7 @@ class QuizQuestionsRepoImp implements QuizQuestionsRepo {
 
       return Right(quizQuestions);
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -53,7 +53,7 @@ class QuizQuestionsRepoImp implements QuizQuestionsRepo {
     try {
       await quizQuestionsRemoteDataSource.updateScores(score: score);
     } catch (e) {
-      throw ServerFailure(e.toString());
+      throw ServerFailure(message: e.toString());
     }
   }
 }

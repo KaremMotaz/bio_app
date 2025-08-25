@@ -40,7 +40,7 @@ class LeaderboardRepoImp implements LeaderboardRepo {
             }).toList();
             return Right<Failure, List<UserEntity>>(users);
           } catch (e) {
-            return Left(ServerFailure(e.toString()));
+            return Left(ServerFailure(message: e.toString()));
           }
         });
   }
@@ -73,7 +73,7 @@ class LeaderboardRepoImp implements LeaderboardRepo {
             }).toList();
             return Right<Failure, List<UserEntity>>(users);
           } catch (e) {
-            return Left(ServerFailure(e.toString()));
+            return Left(ServerFailure(message: e.toString()));
           }
         });
   }
@@ -106,7 +106,7 @@ class LeaderboardRepoImp implements LeaderboardRepo {
             }).toList();
             return Right<Failure, List<UserEntity>>(users);
           } catch (e) {
-            return Left(ServerFailure(e.toString()));
+            return Left(ServerFailure(message: e.toString()));
           }
         });
   }

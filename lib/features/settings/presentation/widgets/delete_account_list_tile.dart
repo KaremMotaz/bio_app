@@ -33,12 +33,14 @@ class _DeleteAccountListTileState
     return BlocConsumer<DeleteAccountCubit, DeleteAccountState>(
       listener: (context, state) {
         if (state is DeleteAccountSuccessState) {
+          GoRouter.of(context).pop();
           successSnackBar(
             context: context,
             message: "تم حذف الحساب الشخصي بنجاح",
           );
           GoRouter.of(context).pushReplacement(Routes.signInView);
         } else if (state is DeleteAccountFailureState) {
+          GoRouter.of(context).pop();
           errorSnackBar(context: context, message: state.message);
         }
       },
