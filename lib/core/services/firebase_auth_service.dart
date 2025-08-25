@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import '../errors/auth_failure.dart';
 import '../errors/failure.dart';
 import '../errors/server_failure.dart';
@@ -262,9 +263,11 @@ class FirebaseAuthService {
 
       return right(unit);
     } on FirebaseAuthException catch (e) {
+      log("from FirebaseAuthException ${e.code}");
+
       String message;
       switch (e.code) {
-        case 'wrong-password':
+        case 'invalid-credential':
           message = 'كلمة المرور غير صحيحة.';
           break;
         case 'user-not-found':
@@ -278,6 +281,7 @@ class FirebaseAuthService {
       }
       return left(ServerFailure(code: e.code, message: message));
     } catch (e) {
+      log("from rrr $e");
       return left(
         ServerFailure(
           code: 'unknown',

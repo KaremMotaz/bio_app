@@ -27,7 +27,18 @@ class FirestoreService implements DatabaseService {
 
   @override
   Future<void> deleteData({required String path}) async {
-    await firestore.doc(path).delete();
+    final segments = path.split('/');
+
+    if (segments.length.isOdd) {
+      // path → collection
+      final snapshot = await firestore.collection(path).get();
+      for (var doc in snapshot.docs) {
+        await doc.reference.delete();
+      }
+    } else {
+      // path → document
+      await firestore.doc(path).delete();
+    }
   }
 
   @override
