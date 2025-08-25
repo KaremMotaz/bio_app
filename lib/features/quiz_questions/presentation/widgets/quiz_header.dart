@@ -1,6 +1,8 @@
+import 'package:bio_app/core/functions/show_confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/theming/assets_data.dart';
 import '../../domain/entities/quiz_progress.dart';
@@ -24,30 +26,16 @@ class QuizHeader extends StatelessWidget {
         GestureDetector(
           onTap: () {
             final quizCubit = context.read<QuizQuestionsCubit>();
-            showDialog(
+            showConfirmDialog(
               context: context,
-              builder: (context) {
-                return AlertDialog(
-                  title: const Text("إنهاء الكويز"),
-                  content: const Text(
-                    "هل أنت متأكد إنك عايز تخرج من الكويز؟",
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text("لا"),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        quizCubit.exitToHome();
-                      },
-                      child: const Text("نعم"),
-                    ),
-                  ],
-                );
+              buttonText: "إنهاء",
+              bodyContent: "هل أنت متأكد إنك تريد إنهاء الكويز؟",
+              title: "إنهاء الكويز",
+              heightOfDialog: 200,
+              buttonColor: const Color(0xffdb2323),
+              onPressed: () async {
+                GoRouter.of(context).pop();
+                quizCubit.exitToHome();
               },
             );
           },

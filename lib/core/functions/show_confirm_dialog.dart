@@ -22,10 +22,10 @@ showConfirmDialog({
         backgroundColor: Colors.white,
         child: Padding(
           padding: const EdgeInsetsDirectional.only(
-            start: 30,
-            end: 30,
-            top: 24,
-            bottom: 24,
+            start: 20,
+            end: 20,
+            top: 12,
+            bottom: 12,
           ),
           child: SizedBox(
             height: heightOfDialog ?? 210,
@@ -56,7 +56,7 @@ showConfirmDialog({
                     Expanded(
                       child: AppTextButton(
                         buttonText:
-                            cancelButtonText ?? "تراجع",
+                            cancelButtonText ?? "إلغاء",
                         backgroundColor: const Color(
                           0xffeaeaec,
                         ),

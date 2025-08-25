@@ -5,7 +5,7 @@ import '../../../../core/widgets/app_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-customDialog({
+editProfileDialog({
   required BuildContext context,
   required void Function() onPressed,
   required String title,
