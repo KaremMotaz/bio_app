@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'package:bio_app/core/errors/auth_failure.dart';
-import 'package:bio_app/core/errors/failure.dart';
-import 'package:bio_app/core/errors/server_failure.dart';
-import 'package:bio_app/core/helpers/backend_endpoint.dart';
-import 'package:bio_app/core/helpers/get_user.dart';
-import 'package:bio_app/core/services/data_service.dart';
+import '../errors/auth_failure.dart';
+import '../errors/failure.dart';
+import '../errors/server_failure.dart';
+import '../helpers/backend_endpoint.dart';
+import '../helpers/get_user.dart';
+import 'data_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';

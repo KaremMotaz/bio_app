@@ -1,4 +1,4 @@
-import 'package:bio_app/core/services/local_cache_service.dart';
+import '../../../../core/services/local_cache_service.dart';
 import 'chapters_local_data_source.dart';
 import '../../../../core/helpers/constants.dart';
 import '../models/chapter_model.dart';

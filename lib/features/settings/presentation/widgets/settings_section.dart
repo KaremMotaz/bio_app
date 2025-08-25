@@ -1,6 +1,6 @@
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/features/settings/presentation/widgets/delete_account_list_tile.dart';
-import 'package:bio_app/features/settings/presentation/widgets/logout_list_tile.dart';
+import '../../../../core/theming/text_styles.dart';
+import 'delete_account_list_tile.dart';
+import 'logout_list_tile.dart';
 import 'package:flutter/material.dart';
 
 class SettingsSection extends StatelessWidget {

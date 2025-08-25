@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '../../../../core/helpers/get_user.dart';
 import '../../../../core/widgets/user_avatar.dart';
-import 'package:flutter/material.dart';
 
 class CustomCircleAvatar extends StatelessWidget {
   const CustomCircleAvatar({super.key});

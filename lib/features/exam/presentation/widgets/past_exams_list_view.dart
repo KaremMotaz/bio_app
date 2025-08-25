@@ -1,6 +1,6 @@
-import 'package:bio_app/core/routing/routes.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
-import 'package:bio_app/features/exam/presentation/widgets/past_exam_card.dart';
+import '../../../../core/routing/routes.dart';
+import '../../domain/entities/exam_entity.dart';
+import 'past_exam_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

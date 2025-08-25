@@ -1,7 +1,7 @@
-import 'package:bio_app/features/auth/domain/user_entity.dart';
-import 'package:bio_app/features/leaderboard/presentation/widgets/empty_leaderboard_view.dart';
-import 'package:bio_app/features/leaderboard/presentation/widgets/leaderboard_user_badge.dart';
-import 'package:bio_app/features/leaderboard/presentation/widgets/top3_leaderboard_row.dart';
+import '../../../auth/domain/user_entity.dart';
+import 'empty_leaderboard_view.dart';
+import 'leaderboard_user_badge.dart';
+import 'top3_leaderboard_row.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardWithLessThanFourUsers extends StatelessWidget {

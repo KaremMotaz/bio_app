@@ -1,4 +1,4 @@
-import 'package:bio_app/core/widgets/custom_app_bar_pop_icon.dart';
+import '../../../../core/widgets/custom_app_bar_pop_icon.dart';
 import 'package:flutter/material.dart';
 import '../widgets/profile_view_body.dart';
 

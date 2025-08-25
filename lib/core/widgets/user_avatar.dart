@@ -1,5 +1,6 @@
-import '../theming/app_colors.dart';
 import 'package:flutter/material.dart';
+
+import '../theming/app_colors.dart';
 
 class UserAvatar extends StatelessWidget {
   final String name;

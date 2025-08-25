@@ -1,9 +1,9 @@
-import 'package:bio_app/core/functions/build_snack_bar.dart';
-import 'package:bio_app/core/functions/show_confirm_dialog.dart';
-import 'package:bio_app/core/routing/routes.dart';
-import 'package:bio_app/features/auth/presentation/manager/delete_account_cubit/delete_account_cubit.dart';
-import 'package:bio_app/features/settings/presentation/helpers/show_password_dialog.dart';
-import 'package:bio_app/features/settings/presentation/widgets/custom_settings_list_tile.dart';
+import '../../../../core/functions/build_snack_bar.dart';
+import '../../../../core/functions/show_confirm_dialog.dart';
+import '../../../../core/routing/routes.dart';
+import '../../../auth/presentation/manager/delete_account_cubit/delete_account_cubit.dart';
+import '../helpers/show_password_dialog.dart';
+import 'custom_settings_list_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

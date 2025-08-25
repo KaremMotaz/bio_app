@@ -1,5 +1,5 @@
-import 'package:bio_app/features/leaderboard/domain/leaderboard_repo.dart';
-import 'package:bio_app/features/leaderboard/presentation/manager/leaderboard_cubit/leaderboard_cubit.dart';
+import '../../../leaderboard/domain/leaderboard_repo.dart';
+import '../../../leaderboard/presentation/manager/leaderboard_cubit/leaderboard_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+
 import 'unit_model.dart';
 
 class UnitModelAdapter extends TypeAdapter<UnitModel> {

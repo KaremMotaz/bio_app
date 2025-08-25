@@ -1,4 +1,4 @@
-import 'package:bio_app/core/services/firestore_service.dart';
+import '../../../../core/services/firestore_service.dart';
 
 import '../../../../core/helpers/backend_endpoint.dart';
 import '../../../../core/helpers/backend_fields.dart';

@@ -1,7 +1,7 @@
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
-import 'package:bio_app/features/exam/presentation/widgets/past_exams_list_view.dart';
-import 'package:bio_app/features/exam/presentation/widgets/upcoming_exams_list_view.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../domain/entities/exam_entity.dart';
+import 'past_exams_list_view.dart';
+import 'upcoming_exams_list_view.dart';
 import 'package:flutter/material.dart';
 
 class ExamsViewBody extends StatelessWidget {

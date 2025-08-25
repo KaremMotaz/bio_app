@@ -1,44 +1,43 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../features/auth/presentation/views/fill_profile_view.dart';
+import '../../features/auth/presentation/views/login_view.dart';
+import '../../features/auth/presentation/views/otp_verification_view.dart';
+import '../../features/auth/presentation/views/reset_password_view.dart';
+import '../../features/auth/presentation/views/signup_view.dart';
+import '../../features/chapters/data/repos/chapter_repo_imp.dart';
+import '../../features/chapters/presentation/chapter_view.dart';
+import '../../features/chapters/presentation/manager/chapter_cubit/chapter_cubit.dart';
+import '../../features/exam/data/repos/exam_questions_repo_impl.dart';
+import '../../features/exam/data/repos/exam_repo_impl.dart';
+import '../../features/exam/domain/entities/exam_entity.dart';
+import '../../features/exam/presentation/manager/exam_questions_cubit/exam_questions_cubit.dart';
+import '../../features/exam/presentation/views/exam_questions_view.dart';
+import '../../features/exam_result/data/repos/exam_result_repo_imp.dart';
+import '../../features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
+import '../../features/exam_result/presentation/views/exam_result_details_view.dart';
+import '../../features/exam_result/presentation/views/exam_result_view.dart';
+import '../../features/lessons/data/repos/lesson_repo_imp.dart';
+import '../../features/lessons/presentation/lessons_view.dart';
+import '../../features/lessons/presentation/manager/lesson_cubit/lesson_cubit.dart';
+import '../../features/lessons/presentation/quiz_ready_view.dart';
+import '../../features/main_view/main_view.dart';
+import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/profile/data/repos/user_data_repo_imp.dart';
 import '../../features/profile/domain/repos/images_repo.dart';
 import '../../features/profile/presentation/manager/change_profile_image_cubit/change_profile_image_cubit.dart';
 import '../../features/profile/presentation/manager/edit_profile_cubit/edit_profile_cubit.dart';
-
-import '../../features/exam/data/repos/exam_questions_repo_impl.dart';
-import '../../features/exam/data/repos/exam_repo_impl.dart';
-import '../../features/exam/domain/entities/exam_entity.dart';
-
-import '../../features/chapters/data/repos/chapter_repo_imp.dart';
-import '../../features/chapters/presentation/manager/chapter_cubit/chapter_cubit.dart';
-import '../../features/lessons/data/repos/lesson_repo_imp.dart';
-import '../../features/lessons/presentation/manager/lesson_cubit/lesson_cubit.dart';
-import '../../features/lessons/presentation/quiz_ready_view.dart';
-import '../../features/quiz_questions/domain/logic/quiz_helpers.dart';
-import '../services/get_it_service.dart';
-import '../../features/exam_result/data/repos/exam_result_repo_imp.dart';
+import '../../features/profile/presentation/views/profile_view.dart';
 import '../../features/quiz_questions/data/repos/quiz_questions_repo_imp.dart';
-import 'package:go_router/go_router.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../features/quiz_questions/domain/logic/quiz_helpers.dart';
+import '../../features/quiz_questions/presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
+import '../../features/quiz_questions/presentation/views/quiz_questions_view.dart';
 import '../helpers/constants.dart';
 import '../services/cache_helper.dart';
 import '../services/firebase_auth_service.dart';
+import '../services/get_it_service.dart';
 import 'routes.dart';
-import '../../features/onboarding/presentation/views/onboarding_view.dart';
-import '../../features/auth/presentation/views/fill_profile_view.dart';
-import '../../features/auth/presentation/views/otp_verification_view.dart';
-import '../../features/auth/presentation/views/reset_password_view.dart';
-import '../../features/auth/presentation/views/login_view.dart';
-import '../../features/auth/presentation/views/signup_view.dart';
-import '../../features/main_view/main_view.dart';
-import '../../features/profile/presentation/views/profile_view.dart';
-import '../../features/exam_result/presentation/views/exam_result_view.dart';
-import '../../features/exam_result/presentation/views/exam_result_details_view.dart';
-import '../../features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
-import '../../features/quiz_questions/presentation/views/quiz_questions_view.dart';
-import '../../features/quiz_questions/presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
-import '../../features/chapters/presentation/chapter_view.dart';
-import '../../features/lessons/presentation/lessons_view.dart';
-import '../../features/exam/presentation/views/exam_questions_view.dart';
-import '../../features/exam/presentation/manager/exam_questions_cubit/exam_questions_cubit.dart';
 
 abstract class AppRouter {
   static GoRouter createRouter() {

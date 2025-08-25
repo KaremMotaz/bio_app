@@ -1,4 +1,4 @@
-import 'package:bio_app/features/auth/domain/user_entity.dart';
+import '../../../auth/domain/user_entity.dart';
 import '../../../../core/widgets/user_avatar.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/theming/text_styles.dart';

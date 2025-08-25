@@ -1,5 +1,5 @@
-import 'package:bio_app/features/auth/presentation/manager/delete_account_cubit/delete_account_cubit.dart';
-import 'package:bio_app/features/settings/presentation/helpers/delete_account_dialog.dart';
+import '../../../auth/presentation/manager/delete_account_cubit/delete_account_cubit.dart';
+import 'delete_account_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+
 import 'chapter_model.dart';
 
 class ChapterModelAdapter extends TypeAdapter<ChapterModel> {

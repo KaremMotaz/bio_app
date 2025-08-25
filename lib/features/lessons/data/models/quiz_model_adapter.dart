@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+
 import 'quiz_model.dart';
 
 class QuizModelAdapter extends TypeAdapter<QuizModel> {

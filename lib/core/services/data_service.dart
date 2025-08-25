@@ -1,4 +1,4 @@
-import 'package:bio_app/core/services/firestore_service.dart';
+import 'firestore_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class DatabaseService {

@@ -1,4 +1,4 @@
-import 'package:bio_app/features/auth/presentation/manager/delete_account_cubit/delete_account_cubit.dart';
+import '../../../auth/presentation/manager/delete_account_cubit/delete_account_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

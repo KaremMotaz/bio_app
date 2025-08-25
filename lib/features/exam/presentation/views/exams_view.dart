@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam/presentation/widgets/exams_view_body.dart';
+import '../widgets/exams_view_body.dart';
 import '../manager/exams_cubit/exams_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

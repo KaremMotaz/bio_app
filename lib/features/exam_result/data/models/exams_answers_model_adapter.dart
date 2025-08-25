@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam_result/data/models/exams_answers_model.dart';
+import 'exams_answers_model.dart';
 import 'package:hive/hive.dart';
 
 class ExamsAnswersModelAdapter

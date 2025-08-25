@@ -1,6 +1,8 @@
 import 'dart:io';
-import '../../../../core/errors/failure.dart';
+
 import 'package:dartz/dartz.dart';
+
+import '../../../../core/errors/failure.dart';
 
 abstract class ImagesRepo {
   Future<Either<Failure, File>> uploadImageToStorage({

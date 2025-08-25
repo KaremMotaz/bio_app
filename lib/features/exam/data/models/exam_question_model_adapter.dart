@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam/data/models/exam_question_model.dart';
+import 'exam_question_model.dart';
 import 'package:hive/hive.dart';
 
 class ExamQuestionsModelAdapter extends TypeAdapter<ExamQuestionsModel> {

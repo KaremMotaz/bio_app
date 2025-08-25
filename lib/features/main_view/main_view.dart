@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'logic/home_navigation_controller.dart';
-import 'presentation/widgets/main_page_view.dart';
 import 'presentation/widgets/home_nav_bar.dart';
+import 'presentation/widgets/main_page_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});

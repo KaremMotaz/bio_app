@@ -1,4 +1,4 @@
-import 'package:bio_app/core/services/firestore_service.dart';
+import '../../../../core/services/firestore_service.dart';
 
 import '../models/quiz_model.dart';
 

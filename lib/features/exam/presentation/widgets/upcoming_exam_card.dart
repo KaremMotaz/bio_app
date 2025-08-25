@@ -1,5 +1,5 @@
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../domain/entities/exam_entity.dart';
 import 'package:flutter/material.dart';
 
 class UpcomingExamCard extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:bio_app/features/leaderboard/presentation/manager/leaderboard_cubit/leaderboard_cubit.dart';
+import '../manager/leaderboard_cubit/leaderboard_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';

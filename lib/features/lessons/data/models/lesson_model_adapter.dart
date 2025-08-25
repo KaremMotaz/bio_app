@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+
 import 'lesson_model.dart';
 
 class LessonModelAdapter extends TypeAdapter<LessonModel> {

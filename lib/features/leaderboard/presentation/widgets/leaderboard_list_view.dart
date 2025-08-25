@@ -1,4 +1,4 @@
-import 'package:bio_app/features/auth/domain/user_entity.dart';
+import '../../../auth/domain/user_entity.dart';
 import 'leaderboard_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

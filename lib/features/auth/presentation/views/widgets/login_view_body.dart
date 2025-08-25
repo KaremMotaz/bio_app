@@ -9,8 +9,8 @@ import '../../../../../core/theming/text_styles.dart';
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../manager/login_cubit/login_cubit.dart';
 import 'dont_have_an_account.dart';
-import 'or_divider.dart';
 import 'login_form.dart';
+import 'or_divider.dart';
 import 'social_login_button.dart';
 
 class LoginViewBody extends StatefulWidget {

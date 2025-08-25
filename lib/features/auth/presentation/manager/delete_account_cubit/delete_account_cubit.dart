@@ -1,4 +1,4 @@
-import 'package:bio_app/features/auth/domain/auth_repo.dart';
+import '../../../domain/auth_repo.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'delete_account_state.dart';

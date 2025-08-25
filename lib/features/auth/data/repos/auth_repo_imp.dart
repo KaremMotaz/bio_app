@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:bio_app/core/errors/server_failure.dart';
+import '../../../../core/errors/server_failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

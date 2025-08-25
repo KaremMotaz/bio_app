@@ -1,9 +1,10 @@
-import '../../../../core/routing/routes.dart';
-import '../../../../core/widgets/app_text_button.dart';
-import '../manager/exam_result_cubit/exam_result_cubit.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../core/routing/routes.dart';
+import '../../../../core/widgets/app_text_button.dart';
+import '../manager/exam_result_cubit/exam_result_cubit.dart';
 
 class ExamResultViewBody extends StatelessWidget {
   const ExamResultViewBody({super.key, required this.state});

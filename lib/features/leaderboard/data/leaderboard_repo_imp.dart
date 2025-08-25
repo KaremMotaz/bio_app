@@ -1,9 +1,9 @@
-import 'package:bio_app/core/errors/failure.dart';
-import 'package:bio_app/core/errors/server_failure.dart';
-import 'package:bio_app/core/helpers/backend_endpoint.dart';
-import 'package:bio_app/core/services/data_service.dart';
-import 'package:bio_app/features/auth/domain/user_entity.dart';
-import 'package:bio_app/features/leaderboard/domain/leaderboard_repo.dart';
+import '../../../core/errors/failure.dart';
+import '../../../core/errors/server_failure.dart';
+import '../../../core/helpers/backend_endpoint.dart';
+import '../../../core/services/data_service.dart';
+import '../../auth/domain/user_entity.dart';
+import '../domain/leaderboard_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
