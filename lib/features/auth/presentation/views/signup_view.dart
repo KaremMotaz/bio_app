@@ -18,12 +18,7 @@ class SignupView extends StatelessWidget {
       create: (context) => SignupCubit(getIt.get<AuthRepo>()),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
-            "إنشاء حساب جديد",
-            style: TextStyles.bold18.copyWith(
-              color: AppColors.mainBlue,
-            ),
-          ),
+          title: const Text("إنشاء حساب جديد"),
           leading: Navigator.of(context).canPop()
               ? const CustomAppBarPopIcon()
               : null,

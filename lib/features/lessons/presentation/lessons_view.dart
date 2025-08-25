@@ -20,12 +20,7 @@ class LessonsView extends StatelessWidget {
         leading: Navigator.of(context).canPop()
             ? const CustomAppBarPopIcon()
             : null,
-        title: Text(
-          "الدروس",
-          style: TextStyles.bold18.copyWith(
-            color: AppColors.mainBlue,
-          ),
-        ),
+        title: const Text("الدروس"),
       ),
       body: SafeArea(
         child: BlocBuilder<LessonCubit, LessonState>(
@@ -53,5 +48,3 @@ class LessonsView extends StatelessWidget {
     );
   }
 }
-
-

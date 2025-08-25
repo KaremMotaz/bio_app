@@ -18,12 +18,7 @@ class LoginView extends StatelessWidget {
       create: (context) => LoginCubit(getIt.get<AuthRepo>()),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
-            "تسجيل الدخول",
-            style: TextStyles.bold18.copyWith(
-              color: AppColors.mainBlue,
-            ),
-          ),
+          title: const Text("تسجيل الدخول"),
           leading: Navigator.of(context).canPop()
               ? const CustomAppBarPopIcon()
               : null,

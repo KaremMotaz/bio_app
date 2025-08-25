@@ -18,12 +18,7 @@ class ChapterView extends StatelessWidget {
         leading: Navigator.of(context).canPop()
             ? const CustomAppBarPopIcon()
             : null,
-        title: Text(
-          "الفصول",
-          style: TextStyles.bold18.copyWith(
-            color: AppColors.mainBlue,
-          ),
-        ),
+        title: const Text("الفصول"),
       ),
       body: SafeArea(
         child: BlocBuilder<ChapterCubit, ChapterState>(
