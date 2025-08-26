@@ -1,15 +1,14 @@
 import 'dart:developer';
+import 'package:bio_app/features/exam/data/datasources/exam_remote_data_source.dart';
 import 'package:bio_app/features/exam/data/datasources/exams_local_data_source.dart';
 import 'package:bio_app/features/exam/data/models/exam_model.dart';
-import 'package:bio_app/features/exam/data/repos/exam_repo_impl.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
 import '../services/get_it_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hive/hive.dart';
 import '../../../../core/helpers/constants.dart';
 
 Future<void> fetchAndCacheExamData() async {
-  final examRepoImpl = getIt<ExamRepoImpl>();
+  final examsRemoteDataSource = getIt<ExamsRemoteDataSource>();
 
   // 1. قراءة التوقيتات من السيرفر
   final lastUpdatesDoc = await FirebaseFirestore.instance
@@ -17,15 +16,15 @@ Future<void> fetchAndCacheExamData() async {
       .doc('last_updates')
       .get();
 
-  final serverTimestamps = lastUpdatesDoc.data() ?? {};
-  log('Server timestamps: $serverTimestamps');
+  final Map<String, dynamic> serverTimestamps =
+      lastUpdatesDoc.data() ?? {};
 
   // 2. قراءة التوقيتات المحلية من Hive
   final hiveBox = Hive.box(kAppCacheBox);
-  final localTimestamps = Map<String, dynamic>.from(
-    hiveBox.get(kLastUpdatedTimestampsKey, defaultValue: {}),
-  );
-  log('Local timestamps: $localTimestamps');
+  final Map<String, dynamic> localTimestamps =
+      Map<String, dynamic>.from(
+        hiveBox.get(kLastUpdatedTimestampsKey, defaultValue: {}),
+      );
 
   // 3. تحديث الإمتحانات (Exams)
   final Timestamp? serverExamsTs =
@@ -34,42 +33,31 @@ Future<void> fetchAndCacheExamData() async {
   final localExamsTs = localTimestamps[kExams];
 
   if (_isNewer(serverExamsTs, localExamsTs)) {
-    final List<ExamEntity> examEntities =
-        (await examRepoImpl.getExams()).getOrElse(() => []);
-    log(examEntities.toString());
-    final List<ExamModel> exams = examEntities
-        .map((entity) => ExamModel.fromEntity(entity))
-        .toList();
-
-    log('Exams: $exams');
+    final List<ExamModel> exams = (await examsRemoteDataSource
+        .getExams());
 
     await getIt<ExamsLocalDataSource>().cacheExams(exams);
-    log(
-      'Local exams after cache: ${await getIt<ExamsLocalDataSource>().getExams()}',
-    );
 
     // حفظ التوقيت الجديد بالملي ثانية
     localTimestamps[kExams] = serverExamsTs?.millisecondsSinceEpoch;
-    log('Exams updated from server.');
-  } else {
-    log('Exams are up to date.');
   }
 
   // 4. حفظ التوقيتات المحدثة
   await hiveBox.put(kLastUpdatedTimestampsKey, localTimestamps);
+  log("From exams ${_isNewer(serverExamsTs, localExamsTs)}");
 }
 
 /// مقارنة توقيت السيرفر مع التوقيت المحلي
 bool _isNewer(Timestamp? server, dynamic local) {
   if (server == null) return false;
-  final serverMs = server.millisecondsSinceEpoch;
 
   if (local == null) return true;
-
-  if (local is int) return serverMs >= local;
   if (local is Timestamp) {
-    return serverMs >= local.millisecondsSinceEpoch;
+    return server.millisecondsSinceEpoch >
+        local.millisecondsSinceEpoch;
   }
-
+  if (local is int) {
+    return server.millisecondsSinceEpoch > local;
+  }
   return true;
 }

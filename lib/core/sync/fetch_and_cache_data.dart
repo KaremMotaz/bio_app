@@ -186,6 +186,7 @@ Future<void> fetchAndCacheData() async {
 /// مقارنة توقيت السيرفر مع التوقيت المحلي
 bool _isNewer(Timestamp? server, dynamic local) {
   if (server == null) return false;
+
   if (local == null) return true;
 
   if (local is Timestamp) {

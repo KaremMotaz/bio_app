@@ -1,11 +1,8 @@
-import 'dart:developer';
-
 import 'package:bio_app/core/sync/exam_view_open.dart';
+import 'package:bio_app/core/sync/fetch_and_cache_exam_data.dart';
 import 'package:dartz/dartz.dart';
-
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';
-import '../../domain/entities/exam_entity.dart';
 import '../../domain/repos/exam_repo.dart';
 import '../datasources/exam_remote_data_source.dart';
 import '../datasources/exams_local_data_source.dart';
@@ -21,17 +18,15 @@ class ExamRepoImpl implements ExamRepo {
   });
 
   @override
-  Future<Either<Failure, List<ExamEntity>>> getExams() async {
+  Future<Either<Failure, List<ExamModel>>> getExams() async {
     try {
       await ExamViewOpen.instance.runOnce();
 
       // Try to get data from cache first
       final List<ExamModel>? cached = await examsLocalDataSource
           .getExams();
-      log("from exams repo impl $cached");
 
       if (cached != null && cached.isNotEmpty) {
-        log("from exams repo impl22232323 $cached");
         return Right(cached);
       }
       //  No data in cache, fetch from remote
@@ -41,7 +36,6 @@ class ExamRepoImpl implements ExamRepo {
       await examsLocalDataSource.clearExams();
       // Cache the data
       await examsLocalDataSource.cacheExams(exams);
-      log("from exams repo impl2222 $exams");
 
       return Right(exams);
     } catch (e) {
