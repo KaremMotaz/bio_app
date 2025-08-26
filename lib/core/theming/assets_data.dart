@@ -22,4 +22,5 @@ class AssetsData {
       'assets/images/leaderboard.png';
   static const String settingsIcon = 'assets/images/settings.png';
   static const String crownIcon = 'assets/images/crown.png';
+  static const String quizReady = 'assets/images/quiz_ready.jpeg';
 }

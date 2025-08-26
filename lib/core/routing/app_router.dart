@@ -1,4 +1,5 @@
 import 'package:bio_app/features/chapters/domain/chapter_entity.dart';
+import 'package:bio_app/features/lessons/domain/quiz_entity.dart';
 import 'package:bio_app/features/units/domain/unit_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -226,8 +227,8 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.quizReadyView,
           builder: (context, state) {
-            final String quizId = state.extra as String;
-            return QuizReadyView(quizId: quizId);
+            final QuizEntity quiz = state.extra as QuizEntity;
+            return QuizReadyView(quiz: quiz);
           },
         ),
       ],
