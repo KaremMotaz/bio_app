@@ -2,10 +2,10 @@ import '../../../../core/theming/text_styles.dart';
 import '../../domain/entities/exam_entity.dart';
 import 'package:flutter/material.dart';
 
-class UpcomingExamCard extends StatelessWidget {
+class AvailableExamCard extends StatelessWidget {
   final ExamEntity exam;
 
-  const UpcomingExamCard({super.key, required this.exam});
+  const AvailableExamCard({super.key, required this.exam});
 
   @override
   Widget build(BuildContext context) {

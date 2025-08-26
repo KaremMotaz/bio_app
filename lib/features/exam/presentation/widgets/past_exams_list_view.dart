@@ -5,29 +5,29 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class PastExamsListView extends StatelessWidget {
-  const PastExamsListView({super.key, required this.exams});
+  const PastExamsListView({super.key, required this.pastExams});
 
-  final List<ExamEntity> exams;
+  final List<ExamEntity> pastExams;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemCount: exams.length,
+        itemCount: pastExams.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          if (exams[index].isResultPublished) {
+          if (pastExams[index].isResultPublished) {
             return GestureDetector(
               onTap: () {
                 GoRouter.of(context).push(
                   Routes.examResultView,
                   extra: {
-                    'examId': exams[index].id,
+                    'examId': pastExams[index].id,
                     'resultExamIndex': index,
                   },
                 );
               },
-              child: PastExamCard(exam: exams[index]),
+              child: PastExamCard(exam: pastExams[index]),
             );
           } else {
             return const SizedBox.shrink();

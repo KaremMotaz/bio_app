@@ -1,13 +1,18 @@
 import '../../../../core/theming/text_styles.dart';
 import '../../domain/entities/exam_entity.dart';
 import 'past_exams_list_view.dart';
-import 'upcoming_exams_list_view.dart';
+import 'available_exams_list_view.dart';
 import 'package:flutter/material.dart';
 
 class ExamsViewBody extends StatelessWidget {
-  const ExamsViewBody({super.key, required this.exams});
+  const ExamsViewBody({
+    super.key,
+    required this.availableExams,
+    required this.pastExams,
+  });
 
-  final List<ExamEntity> exams;
+  final List<ExamEntity> availableExams;
+  final List<ExamEntity> pastExams;
 
   @override
   Widget build(BuildContext context) {
@@ -18,25 +23,29 @@ class ExamsViewBody extends StatelessWidget {
         children: [
           const Text("الإمتحانات القادمة", style: TextStyles.bold18),
           const SizedBox(height: 10),
-          if (exams.isEmpty)
-            const Text(
-              "لا توجد إمتحانات حاليا",
-              style: TextStyles.regular14,
+          if (availableExams.isEmpty)
+            const Center(
+              child: Text(
+                "لا توجد إمتحانات حاليا",
+                style: TextStyles.regular14,
+              ),
             )
           else
-            UpcomingExamsListView(exams: exams),
+            AvailableExamsListView(availableExams: availableExams),
 
           const SizedBox(height: 30),
 
           const Text("الإمتحانات السابقة", style: TextStyles.bold18),
           const SizedBox(height: 10),
-          if (exams.isEmpty)
-            const Text(
-              "لا توجد إمتحانات سابقة",
-              style: TextStyles.regular14,
+          if (pastExams.isEmpty)
+            const Center(
+              child: Text(
+                "لا توجد إمتحانات سابقة",
+                style: TextStyles.regular14,
+              ),
             )
           else
-            PastExamsListView(exams: exams),
+            PastExamsListView(pastExams: pastExams),
         ],
       ),
     );

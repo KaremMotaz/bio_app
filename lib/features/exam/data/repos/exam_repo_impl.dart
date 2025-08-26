@@ -1,3 +1,4 @@
+
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failure.dart';
@@ -29,12 +30,36 @@ class ExamRepoImpl implements ExamRepo {
 
       //  No data in cache, fetch from remote
       final List<ExamModel> exams = await examsRemoteDataSource
-          .fetchExam();
+          .getExams();
 
       // Cache the data
       await examsLocalDataSource.cacheExams(exams);
 
       return Right(exams);
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> markExamAsOpened({
+    required String examId,
+  }) async {
+    try {
+      await examsRemoteDataSource.markExamAsOpened(examId: examId);
+      return const Right(unit);
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, bool>>>
+  getOpenedExamsStatus() async {
+    try {
+      final Map<String, bool> result = await examsRemoteDataSource
+          .getOpenedExamsStatus();
+      return Right(result);
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }

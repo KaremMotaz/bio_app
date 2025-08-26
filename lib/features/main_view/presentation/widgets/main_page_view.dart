@@ -1,10 +1,13 @@
+import 'package:bio_app/features/exam/domain/repos/exam_repo.dart';
+import 'package:bio_app/features/exam/domain/usecases/filter_published_results_exams.dart';
+import 'package:bio_app/features/exam/domain/usecases/filter_visible_exams.dart';
+
 import '../../../leaderboard/domain/leaderboard_repo.dart';
 import '../../../leaderboard/presentation/manager/leaderboard_cubit/leaderboard_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/get_it_service.dart';
-import '../../../exam/data/repos/exam_repo_impl.dart';
 import '../../../exam/presentation/manager/exams_cubit/exams_cubit.dart';
 import '../../../exam/presentation/views/exams_view.dart';
 import '../../../leaderboard/presentation/views/leaderboard_view.dart';
@@ -36,9 +39,12 @@ class MainPageView extends StatelessWidget {
           child: const UnitView(),
         ),
         BlocProvider(
-          create: (context) =>
-              ExamsCubit(examRepoImpl: getIt<ExamRepoImpl>())
-                ..getExams(),
+          create: (context) => ExamsCubit(
+            examRepo: getIt<ExamRepo>(),
+            filterVisibleExams: getIt<FilterVisibleExams>(),
+            filterPublishedResultsExams:
+                getIt<FilterPublishedResultsExams>(),
+          )..loadExams(),
           child: const ExamsView(),
         ),
         BlocProvider(

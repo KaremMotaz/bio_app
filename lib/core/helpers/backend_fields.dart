@@ -4,4 +4,5 @@ class BackendFields {
   static const lessonId = 'lessonId';
   static const quizId = 'quizId';
   static const isPublished = 'isPublished';
+  static const isResultPublished = 'isResultPublished';
 }

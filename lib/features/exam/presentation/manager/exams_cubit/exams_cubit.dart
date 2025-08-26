@@ -1,28 +1,54 @@
+import 'package:bio_app/features/exam/domain/repos/exam_repo.dart';
+import 'package:bio_app/features/exam/domain/usecases/filter_published_results_exams.dart';
+import 'package:bio_app/features/exam/domain/usecases/filter_visible_exams.dart';
+import 'package:bio_app/features/exam/presentation/manager/exams_cubit/exams_state.dart';
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/errors/failure.dart';
-import '../../../data/repos/exam_repo_impl.dart';
 import '../../../domain/entities/exam_entity.dart';
 
-part 'exams_state.dart';
-
 class ExamsCubit extends Cubit<ExamsState> {
-  final ExamRepoImpl examRepoImpl;
+  final ExamRepo examRepo;
+  final FilterVisibleExams filterVisibleExams;
+  final FilterPublishedResultsExams filterPublishedResultsExams;
 
-  ExamsCubit({required this.examRepoImpl})
-    : super(ExamsInitialState());
+  ExamsCubit({
+    required this.examRepo,
+    required this.filterVisibleExams,
+    required this.filterPublishedResultsExams,
+  }) : super(ExamsInitialState());
 
-  void getExams() async {
+  Future<void> loadExams() async {
     emit(ExamsLoadingState());
 
-    final Either<Failure, List<ExamEntity>> exams = await examRepoImpl
-        .getExams();
+    final Either<Failure, List<ExamEntity>> availableExamsResult =
+        await filterVisibleExams();
 
-    exams.fold(
-      (failure) => emit(ExamsErrorState(message: failure.message)),
-      (exams) => emit(ExamsLoadedState(exams: exams)),
+    final Either<Failure, List<ExamEntity>> pastExamsResult =
+        await filterPublishedResultsExams();
+
+    List<ExamEntity> availableExams = [];
+    List<ExamEntity> pastExams = [];
+
+    availableExamsResult.fold((failure) {
+      emit(ExamsErrorState(message: failure.message));
+      return;
+    }, (exams) => availableExams = exams);
+
+    pastExamsResult.fold((failure) {
+      emit(ExamsErrorState(message: failure.message));
+      return;
+    }, (exams) => pastExams = exams);
+
+    emit(
+      ExamsLoadedState(
+        availableExams: availableExams,
+        pastExams: pastExams,
+      ),
     );
+  }
+
+  Future<void> markExamAsOpened({required String examId}) async {
+    await examRepo.markExamAsOpened(examId: examId);
   }
 }

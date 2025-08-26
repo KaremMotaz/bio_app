@@ -1,3 +1,5 @@
+import 'package:bio_app/features/exam/presentation/manager/exams_cubit/exams_state.dart';
+
 import '../widgets/exams_view_body.dart';
 import '../manager/exams_cubit/exams_cubit.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,10 @@ class ExamsView extends StatelessWidget {
                 ),
               );
             } else if (state is ExamsLoadedState) {
-              return ExamsViewBody(exams: state.exams);
+              return ExamsViewBody(
+                availableExams: state.availableExams,
+                pastExams: state.pastExams,
+              );
             } else if (state is ExamsErrorState) {
               return Center(child: Text(state.message));
             } else {
