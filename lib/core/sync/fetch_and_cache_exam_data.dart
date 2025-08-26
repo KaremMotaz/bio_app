@@ -36,12 +36,17 @@ Future<void> fetchAndCacheExamData() async {
   if (_isNewer(serverExamsTs, localExamsTs)) {
     final List<ExamEntity> examEntities =
         (await examRepoImpl.getExams()).getOrElse(() => []);
-
+    log(examEntities.toString());
     final List<ExamModel> exams = examEntities
         .map((entity) => ExamModel.fromEntity(entity))
         .toList();
 
+    log('Exams: $exams');
+
     await getIt<ExamsLocalDataSource>().cacheExams(exams);
+    log(
+      'Local exams after cache: ${await getIt<ExamsLocalDataSource>().getExams()}',
+    );
 
     // حفظ التوقيت الجديد بالملي ثانية
     localTimestamps[kExams] = serverExamsTs?.millisecondsSinceEpoch;
@@ -60,8 +65,11 @@ bool _isNewer(Timestamp? server, dynamic local) {
   final serverMs = server.millisecondsSinceEpoch;
 
   if (local == null) return true;
-  if (local is int) return serverMs > local;
-  if (local is Timestamp) return serverMs > local.millisecondsSinceEpoch;
+
+  if (local is int) return serverMs >= local;
+  if (local is Timestamp) {
+    return serverMs >= local.millisecondsSinceEpoch;
+  }
 
   return true;
 }

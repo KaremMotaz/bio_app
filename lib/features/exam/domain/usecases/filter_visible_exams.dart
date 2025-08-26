@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bio_app/core/errors/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:bio_app/features/exam/data/repos/exam_repo_impl.dart';
@@ -19,6 +21,14 @@ class FilterVisibleExams {
       ) {
         final List<ExamEntity> filteredExams = exams.where((exam) {
           final isOpened = openedExams[exam.id] ?? false;
+          log("shouldShowExam: ${shouldShowExam(exam, isOpened)}");
+          for (var exam in exams) {
+            final isOpened = openedExams[exam.id] ?? false;
+            log(
+              "Exam: ${exam.title}, published: ${exam.isPublished}, start: ${exam.startTime}, end: ${exam.endTime}, openedByStudent: $isOpened",
+            );
+            log("shouldShowExam: ${shouldShowExam(exam, isOpened)}");
+          }
           return shouldShowExam(exam, isOpened);
         }).toList();
         return right(filteredExams);

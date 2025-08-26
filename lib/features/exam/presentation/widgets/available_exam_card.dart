@@ -1,3 +1,6 @@
+
+import 'package:bio_app/core/functions/format_date_time.dart';
+
 import '../../../../core/theming/text_styles.dart';
 import '../../domain/entities/exam_entity.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +25,7 @@ class AvailableExamCard extends StatelessWidget {
             Text(exam.title, style: TextStyles.bold18),
             const SizedBox(height: 8),
             Text(
-              "يبدأ: ${exam.startTime}",
+              "يبدأ: ${formatDateTime(exam.startTime)}",
               style: TextStyles.regular14,
             ),
           ],

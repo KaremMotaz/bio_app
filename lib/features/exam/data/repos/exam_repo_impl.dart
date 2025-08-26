@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bio_app/core/sync/exam_view_open.dart';
 import 'package:dartz/dartz.dart';
 
@@ -26,16 +28,20 @@ class ExamRepoImpl implements ExamRepo {
       // Try to get data from cache first
       final List<ExamModel>? cached = await examsLocalDataSource
           .getExams();
+      log("from exams repo impl $cached");
+
       if (cached != null && cached.isNotEmpty) {
+        log("from exams repo impl22232323 $cached");
         return Right(cached);
       }
-
       //  No data in cache, fetch from remote
       final List<ExamModel> exams = await examsRemoteDataSource
           .getExams();
 
+      await examsLocalDataSource.clearExams();
       // Cache the data
       await examsLocalDataSource.cacheExams(exams);
+      log("from exams repo impl2222 $exams");
 
       return Right(exams);
     } catch (e) {

@@ -37,6 +37,23 @@ void errorSnackBar({required BuildContext context, required String message}) {
     ),
   );
 }
+void warningSnackBar({required BuildContext context, required String message}) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      duration: const Duration(seconds: 4),
+      content: customSnackbar(
+        message: message,
+        color: Colors.yellow,
+        icon: Icons.warning,
+        titleWord: "خد بالك",
+        context: context,
+      ),
+    ),
+  );
+}
 
 Widget customSnackbar({
   required String titleWord,

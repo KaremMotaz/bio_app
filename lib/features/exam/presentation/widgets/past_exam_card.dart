@@ -1,3 +1,5 @@
+import 'package:bio_app/core/functions/format_date_time.dart';
+
 import '../../../../core/theming/text_styles.dart';
 import '../../domain/entities/exam_entity.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,7 @@ class PastExamCard extends StatelessWidget {
             Text(exam.title, style: TextStyles.bold18),
             const SizedBox(height: 8),
             Text(
-              "تاريخ الإمتحان: ${exam.endTime.toLocal().toString().split(' ')[0]}",
+              "تاريخ الإمتحان: ${formatDate(exam.startTime)}",
               style: TextStyles.regular14,
             ),
             const SizedBox(height: 12),

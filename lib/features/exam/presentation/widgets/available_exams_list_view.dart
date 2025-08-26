@@ -1,3 +1,4 @@
+import 'package:bio_app/core/functions/build_snack_bar.dart';
 
 import '../../../../core/routing/routes.dart';
 import '../../domain/entities/exam_entity.dart';
@@ -27,15 +28,27 @@ class AvailableExamsListView extends StatelessWidget {
               // await context.read<ExamsCubit>().markExamAsOpened(
               //   examId: availableExams[index].id,
               // );
-
-              router.push(
-                Routes.examQuestionsView,
-                extra: {
-                  'examId': availableExams[index].id,
-                  'examIndex': index,
-                  'exams': availableExams,
-                },
-              );
+              
+              if (DateTime.now().isAfter(
+                    availableExams[index].startTime,
+                  ) ||
+                  DateTime.now().isAtSameMomentAs(
+                    availableExams[index].startTime,
+                  )) {
+                router.push(
+                  Routes.examQuestionsView,
+                  extra: {
+                    'examId': availableExams[index].id,
+                    'examIndex': index,
+                    'exams': availableExams,
+                  },
+                );
+              } else {
+                warningSnackBar(
+                  context: context,
+                  message: "لم يحن وقت الإمتحان بعد",
+                );
+              }
             },
             child: AvailableExamCard(exam: availableExams[index]),
           );
