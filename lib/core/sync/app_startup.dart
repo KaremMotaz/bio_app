@@ -1,7 +1,7 @@
 import 'fetch_and_cache_data.dart';
 
 class AppStartup {
-  // Singleton: نسخة واحدة فقط من الكلاس
+
   AppStartup._internal();
   static final AppStartup instance = AppStartup._internal();
 

@@ -1,4 +1,4 @@
-
+import 'package:bio_app/core/sync/exam_view_open.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failure.dart';
@@ -21,6 +21,8 @@ class ExamRepoImpl implements ExamRepo {
   @override
   Future<Either<Failure, List<ExamEntity>>> getExams() async {
     try {
+      await ExamViewOpen.instance.runOnce();
+
       // Try to get data from cache first
       final List<ExamModel>? cached = await examsLocalDataSource
           .getExams();

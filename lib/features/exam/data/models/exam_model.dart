@@ -58,4 +58,17 @@ class ExamModel extends ExamEntity {
       'isResultPublished': isResultPublished,
     };
   }
+  factory ExamModel.fromEntity(ExamEntity entity) {
+  return ExamModel(
+    id: entity.id,
+    title: entity.title,
+    unit: entity.unit,
+    lesson: entity.lesson,
+    startTime: entity.startTime,
+    endTime: entity.endTime,
+    passPercentage: entity.passPercentage,
+    isPublished: entity.isPublished,
+    isResultPublished: entity.isResultPublished,
+  );
+}
 }

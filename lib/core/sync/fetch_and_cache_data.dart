@@ -45,15 +45,13 @@ Future<void> fetchAndCacheData() async {
     await getIt<UnitsLocalDataSource>().cacheUnits(units);
     localTimestamps[kUnits] = serverUnitsTs?.millisecondsSinceEpoch;
   }
-
-  log(_isNewer(serverUnitsTs, localUnitsTs).toString());
+    log("From units ${_isNewer(serverUnitsTs, localUnitsTs)}");
 
   // 4. تحديث الفصول (Chapters)
   final serverChaptersTs =
       serverTimestamps[kChaptersLastUpdated] as Timestamp?;
   final localChaptersTs = localTimestamps[kChapters];
   if (_isNewer(serverChaptersTs, localChaptersTs)) {
-    // هنا نفترض إنك عندك list بالـ units IDs
     final units = await unitRepoImpl.getUnits();
     final chaptersLocal = getIt<ChaptersLocalDataSource>();
     final allChapters = <ChapterModel>[];
@@ -181,7 +179,7 @@ Future<void> fetchAndCacheData() async {
         serverLessonsTs?.millisecondsSinceEpoch;
   }
 
-  // 6. حفظ التوقيتات المحدثة
+  // 7. حفظ التوقيتات المحدثة
   await hiveBox.put(kLastUpdatedTimestampsKey, localTimestamps);
 }
 

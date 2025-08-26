@@ -1,3 +1,4 @@
+import 'package:bio_app/features/exam/data/datasources/exams_local_data_source.dart';
 import 'package:bio_app/features/exam/domain/repos/exam_repo.dart';
 import 'package:bio_app/features/exam/domain/usecases/filter_published_results_exams.dart';
 import 'package:bio_app/features/exam/domain/usecases/filter_visible_exams.dart';
@@ -132,6 +133,12 @@ void setupGetIt() {
   // 📝 Exam
   getIt.registerLazySingleton<ExamsRemoteDataSource>(
     () => ExamsRemoteDataSource(databaseService: getIt()),
+  );
+
+  getIt.registerLazySingleton<ExamsLocalDataSource>(
+    () => ExamsLocalDataSourceImp(
+      cache: getIt<LocalCacheService<ExamModel>>(),
+    ),
   );
 
   getIt.registerLazySingleton<ExamRepo>(

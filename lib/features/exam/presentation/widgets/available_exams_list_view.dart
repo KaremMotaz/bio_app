@@ -1,5 +1,3 @@
-import 'package:bio_app/features/exam/presentation/manager/exams_cubit/exams_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/routing/routes.dart';
 import '../../domain/entities/exam_entity.dart';
@@ -26,9 +24,9 @@ class AvailableExamsListView extends StatelessWidget {
             onTap: () async {
               final router = GoRouter.of(context);
 
-              await context.read<ExamsCubit>().markExamAsOpened(
-                examId: availableExams[index].id,
-              );
+              // await context.read<ExamsCubit>().markExamAsOpened(
+              //   examId: availableExams[index].id,
+              // );
 
               router.push(
                 Routes.examQuestionsView,
