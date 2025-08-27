@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/entities/base_question_entity.dart';
@@ -15,11 +16,13 @@ class QuestionImages<T extends BaseQuestionEntity>
           ...List.generate(question.images!.length, (index) {
             return ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.network(
-                question.images![index],
+              child: CachedNetworkImage(
+                imageUrl: question.images![index],
                 height: 230,
                 width: 300,
                 fit: BoxFit.fill,
+                errorWidget: (context, url, error) =>
+                    const Icon(Icons.error),
               ),
             );
           }),

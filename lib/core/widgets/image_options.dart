@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theming/option_style.dart';
@@ -61,10 +62,12 @@ class ImageOptions extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
-                    child: Image.network(
-                      options[index],
+                    child: CachedNetworkImage(
+                      imageUrl: options[index],
                       height: 150,
                       fit: BoxFit.contain,
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
                   ),
                 ),

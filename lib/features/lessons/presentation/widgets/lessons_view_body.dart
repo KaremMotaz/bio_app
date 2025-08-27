@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/lesson_entity.dart';
@@ -22,8 +23,13 @@ class LessonsViewBody extends StatelessWidget {
           Opacity(
             opacity: 0.1,
             child: Transform.translate(
-              offset: Offset(0, screenHeight/4),
-              child: Image.network(chapterImage, fit: BoxFit.cover),
+              offset: Offset(0, screenHeight / 4),
+              child: CachedNetworkImage(
+                imageUrl: chapterImage,
+                fit: BoxFit.cover,
+                errorWidget: (context, url, error) =>
+                    const Icon(Icons.error),
+              ),
             ),
           ),
           Padding(

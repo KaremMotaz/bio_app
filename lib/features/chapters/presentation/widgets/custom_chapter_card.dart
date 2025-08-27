@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -77,11 +78,13 @@ class CustomChapterCard extends StatelessWidget {
             left: 30,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                chapter.image,
+              child: CachedNetworkImage(
+                imageUrl: chapter.image,
                 width: 100,
                 height: 100,
                 fit: BoxFit.cover,
+                errorWidget: (context, url, error) =>
+                    const Icon(Icons.error),
               ),
             ),
           ),
