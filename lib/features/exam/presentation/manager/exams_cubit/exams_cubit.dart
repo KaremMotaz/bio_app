@@ -19,6 +19,7 @@ class ExamsCubit extends Cubit<ExamsState> {
   }) : super(ExamsInitialState());
 
   Future<void> loadExams() async {
+    if (isClosed) return;
     emit(ExamsLoadingState());
 
     final Either<Failure, List<ExamEntity>> availableExamsResult =
@@ -31,24 +32,23 @@ class ExamsCubit extends Cubit<ExamsState> {
     List<ExamEntity> pastExams = [];
 
     availableExamsResult.fold((failure) {
+      if (isClosed) return;
       emit(ExamsErrorState(message: failure.message));
       return;
     }, (exams) => availableExams = exams);
 
     pastExamsResult.fold((failure) {
+      if (isClosed) return;
       emit(ExamsErrorState(message: failure.message));
       return;
     }, (exams) => pastExams = exams);
 
+    if (isClosed) return;
     emit(
       ExamsLoadedState(
         availableExams: availableExams,
         pastExams: pastExams,
       ),
     );
-  }
-
-  Future<void> markExamAsOpened({required String examId}) async {
-    await examRepo.markExamAsOpened(examId: examId);
   }
 }

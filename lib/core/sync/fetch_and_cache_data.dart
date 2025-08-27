@@ -1,4 +1,3 @@
-import 'dart:developer';
 import '../../features/chapters/data/data_source/chapters_remote_data_source.dart';
 import '../../features/chapters/data/repos/chapter_repo_imp.dart';
 import '../../features/lessons/data/data_source/lessons_remote_data_source.dart';
@@ -64,8 +63,6 @@ Future<void> fetchAndCacheData() async {
     await getIt<UnitsLocalDataSource>().cacheUnits(units);
     localTimestamps[kUnits] = serverUnitsTs?.millisecondsSinceEpoch;
   }
-
-  log("From units ${_isNewer(serverUnitsTs, localUnitsTs)}");
 
   // 4. تحديث الفصول (Chapters)
   final serverChaptersTs =

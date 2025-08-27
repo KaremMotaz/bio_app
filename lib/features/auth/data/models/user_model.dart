@@ -21,12 +21,10 @@ class UserModel extends UserEntity {
     super.scoreThisMonth,
   });
 
-  /// من FirebaseAuth User
   factory UserModel.fromFirebaseUser(User user) {
     return UserModel(email: user.email ?? '', uid: user.uid);
   }
 
-  /// من Firestore JSON
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       email: json["email"] ?? '',
@@ -68,10 +66,8 @@ class UserModel extends UserEntity {
     );
   }
 
-  /// لون افتراضي في حال ما كانش متخزن
   final Color color = AppColors.getRandomColor();
 
-  /// للتحويل لفايرستور
   Map<String, dynamic> toFirestoreMap() {
     return {
       'email': email,

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import '../../features/exam/data/datasources/exam_questions_remote_data_source.dart';
 import '../../features/exam/data/datasources/exam_remote_data_source.dart';
 import '../../features/exam/data/datasources/exams_local_data_source.dart';
@@ -79,7 +78,6 @@ Future<void> fetchAndCacheExamData() async {
 
   // 5. حفظ التوقيتات المحدثة
   await hiveBox.put(kLastUpdatedTimestampsKey, localTimestamps);
-  log("From exams ${_isNewer(serverExamsTs, localExamsTs)}");
 }
 
 /// مقارنة توقيت السيرفر مع التوقيت المحلي
