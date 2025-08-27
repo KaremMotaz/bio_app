@@ -1,4 +1,3 @@
-import 'package:bio_app/core/helpers/get_user.dart';
 import 'package:dartz/dartz.dart';
 import '../../../core/errors/failure.dart';
 import '../../../core/errors/server_failure.dart';
@@ -122,7 +121,7 @@ class LeaderboardRepoImp implements LeaderboardRepo {
   }
 
   @override
-  Future<void> resetTop10IfNeeded() async {
+  Future<void> resetUsersOnLeaderboard() async {
     try {
       final now = DateTime.now();
       final todayKey = "${now.year}-${now.month}-${now.day}";
@@ -139,16 +138,15 @@ class LeaderboardRepoImp implements LeaderboardRepo {
 
       // Daily
       if (lastDailyReset != todayKey) {
-        final top10 =
+        final users =
             await databaseService.getData(
                   path: BackendEndpoint.getUserData,
                   orderBy: "scoreThisDay",
                   descending: true,
-                  limit: 10,
                 )
                 as List;
 
-        for (var user in top10) {
+        for (var user in users) {
           await databaseService.updateData(
             path: "${BackendEndpoint.updateUserData}/${user["id"]}",
             data: {"scoreThisDay": 0.0},
@@ -162,16 +160,15 @@ class LeaderboardRepoImp implements LeaderboardRepo {
 
       // Weekly
       if (lastWeeklyReset != weekKey) {
-        final top10 =
+        final users =
             await databaseService.getData(
                   path: BackendEndpoint.getUserData,
                   orderBy: "scoreThisWeek",
                   descending: true,
-                  limit: 10,
                 )
                 as List;
 
-        for (var user in top10) {
+        for (var user in users) {
           await databaseService.updateData(
             path: "${BackendEndpoint.updateUserData}/${user["id"]}",
             data: {"scoreThisWeek": 0.0},
@@ -185,16 +182,15 @@ class LeaderboardRepoImp implements LeaderboardRepo {
 
       // Monthly
       if (lastMonthlyReset != monthKey) {
-        final top10 =
+        final users =
             await databaseService.getData(
                   path: BackendEndpoint.getUserData,
                   orderBy: "scoreThisMonth",
                   descending: true,
-                  limit: 10,
                 )
                 as List;
 
-        for (var user in top10) {
+        for (var user in users) {
           await databaseService.updateData(
             path: "${BackendEndpoint.updateUserData}/${user["id"]}",
             data: {"scoreThisMonth": 0.0},
@@ -208,60 +204,6 @@ class LeaderboardRepoImp implements LeaderboardRepo {
     } catch (e) {
       throw const ServerFailure(
         message: "Failed to reset leaderboard",
-      );
-    }
-  }
-
-  @override
-  Future<void> lazyResetUser() async {
-    try {
-      final UserEntity user = getUser();
-      final now = DateTime.now();
-      final todayKey = "${now.year}-${now.month}-${now.day}";
-      final weekKey = "${now.year}-W${_weekNumber(now)}";
-      final monthKey = "${now.year}-${now.month}";
-
-      final updates = <String, dynamic>{};
-
-      if (user.lastDayResetKey != todayKey) {
-        updates["scoreThisDay"] = 0.0;
-        updates["lastDayResetKey"] = todayKey;
-      }
-      if (user.lastWeekResetKey != weekKey) {
-        updates["scoreThisWeek"] = 0.0;
-        updates["lastWeekResetKey"] = weekKey;
-      }
-      if (user.lastMonthResetKey != monthKey) {
-        updates["scoreThisMonth"] = 0.0;
-        updates["lastMonthResetKey"] = monthKey;
-      }
-
-      if (updates.isNotEmpty) {
-        await databaseService.updateData(
-          path: "${BackendEndpoint.updateUserData}/${user.uid}",
-          data: updates,
-        );
-
-        final updatedUser = user.copyWith(
-          scoreThisDay: updates.containsKey('scoreThisDay')
-              ? 0.0
-              : null,
-          scoreThisWeek: updates.containsKey('scoreThisWeek')
-              ? 0.0
-              : null,
-          scoreThisMonth: updates.containsKey('scoreThisMonth')
-              ? 0.0
-              : null,
-          lastDayResetKey: updates['lastDayResetKey'],
-          lastWeekResetKey: updates['lastWeekResetKey'],
-          lastMonthResetKey: updates['lastMonthResetKey'],
-        );
-
-        await saveUser(updatedUser);
-      }
-    } catch (e) {
-      throw const ServerFailure(
-        message: "Failed to reset user stats",
       );
     }
   }

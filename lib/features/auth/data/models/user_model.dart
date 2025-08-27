@@ -19,9 +19,6 @@ class UserModel extends UserEntity {
     super.scoreThisDay,
     super.scoreThisWeek,
     super.scoreThisMonth,
-    super.lastDayResetKey,
-    super.lastWeekResetKey,
-    super.lastMonthResetKey,
   });
 
   /// من FirebaseAuth User
@@ -44,9 +41,6 @@ class UserModel extends UserEntity {
       scoreThisDay: (json["scoreThisDay"] as num?)?.toDouble(),
       scoreThisMonth: (json["scoreThisMonth"] as num?)?.toDouble(),
       scoreThisWeek: (json["scoreThisWeek"] as num?)?.toDouble(),
-      lastDayResetKey: json["lastDayResetKey"],
-      lastWeekResetKey: json["lastWeekResetKey"],
-      lastMonthResetKey: json["lastMonthResetKey"],
       createdAt: (json['createdAt'] is Timestamp)
           ? (json['createdAt'] as Timestamp).toDate()
           : (json['createdAt'] is String)
@@ -71,9 +65,6 @@ class UserModel extends UserEntity {
       scoreThisDay: user.scoreThisDay ?? 0.0,
       scoreThisMonth: user.scoreThisMonth ?? 0.0,
       scoreThisWeek: user.scoreThisWeek ?? 0.0,
-      lastDayResetKey: user.lastDayResetKey,
-      lastWeekResetKey: user.lastWeekResetKey,
-      lastMonthResetKey: user.lastMonthResetKey,
     );
   }
 
@@ -96,9 +87,6 @@ class UserModel extends UserEntity {
       'scoreThisDay': scoreThisDay ?? 0.0,
       'scoreThisMonth': scoreThisMonth ?? 0.0,
       'scoreThisWeek': scoreThisWeek ?? 0.0,
-      'lastDayResetKey': lastDayResetKey,
-      'lastWeekResetKey': lastWeekResetKey,
-      'lastMonthResetKey': lastMonthResetKey,
     };
   }
 
@@ -117,9 +105,6 @@ class UserModel extends UserEntity {
       'scoreThisDay': scoreThisDay ?? 0.0,
       'scoreThisMonth': scoreThisMonth ?? 0.0,
       'scoreThisWeek': scoreThisWeek ?? 0.0,
-      'lastDayResetKey': lastDayResetKey,
-      'lastWeekResetKey': lastWeekResetKey,
-      'lastMonthResetKey': lastMonthResetKey,
     };
   }
 }

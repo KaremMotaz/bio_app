@@ -15,8 +15,7 @@ class DailyTaskRunner {
     );
 
     if (lastRunDate != today) {
-      await leaderboardRepo.resetTop10IfNeeded();
-      await leaderboardRepo.lazyResetUser();
+      await leaderboardRepo.resetUsersOnLeaderboard();
       await CacheHelper.set(key: 'last_daily_run_date', value: today);
     }
   }

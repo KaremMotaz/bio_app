@@ -7,6 +7,5 @@ abstract class LeaderboardRepo {
   Stream<Either<Failure, List<UserEntity>>> getTop10Now();
   Stream<Either<Failure, List<UserEntity>>> getTop10Week();
   Stream<Either<Failure, List<UserEntity>>> getTop10Month();
-  Future<void> resetTop10IfNeeded();
-  Future<void> lazyResetUser();
+  Future<void> resetUsersOnLeaderboard();
 }

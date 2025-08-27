@@ -12,9 +12,6 @@ class UserEntity {
   final double? scoreThisDay;
   final double? scoreThisMonth;
   final double? scoreThisWeek;
-  final String? lastDayResetKey;
-  final String? lastWeekResetKey;
-  final String? lastMonthResetKey;
   final int? rank;
 
   UserEntity({
@@ -32,9 +29,6 @@ class UserEntity {
     this.scoreThisMonth,
     this.scoreThisWeek,
     this.rank,
-    this.lastDayResetKey,
-    this.lastWeekResetKey,
-    this.lastMonthResetKey,
   });
 }
 
@@ -55,9 +49,6 @@ extension UserEntityX on UserEntity {
     double? scoreThisWeek,
     double? scoreThisMonth,
     int? rank,
-    String? lastDayResetKey,
-    String? lastWeekResetKey,
-    String? lastMonthResetKey,
   }) {
     return UserEntity(
       email: email ?? this.email,
@@ -74,9 +65,6 @@ extension UserEntityX on UserEntity {
       scoreThisWeek: scoreThisWeek ?? this.scoreThisWeek,
       scoreThisMonth: scoreThisMonth ?? this.scoreThisMonth,
       rank: rank ?? this.rank,
-      lastDayResetKey: lastDayResetKey ?? this.lastDayResetKey,
-      lastWeekResetKey: lastWeekResetKey ?? this.lastWeekResetKey,
-      lastMonthResetKey: lastMonthResetKey ?? this.lastMonthResetKey,
     );
   }
 }
