@@ -10,3 +10,8 @@ UserEntity getUser(){
   UserEntity userEntity = UserModel.fromJson(jsonDecode(jsonString));
   return userEntity;
 }
+
+Future<void> saveUser(UserEntity user) async {
+  final jsonString = jsonEncode(UserModel.fromEntity(user).toJson());
+  await CacheHelper.set(key: kUserData, value: jsonString);
+}

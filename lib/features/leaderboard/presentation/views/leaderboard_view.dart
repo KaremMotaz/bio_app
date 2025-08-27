@@ -1,3 +1,5 @@
+import 'package:bio_app/features/leaderboard/domain/leaderboard_type.dart';
+
 import '../manager/leaderboard_cubit/leaderboard_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,17 +25,25 @@ class _LeaderboardViewState extends State<LeaderboardView>
     _tabController = TabController(length: tabs.length, vsync: this);
 
     // load اول تاب افتراضياً
-    context.read<LeaderboardCubit>().loadNow();
+    context.read<LeaderboardCubit>().load(
+      type: LeaderboardType.daily,
+    );
 
     _tabController.addListener(() {
       if (_tabController.index ==
           _tabController.animation?.value.round()) {
         if (_tabController.index == 0) {
-          context.read<LeaderboardCubit>().loadNow();
+          context.read<LeaderboardCubit>().load(
+            type: LeaderboardType.daily,
+          );
         } else if (_tabController.index == 1) {
-          context.read<LeaderboardCubit>().loadWeek();
+          context.read<LeaderboardCubit>().load(
+            type: LeaderboardType.weekly,
+          );
         } else {
-          context.read<LeaderboardCubit>().loadMonth();
+          context.read<LeaderboardCubit>().load(
+            type: LeaderboardType.monthly,
+          );
         }
       }
     });

@@ -1,3 +1,4 @@
+
 import '../../../exam/domain/repos/exam_repo.dart';
 import '../../../exam/domain/usecases/filter_published_results_exams.dart';
 import '../../../exam/domain/usecases/filter_visible_exams.dart';
@@ -50,7 +51,7 @@ class MainPageView extends StatelessWidget {
         BlocProvider(
           create: (context) => LeaderboardCubit(
             leaderboardRepo: getIt<LeaderboardRepo>(),
-          )..loadNow(),
+          ),
           child: const LeaderboardView(),
         ),
         const SettingsView(),

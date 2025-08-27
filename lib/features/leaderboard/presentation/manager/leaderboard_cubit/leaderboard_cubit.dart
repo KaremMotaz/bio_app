@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bio_app/features/leaderboard/domain/leaderboard_type.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../auth/domain/user_entity.dart';
@@ -9,44 +10,37 @@ part 'leaderboard_state.dart';
 
 class LeaderboardCubit extends Cubit<LeaderboardState> {
   final LeaderboardRepo leaderboardRepo;
-
   StreamSubscription? _sub;
 
   LeaderboardCubit({required this.leaderboardRepo})
     : super(LeaderboardInitialState());
 
-  void loadNow() {
+  void load({required LeaderboardType type}) async {
     emit(LeaderboardLoadingState());
     _sub?.cancel();
-    _sub = leaderboardRepo.getTop10Now().listen((either) {
-      either.fold(
-        (failure) =>
-            emit(LeaderboardErrorState(message: failure.message)),
-        (users) => emit(LeaderboardLoadedState(users: users)),
-      );
-    });
-  }
+    
+    await leaderboardRepo.resetTop10IfNeeded();
+    await leaderboardRepo.lazyResetUser();
 
-  void loadWeek() {
-    emit(LeaderboardLoadingState());
-    _sub?.cancel();
-    _sub = leaderboardRepo.getTop10Week().listen((either) {
-      either.fold(
-        (failure) =>
-            emit(LeaderboardErrorState(message: failure.message)),
-        (users) => emit(LeaderboardLoadedState(users: users)),
-      );
-    });
-  }
+    Stream stream;
+    switch (type) {
+      case LeaderboardType.daily:
+        stream = leaderboardRepo.getTop10Now();
+        break;
+      case LeaderboardType.weekly:
+        stream = leaderboardRepo.getTop10Week();
+        break;
+      case LeaderboardType.monthly:
+        stream = leaderboardRepo.getTop10Month();
+        break;
+    }
 
-  void loadMonth() {
-    emit(LeaderboardLoadingState());
-    _sub?.cancel();
-    _sub = leaderboardRepo.getTop10Month().listen((either) {
+    _sub = stream.listen((either) {
       either.fold(
         (failure) =>
             emit(LeaderboardErrorState(message: failure.message)),
-        (users) => emit(LeaderboardLoadedState(users: users)),
+        (users) =>
+            emit(LeaderboardLoadedState(users: users, type: type)),
       );
     });
   }
