@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+
 import '../../../auth/domain/user_entity.dart';
 import 'empty_leaderboard_view.dart';
 import 'leaderboard_user_badge.dart';
 import 'top3_leaderboard_row.dart';
-import 'package:flutter/material.dart';
 
 class LeaderboardWithLessThanFourUsers extends StatelessWidget {
   const LeaderboardWithLessThanFourUsers({

@@ -1,7 +1,8 @@
-import '../../../../core/sync/exam_view_open.dart';
 import 'package:dartz/dartz.dart';
+
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';
+import '../../../../core/sync/exam_view_open.dart';
 import '../../domain/repos/exam_repo.dart';
 import '../datasources/exam_remote_data_source.dart';
 import '../datasources/exams_local_data_source.dart';
@@ -24,7 +25,6 @@ class ExamRepoImpl implements ExamRepo {
       // Try to get data from cache first
       final List<ExamModel>? cached = await examsLocalDataSource
           .getExams();
-
       if (cached != null && cached.isNotEmpty) {
         return Right(cached);
       }

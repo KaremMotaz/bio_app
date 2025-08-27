@@ -1,12 +1,13 @@
-import '../../../core/theming/assets_data.dart';
-import '../domain/quiz_entity.dart';
-import '../../../core/widgets/custom_app_bar_pop_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../core/routing/routes.dart';
 import '../../../core/theming/app_colors.dart';
+import '../../../core/theming/assets_data.dart';
 import '../../../core/theming/text_styles.dart';
 import '../../../core/widgets/app_text_button.dart';
+import '../../../core/widgets/custom_app_bar_pop_icon.dart';
+import '../domain/quiz_entity.dart';
 
 class QuizReadyView extends StatelessWidget {
   const QuizReadyView({super.key, required this.quiz});

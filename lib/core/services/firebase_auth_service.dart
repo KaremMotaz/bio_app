@@ -1,16 +1,16 @@
 import 'dart:async';
-import 'dart:developer';
+import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
 import '../errors/auth_failure.dart';
 import '../errors/failure.dart';
 import '../errors/server_failure.dart';
 import '../helpers/backend_endpoint.dart';
 import '../helpers/get_user.dart';
 import 'data_service.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:dartz/dartz.dart';
 
 class FirebaseAuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -263,7 +263,6 @@ class FirebaseAuthService {
 
       return right(unit);
     } on FirebaseAuthException catch (e) {
-      log("from FirebaseAuthException ${e.code}");
 
       String message;
       switch (e.code) {
@@ -281,7 +280,6 @@ class FirebaseAuthService {
       }
       return left(ServerFailure(code: e.code, message: message));
     } catch (e) {
-      log("from rrr $e");
       return left(
         ServerFailure(
           code: 'unknown',

@@ -1,5 +1,6 @@
-import 'package:bio_app/features/auth/domain/user_entity.dart';
-import 'package:bio_app/features/leaderboard/domain/leaderboard_type.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../auth/domain/user_entity.dart';
+import '../../domain/leaderboard_type.dart';
 import '../manager/leaderboard_cubit/leaderboard_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -112,7 +113,9 @@ class _LeaderboardViewState extends State<LeaderboardView>
 
                   // إذا لم توجد بيانات بعد
                   return const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      color: AppColors.mainBlue,
+                    ),
                   );
                 }).toList(),
               ),

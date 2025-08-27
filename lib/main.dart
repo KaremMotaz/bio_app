@@ -1,5 +1,5 @@
-import 'package:bio_app/features/leaderboard/domain/daily_task_runner.dart';
-import 'package:bio_app/features/leaderboard/domain/leaderboard_repo.dart';
+import 'features/leaderboard/domain/daily_task_runner.dart';
+import 'features/leaderboard/domain/leaderboard_repo.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

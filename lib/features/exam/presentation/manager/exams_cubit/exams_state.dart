@@ -1,5 +1,6 @@
-import '../../../domain/entities/exam_entity.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../../domain/entities/exam_entity.dart';
 
 sealed class ExamsState extends Equatable {
   const ExamsState();

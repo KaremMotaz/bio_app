@@ -1,10 +1,10 @@
-import '../manager/exams_cubit/exams_state.dart';
-
-import '../widgets/exams_view_body.dart';
-import '../manager/exams_cubit/exams_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/theming/app_colors.dart';
+import '../manager/exams_cubit/exams_cubit.dart';
+import '../manager/exams_cubit/exams_state.dart';
+import '../widgets/exams_view_body.dart';
 
 class ExamsView extends StatelessWidget {
   const ExamsView({super.key});

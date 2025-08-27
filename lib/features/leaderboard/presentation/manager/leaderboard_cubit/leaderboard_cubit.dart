@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bio_app/features/leaderboard/domain/leaderboard_type.dart';
+import '../../../domain/leaderboard_type.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../auth/domain/user_entity.dart';

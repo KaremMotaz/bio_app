@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '../../domain/chapter_entity.dart';
 import 'chapters_cards_list.dart';
-import 'package:flutter/material.dart';
 
 class ChapterViewBody extends StatelessWidget {
   const ChapterViewBody({

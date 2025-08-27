@@ -1,13 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../../../core/functions/build_snack_bar.dart';
 import '../../../../core/functions/show_confirm_dialog.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../auth/presentation/manager/delete_account_cubit/delete_account_cubit.dart';
 import '../helpers/show_password_dialog.dart';
 import 'custom_settings_list_tile.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class DeleteAccountListTile extends StatefulWidget {
   const DeleteAccountListTile({super.key});

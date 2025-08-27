@@ -1,7 +1,7 @@
-import 'package:bio_app/features/lessons/data/data_source/quizzes_remote_data_source.dart';
-import 'package:bio_app/features/lessons/data/repos/quiz_repo_imp.dart';
-import 'package:bio_app/features/quiz_questions/data/data_source/quiz_questions_local_data_source.dart';
-import 'package:bio_app/features/quiz_questions/data/models/quiz_question_model.dart';
+import '../../features/lessons/data/data_source/quizzes_remote_data_source.dart';
+import '../../features/lessons/data/repos/quiz_repo_imp.dart';
+import '../../features/quiz_questions/data/data_source/quiz_questions_local_data_source.dart';
+import '../../features/quiz_questions/data/models/quiz_question_model.dart';
 
 import '../../features/exam/data/datasources/exams_local_data_source.dart';
 import '../../features/exam/domain/repos/exam_repo.dart';
@@ -18,7 +18,7 @@ import '../../features/leaderboard/domain/leaderboard_repo.dart';
 import '../../features/lessons/data/models/lesson_model.dart';
 import '../../features/lessons/data/models/quiz_model.dart';
 
-import 'package:bio_app/features/units/data/models/unit_model.dart';
+import '../../features/units/data/models/unit_model.dart';
 
 import 'storage_service.dart';
 import 'supabase_storage_service.dart';

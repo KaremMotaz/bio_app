@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '../../../auth/domain/user_entity.dart';
 import 'leaderboard_user_badge.dart';
-import 'package:flutter/material.dart';
 
 class Top3LeaderboardRow extends StatelessWidget {
   const Top3LeaderboardRow({

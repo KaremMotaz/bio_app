@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+
 import 'exam_model.dart';
 
 class ExamModelAdapter extends TypeAdapter<ExamModel> {

@@ -1,10 +1,10 @@
-import '../../../../core/functions/build_snack_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../core/functions/build_snack_bar.dart';
 import '../../../../core/routing/routes.dart';
 import '../../domain/entities/exam_entity.dart';
 import 'available_exam_card.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class AvailableExamsListView extends StatelessWidget {
   const AvailableExamsListView({

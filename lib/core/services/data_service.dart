@@ -1,5 +1,6 @@
-import 'firestore_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'firestore_service.dart';
 
 abstract class DatabaseService {
   Future<void> addData({

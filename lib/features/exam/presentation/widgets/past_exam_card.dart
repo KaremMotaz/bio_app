@@ -1,8 +1,8 @@
-import '../../../../core/functions/format_date_time.dart';
+import 'package:flutter/material.dart';
 
+import '../../../../core/functions/format_date_time.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../domain/entities/exam_entity.dart';
-import 'package:flutter/material.dart';
 
 class PastExamCard extends StatelessWidget {
   final ExamEntity exam;

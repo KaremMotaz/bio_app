@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
-import 'package:bio_app/core/services/cache_helper.dart';
-import 'package:bio_app/features/leaderboard/domain/leaderboard_repo.dart';
+import '../../../core/services/cache_helper.dart';
+import 'leaderboard_repo.dart';
 
 class DailyTaskRunner {
   final LeaderboardRepo leaderboardRepo;

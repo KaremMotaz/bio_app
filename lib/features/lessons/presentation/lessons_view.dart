@@ -1,11 +1,11 @@
-import '../../chapters/domain/chapter_entity.dart';
-
-import '../../../core/widgets/custom_app_bar_pop_icon.dart';
-import '../../../core/theming/app_colors.dart';
-import 'manager/lesson_cubit/lesson_cubit.dart';
-import 'widgets/lessons_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../core/theming/app_colors.dart';
+import '../../../core/widgets/custom_app_bar_pop_icon.dart';
+import '../../chapters/domain/chapter_entity.dart';
+import 'manager/lesson_cubit/lesson_cubit.dart';
+import 'widgets/lessons_view_body.dart';
 
 class LessonsView extends StatelessWidget {
   const LessonsView({super.key, required this.chapter});
