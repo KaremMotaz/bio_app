@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bio_app/core/helpers/get_user.dart';
 import 'package:dartz/dartz.dart';
 import '../../../core/errors/failure.dart';
@@ -40,8 +38,7 @@ class LeaderboardRepoImp implements LeaderboardRepo {
               );
             }).toList();
             return Right(users);
-          } catch (e, s) {
-            log("❌ getTop10Now error: $e\n$s");
+          } catch (e) {
             return const Left(
               ServerFailure(
                 message: "Failed to fetch daily leaderboard",
@@ -77,8 +74,7 @@ class LeaderboardRepoImp implements LeaderboardRepo {
               );
             }).toList();
             return Right(users);
-          } catch (e, s) {
-            log("❌ getTop10Week error: $e\n$s");
+          } catch (e) {
             return const Left(
               ServerFailure(
                 message: "Failed to fetch weekly leaderboard",
@@ -115,8 +111,7 @@ class LeaderboardRepoImp implements LeaderboardRepo {
               );
             }).toList();
             return Right(users);
-          } catch (e, s) {
-            log("❌ getTop10Month error: $e\n$s");
+          } catch (e) {
             return const Left(
               ServerFailure(
                 message: "Failed to fetch monthly leaderboard",
@@ -210,8 +205,7 @@ class LeaderboardRepoImp implements LeaderboardRepo {
           data: {"lastMonthlyReset": monthKey},
         );
       }
-    } catch (e, s) {
-      log("❌ resetTop10IfNeeded error: $e\n$s");
+    } catch (e) {
       throw const ServerFailure(
         message: "Failed to reset leaderboard",
       );
@@ -265,8 +259,7 @@ class LeaderboardRepoImp implements LeaderboardRepo {
 
         await saveUser(updatedUser);
       }
-    } catch (e, s) {
-      log("❌ lazyResetUser error: $e\n$s");
+    } catch (e) {
       throw const ServerFailure(
         message: "Failed to reset user stats",
       );
