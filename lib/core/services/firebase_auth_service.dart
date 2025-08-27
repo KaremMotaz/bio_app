@@ -17,7 +17,6 @@ class FirebaseAuthService {
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
   final FacebookAuth _facebookAuth = FacebookAuth.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  static String userId = FirebaseAuth.instance.currentUser!.uid;
   final DatabaseService databaseService;
 
   FirebaseAuthService({required this.databaseService});

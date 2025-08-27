@@ -11,4 +11,8 @@ abstract class ExamResultRepo {
 
   Future<Either<Failure, List<ExamsAnswersModel>>>
   getStudentAnswers();
+
+  Future<Either<Failure, Unit>> uploadExamScoreToMonthlyLeaderboard({
+    required double score,
+  });
 }

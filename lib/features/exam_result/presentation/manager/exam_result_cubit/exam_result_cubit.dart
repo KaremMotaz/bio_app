@@ -46,12 +46,17 @@ class ExamResultCubit extends Cubit<ExamResultState> {
                 );
               },
               (studentAnswers) {
-                final studentScore =
+                final double studentScore =
                     ExamGradingService.calculateStudentScore(
                       examQuestions: examQuestions,
                       studentAnswers:
                           studentAnswers[resultExamIndex].answers,
                     );
+
+                // examResultRepo.uploadExamScoreToMonthlyLeaderboard(
+                //   score: studentScore,
+                // );
+
                 final maxScore = ExamGradingService.calculateMaxScore(
                   examQuestions: examQuestions,
                 );
@@ -65,7 +70,6 @@ class ExamResultCubit extends Cubit<ExamResultState> {
                   passPercentage:
                       exams[resultExamIndex].passPercentage,
                 );
-
                 emit(
                   ExamResultLoadedState(
                     examQuestions: examQuestions,

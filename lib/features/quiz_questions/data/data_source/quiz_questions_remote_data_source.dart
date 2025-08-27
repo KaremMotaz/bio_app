@@ -1,8 +1,8 @@
+import 'package:bio_app/core/helpers/get_user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../../core/helpers/backend_endpoint.dart';
 import '../../../../core/services/data_service.dart';
-import '../../../../core/services/firebase_auth_service.dart';
 import '../models/quiz_question_model.dart';
 
 class QuizQuestionsRemoteDataSource {
@@ -23,7 +23,7 @@ class QuizQuestionsRemoteDataSource {
   Future<void> updateScores({required double score}) async {
     await databaseService.updateData(
       path:
-          '${BackendEndpoint.getQuizzes}/${FirebaseAuthService.userId}',
+          '${BackendEndpoint.getUserData}/${getUser().uid}',
       data: {
         "scoreThisDay": FieldValue.increment(score),
         "scoreThisWeek": FieldValue.increment(score),

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:bio_app/core/helpers/get_user.dart';
+
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';
 import '../../../../core/helpers/backend_endpoint.dart';
 import '../../../../core/helpers/constants.dart';
-import '../../../../core/helpers/get_user.dart';
 import '../../../../core/services/cache_helper.dart';
-import '../../../../core/services/firebase_auth_service.dart';
 import '../../../../core/services/firestore_service.dart';
 import '../../../../core/services/storage_service.dart';
 import '../../domain/repos/images_repo.dart';
@@ -56,8 +56,7 @@ class ImagesRepoImp implements ImagesRepo {
   }) async {
     try {
       await firestoreService.updateData(
-        path:
-            '${BackendEndpoint.editFields}/${FirebaseAuthService.userId}',
+        path: '${BackendEndpoint.editFields}/${getUser().uid}',
         data: {'imageUrl': imageUrl},
       );
       return right(unit);

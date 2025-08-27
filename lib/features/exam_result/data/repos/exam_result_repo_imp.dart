@@ -79,4 +79,16 @@ class ExamResultRepoImp implements ExamResultRepo {
       return Left(ServerFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> uploadExamScoreToMonthlyLeaderboard({
+    required double score,
+  }) async {
+    try {
+      await examResultRemoteDataSourceImp.updateScores(score: score);
+      return const Right(unit);
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
 }

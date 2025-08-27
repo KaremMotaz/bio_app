@@ -1,7 +1,6 @@
 import 'dart:convert';
-
+import 'package:bio_app/core/helpers/get_user.dart';
 import 'package:dartz/dartz.dart';
-
 import '../../../../core/errors/cache_failure.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';
@@ -9,7 +8,6 @@ import '../../../../core/helpers/backend_endpoint.dart';
 import '../../../../core/helpers/constants.dart';
 import '../../../../core/services/cache_helper.dart';
 import '../../../../core/services/data_service.dart';
-import '../../../../core/services/firebase_auth_service.dart';
 
 class UserDataRepoImp {
   final DatabaseService databaseService;
@@ -22,8 +20,7 @@ class UserDataRepoImp {
   }) async {
     try {
       await databaseService.updateData(
-        path:
-            '${BackendEndpoint.editFields}/${FirebaseAuthService.userId}',
+        path: '${BackendEndpoint.editFields}/${getUser().uid}',
         data: {fieldName: value},
       );
       return const Right(null);

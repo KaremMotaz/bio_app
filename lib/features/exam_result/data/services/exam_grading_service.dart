@@ -1,11 +1,11 @@
 import '../../../exam/domain/entities/exam_question_entity.dart';
 
 class ExamGradingService {
-  static int calculateStudentScore({
+  static double calculateStudentScore({
     required List<ExamQuestionEntity> examQuestions,
     required Map<String, dynamic> studentAnswers,
   }) {
-    int totalScore = 0;
+    double totalScore = 0;
 
     for (final question in examQuestions) {
       final studentAnswer = studentAnswers["${question.index}"];
@@ -25,7 +25,7 @@ class ExamGradingService {
   }
 
   static double calculatePercentage({
-    required int studentScore,
+    required double studentScore,
     required int maxScore,
   }) {
     if (maxScore == 0) return 0.0;

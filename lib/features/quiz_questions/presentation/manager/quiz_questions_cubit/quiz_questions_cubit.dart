@@ -122,7 +122,7 @@ class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
           ),
         ),
       );
-      await questionsRepo.uploadScoreToLeaderboards(
+      await questionsRepo.uploadQuizScoreToLeaderboards(
         score: currentState.status.score,
       );
     }

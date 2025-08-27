@@ -14,7 +14,7 @@ final class ExamResultLoadingState extends ExamResultState {}
 class ExamResultLoadedState extends ExamResultState {
   final List<ExamQuestionEntity> examQuestions;
   final Map<String, int> answers;
-  final int studentScore;
+  final double studentScore;
   final int maxScore;
   final double percentage;
   final bool isPassed;

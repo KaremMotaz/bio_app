@@ -47,7 +47,7 @@ class QuizQuestionsRepoImp implements QuizQuestionsRepo {
   }
 
   @override
-  Future<void> uploadScoreToLeaderboards({
+  Future<void> uploadQuizScoreToLeaderboards({
     required double score,
   }) async {
     try {
