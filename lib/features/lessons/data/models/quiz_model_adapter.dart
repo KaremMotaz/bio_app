@@ -18,18 +18,21 @@ class QuizModelAdapter extends TypeAdapter<QuizModel> {
       id: fields[0] as String,
       index: fields[1] as int,
       title: fields[2] as String,
+      lessonId: fields[3] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, QuizModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.index)
       ..writeByte(2)
-      ..write(obj.title);
+      ..write(obj.title)
+      ..writeByte(3)
+      ..write(obj.lessonId);
   }
 }

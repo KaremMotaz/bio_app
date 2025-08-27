@@ -1,5 +1,4 @@
 import 'package:bio_app/core/sync/exam_view_open.dart';
-import 'package:bio_app/core/sync/fetch_and_cache_exam_data.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';

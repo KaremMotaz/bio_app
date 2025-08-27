@@ -1,4 +1,11 @@
 import 'dart:developer';
+import 'package:bio_app/features/chapters/data/repos/chapter_repo_imp.dart';
+import 'package:bio_app/features/lessons/data/repos/lesson_repo_imp.dart';
+import 'package:bio_app/features/lessons/data/repos/quiz_repo_imp.dart';
+import 'package:bio_app/features/quiz_questions/data/data_source/quiz_questions_local_data_source.dart';
+import 'package:bio_app/features/quiz_questions/data/models/quiz_question_model.dart';
+import 'package:bio_app/features/units/data/data_source/units_remote_data_source.dart';
+
 import '../../features/units/data/repos/unit_repo_imp.dart';
 import '../services/firestore_service.dart';
 import '../services/get_it_service.dart';
@@ -17,6 +24,11 @@ import '../../../../core/helpers/constants.dart';
 Future<void> fetchAndCacheData() async {
   final firestoreService = getIt<FirestoreService>();
   final unitRepoImpl = getIt<UnitRepoImpl>();
+  final chapterRepoImpl = getIt<ChapterRepoImpl>();
+  final lessonRepoImpl = getIt<LessonRepoImp>();
+  final UnitsRemoteDataSource unitsRemoteDataSource =
+      getIt<UnitsRemoteDataSource>();
+  final QuizRepoImp quizRepoImp = getIt<QuizRepoImp>();
 
   // 1. قراءة التوقيتات من السيرفر
   final lastUpdatesDoc = await FirebaseFirestore.instance
@@ -39,13 +51,13 @@ Future<void> fetchAndCacheData() async {
   final localUnitsTs = localTimestamps[kUnits];
 
   if (_isNewer(serverUnitsTs, localUnitsTs)) {
-    final List<UnitModel> units = (await unitRepoImpl.getUnits())
-        .getOrElse(() => []);
+    final List<UnitModel> units = (await unitsRemoteDataSource
+        .getUnits());
 
     await getIt<UnitsLocalDataSource>().cacheUnits(units);
     localTimestamps[kUnits] = serverUnitsTs?.millisecondsSinceEpoch;
   }
-    log("From units ${_isNewer(serverUnitsTs, localUnitsTs)}");
+  log("From units ${_isNewer(serverUnitsTs, localUnitsTs)}");
 
   // 4. تحديث الفصول (Chapters)
   final serverChaptersTs =
@@ -177,6 +189,65 @@ Future<void> fetchAndCacheData() async {
 
     localTimestamps[kLessons] =
         serverLessonsTs?.millisecondsSinceEpoch;
+  }
+
+  // 7. تحديث اسئلة الكويز (Quizzes Questions)
+  final serverQuizzesQuestionsTs =
+      serverTimestamps[kQuizzesQuestionsLastUpdated] as Timestamp?;
+  final localQuizzesQuestionsTs = localTimestamps[kQuizQuestions];
+
+  if (_isNewer(serverQuizzesQuestionsTs, localQuizzesQuestionsTs)) {
+    final quizQuestionsLocal = getIt<QuizQuestionsLocalDataSource>();
+    final allQuizQuestions = <QuizQuestionModel>[];
+
+    final units = await unitRepoImpl.getUnits();
+
+    for (final unit in units.getOrElse(() => [])) {
+      final unitId = unit.id;
+      final chapters = await chapterRepoImpl.getChapters(
+        unitId: unitId,
+      );
+
+      for (final chapter in chapters.getOrElse(() => [])) {
+        final chapterId = chapter.id;
+        final lessons = await lessonRepoImpl.getLessons(
+          unitId: unitId,
+          chapterId: chapterId,
+        );
+
+        for (final lesson in lessons.getOrElse(() => [])) {
+          final lessonId = lesson.id;
+
+          final quizzes = await quizRepoImp.getQuizzes(
+            lessonId: lessonId,
+          );
+          for (final quiz in quizzes.getOrElse(() => [])) {
+            
+            final rawData = await firestoreService.getData(
+              path: 'quizzes/${quiz.id}/quizQuestions',
+            );
+            final List<QuizQuestionModel> quizQuestions = rawData
+                .map<QuizQuestionModel>((m) {
+                  return QuizQuestionModel.fromJson({
+                    ...m as Map<String, dynamic>,
+                    'quizId': quiz.id,
+                    'lessonId': lessonId,
+                  });
+                })
+                .toList();
+            await quizQuestionsLocal.cacheQuizQuestions(
+              quizQuestions: quizQuestions,
+              quizId: quiz.id,
+            );
+
+            allQuizQuestions.addAll(quizQuestions);
+          }
+        }
+      }
+    }
+
+    localTimestamps[kQuizQuestions] =
+        serverChaptersTs?.millisecondsSinceEpoch;
   }
 
   // 7. حفظ التوقيتات المحدثة

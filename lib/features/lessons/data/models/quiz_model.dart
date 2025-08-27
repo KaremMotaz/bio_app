@@ -5,6 +5,7 @@ class QuizModel extends QuizEntity {
     required super.id,
     required super.index,
     required super.title,
+    required super.lessonId,
   });
 
   factory QuizModel.fromJson(Map<String, dynamic> json) {
@@ -12,10 +13,16 @@ class QuizModel extends QuizEntity {
       id: json['id'] as String,
       index: json['index'] as int,
       title: json['title'] as String,
+      lessonId: json['lessonId'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
-    return {'id': id, 'index': index, 'title': title};
+    return {
+      'id': id,
+      'index': index,
+      'title': title,
+      'lessonId': lessonId,
+    };
   }
 }
