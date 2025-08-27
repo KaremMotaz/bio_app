@@ -1,4 +1,4 @@
-import 'package:bio_app/core/functions/show_confirm_dialog.dart';
+import '../../../../core/functions/show_confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';

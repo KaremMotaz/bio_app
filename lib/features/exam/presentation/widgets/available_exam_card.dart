@@ -1,5 +1,5 @@
 
-import 'package:bio_app/core/functions/format_date_time.dart';
+import '../../../../core/functions/format_date_time.dart';
 
 import '../../../../core/theming/text_styles.dart';
 import '../../domain/entities/exam_entity.dart';

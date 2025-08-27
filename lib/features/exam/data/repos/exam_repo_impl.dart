@@ -1,4 +1,4 @@
-import 'package:bio_app/core/sync/exam_view_open.dart';
+import '../../../../core/sync/exam_view_open.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';

@@ -1,20 +1,20 @@
 import 'dart:developer';
-import 'package:bio_app/features/chapters/data/repos/chapter_repo_imp.dart';
-import 'package:bio_app/features/lessons/data/repos/lesson_repo_imp.dart';
-import 'package:bio_app/features/lessons/data/repos/quiz_repo_imp.dart';
-import 'package:bio_app/features/quiz_questions/data/data_source/quiz_questions_local_data_source.dart';
-import 'package:bio_app/features/quiz_questions/data/models/quiz_question_model.dart';
-import 'package:bio_app/features/units/data/data_source/units_remote_data_source.dart';
-
+import '../../features/chapters/data/data_source/chapters_remote_data_source.dart';
+import '../../features/chapters/data/repos/chapter_repo_imp.dart';
+import '../../features/lessons/data/data_source/lessons_remote_data_source.dart';
+import '../../features/lessons/data/data_source/quizzes_remote_data_source.dart';
+import '../../features/lessons/data/repos/lesson_repo_imp.dart';
+import '../../features/lessons/data/repos/quiz_repo_imp.dart';
+import '../../features/quiz_questions/data/data_source/quiz_questions_local_data_source.dart';
+import '../../features/quiz_questions/data/data_source/quiz_questions_remote_data_source.dart';
+import '../../features/quiz_questions/data/models/quiz_question_model.dart';
+import '../../features/units/data/data_source/units_remote_data_source.dart';
 import '../../features/units/data/repos/unit_repo_imp.dart';
-import '../services/firestore_service.dart';
 import '../services/get_it_service.dart';
 import '../../features/chapters/data/data_source/chapters_local_data_source.dart';
 import '../../features/chapters/data/models/chapter_model.dart';
 import '../../features/lessons/data/data_source/lessons_local_data_source.dart';
 import '../../features/lessons/data/data_source/quizzes_local_data_source.dart';
-import '../../features/lessons/data/models/lesson_model.dart';
-import '../../features/lessons/data/models/quiz_model.dart';
 import '../../features/units/data/data_source/units_local_data_source.dart';
 import '../../features/units/data/models/unit_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -22,12 +22,19 @@ import 'package:hive/hive.dart';
 import '../../../../core/helpers/constants.dart';
 
 Future<void> fetchAndCacheData() async {
-  final firestoreService = getIt<FirestoreService>();
-  final unitRepoImpl = getIt<UnitRepoImpl>();
-  final chapterRepoImpl = getIt<ChapterRepoImpl>();
-  final lessonRepoImpl = getIt<LessonRepoImp>();
   final UnitsRemoteDataSource unitsRemoteDataSource =
       getIt<UnitsRemoteDataSource>();
+  final ChaptersRemoteDataSource chaptersRemoteDataSource =
+      getIt<ChaptersRemoteDataSource>();
+  final LessonsRemoteDataSource lessonsRemoteDataSource =
+      getIt<LessonsRemoteDataSource>();
+  final QuizzesRemoteDataSource quizzesRemoteDataSource =
+      getIt<QuizzesRemoteDataSource>();
+  final QuizQuestionsRemoteDataSource quizQuestionsRemoteDataSource =
+      getIt<QuizQuestionsRemoteDataSource>();
+  final UnitRepoImpl unitRepoImpl = getIt<UnitRepoImpl>();
+  final ChapterRepoImpl chapterRepoImpl = getIt<ChapterRepoImpl>();
+  final LessonRepoImp lessonRepoImpl = getIt<LessonRepoImp>();
   final QuizRepoImp quizRepoImp = getIt<QuizRepoImp>();
 
   // 1. قراءة التوقيتات من السيرفر
@@ -57,6 +64,7 @@ Future<void> fetchAndCacheData() async {
     await getIt<UnitsLocalDataSource>().cacheUnits(units);
     localTimestamps[kUnits] = serverUnitsTs?.millisecondsSinceEpoch;
   }
+
   log("From units ${_isNewer(serverUnitsTs, localUnitsTs)}");
 
   // 4. تحديث الفصول (Chapters)
@@ -69,20 +77,9 @@ Future<void> fetchAndCacheData() async {
     final allChapters = <ChapterModel>[];
 
     for (final unit in units.getOrElse(() => [])) {
-      final rawData = await firestoreService.getData(
-        path: 'units/${unit.id}/chapters',
-      );
+      final chapters = await chaptersRemoteDataSource
+          .getFilteredChapters(unitId: unit.id);
 
-      final List<ChapterModel> chapters = rawData.map<ChapterModel>((
-        m,
-      ) {
-        return ChapterModel.fromJson({
-          ...m as Map<String, dynamic>,
-          'unitId': unit.id,
-        });
-      }).toList();
-
-      // تخزين كل Unit مع فصوله
       await chaptersLocal.cacheChapters(
         chapters: chapters,
         unitId: unit.id,
@@ -101,41 +98,25 @@ Future<void> fetchAndCacheData() async {
   final localQuizzesTs = localTimestamps[kQuizzes];
   if (_isNewer(serverQuizzesTs, localQuizzesTs)) {
     final units = await unitRepoImpl.getUnits();
+
     final quizzesLocal = getIt<QuizzesLocalDataSource>();
 
     for (final unit in units.getOrElse(() => [])) {
-      // جلب الفصول داخل كل وحدة
-      final chaptersData = await firestoreService.getData(
-        path: 'units/${unit.id}/chapters',
+      final chapters = await chapterRepoImpl.getChapters(
+        unitId: unit.id,
       );
 
-      for (final chapterMap in chaptersData) {
-        final chapterId = chapterMap['id'] as String;
-
-        // جلب الدروس داخل كل فصل
-        final lessonsData = await firestoreService.getData(
-          path: 'units/${unit.id}/chapters/$chapterId/lessons',
+      for (final chapter in chapters.getOrElse(() => [])) {
+        final lessons = await lessonRepoImpl.getLessons(
+          unitId: unit.id,
+          chapterId: chapter.id,
         );
 
-        for (final lessonMap in lessonsData) {
-          final lessonId = lessonMap['id'] as String;
+        for (final lesson in lessons.getOrElse(() => [])) {
+          final lessonId = lesson.id;
 
-          // جلب الكويزات داخل كل درس
-          final quizzesData = await firestoreService.getData(
-            path:
-                'units/${unit.id}/chapters/$chapterId/lessons/$lessonId/quizzes',
-          );
-
-          final List<QuizModel> quizzes = quizzesData.map<QuizModel>((
-            m,
-          ) {
-            return QuizModel.fromJson({
-              ...m as Map<String, dynamic>,
-              'lessonId': lessonId,
-              'chapterId': chapterId,
-              'unitId': unit.id,
-            });
-          }).toList();
+          final quizzes = await quizzesRemoteDataSource
+              .getFilteredQuizzes(lessonId: lessonId);
 
           await quizzesLocal.cacheQuizzes(
             quizzes: quizzes,
@@ -158,30 +139,20 @@ Future<void> fetchAndCacheData() async {
     final lessonsLocal = getIt<LessonsLocalDataSource>();
 
     for (final unit in units.getOrElse(() => [])) {
-      final chaptersData = await firestoreService.getData(
-        path: 'units/${unit.id}/chapters',
+      final chapters = await chapterRepoImpl.getChapters(
+        unitId: unit.id,
       );
 
-      for (final chapterMap in chaptersData) {
-        final chapterId = chapterMap['id'] as String;
-
-        final lessonsData = await firestoreService.getData(
-          path: 'units/${unit.id}/chapters/$chapterId/lessons',
-        );
-
-        final List<LessonModel> lessons = lessonsData
-            .map<LessonModel>((m) {
-              return LessonModel.fromJson({
-                ...m as Map<String, dynamic>,
-                'chapterId': chapterId,
-                'unitId': unit.id,
-              });
-            })
-            .toList();
+      for (final chapter in chapters.getOrElse(() => [])) {
+        final lessons = await lessonsRemoteDataSource
+            .getFilteredLessons(
+              unitId: unit.id,
+              chapterId: chapter.id,
+            );
 
         await lessonsLocal.cacheLessons(
           lessons: lessons,
-          chapterId: chapterId,
+          chapterId: chapter.id,
           unitId: unit.id,
         );
       }
@@ -203,38 +174,24 @@ Future<void> fetchAndCacheData() async {
     final units = await unitRepoImpl.getUnits();
 
     for (final unit in units.getOrElse(() => [])) {
-      final unitId = unit.id;
       final chapters = await chapterRepoImpl.getChapters(
-        unitId: unitId,
+        unitId: unit.id,
       );
 
       for (final chapter in chapters.getOrElse(() => [])) {
-        final chapterId = chapter.id;
         final lessons = await lessonRepoImpl.getLessons(
-          unitId: unitId,
-          chapterId: chapterId,
+          unitId: unit.id,
+          chapterId: chapter.id,
         );
 
         for (final lesson in lessons.getOrElse(() => [])) {
-          final lessonId = lesson.id;
-
           final quizzes = await quizRepoImp.getQuizzes(
-            lessonId: lessonId,
+            lessonId: lesson.id,
           );
           for (final quiz in quizzes.getOrElse(() => [])) {
-            
-            final rawData = await firestoreService.getData(
-              path: 'quizzes/${quiz.id}/quizQuestions',
-            );
-            final List<QuizQuestionModel> quizQuestions = rawData
-                .map<QuizQuestionModel>((m) {
-                  return QuizQuestionModel.fromJson({
-                    ...m as Map<String, dynamic>,
-                    'quizId': quiz.id,
-                    'lessonId': lessonId,
-                  });
-                })
-                .toList();
+            final quizQuestions = await quizQuestionsRemoteDataSource
+                .getQuizQuestions(quizId: quiz.id);
+
             await quizQuestionsLocal.cacheQuizQuestions(
               quizQuestions: quizQuestions,
               quizId: quiz.id,

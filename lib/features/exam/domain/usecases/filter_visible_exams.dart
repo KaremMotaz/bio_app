@@ -1,8 +1,8 @@
 
-import 'package:bio_app/core/errors/failure.dart';
+import '../../../../core/errors/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:bio_app/features/exam/data/repos/exam_repo_impl.dart';
-import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
+import '../../data/repos/exam_repo_impl.dart';
+import '../entities/exam_entity.dart';
 
 class FilterVisibleExams {
   final ExamRepoImpl examRepoImpl;

@@ -10,7 +10,7 @@ class ExamQuestionsRemoteDataSource {
 
   ExamQuestionsRemoteDataSource({required this.databaseService});
 
-  Future<List<ExamQuestionsModel>> fetchExamQuestions({
+  Future<List<ExamQuestionsModel>> getExamQuestions({
     required String examId,
   }) async {
     final List<Map<String, dynamic>>

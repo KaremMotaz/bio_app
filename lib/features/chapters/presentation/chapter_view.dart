@@ -1,4 +1,4 @@
-import 'package:bio_app/features/units/domain/unit_entity.dart';
+import '../../units/domain/unit_entity.dart';
 
 import '../../../core/widgets/custom_app_bar_pop_icon.dart';
 import 'package:flutter/material.dart';

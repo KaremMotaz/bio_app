@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam/domain/entities/exam_entity.dart';
+import '../../../domain/entities/exam_entity.dart';
 import 'package:equatable/equatable.dart';
 
 sealed class ExamsState extends Equatable {

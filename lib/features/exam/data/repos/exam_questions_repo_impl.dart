@@ -31,13 +31,13 @@ class ExamQuestionsRepoImp implements ExamQuestionsRepo {
 
       //  No data in cache, fetch from remote
       final List<ExamQuestionsModel> examsquestions =
-          await examQuestionsRemoteDataSource.fetchExamQuestions(
+          await examQuestionsRemoteDataSource.getExamQuestions(
             examId: examId,
           );
 
       // Cache the data
       await examsQuestionsLocalDataSource.cacheExamsQuestions(
-        examsquestions,
+        examsQuestions: examsquestions,
       );
 
       return Right(examsquestions);

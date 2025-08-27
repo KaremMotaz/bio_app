@@ -1,7 +1,7 @@
-import 'package:bio_app/features/exam/data/datasources/exams_local_data_source.dart';
-import 'package:bio_app/features/exam/domain/repos/exam_repo.dart';
-import 'package:bio_app/features/exam/domain/usecases/filter_published_results_exams.dart';
-import 'package:bio_app/features/exam/domain/usecases/filter_visible_exams.dart';
+import '../../features/exam/data/datasources/exams_local_data_source.dart';
+import '../../features/exam/domain/repos/exam_repo.dart';
+import '../../features/exam/domain/usecases/filter_published_results_exams.dart';
+import '../../features/exam/domain/usecases/filter_visible_exams.dart';
 
 import 'local_cache_service.dart';
 import '../../features/chapters/data/models/chapter_model.dart';

@@ -27,9 +27,9 @@ class ExamsQuestionsLocalDataSourceImp
   }
 
   @override
-  Future<void> cacheExamsQuestions(
-    List<ExamQuestionsModel> examsQuestions,
-  ) async {
+  Future<void> cacheExamsQuestions({
+    required List<ExamQuestionsModel> examsQuestions,
+  }) async {
     await cache.saveList(
       key: kExamsQuestions,
       boxName: kExamsQuestionsBox,

@@ -1,4 +1,4 @@
-import 'package:bio_app/core/helpers/get_user.dart';
+import '../../../../core/helpers/get_user.dart';
 
 import '../../../../core/services/firestore_service.dart';
 

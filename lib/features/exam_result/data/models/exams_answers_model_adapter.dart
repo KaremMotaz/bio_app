@@ -1,5 +1,6 @@
-import 'exams_answers_model.dart';
 import 'package:hive/hive.dart';
+
+import 'exams_answers_model.dart';
 
 class ExamsAnswersModelAdapter
     extends TypeAdapter<ExamsAnswersModel> {

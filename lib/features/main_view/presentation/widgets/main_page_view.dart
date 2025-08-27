@@ -1,6 +1,6 @@
-import 'package:bio_app/features/exam/domain/repos/exam_repo.dart';
-import 'package:bio_app/features/exam/domain/usecases/filter_published_results_exams.dart';
-import 'package:bio_app/features/exam/domain/usecases/filter_visible_exams.dart';
+import '../../../exam/domain/repos/exam_repo.dart';
+import '../../../exam/domain/usecases/filter_published_results_exams.dart';
+import '../../../exam/domain/usecases/filter_visible_exams.dart';
 
 import '../../../leaderboard/domain/leaderboard_repo.dart';
 import '../../../leaderboard/presentation/manager/leaderboard_cubit/leaderboard_cubit.dart';

@@ -1,6 +1,7 @@
+import 'package:dartz/dartz.dart';
+
 import '../../../core/errors/failure.dart';
 import '../../auth/domain/user_entity.dart';
-import 'package:dartz/dartz.dart';
 
 abstract class LeaderboardRepo {
   Stream<Either<Failure, List<UserEntity>>> getTop10Now();

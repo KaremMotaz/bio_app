@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+
 import '../../../../core/theming/text_styles.dart';
 import '../../domain/entities/exam_entity.dart';
-import 'past_exams_list_view.dart';
 import 'available_exams_list_view.dart';
-import 'package:flutter/material.dart';
+import 'past_exams_list_view.dart';
 
 class ExamsViewBody extends StatelessWidget {
   const ExamsViewBody({

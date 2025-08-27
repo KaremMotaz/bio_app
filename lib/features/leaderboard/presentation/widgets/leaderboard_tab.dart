@@ -1,8 +1,9 @@
-import '../../../auth/domain/user_entity.dart';
-import 'leaderboard_with_less_than_four_users.dart';
-import 'leaderboard_list_view.dart';
-import 'top3_leaderboard_row.dart';
 import 'package:flutter/material.dart';
+
+import '../../../auth/domain/user_entity.dart';
+import 'leaderboard_list_view.dart';
+import 'leaderboard_with_less_than_four_users.dart';
+import 'top3_leaderboard_row.dart';
 
 class LeaderboardTab extends StatelessWidget {
   const LeaderboardTab({

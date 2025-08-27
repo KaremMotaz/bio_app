@@ -1,7 +1,10 @@
 import 'dart:async';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../auth/domain/user_entity.dart';
 import '../../../domain/leaderboard_repo.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 part 'leaderboard_state.dart';
 
 class LeaderboardCubit extends Cubit<LeaderboardState> {

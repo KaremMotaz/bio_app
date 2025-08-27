@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam/presentation/manager/exams_cubit/exams_state.dart';
+import '../manager/exams_cubit/exams_state.dart';
 
 import '../widgets/exams_view_body.dart';
 import '../manager/exams_cubit/exams_cubit.dart';

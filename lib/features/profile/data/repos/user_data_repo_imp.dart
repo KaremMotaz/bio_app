@@ -1,4 +1,7 @@
 import 'dart:convert';
+
+import 'package:dartz/dartz.dart';
+
 import '../../../../core/errors/cache_failure.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';
@@ -7,7 +10,6 @@ import '../../../../core/helpers/constants.dart';
 import '../../../../core/services/cache_helper.dart';
 import '../../../../core/services/data_service.dart';
 import '../../../../core/services/firebase_auth_service.dart';
-import 'package:dartz/dartz.dart';
 
 class UserDataRepoImp {
   final DatabaseService databaseService;

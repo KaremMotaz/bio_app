@@ -1,4 +1,4 @@
-import 'package:bio_app/features/chapters/domain/chapter_entity.dart';
+import '../../chapters/domain/chapter_entity.dart';
 
 import '../../../core/widgets/custom_app_bar_pop_icon.dart';
 import '../../../core/theming/app_colors.dart';

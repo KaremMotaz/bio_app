@@ -1,5 +1,5 @@
-import 'package:bio_app/core/theming/assets_data.dart';
-import 'package:bio_app/features/lessons/domain/quiz_entity.dart';
+import '../../../core/theming/assets_data.dart';
+import '../domain/quiz_entity.dart';
 import '../../../core/widgets/custom_app_bar_pop_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

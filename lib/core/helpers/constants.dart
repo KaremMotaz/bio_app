@@ -19,6 +19,7 @@ const String kLessonsLastUpdated = 'lessons_last_updated';
 const String kQuizzesLastUpdated = 'quizzes_last_updated';
 const String kQuizzesQuestionsLastUpdated = 'quizzes_questions_last_updated';
 const String kExamsLastUpdated = 'exams_last_updated';
+const String kExamsQuestionsLastUpdated = 'exams_questions_last_updated';
 const String kExams = "exams";
 const String kExamsBox = "exams_box";
 const String kExamsQuestions = "examsQuestions";

@@ -1,14 +1,22 @@
 import 'dart:developer';
-import 'package:bio_app/features/exam/data/datasources/exam_remote_data_source.dart';
-import 'package:bio_app/features/exam/data/datasources/exams_local_data_source.dart';
-import 'package:bio_app/features/exam/data/models/exam_model.dart';
+import '../../features/exam/data/datasources/exam_questions_remote_data_source.dart';
+import '../../features/exam/data/datasources/exam_remote_data_source.dart';
+import '../../features/exam/data/datasources/exams_local_data_source.dart';
+import '../../features/exam/data/datasources/exams_questions_local_data_source.dart';
+import '../../features/exam/data/models/exam_model.dart';
+import '../../features/exam/data/models/exam_question_model.dart';
+import '../../features/exam/data/repos/exam_repo_impl.dart';
 import '../services/get_it_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hive/hive.dart';
 import '../../../../core/helpers/constants.dart';
 
 Future<void> fetchAndCacheExamData() async {
-  final examsRemoteDataSource = getIt<ExamsRemoteDataSource>();
+  final ExamsRemoteDataSource examsRemoteDataSource =
+      getIt<ExamsRemoteDataSource>();
+  final ExamQuestionsRemoteDataSource examQuestionsRemoteDataSource =
+      getIt<ExamQuestionsRemoteDataSource>();
+  final ExamRepoImpl examRepoImpl = getIt<ExamRepoImpl>();
 
   // 1. قراءة التوقيتات من السيرفر
   final lastUpdatesDoc = await FirebaseFirestore.instance
@@ -42,7 +50,34 @@ Future<void> fetchAndCacheExamData() async {
     localTimestamps[kExams] = serverExamsTs?.millisecondsSinceEpoch;
   }
 
-  // 4. حفظ التوقيتات المحدثة
+  // 4. تحديث أسئلة الإمتحانات (Exam questions)
+  final serverExamQuestionsTs =
+      serverTimestamps[kExamsQuestionsLastUpdated] as Timestamp?;
+  final localExamQuestionsTs = localTimestamps[kExamsQuestions];
+  if (_isNewer(serverExamQuestionsTs, localExamQuestionsTs)) {
+    final exams = await examRepoImpl.getExams();
+
+    final examsQuestionsLocal =
+        getIt<ExamsQuestionsLocalDataSource>();
+
+    final allExamsQuestions = <ExamQuestionsModel>[];
+
+    for (final exam in exams.getOrElse(() => [])) {
+      final examsQuestions = await examQuestionsRemoteDataSource
+          .getExamQuestions(examId: exam.id);
+
+      await examsQuestionsLocal.cacheExamsQuestions(
+        examsQuestions: examsQuestions,
+      );
+
+      allExamsQuestions.addAll(examsQuestions);
+    }
+
+    localTimestamps[kExamsQuestions] =
+        serverExamQuestionsTs?.millisecondsSinceEpoch;
+  }
+
+  // 5. حفظ التوقيتات المحدثة
   await hiveBox.put(kLastUpdatedTimestampsKey, localTimestamps);
   log("From exams ${_isNewer(serverExamsTs, localExamsTs)}");
 }

@@ -1,5 +1,6 @@
-import 'exam_question_model.dart';
 import 'package:hive/hive.dart';
+
+import 'exam_question_model.dart';
 
 class ExamQuestionsModelAdapter extends TypeAdapter<ExamQuestionsModel> {
   @override

@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'account_section.dart';
 import 'settings_section.dart';
-import 'package:flutter/material.dart';
 
 class SettingsViewBody extends StatelessWidget {
   const SettingsViewBody({super.key});

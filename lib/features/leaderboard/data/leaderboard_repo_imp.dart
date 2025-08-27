@@ -1,11 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz.dart';
+
 import '../../../core/errors/failure.dart';
 import '../../../core/errors/server_failure.dart';
 import '../../../core/helpers/backend_endpoint.dart';
 import '../../../core/services/data_service.dart';
 import '../../auth/domain/user_entity.dart';
 import '../domain/leaderboard_repo.dart';
-import 'package:dartz/dartz.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LeaderboardRepoImp implements LeaderboardRepo {
   final DatabaseService databaseService;

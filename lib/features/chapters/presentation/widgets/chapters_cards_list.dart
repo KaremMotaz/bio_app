@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '../../domain/chapter_entity.dart';
 import 'custom_chapter_card.dart';
-import 'package:flutter/material.dart';
 
 class ChaptersCardsList extends StatelessWidget {
   const ChaptersCardsList({
