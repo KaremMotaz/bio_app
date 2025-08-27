@@ -18,9 +18,6 @@ class LeaderboardCubit extends Cubit<LeaderboardState> {
   void load({required LeaderboardType type}) async {
     emit(LeaderboardLoadingState());
     _sub?.cancel();
-    
-    await leaderboardRepo.resetTop10IfNeeded();
-    await leaderboardRepo.lazyResetUser();
 
     Stream stream;
     switch (type) {

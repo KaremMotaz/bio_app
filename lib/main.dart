@@ -1,3 +1,5 @@
+import 'package:bio_app/features/leaderboard/domain/daily_task_runner.dart';
+import 'package:bio_app/features/leaderboard/domain/leaderboard_repo.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -48,6 +50,13 @@ void main() async {
   );
   await CacheHelper.init();
   setupGetIt();
+  
+  final leaderboardRepo = getIt<LeaderboardRepo>();
+  final dailyTaskRunner = DailyTaskRunner(
+    leaderboardRepo: leaderboardRepo,
+  );
+
+  await dailyTaskRunner.runDailyTasks(); // ينفذ مرة واحدة يوميًا
   runApp(const MainApp());
 }
 
