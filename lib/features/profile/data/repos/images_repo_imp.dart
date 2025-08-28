@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:bio_app/core/helpers/get_user.dart';
+import '../../../../core/helpers/get_user.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';

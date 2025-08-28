@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:bio_app/core/helpers/get_user.dart';
+import '../../../../core/helpers/get_user.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/errors/cache_failure.dart';
 import '../../../../core/errors/failure.dart';

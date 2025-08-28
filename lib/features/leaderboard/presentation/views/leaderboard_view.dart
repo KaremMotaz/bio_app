@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+
 import '../../../../core/theming/app_colors.dart';
 import '../../../auth/domain/user_entity.dart';
 import '../../domain/leaderboard_type.dart';
 import '../manager/leaderboard_cubit/leaderboard_cubit.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../widgets/leaderboard_tab.dart';
 
 class LeaderboardView extends StatefulWidget {

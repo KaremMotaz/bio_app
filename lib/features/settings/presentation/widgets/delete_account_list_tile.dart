@@ -1,4 +1,4 @@
-import 'package:bio_app/core/services/firebase_auth_service.dart';
+import '../../../../core/services/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

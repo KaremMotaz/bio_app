@@ -1,5 +1,3 @@
-import 'features/leaderboard/domain/daily_task_runner.dart';
-import 'features/leaderboard/domain/leaderboard_repo.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,6 +13,8 @@ import 'features/chapters/data/models/chapter_model_adapter.dart';
 import 'features/exam/data/models/exam_model_adapter.dart';
 import 'features/exam/data/models/exam_question_model_adapter.dart';
 import 'features/exam_result/data/models/exams_answers_model_adapter.dart';
+import 'features/leaderboard/domain/daily_task_runner.dart';
+import 'features/leaderboard/domain/leaderboard_repo.dart';
 import 'features/lessons/data/models/lesson_model_adapter.dart';
 import 'features/lessons/data/models/quiz_model_adapter.dart';
 import 'features/quiz_questions/data/models/quiz_question_model_adapter.dart';

@@ -1,8 +1,9 @@
-import '../../../auth/domain/user_entity.dart';
+import 'package:flutter/material.dart';
+
 import '../../../../core/theming/assets_data.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../../../core/widgets/user_avatar.dart';
-import 'package:flutter/material.dart';
+import '../../../auth/domain/user_entity.dart';
 
 class LeaderboardUserBadge extends StatelessWidget {
   const LeaderboardUserBadge({

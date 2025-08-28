@@ -1,4 +1,4 @@
-import 'package:bio_app/core/services/firebase_auth_service.dart';
+import '../../../../../core/services/firebase_auth_service.dart';
 
 import '../../../../../core/errors/failure.dart';
 import 'package:dartz/dartz.dart';

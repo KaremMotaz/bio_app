@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import '../../../domain/leaderboard_type.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../auth/domain/user_entity.dart';
 import '../../../domain/leaderboard_repo.dart';
+import '../../../domain/leaderboard_type.dart';
 
 part 'leaderboard_state.dart';
 

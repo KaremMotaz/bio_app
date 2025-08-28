@@ -1,13 +1,14 @@
-import '../../../../core/functions/build_snack_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+
+import '../../../../core/functions/build_snack_bar.dart';
 import '../../../../core/helpers/app_regex.dart';
 import '../../../../core/helpers/get_user.dart';
 import '../manager/edit_profile_cubit/edit_profile_cubit.dart';
 import 'edit_profile_dialog.dart';
-import 'profile_avatar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'edit_profile_list_tile.dart';
+import 'profile_avatar.dart';
 
 class ProfileViewBody extends StatefulWidget {
   const ProfileViewBody({super.key});

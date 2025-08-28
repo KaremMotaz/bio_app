@@ -1,6 +1,3 @@
-import '../../features/chapters/domain/chapter_entity.dart';
-import '../../features/lessons/domain/quiz_entity.dart';
-import '../../features/units/domain/unit_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,6 +7,7 @@ import '../../features/auth/presentation/views/otp_verification_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/signup_view.dart';
 import '../../features/chapters/data/repos/chapter_repo_imp.dart';
+import '../../features/chapters/domain/chapter_entity.dart';
 import '../../features/chapters/presentation/chapter_view.dart';
 import '../../features/chapters/presentation/manager/chapter_cubit/chapter_cubit.dart';
 import '../../features/exam/data/repos/exam_questions_repo_impl.dart';
@@ -22,6 +20,7 @@ import '../../features/exam_result/presentation/manager/exam_result_cubit/exam_r
 import '../../features/exam_result/presentation/views/exam_result_details_view.dart';
 import '../../features/exam_result/presentation/views/exam_result_view.dart';
 import '../../features/lessons/data/repos/lesson_repo_imp.dart';
+import '../../features/lessons/domain/quiz_entity.dart';
 import '../../features/lessons/presentation/lessons_view.dart';
 import '../../features/lessons/presentation/manager/lesson_cubit/lesson_cubit.dart';
 import '../../features/lessons/presentation/quiz_ready_view.dart';
@@ -36,6 +35,7 @@ import '../../features/quiz_questions/data/repos/quiz_questions_repo_imp.dart';
 import '../../features/quiz_questions/domain/logic/quiz_helpers.dart';
 import '../../features/quiz_questions/presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import '../../features/quiz_questions/presentation/views/quiz_questions_view.dart';
+import '../../features/units/domain/unit_entity.dart';
 import '../helpers/constants.dart';
 import '../services/cache_helper.dart';
 import '../services/firebase_auth_service.dart';
