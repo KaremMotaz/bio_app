@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bio_app/core/helpers/get_user.dart';
 import 'package:bio_app/core/services/cache_helper.dart';
 import 'package:bio_app/core/services/firebase_auth_service.dart';
@@ -32,7 +34,6 @@ class ExamsResultRemoteDataSourceImp {
     final localViewed = CacheHelper.getBool(
       key: "exam_${examId}_resultViewed",
     );
-
     if (!localViewed) {
       if (!isResultViewed) {
         await databaseService.updateData(

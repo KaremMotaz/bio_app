@@ -46,6 +46,7 @@ class ExamResultCubit extends Cubit<ExamResultState> {
                 );
               },
               (studentAnswers) {
+
                 final double studentScore =
                     ExamGradingService.calculateStudentScore(
                       examQuestions: examQuestions,
@@ -55,7 +56,7 @@ class ExamResultCubit extends Cubit<ExamResultState> {
 
                 examResultRepo.uploadExamScoreToMonthlyLeaderboard(
                   score: studentScore,
-                  examId: exams[resultExamIndex].id,
+                  examId: studentAnswers[resultExamIndex].id,
                   isResultViewed:
                       studentAnswers[resultExamIndex].isResultViewed,
                 );
