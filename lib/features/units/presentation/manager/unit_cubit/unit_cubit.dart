@@ -15,19 +15,29 @@ class UnitCubit extends Cubit<UnitState> {
   UnitCubit({required this.unitRepoImpl}) : super(UnitInitialState());
 
   Future<void> getUnits() async {
+    if (isClosed) return; 
+
     emit(UnitLoadingState());
 
-    final Either<Failure, List<UnitModel>> result = await unitRepoImpl
-        .getUnits();
+    final Either<Failure, List<UnitModel>> result =
+        await unitRepoImpl.getUnits();
 
     result.fold(
-      (failure) => emit(UnitErrorState(message: failure.message)),
+      (failure) {
+        if (isClosed) return;
+        emit(UnitErrorState(message: failure.message));
+      },
       (units) {
-        final unitEntities = units
-            .map((model) => model.toEntity())
-            .toList();
+        if (isClosed) return;
+        final unitEntities = units.map((model) => model.toEntity()).toList();
         emit(UnitLoadedState(units: unitEntities));
       },
     );
+  }
+
+  @override
+  Future<void> close() {
+    // لو عندك أي subscriptions (مثلاً listener على الإنترنت) تلغيها هنا
+    return super.close();
   }
 }

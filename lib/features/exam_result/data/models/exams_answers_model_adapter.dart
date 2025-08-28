@@ -19,14 +19,14 @@ class ExamsAnswersModelAdapter
       answers: (fields[0] as Map).cast<String, int>(),
       dateTime: fields[1] as DateTime,
       id: fields[2] as String,
-      isResultViewed: fields[3] as bool,
+      isResultViewed: fields[3] as bool? ?? false,
     );
   }
 
   @override
   void write(BinaryWriter writer, ExamsAnswersModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.answers)
       ..writeByte(1)
