@@ -19,6 +19,7 @@ class ExamsAnswersModelAdapter
       answers: (fields[0] as Map).cast<String, int>(),
       dateTime: fields[1] as DateTime,
       id: fields[2] as String,
+      isResultViewed: fields[3] as bool,
     );
   }
 
@@ -31,6 +32,8 @@ class ExamsAnswersModelAdapter
       ..writeByte(1)
       ..write(obj.dateTime)
       ..writeByte(2)
-      ..write(obj.id);
+      ..write(obj.id)
+      ..writeByte(3)
+      ..write(obj.isResultViewed);
   }
 }

@@ -1,6 +1,6 @@
+import 'package:bio_app/core/helpers/get_user.dart';
+import 'package:bio_app/core/services/firebase_auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
 import '../../../../core/helpers/backend_endpoint.dart';
 import '../../../../core/services/data_service.dart';
 import '../models/exam_question_model.dart';
@@ -26,22 +26,22 @@ class ExamQuestionsRemoteDataSource {
     String examId,
     Map<String, int> answers,
   ) async {
-    final currentUser = FirebaseAuth.instance.currentUser;
-    if (currentUser == null) return;
+    if (FirebaseAuthService.currentUser == null) return;
 
     final baseData = {
       'answers': answers,
+      'isResultViewed': false,
       'timestamp': FieldValue.serverTimestamp(),
     };
 
     final userData = Map<String, dynamic>.from(baseData);
 
-    final examData = {...baseData, 'userId': currentUser.uid};
+    final examData = {...baseData, 'userId': getUser().uid};
 
     await Future.wait([
       databaseService.addData(
         path:
-            '${BackendEndpoint.addUserAnswers}/${currentUser.uid}/${BackendEndpoint.getExamsResults}',
+            '${BackendEndpoint.addUserAnswers}/${getUser().uid}/${BackendEndpoint.getExamsResults}',
         data: userData,
       ),
       databaseService.addData(

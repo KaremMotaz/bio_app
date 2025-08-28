@@ -17,7 +17,6 @@ import '../models/user_model.dart';
 class AuthRepoImp extends AuthRepo {
   final FirebaseAuthService firebaseAuthService;
   final DatabaseService databaseService;
-  static String userId = FirebaseAuth.instance.currentUser!.uid;
 
   AuthRepoImp({
     required this.firebaseAuthService,
@@ -221,8 +220,7 @@ class AuthRepoImp extends AuthRepo {
   Future<Either<Failure, Unit>> deleteAccount({
     String? password,
   }) async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) {
+    if (FirebaseAuthService.currentUser == null) {
       return left(
         const ServerFailure(
           code: 'no-user',

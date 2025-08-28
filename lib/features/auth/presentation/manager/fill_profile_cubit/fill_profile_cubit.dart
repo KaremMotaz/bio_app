@@ -1,3 +1,5 @@
+import 'package:bio_app/core/services/firebase_auth_service.dart';
+
 import '../../../../../core/errors/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,7 +15,7 @@ class FillProfileCubit extends Cubit<FillProfileState> {
   FillProfileCubit(this.authRepo) : super(FillProfileInitialState());
 
   final AuthRepo authRepo;
-  final User user = FirebaseAuth.instance.currentUser!;
+  final User user = FirebaseAuthService.currentUser!;
 
   Future<void> fillProfile({
     required TextEditingController firstNameController,

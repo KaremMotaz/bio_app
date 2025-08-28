@@ -1,7 +1,7 @@
 import 'package:bio_app/core/helpers/get_user.dart';
+import 'package:bio_app/core/services/cache_helper.dart';
+import 'package:bio_app/core/services/firebase_auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
 import '../../../../core/helpers/backend_endpoint.dart';
 import '../../../../core/services/data_service.dart';
 import '../models/exams_answers_model.dart'; // عدل المسار حسب مشروعك
@@ -12,12 +12,11 @@ class ExamsResultRemoteDataSourceImp {
   ExamsResultRemoteDataSourceImp({required this.databaseService});
 
   Future<List<ExamsAnswersModel>> getStudentAnswers() async {
-    final currentUser = FirebaseAuth.instance.currentUser;
-    if (currentUser == null) return [];
+    if (FirebaseAuthService.currentUser == null) return [];
 
     final rawAnswers = await databaseService.getData(
       path:
-          '${BackendEndpoint.addUserAnswers}/${currentUser.uid}/${BackendEndpoint.getExamsResults}',
+          '${BackendEndpoint.getUserData}/${getUser().uid}/${BackendEndpoint.getExamsResults}',
     );
 
     return rawAnswers.map<ExamsAnswersModel>((map) {
@@ -25,10 +24,31 @@ class ExamsResultRemoteDataSourceImp {
     }).toList();
   }
 
-  Future<void> updateScores({required double score}) async {
-    await databaseService.updateData(
-      path: '${BackendEndpoint.getUserData}/${getUser().uid}',
-      data: {"scoreThisMonth": FieldValue.increment(score)},
+  Future<void> updateScores({
+    required double score,
+    required String examId,
+    required bool isResultViewed,
+  }) async {
+    final localViewed = CacheHelper.getBool(
+      key: "exam_${examId}_resultViewed",
     );
+
+    if (!localViewed) {
+      if (!isResultViewed) {
+        await databaseService.updateData(
+          path: '${BackendEndpoint.getUserData}/${getUser().uid}',
+          data: {"scoreThisMonth": FieldValue.increment(score)},
+        );
+        await databaseService.updateData(
+          path:
+              '${BackendEndpoint.updateUserData}/${getUser().uid}/${BackendEndpoint.getExamsResults}/$examId',
+          data: {"isResultViewed": true},
+        );
+        await CacheHelper.set(
+          key: "exam_${examId}_resultViewed",
+          value: true,
+        );
+      }
+    }
   }
 }

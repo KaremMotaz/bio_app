@@ -1,6 +1,6 @@
+import 'package:bio_app/core/helpers/get_user.dart';
 import '../../../auth/domain/user_entity.dart';
 import 'leaderboard_card.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardListView extends StatelessWidget {
@@ -23,10 +23,9 @@ class LeaderboardListView extends StatelessWidget {
           : 0,
       itemBuilder: (context, index) {
         final int adjustedIndex = index + 3;
-        final String currentUser =
-            FirebaseAuth.instance.currentUser!.uid;
+
         final bool isCurrentUser =
-            leaderboardList[adjustedIndex].uid == currentUser;
+            leaderboardList[adjustedIndex].uid == getUser().uid;
 
         double getScore(UserEntity user, String tab) {
           switch (tab) {

@@ -3,11 +3,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class ExamsAnswersModel {
   final Map<String, int> answers;
   final DateTime dateTime;
+  final bool isResultViewed;
   final String id;
 
   ExamsAnswersModel({
     required this.answers,
     required this.dateTime,
+    required this.isResultViewed,
     required this.id,
   });
 
@@ -21,6 +23,7 @@ class ExamsAnswersModel {
     return ExamsAnswersModel(
       answers: answersParsed,
       dateTime: (json['timestamp'] as Timestamp).toDate(),
+      isResultViewed: json['isResultViewed'] as bool,
       id: json['id'] as String,
     );
   }
@@ -30,6 +33,7 @@ class ExamsAnswersModel {
       'answers': answers,
       'timestamp': Timestamp.fromDate(dateTime),
       'id': id,
+      'isResultViewed': isResultViewed,
     };
   }
 }

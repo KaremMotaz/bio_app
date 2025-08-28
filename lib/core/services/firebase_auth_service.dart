@@ -16,6 +16,8 @@ class FirebaseAuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
   final FacebookAuth _facebookAuth = FacebookAuth.instance;
+  static final currentUser = FirebaseAuth.instance.currentUser;
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final DatabaseService databaseService;
 
@@ -262,7 +264,6 @@ class FirebaseAuthService {
 
       return right(unit);
     } on FirebaseAuthException catch (e) {
-
       String message;
       switch (e.code) {
         case 'invalid-credential':

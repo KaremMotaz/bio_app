@@ -14,5 +14,7 @@ abstract class ExamResultRepo {
 
   Future<Either<Failure, Unit>> uploadExamScoreToMonthlyLeaderboard({
     required double score,
+    required String examId,
+    required bool isResultViewed,
   });
 }

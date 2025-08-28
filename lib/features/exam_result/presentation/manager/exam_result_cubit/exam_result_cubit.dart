@@ -53,9 +53,12 @@ class ExamResultCubit extends Cubit<ExamResultState> {
                           studentAnswers[resultExamIndex].answers,
                     );
 
-                // examResultRepo.uploadExamScoreToMonthlyLeaderboard(
-                //   score: studentScore,
-                // );
+                examResultRepo.uploadExamScoreToMonthlyLeaderboard(
+                  score: studentScore,
+                  examId: exams[resultExamIndex].id,
+                  isResultViewed:
+                      studentAnswers[resultExamIndex].isResultViewed,
+                );
 
                 final maxScore = ExamGradingService.calculateMaxScore(
                   examQuestions: examQuestions,

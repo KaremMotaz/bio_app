@@ -1,8 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:bio_app/core/services/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../core/functions/build_snack_bar.dart';
 import '../../../../core/functions/show_confirm_dialog.dart';
 import '../../../../core/routing/routes.dart';
@@ -57,7 +56,7 @@ class _DeleteAccountListTileState
               title: "حذف الحساب؟",
               buttonColor: const Color(0xffdb2323),
               onPressed: () async {
-                final user = FirebaseAuth.instance.currentUser;
+                final user = FirebaseAuthService.currentUser;
                 if (user == null) return;
 
                 final provider = user.providerData.first.providerId;

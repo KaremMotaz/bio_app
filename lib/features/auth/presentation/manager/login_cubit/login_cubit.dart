@@ -1,16 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/services/firebase_auth_service.dart';
 import '../../../../../core/services/firestore_service.dart';
 import '../../../domain/auth_repo.dart';
 import '../../../domain/user_entity.dart';
-
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit(this.authRepo) : super(LoginInitialState());
+  LoginCubit({required this.authRepo}) : super(LoginInitialState());
 
   final AuthRepo authRepo;
 
@@ -18,7 +15,7 @@ class LoginCubit extends Cubit<LoginState> {
     if (FirebaseAuthService(
       databaseService: FirestoreService(),
     ).isLoggedIn()) {
-      String uid = FirebaseAuth.instance.currentUser!.uid;
+      String uid = FirebaseAuthService.currentUser!.uid;
       UserEntity userData = await authRepo.getUserData(uid: uid);
       bool oldUser = userData.oldUser;
       return oldUser;

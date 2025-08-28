@@ -83,9 +83,15 @@ class ExamResultRepoImp implements ExamResultRepo {
   @override
   Future<Either<Failure, Unit>> uploadExamScoreToMonthlyLeaderboard({
     required double score,
+    required String examId,
+    required bool isResultViewed,
   }) async {
     try {
-      await examResultRemoteDataSourceImp.updateScores(score: score);
+      await examResultRemoteDataSourceImp.updateScores(
+        score: score,
+        isResultViewed: isResultViewed,
+        examId: examId,
+      );
       return const Right(unit);
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
