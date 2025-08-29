@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
@@ -116,7 +117,7 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
       final getResult = await imagesRepo.getImage(
         imageFile: avatarFile,
       );
-      
+
       String imageUrl = getResult.getOrElse(() => "");
       if (imageUrl.isEmpty) {
         emit(
@@ -147,6 +148,7 @@ class ChangeProfileImageCubit extends Cubit<ChangeProfileImageState> {
       // 7️⃣ إنهاء العملية بنجاح
       emit(ChangeProfileImageSuccessState());
     } catch (e) {
+      log(e.toString());
       emit(ChangeProfileImageErrorState(error: e.toString()));
     }
   }

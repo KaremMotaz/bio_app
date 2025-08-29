@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:path/path.dart' as b;
 import 'package:supabase_flutter/supabase_flutter.dart';
-
 import '../helpers/constants.dart';
 import '../helpers/keys.dart';
 import 'storage_service.dart';
@@ -35,21 +33,43 @@ class SupabaseStorageService implements StorageService {
   }
 
   @override
-  Future<File> uploadFile(File file, String path) async {
+  Future<File> uploadFile({
+    required File file,
+    required String path,
+    String? uid,
+  }) async {
     String fileName = b.basename(file.path);
-    String urlToSupabase = await _supabase.client.storage
-        .from(kBucketName)
-        .upload('$path/$fileName', file);
-    return File(urlToSupabase);
+    if (uid == null) {
+      String urlToSupabase = await _supabase.client.storage
+          .from(kBucketName)
+          .upload('$path/$fileName', file);
+      return File(urlToSupabase);
+    } else {
+      String urlToSupabase = await _supabase.client.storage
+          .from(kBucketName)
+          .upload('$path/$uid$fileName', file);
+      return File(urlToSupabase);
+    }
   }
 
   @override
-  Future<String> getImage(File file, String path) async {
+  Future<String> getImage({
+    required File file,
+    required String path,
+    String? uid,
+  }) async {
     String fileName = b.basename(file.path);
-    String urlFromSupabase = _supabase.client.storage
-        .from(kBucketName)
-        .getPublicUrl('$path/$fileName');
-    return urlFromSupabase;
+    if (uid == null) {
+      String urlFromSupabase = _supabase.client.storage
+          .from(kBucketName)
+          .getPublicUrl('$path/$fileName');
+      return urlFromSupabase;
+    } else {
+      String urlFromSupabase = _supabase.client.storage
+          .from(kBucketName)
+          .getPublicUrl('$path/$uid$fileName');
+      return urlFromSupabase;
+    }
   }
 
   @override

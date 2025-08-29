@@ -1,7 +1,7 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import '../../../../core/helpers/get_user.dart';
-
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';
 import '../../../../core/helpers/backend_endpoint.dart';
@@ -26,11 +26,14 @@ class ImagesRepoImp implements ImagesRepo {
   }) async {
     try {
       File url = await storageService.uploadFile(
-        imageFile!,
-        BackendEndpoint.uploadUsersImages,
+        uid: getUser().uid,
+        file: imageFile!,
+        path: BackendEndpoint.uploadUsersImages,
       );
       return right(url);
     } catch (e) {
+      log('From upload Image To Storage +${e.toString()}');
+
       return left(ServerFailure(message: e.toString()));
     }
   }
@@ -41,11 +44,14 @@ class ImagesRepoImp implements ImagesRepo {
   }) async {
     try {
       String getUrl = await storageService.getImage(
-        imageFile!,
-        BackendEndpoint.getUsersImages,
+        uid: getUser().uid,
+        file: imageFile!,
+        path: BackendEndpoint.getUsersImages,
       );
       return right(getUrl);
     } catch (e) {
+      log('From get Image +${e.toString()}');
+
       return left(ServerFailure(message: e.toString()));
     }
   }
@@ -61,6 +67,8 @@ class ImagesRepoImp implements ImagesRepo {
       );
       return right(unit);
     } catch (e) {
+      log('From upload Image To Database +${e.toString()}');
+
       return left(ServerFailure(message: e.toString()));
     }
   }
@@ -99,6 +107,8 @@ class ImagesRepoImp implements ImagesRepo {
 
       return const Right(null);
     } catch (e) {
+      log('From delete Image From Storage +${e.toString()}');
+
       return Left(ServerFailure(message: e.toString()));
     }
   }
