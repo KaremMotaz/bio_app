@@ -9,9 +9,9 @@ final class QuizQuestionsLoadingState extends QuizQuestionsState {}
 
 class QuizQuestionsLoadedState extends QuizQuestionsState {
   final List<QuizQuestionModel> questions;
-  final QuizProgress progress;
-  final QuizStatus status;
-  final QuizAnswerState answerState;
+  final QuizProgressModel progress;
+  final QuizStatusModel status;
+  final QuizQuestionAnswerModel answerState;
 
   QuizQuestionsLoadedState({
     required this.questions,
@@ -21,9 +21,9 @@ class QuizQuestionsLoadedState extends QuizQuestionsState {
   });
 
   QuizQuestionsLoadedState copyWith({
-    QuizProgress? progress,
-    QuizStatus? status,
-    QuizAnswerState? answerState,
+    QuizProgressModel? progress,
+    QuizStatusModel? status,
+    QuizQuestionAnswerModel? answerState,
   }) => QuizQuestionsLoadedState(
     questions: questions,
     progress: progress ?? this.progress,
@@ -33,7 +33,7 @@ class QuizQuestionsLoadedState extends QuizQuestionsState {
 }
 
 class QuizQuestionsFinishedState extends QuizQuestionsState {
-  final QuizResult result;
+  final QuizResultModel result;
   QuizQuestionsFinishedState({required this.result});
 }
 

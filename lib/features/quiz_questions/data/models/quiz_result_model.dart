@@ -1,16 +1,13 @@
-
-class QuizResult {
+class QuizResultModel {
   final double finalScore;
   final int totalMaxScore;
   final Duration duration;
 
-  QuizResult({
+  QuizResultModel({
     required this.finalScore,
     required this.totalMaxScore,
     required this.duration,
   });
-
-
 
   int get accuracy => ((finalScore / totalMaxScore) * 100).round();
 

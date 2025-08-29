@@ -13,7 +13,7 @@ class FeedbackCard extends StatelessWidget {
   });
 
   final QuizQuestionEntity question;
-  final QuizAnswerState answerState;
+  final QuizQuestionAnswerModel answerState;
 
   @override
   Widget build(BuildContext context) {

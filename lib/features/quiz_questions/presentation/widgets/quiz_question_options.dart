@@ -7,7 +7,7 @@ import '../../../../core/widgets/mcq_options.dart';
 import '../../../../core/widgets/true_false_options.dart';
 import '../../data/models/quiz_question_model.dart';
 import '../../domain/entities/quiz_question_entity.dart';
-import '../../domain/logic/quiz_helpers.dart';
+import '../../domain/helper/quiz_helpers.dart';
 import '../manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 
 class QuizQuestionOptions extends StatelessWidget {
@@ -20,7 +20,7 @@ class QuizQuestionOptions extends StatelessWidget {
 
   final QuizQuestionEntity question;
   final void Function(int) onSelect;
-  final QuizAnswerState answerState;
+  final QuizQuestionAnswerModel answerState;
 
   @override
   Widget build(BuildContext context) {

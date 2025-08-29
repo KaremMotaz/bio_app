@@ -32,7 +32,7 @@ import '../../features/profile/presentation/manager/change_profile_image_cubit/c
 import '../../features/profile/presentation/manager/edit_profile_cubit/edit_profile_cubit.dart';
 import '../../features/profile/presentation/views/profile_view.dart';
 import '../../features/quiz_questions/data/repos/quiz_questions_repo_imp.dart';
-import '../../features/quiz_questions/domain/logic/quiz_helpers.dart';
+import '../../features/quiz_questions/domain/helper/quiz_helpers.dart';
 import '../../features/quiz_questions/presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import '../../features/quiz_questions/presentation/views/quiz_questions_view.dart';
 import '../../features/units/domain/unit_entity.dart';

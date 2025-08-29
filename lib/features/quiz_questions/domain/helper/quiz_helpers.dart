@@ -1,7 +1,4 @@
-// lib/features/quiz/domain/logic/quiz_helpers.dart
-
 import 'package:bio_app/features/quiz_questions/domain/entities/quiz_question_entity.dart';
-
 import '../../data/models/quiz_question_model.dart';
 import '../../presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 
@@ -28,13 +25,13 @@ class QuizHelper {
     return isCorrect ? currentLives : currentLives - 1;
   }
 
-  QuizAnswerState getAnswerStateForOption({
+  QuizQuestionAnswerModel getAnswerStateForOption({
     required QuizQuestionEntity question,
     required int selectedIndex,
     required int optionIndex,
-    required QuizAnswerState currentAnswerState,
+    required QuizQuestionAnswerModel currentAnswerState,
   }) {
-    return QuizAnswerState(
+    return QuizQuestionAnswerModel(
       isSelected: selectedIndex == optionIndex,
       isAnswered: currentAnswerState.isAnswered,
       isCorrect: optionIndex == question.correctIndex,

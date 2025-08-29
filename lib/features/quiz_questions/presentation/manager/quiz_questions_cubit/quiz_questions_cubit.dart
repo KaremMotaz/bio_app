@@ -1,17 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/errors/failure.dart';
 import '../../../data/models/quiz_question_model.dart';
-import '../../../domain/entities/quiz_progress.dart';
-import '../../../domain/entities/quiz_result.dart';
-import '../../../domain/entities/quiz_status.dart';
-import '../../../domain/extensions/quiz_loaded_state_extension.dart';
-import '../../../domain/logic/quiz_helpers.dart';
+import '../../../data/models/quiz_progress_model.dart';
+import '../../../data/models/quiz_result_model.dart';
+import '../../../data/models/quiz_status_model.dart';
+import '../../../domain/helper/quiz_loaded_state_extension.dart';
+import '../../../domain/helper/quiz_helpers.dart';
 import '../../../domain/repos/quiz_questions_repo.dart';
-
-part 'quiz_answer_state.dart';
+part '../../../data/models/quiz_question_answer_model.dart';
 part 'quiz_questions_state.dart';
 
 class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
@@ -39,12 +37,12 @@ class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
         emit(
           QuizQuestionsLoadedState(
             questions: questions,
-            status: QuizStatus(score: 0, remainingLives: 5),
-            answerState: const QuizAnswerState(
+            status: QuizStatusModel(score: 0, remainingLives: 5),
+            answerState: const QuizQuestionAnswerModel(
               isSelected: false,
               selectedAnswers: {},
             ),
-            progress: QuizProgress(
+            progress: QuizProgressModel(
               currentQuestionIndex: 0,
               answeredQuestionsCount: 0,
               totalQuestions: questions.length,
@@ -90,10 +88,12 @@ class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
   Future<void> nextQuestion() async {
     final currentState = state as QuizQuestionsLoadedState;
 
-    final QuizProgress newProgress = currentState.progress.copyWith(
-      currentQuestionIndex: currentState.currentQuestionIndex + 1,
-      answeredQuestionsCount: currentState.answeredQuestionsCount + 1,
-    );
+    final QuizProgressModel newProgress = currentState.progress
+        .copyWith(
+          currentQuestionIndex: currentState.currentQuestionIndex + 1,
+          answeredQuestionsCount:
+              currentState.answeredQuestionsCount + 1,
+        );
 
     if (!newProgress.isLastQuestionFinished) {
       emit(
@@ -115,7 +115,7 @@ class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
 
       emit(
         QuizQuestionsFinishedState(
-          result: QuizResult(
+          result: QuizResultModel(
             finalScore: currentState.status.score,
             totalMaxScore: totalMaxScore,
             duration: _timer.getDuration(),
@@ -151,7 +151,7 @@ class QuizQuestionsCubit extends Cubit<QuizQuestionsState> {
 
     emit(
       QuizQuestionsFinishedState(
-        result: QuizResult(
+        result: QuizResultModel(
           finalScore: currentState.status.score,
           totalMaxScore: totalMaxScore,
           duration: _timer.getDuration(),

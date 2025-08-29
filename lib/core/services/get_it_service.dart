@@ -46,7 +46,7 @@ import '../../features/chapters/data/repos/chapter_repo_imp.dart';
 import '../../features/lessons/data/data_source/lessons_local_data_source_imp.dart';
 import '../../features/lessons/data/data_source/lessons_remote_data_source.dart';
 import '../../features/lessons/data/repos/lesson_repo_imp.dart';
-import '../../features/quiz_questions/domain/logic/quiz_helpers.dart';
+import '../../features/quiz_questions/domain/helper/quiz_helpers.dart';
 import '../../features/units/data/data_source/units_local_data_source_imp.dart';
 import '../../features/units/data/data_source/units_remote_data_source.dart';
 import '../../features/units/data/repos/unit_repo_imp.dart';

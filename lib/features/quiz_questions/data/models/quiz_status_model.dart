@@ -1,17 +1,14 @@
-class QuizStatus {
+class QuizStatusModel {
   final double score;
   final int remainingLives;
 
-  QuizStatus({
+  QuizStatusModel({
     required this.score,
     required this.remainingLives,
   });
 
-  QuizStatus copyWith({
-    double? score,
-    int? remainingLives,
-  }) {
-    return QuizStatus(
+  QuizStatusModel copyWith({double? score, int? remainingLives}) {
+    return QuizStatusModel(
       score: score ?? this.score,
       remainingLives: remainingLives ?? this.remainingLives,
     );

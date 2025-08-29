@@ -1,7 +1,7 @@
 import '../../data/models/quiz_question_model.dart';
 import '../../presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
-import '../entities/quiz_progress.dart';
-import '../entities/quiz_status.dart';
+import '../../data/models/quiz_progress_model.dart';
+import '../../data/models/quiz_status_model.dart';
 
 extension QuizLoadedStateX on QuizQuestionsLoadedState {
   QuizQuestionModel get currentQuestion =>
@@ -36,13 +36,13 @@ extension QuizLoadedStateX on QuizQuestionsLoadedState {
 
   bool get isSelected => answerState.isSelected;
 
-  QuizProgress get quizProgress => QuizProgress(
+  QuizProgressModel get quizProgress => QuizProgressModel(
     currentQuestionIndex: currentQuestionIndex,
     answeredQuestionsCount: answeredQuestionsCount,
     totalQuestions: totalQuestions,
   );
 
-  QuizStatus get quizStatus => QuizStatus(
+  QuizStatusModel get quizStatus => QuizStatusModel(
     score: status.score,
     remainingLives: status.remainingLives,
   );

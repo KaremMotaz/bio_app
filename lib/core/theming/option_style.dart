@@ -72,7 +72,9 @@ class OptionStyle {
     );
   }
 
-  static OptionStyle quizQuestionStyle(QuizAnswerState answerState) {
+  static OptionStyle quizQuestionStyle(
+    QuizQuestionAnswerModel answerState,
+  ) {
     final isSelected = answerState.isSelected;
     final isCorrect = answerState.isCorrect ?? false;
     final isAnswered = answerState.isAnswered;

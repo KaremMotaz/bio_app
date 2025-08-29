@@ -14,7 +14,7 @@ class QuizQuestionCard extends StatelessWidget {
     required this.answerState,
   });
   final QuizQuestionEntity question;
-  final QuizAnswerState answerState;
+  final QuizQuestionAnswerModel answerState;
 
   @override
   Widget build(BuildContext context) {

@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/functions/show_confirm_dialog.dart';
 import '../../../../core/theming/assets_data.dart';
-import '../../domain/entities/quiz_progress.dart';
-import '../../domain/entities/quiz_status.dart';
+import '../../data/models/quiz_progress_model.dart';
+import '../../data/models/quiz_status_model.dart';
 import '../manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import 'custom_linear_progress_bar.dart';
 
@@ -16,8 +16,8 @@ class QuizHeader extends StatelessWidget {
     required this.progress,
     required this.status,
   });
-  final QuizProgress progress;
-  final QuizStatus status;
+  final QuizProgressModel progress;
+  final QuizStatusModel status;
 
   @override
   Widget build(BuildContext context) {

@@ -1,13 +1,13 @@
-part of 'quiz_questions_cubit.dart';
+part of '../../presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 
-class QuizAnswerState {
+class QuizQuestionAnswerModel {
   final bool isSelected;
   final bool isAnswered;
   final bool? isCorrect;
   final bool isLastLifeLost;
   final Map<String, int?> selectedAnswers;
 
-  const QuizAnswerState({
+  const QuizQuestionAnswerModel({
     required this.isSelected,
     required this.selectedAnswers,
     this.isCorrect,
@@ -15,14 +15,14 @@ class QuizAnswerState {
     this.isLastLifeLost = false,
   });
 
-  QuizAnswerState copyWith({
+  QuizQuestionAnswerModel copyWith({
     bool? isSelected,
     bool? isCorrect,
     bool? isAnswered,
     bool? isLastLifeLost,
     Map<String, int?>? selectedAnswers,
   }) {
-    return QuizAnswerState(
+    return QuizQuestionAnswerModel(
       isSelected: isSelected ?? this.isSelected,
       isCorrect: isCorrect ?? this.isCorrect,
       isAnswered: isAnswered ?? this.isAnswered,
