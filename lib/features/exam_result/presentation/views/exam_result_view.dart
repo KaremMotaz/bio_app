@@ -1,3 +1,4 @@
+import 'package:bio_app/core/widgets/custom_app_bar_pop_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,6 +13,13 @@ class ExamResultView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: Navigator.of(context).canPop()
+            ? const CustomAppBarPopIcon()
+            : null,
+        title: const Text('نتيجة الإمتحان'),
+      ),
       body: BlocBuilder<ExamResultCubit, ExamResultState>(
         builder: (context, state) {
           switch (state.runtimeType) {

@@ -11,46 +11,54 @@ class PastExamCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        border: const Border(
+          right: BorderSide(color: Colors.orange, width: 10),
+        ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(exam.title, style: TextStyles.bold18),
-                    const SizedBox(height: 16),
-            Row(
-              children: [
-                const Icon(Icons.calendar_month, size: 16),
-                const SizedBox(width: 6),
-                Text(
-                  formatExamTime(exam.startTime, exam.endTime),
-                  style: TextStyles.regular14,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Colors.orange.shade50,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(exam.title, style: TextStyles.bold18),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  const Icon(Icons.calendar_month, size: 16),
+                  const SizedBox(width: 6),
+                  Text(
+                    formatExamTime(exam.startTime, exam.endTime),
+                    style: TextStyles.regular14,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 6,
                 ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8,
-                vertical: 6,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.green.shade100,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(
-                "عرض النتيجة",
-                style: TextStyles.regular14.copyWith(
-                  color: Colors.green.shade800,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade200,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  "عرض النتيجة",
+                  style: TextStyles.regular14.copyWith(
+                    color: Colors.grey.shade700,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -23,7 +23,7 @@ class ExamsViewBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text("الإمتحانات القادمة", style: TextStyles.bold18),
-          const SizedBox(height: 10),
+          const SizedBox(height: 16),
           if (availableExams.isEmpty)
             const Center(
               child: Text(
@@ -34,10 +34,10 @@ class ExamsViewBody extends StatelessWidget {
           else
             AvailableExamsListView(availableExams: availableExams),
 
-          const SizedBox(height: 30),
+          const SizedBox(height: 25),
 
           const Text("الإمتحانات السابقة", style: TextStyles.bold18),
-          const SizedBox(height: 10),
+          const SizedBox(height: 16),
           if (pastExams.isEmpty)
             const Center(
               child: Text(
