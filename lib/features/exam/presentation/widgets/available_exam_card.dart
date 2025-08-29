@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../core/functions/format_date_time.dart';
@@ -23,10 +22,27 @@ class AvailableExamCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(exam.title, style: TextStyles.bold18),
-            const SizedBox(height: 8),
-            Text(
-              "يبدأ: ${formatDateTime(exam.startTime)}",
-              style: TextStyles.regular14,
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                const Icon(Icons.calendar_month, size: 16),
+                const SizedBox(width: 6),
+                Text(
+                  formatExamTime(exam.startTime, exam.endTime),
+                  style: TextStyles.regular14,
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            Row(
+              children: [
+                const Icon(Icons.access_time, size: 16),
+                const SizedBox(width: 6),
+                Text(
+                  "مدة الإمتحان: ${exam.endTime.difference(exam.startTime).inMinutes} دقيقة",
+                  style: TextStyles.regular14,
+                ),
+              ],
             ),
           ],
         ),

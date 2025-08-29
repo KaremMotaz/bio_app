@@ -22,12 +22,18 @@ class PastExamCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(exam.title, style: TextStyles.bold18),
-            const SizedBox(height: 8),
-            Text(
-              "تاريخ الإمتحان: ${formatDate(exam.startTime)}",
-              style: TextStyles.regular14,
+                    const SizedBox(height: 16),
+            Row(
+              children: [
+                const Icon(Icons.calendar_month, size: 16),
+                const SizedBox(width: 6),
+                Text(
+                  formatExamTime(exam.startTime, exam.endTime),
+                  style: TextStyles.regular14,
+                ),
+              ],
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 16),
             Container(
               padding: const EdgeInsets.symmetric(
                 horizontal: 8,

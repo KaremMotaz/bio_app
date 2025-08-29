@@ -17,7 +17,7 @@ class AvailableExamsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 125,
       child: ListView.builder(
         itemCount: availableExams.length,
         itemBuilder: (context, index) {
