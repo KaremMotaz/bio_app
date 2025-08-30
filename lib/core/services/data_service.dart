@@ -16,7 +16,6 @@ abstract class DatabaseService {
 
   Future<void> deleteData({required String path});
 
-  /// Unified fetch for both document & collection
   Future<dynamic> getData({
     required String path,
     List<FilterCondition>? filters,

@@ -1,3 +1,5 @@
+import 'package:bio_app/features/quiz_questions/presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
+
 import '../../features/lessons/data/data_source/quizzes_remote_data_source.dart';
 import '../../features/lessons/data/repos/quiz_repo_imp.dart';
 import '../../features/quiz_questions/data/data_source/quiz_questions_local_data_source.dart';
@@ -99,6 +101,13 @@ void setupGetIt() {
     LocalCacheService<ExamsAnswersModel>(),
   );
 
+  getIt.registerLazySingleton<QuizQuestionAnswerModel>(
+    () => const QuizQuestionAnswerModel(
+      isSelected: true,
+      selectedAnswers: {},
+    ),
+  );
+
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImp(
       firebaseAuthService: getIt(),
@@ -143,7 +152,6 @@ void setupGetIt() {
     ),
   );
 
-  
   getIt.registerLazySingleton<FilterVisibleExams>(
     () => FilterVisibleExams(examRepoImpl: getIt()),
   );

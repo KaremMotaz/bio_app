@@ -95,6 +95,14 @@ class FirebaseAuthService {
       );
       return right(userCredential.user!);
     } on FirebaseAuthException catch (e) {
+      if (e.code == 'canceled') {
+        return left(
+          const ServerFailure(
+            code: 'canceled',
+            message: 'تم إلغاء تسجيل الدخول من قبل المستخدم',
+          ),
+        );
+      }
       return left(
         ServerFailure(
           code: e.code,
@@ -112,14 +120,6 @@ class FirebaseAuthService {
   Future<Either<Failure, User>> signinWithFacebook() async {
     try {
       final loginResult = await _facebookAuth.login();
-      if (loginResult.status != LoginStatus.success) {
-        return left(
-          const ServerFailure(
-            code: 'cancelled',
-            message: 'Facebook sign-in was cancelled by user.',
-          ),
-        );
-      }
 
       final credential = FacebookAuthProvider.credential(
         loginResult.accessToken!.tokenString,
@@ -130,6 +130,14 @@ class FirebaseAuthService {
       );
       return right(userCredential.user!);
     } on FirebaseAuthException catch (e) {
+      if (e.code == 'canceled') {
+        return left(
+          const ServerFailure(
+            code: 'canceled',
+            message: 'تم إلغاء تسجيل الدخول من قبل المستخدم',
+          ),
+        );
+      }
       return left(
         ServerFailure(
           code: e.code,
@@ -259,6 +267,10 @@ class FirebaseAuthService {
       await databaseService.deleteData(
         path:
             '${BackendEndpoint.deleteUser}/$uId/${BackendEndpoint.getExamsResults}',
+      );
+      await databaseService.deleteData(
+        path:
+            '${BackendEndpoint.deleteUser}/$uId/${BackendEndpoint.markExamAsOpened}',
       );
       await deleteUserExamsResult();
 

@@ -30,4 +30,18 @@ class QuizQuestionAnswerModel {
       selectedAnswers: selectedAnswers ?? this.selectedAnswers,
     );
   }
+
+    QuizQuestionAnswerModel getAnswerStateForOption({
+    required QuizQuestionEntity question,
+    required int selectedIndex,
+    required int optionIndex,
+    required QuizQuestionAnswerModel currentAnswerState,
+  }) {
+    return QuizQuestionAnswerModel(
+      isSelected: selectedIndex == optionIndex,
+      isAnswered: currentAnswerState.isAnswered,
+      isCorrect: optionIndex == question.correctIndex,
+      selectedAnswers: currentAnswerState.selectedAnswers,
+    );
+  }
 }
