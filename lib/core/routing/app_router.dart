@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:bio_app/core/widgets/no_internet_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -43,7 +46,7 @@ import '../services/get_it_service.dart';
 import 'routes.dart';
 
 abstract class AppRouter {
-  static GoRouter createRouter() {
+  static GoRouter createRouter({required bool isConnected}) {
     final bool hasSeenOnboarding = CacheHelper.getBool(
       key: kHasSeenOnboarding,
     );
@@ -102,6 +105,11 @@ abstract class AppRouter {
           builder: (context, state) {
             return const MainView();
           },
+        ),
+        GoRoute(
+          path: Routes.noInternet,
+          builder: (context, state) =>
+              NoInternetView(isConnected: isConnected),
         ),
         GoRoute(
           path: Routes.profileView,
@@ -232,6 +240,24 @@ abstract class AppRouter {
           },
         ),
       ],
+      redirect: (context, state) {
+        String? lastLocation;
+
+        final currentLocation = state.uri.toString();
+                  log('currentLocation: $currentLocation');
+
+        if (!isConnected && currentLocation != Routes.noInternet) {
+          lastLocation = currentLocation;
+          log('lastLocation: $lastLocation');
+          return Routes.noInternet;
+        }
+
+        if (isConnected && currentLocation == Routes.noInternet) {
+          return lastLocation ?? Routes.mainView;
+        }
+
+        return null;
+      },
     );
   }
 }

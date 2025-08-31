@@ -1,3 +1,4 @@
+import 'package:bio_app/core/sync/fetch_and_cache_data.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/services/cache_helper.dart';
@@ -17,6 +18,7 @@ class DailyTaskRunner {
 
     if (lastRunDate != today) {
       await leaderboardRepo.resetUsersOnLeaderboard();
+      await fetchAndCacheData();
       await CacheHelper.set(key: 'last_daily_run_date', value: today);
     }
   }

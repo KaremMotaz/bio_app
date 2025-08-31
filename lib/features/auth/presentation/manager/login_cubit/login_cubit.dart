@@ -68,5 +68,4 @@ class LoginCubit extends Cubit<LoginState> {
     );
   }
 
-  getUserData() async {}
 }

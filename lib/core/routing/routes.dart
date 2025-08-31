@@ -15,4 +15,5 @@ class Routes {
   static const String chaptersView = '/chaptersView';
   static const String lessonsView = '/lessonsView';
   static const String quizReadyView = '/quizReadyView';
+  static const String noInternet = '/noInternet';
 }

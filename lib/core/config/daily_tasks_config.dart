@@ -10,5 +10,6 @@ class DailyTasksConfig {
     );
 
     await dailyTaskRunner.runDailyTasks();
+
   }
 }

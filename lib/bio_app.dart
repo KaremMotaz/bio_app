@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:bio_app/core/config/init_supabase_safely.dart';
 import 'package:bio_app/core/routing/app_router.dart';
-import 'package:bio_app/core/routing/no_internet_router.dart';
 import 'package:bio_app/core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -33,6 +32,7 @@ class _BioAppState extends State<BioApp> {
             }
           });
         });
+
     super.initState();
   }
 
@@ -67,9 +67,7 @@ class _BioAppState extends State<BioApp> {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      routerConfig: _isConnected
-          ? AppRouter.createRouter()
-          : NoInternetRouter.createRouter(isConnected: _isConnected),
+      routerConfig: AppRouter.createRouter(isConnected: _isConnected),
     );
   }
 }
