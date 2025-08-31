@@ -46,7 +46,6 @@ class ExamResultCubit extends Cubit<ExamResultState> {
                 );
               },
               (studentAnswers) {
-
                 final double studentScore =
                     ExamGradingService.calculateStudentScore(
                       examQuestions: examQuestions,

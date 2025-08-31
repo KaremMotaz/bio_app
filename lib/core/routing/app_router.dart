@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bio_app/core/widgets/no_internet_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -244,11 +242,9 @@ abstract class AppRouter {
         String? lastLocation;
 
         final currentLocation = state.uri.toString();
-                  log('currentLocation: $currentLocation');
 
         if (!isConnected && currentLocation != Routes.noInternet) {
           lastLocation = currentLocation;
-          log('lastLocation: $lastLocation');
           return Routes.noInternet;
         }
 
