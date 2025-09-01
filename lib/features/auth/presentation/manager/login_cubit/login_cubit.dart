@@ -17,7 +17,7 @@ class LoginCubit extends Cubit<LoginState> {
     ).isLoggedIn()) {
       String uid = FirebaseAuthService.currentUser!.uid;
       UserEntity userData = await authRepo.getUserData(uid: uid);
-      bool oldUser = userData.oldUser;
+      bool oldUser = userData.oldUser ;
       return oldUser;
     }
     return false;

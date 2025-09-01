@@ -51,7 +51,7 @@ abstract class AppRouter {
     final bool isLoggedIn = getIt<FirebaseAuthService>().isLoggedIn();
 
     final String initialPath;
-    if (isLoggedIn) {
+    if (isLoggedIn ) {
       initialPath = Routes.mainView;
     } else if (hasSeenOnboarding) {
       initialPath = Routes.signInView;

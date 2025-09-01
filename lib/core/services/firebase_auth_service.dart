@@ -80,45 +80,55 @@ class FirebaseAuthService {
   }
 
   // Google Sign-in
-  Future<Either<Failure, User>> signInWithGoogle({
-    String? serverClientId,
-  }) async {
-    try {
-      if (serverClientId != null) {
-        _googleSignIn.initialize(serverClientId: serverClientId);
-      }
-      final googleUser = await _googleSignIn.authenticate();
+Future<Either<Failure, User>> signInWithGoogle({
+  String? serverClientId,
+}) async {
+  try {
+    if (serverClientId != null) {
+      _googleSignIn.initialize(serverClientId: serverClientId);
+    }
+    final googleUser = await _googleSignIn.authenticate();
 
-      final googleAuth = googleUser.authentication;
-      final credential = GoogleAuthProvider.credential(
-        idToken: googleAuth.idToken,
-      );
+    final googleAuth = googleUser.authentication;
+    final credential = GoogleAuthProvider.credential(
+      idToken: googleAuth.idToken,
+    );
 
-      final userCredential = await _firebaseAuth.signInWithCredential(
-        credential,
-      );
-      return right(userCredential.user!);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'canceled') {
-        return left(
-          const ServerFailure(
-            code: 'canceled',
-            message: 'تم إلغاء تسجيل الدخول من قبل المستخدم',
-          ),
-        );
-      }
+    final userCredential = await _firebaseAuth.signInWithCredential(
+      credential,
+    );
+    return right(userCredential.user!);
+  } on GoogleSignInException catch (e) {
+    log(e.toString());
+    if (e.code == GoogleSignInExceptionCode.canceled) {
       return left(
-        ServerFailure(
-          code: e.code,
-          message: e.message ?? 'Firebase error',
+        const ServerFailure(
+          code: 'canceled',
+          message: 'تم إلغاء تسجيل الدخول من قبل المستخدم',
         ),
       );
-    } catch (e) {
-      return left(
-        ServerFailure(code: 'unknown', message: e.toString()),
-      );
     }
+    return left(
+      ServerFailure(
+        code: e.code.toString(),
+        message: e.description ?? 'Google Sign-in error',
+      ),
+    );
+  } on FirebaseAuthException catch (e) {
+    log(e.toString());
+    return left(
+      ServerFailure(
+        code: e.code,
+        message: e.message ?? 'Firebase error',
+      ),
+    );
+  } catch (e) {
+    log(e.toString());
+    return left(
+      ServerFailure(code: 'unknown', message: e.toString()),
+    );
   }
+}
 
   // Facebook Sign-in
   Future<Either<Failure, User>> signinWithFacebook() async {

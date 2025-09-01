@@ -17,41 +17,69 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) async {
         if (state is LoginSuccessState) {
-          final currentUser = FirebaseAuthService.currentUser!;
-          final oldStudent = await BlocProvider.of<LoginCubit>(
-            context,
-          ).showUserIsOldOrNot();
+          try {
+            
+            await FirebaseAuthService.currentUser?.reload();
+            final currentUser = FirebaseAuthService.currentUser;
 
-          // Check if user logged in via Facebook (or other providers that don't require email verification)
-          final isSocialLogin = currentUser.providerData.any(
-            (userInfo) => userInfo.providerId != 'password',
-          );
-
-          if (!context.mounted) return;
-
-          if (isSocialLogin || currentUser.emailVerified) {
-            if (oldStudent == false) {
-              successSnackBar(
+            if (currentUser == null) {
+              if (!context.mounted) return;
+              errorSnackBar(
                 context: context,
-                message: "تم تسجيل الدخول بنجاح.",
+                message:
+                    "لم يتم العثور على بيانات المستخدم. حاول مرة أخرى.",
               );
-              GoRouter.of(
-                context,
-              ).pushReplacement(Routes.fillProfileView);
-            } else if (oldStudent == true) {
-              GoRouter.of(context).pushReplacement(Routes.mainView);
-              successSnackBar(
+              return;
+            }
+
+          
+            if (!context.mounted) return;
+
+          
+            final oldStudent = await context
+                .read<LoginCubit>()
+                .showUserIsOldOrNot();
+
+            // حاول تحقق من حسابك هل يكون مسجل بواسطة حساب جوجل او فيسبوك
+            final isSocialLogin = currentUser.providerData.any(
+              (userInfo) => userInfo.providerId != 'password',
+            );
+
+            if (!context.mounted) return;
+
+            if (isSocialLogin || currentUser.emailVerified) {
+              if (!oldStudent) {
+                successSnackBar(
+                  context: context,
+                  message: "تم تسجيل الدخول بنجاح.",
+                );
+                GoRouter.of(
+                  context,
+                ).pushReplacement(Routes.fillProfileView);
+              } else {
+                successSnackBar(
+                  context: context,
+                  message: "تم تسجيل الدخول بنجاح.",
+                );
+                GoRouter.of(context).pushReplacement(Routes.mainView);
+              }
+            } else {
+              errorSnackBar(
                 context: context,
-                message: "تم تسجيل الدخول بنجاح.",
+                message: "يرجى التحقق من بريدك الإلكتروني أولاً.",
               );
             }
-          } else {
+          } catch (e) {
+          
             errorSnackBar(
               context: context,
-              message: "يرجى التحقق من بريدك الإلكتروني اولا.",
+              message:
+                  "تعذر إكمال تسجيل الدخول. تأكد من اتصالك بالإنترنت.",
             );
+            debugPrint("Login flow error: $e");
           }
         }
+
         if (state is LoginFailureState) {
           errorSnackBar(context: context, message: state.message);
         }
@@ -61,7 +89,7 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
           progressIndicator: const CircularProgressIndicator(
             color: Colors.white,
           ),
-          inAsyncCall: state is LoginLoadingState ? true : false,
+          inAsyncCall: state is LoginLoadingState,
           child: const LoginViewBody(),
         );
       },
