@@ -17,3 +17,10 @@ final class LoginFailureState extends LoginState {
   final String message;
   LoginFailureState({required this.message});
 }
+
+final class LoginNavigateState extends LoginState {
+  final String message;
+  final String route;
+
+  LoginNavigateState({required this.message, required this.route});
+}

@@ -2,7 +2,6 @@ import 'dart:convert';
 import '../../../../core/errors/server_failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../../../../core/errors/auth_failure.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/helpers/backend_endpoint.dart';
@@ -95,8 +94,12 @@ class AuthRepoImp extends AuthRepo {
         (user) async {
           UserEntity userEntity = UserModel.fromFirebaseUser(user);
 
-          final bool isUserExists = await checkIfDataExists(
-            documentId: user.uid,
+          final Either<Failure, bool> result =
+              await checkIfDataExists(documentId: user.uid);
+
+          final bool isUserExists = result.fold(
+            (failure) => false,
+            (isExists) => isExists,
           );
 
           if (isUserExists) {
@@ -131,8 +134,12 @@ class AuthRepoImp extends AuthRepo {
         (user) async {
           UserEntity userEntity = UserModel.fromFirebaseUser(user);
 
-          final bool isUserExists = await checkIfDataExists(
-            documentId: user.uid,
+          final Either<Failure, bool> result =
+              await checkIfDataExists(documentId: user.uid);
+
+          final bool isUserExists = result.fold(
+            (failure) => false,
+            (isExists) => isExists,
           );
 
           if (isUserExists) {
@@ -244,13 +251,32 @@ class AuthRepoImp extends AuthRepo {
   }
 
   @override
-  Future<bool> checkIfDataExists({required String documentId}) async {
+  Future<Either<Failure, bool>> checkIfDataExists({
+    required String documentId,
+  }) async {
     try {
-      return await databaseService.checkIfDataExists(
+      bool isDataExists = await databaseService.checkIfDataExists(
         path: '${BackendEndpoint.checkIfDataExists}/$documentId',
       );
+      return right(isDataExists);
     } catch (e) {
-      return false;
+      return left(AuthFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> showUserIsOldOrNot() async {
+    try {
+      if (firebaseAuthService.isLoggedIn()) {
+        String uid = FirebaseAuthService.currentUser!.uid;
+        UserEntity userData = await getUserData(uid: uid);
+        bool oldUser = userData.oldUser;
+        return right(oldUser);
+      } else {
+        return right(false);
+      }
+    } catch (e) {
+      return left(AuthFailure(message: e.toString()));
     }
   }
 }
