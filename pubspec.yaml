@@ -18,7 +18,6 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^9.1.1
   flutter_facebook_auth: ^7.1.2
-  flutter_launcher_icons: ^0.14.4
   flutter_localization: ^0.3.3
   flutter_localizations:
     sdk: flutter
@@ -47,6 +46,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   hive_generator: ^2.0.1
+  flutter_launcher_icons: ^0.14.4
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/app_icon/biotics_app_icon.png"
+  min_sdk_android: 21 
 
 flutter:
   uses-material-design: true
@@ -55,6 +60,7 @@ flutter:
     - assets/svg/
     - assets/images/
     - assets/avatars/
+    - assets/app_icon/
 
   fonts:
     - family: "Cairo"
