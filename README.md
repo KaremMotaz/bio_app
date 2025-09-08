@@ -1,53 +1,110 @@
-#  Biotics App
-A new Flutter e-learning App.
+# 📘 Biotics App  
 
-## About
-I developed a fully functional e-learning application focused on biology education using Flutter. The app follows Clean Architecture and integrates Firebase services for authentication , and real-time data sync and integrates supabase for storage.
+A modern **Flutter e-learning app** for biology education.  
+Built with **Clean Architecture**, powered by **Firebase** (auth & real-time sync) and **Supabase** (storage) and **Hive** (Local Database).  
 
-## Features
-**Authentication:** 
-- Sign-in, Sign-up, Reset password, Logout, Verify email
+---
 
-**User Profile:** 
-- Edit user information (Name, Email, Avatar,Phone Number)
+## 📖 About  
 
-**Lesson Content:** 
-- View quizzes
+I developed a fully functional **e-learning application** focused on **biology education**.  
+The app provides structured content, quizzes, exams, and gamified learning.
 
-**Database Structure:**
+---
 
-- Courses structured into units, chapters, and lessons
+## 🚀 Features  
 
-**Performance:**
+### 🔐 Authentication  
+- Sign-in / Sign-up  
+- Email Verification  
+- Reset Password  
+- Logout  
 
-- Cached images for faster load times
+### 📚 Lesson Content  
+- Curriculum structured into **Units → chapters → lessons**  
+- Interactive **quizzes**  
+- Real-time updates synced with Firebase  
 
-## Preview
-### Splash Screen
-![Splash Screen](assets/Biotics_app_presentation/1.png)
-### Welcome To Biotics
-![Welcome To Biotics](assets/Biotics_app_presentation/2.png)
-### Onboarding Screen
-![Onboarding Screen](assets/Biotics_app_presentation/3.png)
-### Auth Screens
-![Auth Screens](assets/Biotics_app_presentation/4.png)
-### Curriculum Screens
-![Curriculum Screens](assets/Biotics_app_presentation/5.png)
-### Quiz Screens
-![Quiz Screens](assets/Biotics_app_presentation/6.png)
-### Exam Screens
-![Exam Screens](assets/Biotics_app_presentation/7.png)
-### Exam Result Screens
-![Exam Result Screens](assets/Biotics_app_presentation/8.png)
-### Leaderboard Screen
-![Leaderboard Screen](assets/Biotics_app_presentation/9.png)
-### Settings Screen
-![Settings Screen](assets/Biotics_app_presentation/10.png)
-### Profile Screen
-![Profile Screen](assets/Biotics_app_presentation/11.png)
-### No Internet Screen
-![No Internet Screen](assets/Biotics_app_presentation/12.png)
-### Contact Us
-![Contact Us](assets/Biotics_app_presentation/13.png)
-### Thank To Your Time
-![Thank To Your Time](assets/Biotics_app_presentation/14.png)
+### 📝 Quizzes & Exams  
+- Lesson quizzes with multiple question types (MCQ, True/False, Images)  
+- Teacher-assigned **scheduled exams** with countdown timers  
+- Auto-grading for quizzes and partial/manual grading for exams  
+- Single attempt & auto-submit when time ends  
+- Exam result screen with detailed review  
+
+### 🏆 Gamification  
+- Leaderboard showing top students  
+- XP points.
+
+### ⚡ Performance & Storage  
+- Cached images for faster loading  
+- Firebase for real-time sync  
+- Supabase for secure media storage  
+
+### 👤 User Profile  
+- Edit Name, Email, Phone Number, and Avatar  
+- Manage personal account settings  
+
+---
+
+## 📱 Preview  
+
+### Splash Screen  
+![Splash Screen](assets/Biotics_app_presentation/1.png)  
+
+### Welcome To Biotics  
+![Welcome To Biotics](assets/Biotics_app_presentation/2.png)  
+
+### Onboarding Screen  
+![Onboarding Screen](assets/Biotics_app_presentation/3.png)  
+
+### Auth Screens  
+![Auth Screens](assets/Biotics_app_presentation/4.png)  
+
+### Curriculum Screens  
+![Curriculum Screens](assets/Biotics_app_presentation/5.png)  
+
+### Quiz Screens  
+![Quiz Screens](assets/Biotics_app_presentation/6.png)  
+
+### Exam Screens  
+![Exam Screens](assets/Biotics_app_presentation/7.png)  
+
+### Exam Result Screens  
+![Exam Result Screens](assets/Biotics_app_presentation/8.png)  
+
+### Leaderboard Screen  
+![Leaderboard Screen](assets/Biotics_app_presentation/9.png)  
+
+### Settings Screen  
+![Settings Screen](assets/Biotics_app_presentation/10.png)  
+
+### Profile Screen  
+![Profile Screen](assets/Biotics_app_presentation/11.png)  
+
+### No Internet Screen  
+![No Internet Screen](assets/Biotics_app_presentation/12.png)  
+
+### Contact Us  
+![Contact Us](assets/Biotics_app_presentation/13.png)  
+
+### Thank You For Your Time  
+![Thank You For Your Time](assets/Biotics_app_presentation/14.png)  
+
+---
+
+## 🛠️ Tech Stack  
+- **Flutter** (Clean Architecture + BLoC/Cubit)  
+- **Firebase** (Authentication, Firestore, Real-time sync)  
+- **Supabase** (Media storage)  
+- **Hive** (Local storage & caching)  
+
+---
+
+## 📩 Contact  
+
+If you’d like to collaborate or learn more:  
+📧 Email: [karemmotaz2929@gmail.com]  
+🌐 LinkedIn: [https://www.linkedin.com/in/karem-motaz-bb55a9213/]  
+
+---
