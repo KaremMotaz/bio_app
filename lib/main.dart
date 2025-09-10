@@ -1,4 +1,4 @@
-import 'package:bio_app/bio_app.dart';
+import 'package:bio_app/biotics_app.dart';
 import 'package:bio_app/core/config/daily_tasks_config.dart';
 import 'package:bio_app/core/config/hive_config.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,5 +21,5 @@ void main() async {
 
   await DailyTasksConfig.init();
 
-  runApp(const BioApp());
+  runApp(const BioticsApp());
 }

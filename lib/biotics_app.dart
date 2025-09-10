@@ -1,19 +1,19 @@
 import 'dart:async';
 import 'package:bio_app/core/config/init_supabase_safely.dart';
 import 'package:bio_app/core/routing/app_router.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
+import 'package:bio_app/core/theming/theme_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
-class BioApp extends StatefulWidget {
-  const BioApp({super.key});
+class BioticsApp extends StatefulWidget {
+  const BioticsApp({super.key});
 
   @override
-  State<BioApp> createState() => _BioAppState();
+  State<BioticsApp> createState() => _BioticsAppState();
 }
 
-class _BioAppState extends State<BioApp> {
+class _BioticsAppState extends State<BioticsApp> {
   bool _isConnected = true;
   StreamSubscription? _connectivitySubscription;
   @override
@@ -48,20 +48,7 @@ class _BioAppState extends State<BioApp> {
       debugShowCheckedModeBanner: false,
       locale: const Locale("ar"),
       supportedLocales: const [Locale('ar')],
-      theme: ThemeData(
-        fontFamily: "Cairo",
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          titleTextStyle: TextStyles.bold17.copyWith(
-            fontFamily: 'Cairo',
-            color: Colors.grey.shade600,
-          ),
-          iconTheme: const IconThemeData(color: Colors.black),
-          centerTitle: true,
-        ),
-      ),
+      theme: ThemeManager.getAppTheme(),
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
