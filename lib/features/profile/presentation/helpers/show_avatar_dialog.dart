@@ -48,10 +48,11 @@ void showAvatarsDialog({required BuildContext context}) {
                   style: TextStyles.bold18,
                 ),
                 const SizedBox(height: 20),
-                Expanded(
-                  child: StatefulBuilder(
-                    builder: (context, setState) {
-                      return GridView.builder(
+                StatefulBuilder(
+                  builder: (context, setState) {
+                    return SizedBox(
+                      height: 160,
+                      child: GridView.builder(
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 4,
@@ -84,9 +85,9 @@ void showAvatarsDialog({required BuildContext context}) {
                           );
                         },
                         itemCount: 8,
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
                 ),
                 AppTextButton(
                   buttonText: "تأكيد",
