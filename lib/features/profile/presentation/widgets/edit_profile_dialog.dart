@@ -26,103 +26,106 @@ editProfileDialog({
           padding: const EdgeInsetsDirectional.symmetric(
             horizontal: 20,
           ),
-          height: 250,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),
             color: Colors.white,
           ),
           child: Form(
             key: formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      title,
-                      style: TextStyles.bold18.copyWith(
-                        color: AppColors.darkModeGray,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        GoRouter.of(context).pop();
-                      },
-                      icon: const Icon(
-                        Icons.close_rounded,
-                        color: AppColors.darkModeGray,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                AppTextFormField(
-                  backgroundColor: const Color.fromARGB(
-                    255,
-                    244,
-                    241,
-                    241,
-                  ),
-                  textInputType: textInputType,
-                  hintText: hintText,
-                  controller: controller,
-                  validator: validator,
-                  isObscureText: isObscureText,
-                  suffixIcon: suffixIcon,
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  children: [
-                    Expanded(
-                      child: AppTextButton(
-                        buttonText: "إلغاء",
-                        backgroundColor:
-                            Theme.of(context).brightness ==
-                                Brightness.dark
-                            ? AppColors.lighterGray
-                            : const Color.fromARGB(
-                                255,
-                                233,
-                                231,
-                                231,
-                              ),
-                        verticalPadding: 10,
-                        buttonHeight: 30,
-                        borderRadius: 12,
-                        textStyle: TextStyles.semiBold16.copyWith(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyles.bold18.copyWith(
                           color: AppColors.darkModeGray,
-                          fontSize: 16,
                         ),
+                      ),
+                      IconButton(
                         onPressed: () {
-                          controller.clear();
                           GoRouter.of(context).pop();
                         },
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    Expanded(
-                      child: AppTextButton(
-                        buttonText: "حفظ",
-                        backgroundColor: AppColors.mainBlue,
-                        verticalPadding: 10,
-                        buttonHeight: 30,
-                        borderRadius: 12,
-                        textStyle: TextStyles.semiBold16.copyWith(
-                          color: Colors.white,
-                          fontSize: 16,
+                        icon: const Icon(
+                          Icons.close_rounded,
+                          color: AppColors.darkModeGray,
                         ),
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            onPressed();
-                            GoRouter.of(context).pop();
-                          }
-                        },
                       ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  AppTextFormField(
+                    backgroundColor: const Color.fromARGB(
+                      255,
+                      244,
+                      241,
+                      241,
                     ),
-                  ],
-                ),
-              ],
+                    textInputType: textInputType,
+                    hintText: hintText,
+                    controller: controller,
+                    validator: validator,
+                    isObscureText: isObscureText,
+                    suffixIcon: suffixIcon,
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: AppTextButton(
+                          buttonText: "إلغاء",
+                          backgroundColor:
+                              Theme.of(context).brightness ==
+                                  Brightness.dark
+                              ? AppColors.lighterGray
+                              : const Color.fromARGB(
+                                  255,
+                                  233,
+                                  231,
+                                  231,
+                                ),
+                          verticalPadding: 10,
+                          buttonHeight: 30,
+                          borderRadius: 12,
+                          textStyle: TextStyles.semiBold16.copyWith(
+                            color: AppColors.darkModeGray,
+                            fontSize: 16,
+                          ),
+                          onPressed: () {
+                            controller.clear();
+                            GoRouter.of(context).pop();
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      Expanded(
+                        child: AppTextButton(
+                          buttonText: "حفظ",
+                          backgroundColor: AppColors.mainBlue,
+                          verticalPadding: 10,
+                          buttonHeight: 30,
+                          borderRadius: 12,
+                          textStyle: TextStyles.semiBold16.copyWith(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              onPressed();
+                              GoRouter.of(context).pop();
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

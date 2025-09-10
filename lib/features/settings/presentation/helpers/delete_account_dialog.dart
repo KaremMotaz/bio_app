@@ -21,7 +21,6 @@ deleteAccountDialog({
   return Dialog(
     child: Container(
       padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
-      height: 250,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(20)),
         color: Colors.white,
@@ -30,6 +29,7 @@ deleteAccountDialog({
         key: formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -41,7 +41,7 @@ class AppTextFormField extends StatelessWidget {
             const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
         focusedBorder: focusedBorder ??
             buildOutLineInputBorder(
-              borderColor: AppColors.mainBlue,
+              borderColor: AppColors.gray,
             ),
         enabledBorder: enabledBorder ??
             buildOutLineInputBorder(
@@ -56,7 +56,7 @@ class AppTextFormField extends StatelessWidget {
         hintStyle: TextStyles.regular14,
         hintText: hintText,
         suffixIcon: suffixIcon,
-        fillColor: backgroundColor,
+        fillColor: backgroundColor ?? AppColors.lighterGray,
         filled: true,
       ),
       obscureText: isObscureText ?? false,

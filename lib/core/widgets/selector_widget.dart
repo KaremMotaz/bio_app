@@ -21,31 +21,38 @@ class SelectorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
+    return Dialog(
       backgroundColor: Colors.white,
-      titlePadding: const EdgeInsets.only(
-        top: 4,
-        left: 16,
-        right: 24,
-      ),
-      title: const Padding(
-        padding: EdgeInsets.only(bottom: 4),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 8),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            CloseIcon(),
-            Text('اختر رقم السؤال', style: TextStyles.semiBold18),
+            const CloseIcon(),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                bottom: 24,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'اختر رقم السؤال',
+                    style: TextStyles.semiBold18,
+                  ),
+                  const SizedBox(height: 20),
+                  ExamQuestionNumbersGridView(
+                    examQuestions: examQuestions,
+                    currentPageIndex: currentPageIndex,
+                    answers: answers,
+                    pageController: pageController,
+                  ),
+                ],
+              ),
+            ),
           ],
-        ),
-      ),
-      content: SizedBox(
-        width: double.maxFinite,
-        child: ExamQuestionNumbersGridView(
-          examQuestions: examQuestions,
-          currentPageIndex: currentPageIndex,
-          answers: answers,
-          pageController: pageController,
         ),
       ),
     );

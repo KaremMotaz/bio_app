@@ -31,7 +31,6 @@ class QuizHeader extends StatelessWidget {
               buttonText: "إنهاء",
               bodyContent: "هل أنت متأكد إنك تريد إنهاء الكويز؟",
               title: "إنهاء الكويز",
-              heightOfDialog: 200,
               buttonColor: const Color(0xffdb2323),
               onPressed: () async {
                 GoRouter.of(context).pop();
