@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomeNavigationController {
-  int selectedIndex = 0; 
+  int selectedIndex = 0;
   final PageController pageController = PageController();
 
   void dispose() {
@@ -10,16 +10,12 @@ class HomeNavigationController {
 
   void onItemTapped(int index, VoidCallback updateUI) {
     selectedIndex = index;
-    updateUI(); 
-    pageController.animateToPage(
-      index,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-    );
+    updateUI();
+    pageController.jumpToPage(index);
   }
 
   void onPageChanged(int index, VoidCallback updateUI) {
     selectedIndex = index;
-    updateUI(); 
+    updateUI();
   }
 }
