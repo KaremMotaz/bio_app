@@ -35,29 +35,38 @@ class PageViewItem extends StatelessWidget {
                 maintainSize: true,
                 child: TextButton(
                   onPressed: () {
-                    CacheHelper.set(key: kHasSeenOnboarding, value: true);
-                    GoRouter.of(context).pushReplacement(Routes.signInView);
+                    CacheHelper.set(
+                      key: kHasSeenOnboarding,
+                      value: true,
+                    );
+                    GoRouter.of(
+                      context,
+                    ).pushReplacement(Routes.signInView);
                   },
                   child: Text(
                     "تخطٍ",
-                    style: TextStyles.bold14.copyWith(color: AppColors.gray),
+                    style: TextStyles.bold14.copyWith(
+                      color: AppColors.gray,
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-          const SizedBox(height: 60),
+          const SizedBox(height: 30),
+          const Text("مرحباً بك", style: TextStyles.bold24),
+          const SizedBox(height: 40),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22),
-            child: Image.asset(imageUrl),
+            padding: const EdgeInsets.symmetric(horizontal: 36),
+            child: Image.asset(imageUrl, height: 250),
           ),
-          const SizedBox(height: 23),
+          const SizedBox(height: 48),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 48),
             child: Text(
               title,
               textAlign: TextAlign.center,
-              style: TextStyles.bold20.copyWith(color: AppColors.mainBlue),
+              style: TextStyles.medium20
             ),
           ),
         ],

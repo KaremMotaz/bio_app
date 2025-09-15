@@ -1,7 +1,7 @@
 import 'package:bio_app/core/widgets/no_internet_view.dart';
+import 'package:bio_app/features/splash/presentation/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../features/auth/presentation/views/fill_profile_view.dart';
 import '../../features/auth/presentation/views/login_view.dart';
 import '../../features/auth/presentation/views/otp_verification_view.dart';
@@ -37,31 +37,19 @@ import '../../features/quiz_questions/domain/helper/quiz_helpers.dart';
 import '../../features/quiz_questions/presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
 import '../../features/quiz_questions/presentation/views/quiz_questions_view.dart';
 import '../../features/units/domain/unit_entity.dart';
-import '../helpers/constants.dart';
-import '../services/cache_helper.dart';
-import '../services/firebase_auth_service.dart';
 import '../services/get_it_service.dart';
 import 'routes.dart';
 
 abstract class AppRouter {
   static GoRouter createRouter({required bool isConnected}) {
-    final bool hasSeenOnboarding = CacheHelper.getBool(
-      key: kHasSeenOnboarding,
-    );
-    final bool isLoggedIn = getIt<FirebaseAuthService>().isLoggedIn();
-
-    final String initialPath;
-    if (isLoggedIn ) {
-      initialPath = Routes.mainView;
-    } else if (hasSeenOnboarding) {
-      initialPath = Routes.signInView;
-    } else {
-      initialPath = Routes.onBoardingView;
-    }
-
     return GoRouter(
-      initialLocation: initialPath,
       routes: [
+        GoRoute(
+          path: Routes.splashView,
+          builder: (context, state) {
+            return const SplashView();
+          },
+        ),
         GoRoute(
           path: Routes.onBoardingView,
           builder: (context, state) {

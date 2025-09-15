@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -19,11 +20,12 @@ class NavWidget extends StatelessWidget {
     final isSelected = selectedIndex == index;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 12,
+        vertical: 7,
+      ),
       decoration: BoxDecoration(
-        color: isSelected
-            ? const Color(0xff0096C7)
-            : Colors.transparent,
+        color: isSelected ? AppColors.mainBlue : Colors.transparent,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(

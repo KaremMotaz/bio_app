@@ -16,7 +16,8 @@ class OnboardingViewBody extends StatefulWidget {
   const OnboardingViewBody({super.key});
 
   @override
-  State<OnboardingViewBody> createState() => _OnboardingViewBodyState();
+  State<OnboardingViewBody> createState() =>
+      _OnboardingViewBodyState();
 }
 
 class _OnboardingViewBodyState extends State<OnboardingViewBody> {
@@ -66,54 +67,63 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
       imageUrl: AssetsData.onboarding3,
     ),
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        OnboardingPageView(pageController: _pageController, pages: pages),
+        OnboardingPageView(
+          pageController: _pageController,
+          pages: pages,
+        ),
         DotsIndicator(
           dotsCount: 3,
           position: currentPageIndex.toDouble(),
           decorator: const DotsDecorator(
             color: AppColors.gray,
             activeColor: AppColors.mainBlue,
+            size: Size(14, 14),
+            activeSize: Size(14, 14),
           ),
         ),
-        const SizedBox(height: 20),
-        if (currentPageIndex == 0 || currentPageIndex == 1) ...[
-          const SizedBox(height: 30),
-          CircleAvatar(
-            radius: 15,
-            backgroundColor: AppColors.mainBlue,
-            child: IconButton(
-              padding: EdgeInsets.zero,
-              onPressed: () {
+        const SizedBox(height: 80),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 75),
+          child: AppTextButton(
+            textStyle: TextStyles.bold17.copyWith(
+              color: Colors.white,
+            ),
+            onPressed: () {
+              if (currentPageIndex < pages.length - 1) {
                 goToNextPage();
-              },
-              icon: const Icon(
-                Icons.arrow_right_alt_sharp,
-                size: 25,
-                color: Colors.white,
-              ),
+                return;
+              }
+              CacheHelper.set(key: kHasSeenOnboarding, value: true);
+              GoRouter.of(context).pushReplacement(Routes.signInView);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  currentPageIndex < pages.length - 1
+                      ? "التالي"
+                      : "ابدء الآن",
+                  style: TextStyles.medium20.copyWith(
+                    color: Colors.white,
+                  ),
+                ),
+                if (currentPageIndex < pages.length - 1) ...[
+                  const SizedBox(width: 10),
+                  const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 25,
+                    color: Colors.white,
+                  ),
+                ],
+              ],
             ),
           ),
-        ],
-        if (currentPageIndex == 2) ...[
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: AppTextButton(
-              buttonText: "ابدء الآن",
-              textStyle: TextStyles.bold17.copyWith(color: Colors.white),
-              onPressed: () {
-                CacheHelper.set(key: kHasSeenOnboarding, value: true);
-                GoRouter.of(context).pushReplacement(Routes.signInView);
-              },
-            ),
-          ),
-        ],
-
+        ),
         const SizedBox(height: 40),
       ],
     );

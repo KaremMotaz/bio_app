@@ -73,3 +73,8 @@ flutter:
           weight: 600
         - asset: assets/fonts/Cairo-Bold.ttf
           weight: 700
+          
+    - family: "Rockwell"
+      fonts:
+        - asset: assets/fonts/Rockwell-Bold.ttf
+          weight: 700
