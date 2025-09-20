@@ -1,5 +1,6 @@
 import 'package:bio_app/core/widgets/no_internet_view.dart';
 import 'package:bio_app/features/splash/presentation/splash_view.dart';
+import 'package:bio_app/features/units/presentation/notifications_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/views/fill_profile_view.dart';
@@ -93,7 +94,13 @@ abstract class AppRouter {
           },
         ),
         GoRoute(
-          path: Routes.noInternet,
+          path: Routes.notificationsView,
+          builder: (context, state) {
+            return const NotificationsView();
+          },
+        ),
+        GoRoute(
+          path: Routes.noInternetView,
           builder: (context, state) =>
               NoInternetView(isConnected: isConnected),
         ),
@@ -231,12 +238,13 @@ abstract class AppRouter {
 
         final currentLocation = state.uri.toString();
 
-        if (!isConnected && currentLocation != Routes.noInternet) {
+        if (!isConnected &&
+            currentLocation != Routes.noInternetView) {
           lastLocation = currentLocation;
-          return Routes.noInternet;
+          return Routes.noInternetView;
         }
 
-        if (isConnected && currentLocation == Routes.noInternet) {
+        if (isConnected && currentLocation == Routes.noInternetView) {
           return lastLocation ?? Routes.mainView;
         }
 

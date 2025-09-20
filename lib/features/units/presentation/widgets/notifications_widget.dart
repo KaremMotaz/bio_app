@@ -1,8 +1,10 @@
+import 'package:bio_app/core/routing/routes.dart';
 import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:bio_app/core/theming/assets_data.dart';
 import 'package:bio_app/core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class NotificationsWidget extends StatelessWidget {
   const NotificationsWidget({super.key});
@@ -13,7 +15,9 @@ class NotificationsWidget extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            GoRouter.of(context).push(Routes.notificationsView);
+          },
           child: SvgPicture.asset(
             AssetsData.notificationsIcon,
             width: 24,
