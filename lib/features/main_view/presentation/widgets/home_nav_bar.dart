@@ -19,7 +19,7 @@ class HomeNavBar extends StatelessWidget {
       AssetsData.homeIcon,
       AssetsData.examIcon,
       AssetsData.leaderboardIcon,
-      AssetsData.settingsIcon,
+      AssetsData.personIcon,
     ];
     final List<String> labels = [
       "الرئيسية",
@@ -30,28 +30,37 @@ class HomeNavBar extends StatelessWidget {
 
     return BottomAppBar(
       color: Colors.white,
-      height: 80,
+      height: 96,
       padding: const EdgeInsets.symmetric(
-        vertical: 8,
-        horizontal: 16,
+        vertical: 12,
+        horizontal: 24,
       ),
-      elevation: 8,
       child: Container(
         decoration: BoxDecoration(
           color: const Color(0xffEDF5F7),
-          borderRadius: BorderRadius.circular(32),
+          borderRadius: BorderRadius.circular(40),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withAlpha(80),
+              blurRadius: 5,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: List.generate(
-            icons.length,
-            (index) => GestureDetector(
-              onTap: () => onTap(index),
-              child: NavWidget(
-                selectedIndex: selectedIndex,
-                icons: icons,
-                labels: labels,
-                index: index,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: List.generate(
+              icons.length,
+              (index) => GestureDetector(
+                onTap: () => onTap(index),
+                child: NavWidget(
+                  selectedIndex: selectedIndex,
+                  icons: icons,
+                  labels: labels,
+                  index: index,
+                ),
               ),
             ),
           ),

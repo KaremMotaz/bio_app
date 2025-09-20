@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theming/app_colors.dart';
@@ -10,27 +11,33 @@ class UnitView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: BlocBuilder<UnitCubit, UnitState>(
-        builder: (context, state) {
-          switch (state) {
-            case UnitLoadingState():
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.mainBlue,
-                ),
-              );
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.light,
+      ),
+      child: Scaffold(
+        body: BlocBuilder<UnitCubit, UnitState>(
+          builder: (context, state) {
+            switch (state) {
+              case UnitLoadingState():
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.mainBlue,
+                  ),
+                );
 
-            case UnitLoadedState():
-              return UnitViewBody(units: state.units);
+              case UnitLoadedState():
+                return UnitViewBody(units: state.units);
 
-            case UnitErrorState(:final message):
-              return Center(child: Text(message));
+              case UnitErrorState(:final message):
+                return Center(child: Text(message));
 
-            default:
-              return const SizedBox.shrink();
-          }
-        },
+              default:
+                return const SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

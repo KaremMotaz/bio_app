@@ -1,5 +1,6 @@
 class AssetsData {
-  static const String splashLogo = 'assets/app_icon/biotics_app_icon.svg';
+  static const String splashLogo =
+      'assets/app_icon/biotics_app_icon.svg';
   static const String onboarding1 = 'assets/images/onboarding1.png';
   static const String onboarding2 = 'assets/images/onboarding2.png';
   static const String onboarding3 = 'assets/images/onboarding3.png';
@@ -20,10 +21,15 @@ class AssetsData {
 
   static const String homeIcon = 'assets/svg/home.svg';
   static const String examIcon = 'assets/svg/exams.svg';
-  static const String leaderboardIcon =
-      'assets/svg/ranking.svg';
+  static const String leaderboardIcon = 'assets/svg/ranking.svg';
   static const String settingsIcon = 'assets/svg/settings.svg';
+  static const String personIcon = 'assets/svg/person.svg';
+  static const String arrowBottomBarIcon =
+      'assets/svg/arrow_bottom_bar.svg';
 
   static const String crownIcon = 'assets/images/crown.png';
+  static const String sideBarIcon = 'assets/svg/side_bar.svg';
+  static const String notificationsIcon =
+      'assets/svg/notifications.svg';
   static const String quizReady = 'assets/images/quiz_ready.jpeg';
 }
