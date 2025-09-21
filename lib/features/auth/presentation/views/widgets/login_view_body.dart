@@ -76,7 +76,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             AppTextButton(
               buttonText: "تسجيل دخول",
               textStyle: TextStyles.semiBold16.copyWith(
-                color: Colors.white,
+                color: AppColors.white,
               ),
               onPressed: () {
                 validateThenSignin(context);

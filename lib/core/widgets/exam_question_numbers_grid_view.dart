@@ -21,28 +21,27 @@ class ExamQuestionNumbersGridView extends StatelessWidget {
     return GridView.builder(
       shrinkWrap: true,
       itemCount: examQuestions.length,
-      gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 5,
-            mainAxisSpacing: 12,
-            crossAxisSpacing: 12,
-          ),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 5,
+        mainAxisSpacing: 12,
+        crossAxisSpacing: 12,
+      ),
       itemBuilder: (context, index) {
         final bool isCurrent = index == currentPageIndex;
         final String questionId = examQuestions[index].index
             .toString();
         final bool isAnswered =
             answers?.containsKey(questionId) ?? false;
-    
+
         Color bgColor;
         if (isCurrent) {
           bgColor = AppColors.mainBlue;
         } else if (isAnswered) {
-          bgColor = Colors.green;
+          bgColor = AppColors.green;
         } else {
-          bgColor = Colors.grey[300]!;
+          bgColor = AppColors.grey300;
         }
-    
+
         return GestureDetector(
           onTap: () {
             Navigator.pop(context);
@@ -57,7 +56,7 @@ class ExamQuestionNumbersGridView extends StatelessWidget {
             child: Text(
               '${index + 1}',
               style: TextStyle(
-                color: isCurrent ? Colors.white : Colors.black,
+                color: isCurrent ? AppColors.white : AppColors.black,
                 fontWeight: FontWeight.bold,
               ),
             ),

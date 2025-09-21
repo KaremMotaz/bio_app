@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -7,9 +8,9 @@ class CustomAppBarPopIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(
+      icon: const Icon(
         Icons.arrow_back_ios_new,
-        color: Colors.grey.shade600,
+        color: AppColors.grey600,
         size: 18,
       ),
       onPressed: () => GoRouter.of(context).pop(),

@@ -57,7 +57,9 @@ class AppTextButton extends StatelessWidget {
             buttonText ?? "التالي",
             style:
                 textStyle ??
-                TextStyles.semiBold15.copyWith(color: Colors.white),
+                TextStyles.semiBold15.copyWith(
+                  color: AppColors.white,
+                ),
           ),
     );
   }

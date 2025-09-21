@@ -58,7 +58,7 @@ class LeaderboardUserBadge extends StatelessWidget {
               height: outerCircleSize,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white,
+                color: AppColors.white,
                 border: Border.all(
                   color: outerCircleBorderColor,
                   width: borderWidth,
@@ -94,7 +94,7 @@ class LeaderboardUserBadge extends StatelessWidget {
                 child: Text(
                   "${leaderboardList[index].rank}",
                   style: TextStyles.bold16.copyWith(
-                    color: Colors.white,
+                    color: AppColors.white,
                   ),
                 ),
               ),
@@ -104,12 +104,12 @@ class LeaderboardUserBadge extends StatelessWidget {
         const SizedBox(height: 14),
         Text(
           "${leaderboardList[index].firstName} ${leaderboardList[index].lastName}",
-          style: TextStyles.bold16.copyWith(color: Colors.black),
+          style: TextStyles.bold16.copyWith(color: AppColors.black),
         ),
         Text(
           "${score.toInt()}",
           textDirection: TextDirection.ltr,
-          style: TextStyles.bold14.copyWith(color: Colors.black),
+          style: TextStyles.bold14.copyWith(color: AppColors.black),
         ),
       ],
     );

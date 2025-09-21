@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/functions/format_date_time.dart';
@@ -15,13 +16,13 @@ class PastExamCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         border: const Border(
-          right: BorderSide(color: Colors.orange, width: 10),
+          right: BorderSide(color: AppColors.orange, width: 10),
         ),
       ),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: Colors.orange.shade50,
+          color: AppColors.orange50,
         ),
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -47,13 +48,13 @@ class PastExamCard extends StatelessWidget {
                   vertical: 6,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade200,
+                  color: AppColors.grey200,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
                   "عرض النتيجة",
                   style: TextStyles.regular14.copyWith(
-                    color: Colors.grey.shade700,
+                    color: AppColors.grey600,
                   ),
                 ),
               ),

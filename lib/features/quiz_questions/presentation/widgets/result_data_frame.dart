@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -28,7 +29,10 @@ class ResultDataFrame extends StatelessWidget {
           child: Container(
             width: 102,
             height: 60,
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 8,
+            ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: color,
@@ -36,16 +40,21 @@ class ResultDataFrame extends StatelessWidget {
             child: Text(
               title,
               textAlign: TextAlign.center,
-              style: TextStyles.extraBold12.copyWith(color: Colors.white),
+              style: TextStyles.extraBold12.copyWith(
+                color: AppColors.white,
+              ),
             ),
           ),
         ),
         Container(
           width: 102,
-          padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 20),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 3,
+            vertical: 20,
+          ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: Colors.white,
+            color: AppColors.white,
             border: Border.all(color: color, width: 2),
           ),
           child: Row(
@@ -53,7 +62,10 @@ class ResultDataFrame extends StatelessWidget {
             children: [
               SvgPicture.asset(icon, height: 30),
               const SizedBox(width: 7),
-              Text(data, style: TextStyles.extraBold21.copyWith(color: color)),
+              Text(
+                data,
+                style: TextStyles.extraBold21.copyWith(color: color),
+              ),
             ],
           ),
         ),

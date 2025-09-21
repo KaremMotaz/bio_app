@@ -45,7 +45,7 @@ class CustomChapterCard extends StatelessWidget {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withAlpha(70),
+                  color: AppColors.black.withAlpha(70),
                   spreadRadius: 0,
                   blurRadius: 8,
                   offset: const Offset(0, 6),
@@ -58,7 +58,7 @@ class CustomChapterCard extends StatelessWidget {
                 Text(
                   "الفصل ${getDisplayNumber(chapter.index)}",
                   style: TextStyles.bold16.copyWith(
-                    color: Colors.white,
+                    color: AppColors.white,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -66,7 +66,7 @@ class CustomChapterCard extends StatelessWidget {
                   chapter.title,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyles.bold20.copyWith(
-                    color: Colors.white,
+                    color: AppColors.white,
                   ),
                 ),
                 const SizedBox(height: 8),

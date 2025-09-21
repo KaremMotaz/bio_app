@@ -1,4 +1,3 @@
-
 import 'package:bio_app/core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -107,7 +106,7 @@ class _LeaderboardViewState extends State<LeaderboardView>
                 unselectedLabelColor: AppColors.black,
                 labelColor: AppColors.white,
                 overlayColor: const WidgetStatePropertyAll(
-                  Colors.transparent,
+                  AppColors.transparent,
                 ),
                 dividerHeight: 0,
                 tabs: tabs
@@ -121,7 +120,10 @@ class _LeaderboardViewState extends State<LeaderboardView>
                           border: Border.all(color: AppColors.gray),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Text(t.label, style: TextStyles.medium14),
+                        child: Text(
+                          t.label,
+                          style: TextStyles.medium14,
+                        ),
                       ),
                     )
                     .toList(),

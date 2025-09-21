@@ -27,7 +27,7 @@ class QuizResultView extends StatelessWidget {
             "لقد\n اكملت \nالدرس!",
             textAlign: TextAlign.center,
             style: TextStyles.extraBold30.copyWith(
-              color: Colors.amber,
+              color: AppColors.amber,
             ),
           ),
           Image.asset(AssetsData.finishLesson, height: 280),
@@ -36,7 +36,7 @@ class QuizResultView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ResultDataFrame(
-                color: Colors.amberAccent,
+                color: AppColors.amberAccent,
                 data: '${finishedState.result.finalScore}',
                 icon: AssetsData.expIcon,
                 title: 'إجمالي النقاط',

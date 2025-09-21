@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/helpers/get_user.dart';
@@ -29,7 +30,7 @@ class CustomCircleAvatar extends StatelessWidget {
           height: 54,
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.white,
+            color: AppColors.white,
           ),
 
           child: UserAvatar(

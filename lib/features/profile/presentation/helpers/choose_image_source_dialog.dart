@@ -31,14 +31,16 @@ void chooseImageSourceDialog({required BuildContext parentContext}) {
                   const CloseIcon(),
                   const SizedBox(height: 10),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
                     child: Column(
                       children: [
                         AppTextButton(
                           buttonText: "من الصور الرمزية",
-                          backgroundColor: Colors.grey,
+                          backgroundColor: AppColors.grey,
                           textStyle: TextStyles.semiBold16.copyWith(
-                            color: Colors.white,
+                            color: AppColors.white,
                           ),
                           onPressed: () {
                             GoRouter.of(context).pop();
@@ -48,9 +50,9 @@ void chooseImageSourceDialog({required BuildContext parentContext}) {
                         const SizedBox(height: 20),
                         AppTextButton(
                           buttonText: "من المعرض",
-                          backgroundColor: Colors.grey,
+                          backgroundColor: AppColors.grey,
                           textStyle: TextStyles.semiBold16.copyWith(
-                            color: Colors.white,
+                            color: AppColors.white,
                           ),
                           onPressed: () {
                             cubit.changeProfileImageFromGallery();

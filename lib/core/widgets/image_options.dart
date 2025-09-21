@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +38,7 @@ class ImageOptions extends StatelessWidget {
                   child: Text(
                     "${index + 1}",
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: AppColors.white,
                       fontSize: 16,
                     ),
                   ),
@@ -47,7 +48,7 @@ class ImageOptions extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.white,
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                       color: style.borderColor,

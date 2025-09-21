@@ -28,7 +28,7 @@ editProfileDialog({
           ),
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),
-            color: Colors.white,
+            color: AppColors.white,
           ),
           child: Form(
             key: formKey,
@@ -111,7 +111,7 @@ editProfileDialog({
                           buttonHeight: 30,
                           borderRadius: 12,
                           textStyle: TextStyles.semiBold16.copyWith(
-                            color: Colors.white,
+                            color: AppColors.white,
                             fontSize: 16,
                           ),
                           onPressed: () {

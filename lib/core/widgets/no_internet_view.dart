@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class NoInternetView extends StatelessWidget {
@@ -10,20 +11,20 @@ class NoInternetView extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: isConnected
-              ? Center(
+              ? const Center(
                   child: Icon(
                     Icons.wifi,
                     size: 100,
-                    color: Colors.green.shade600,
+                    color: AppColors.green600,
                   ),
                 )
               : Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.wifi_off_rounded,
                       size: 100,
-                      color: Colors.red.shade600,
+                      color: AppColors.red600,
                     ),
                     const SizedBox(height: 24),
 
@@ -37,7 +38,7 @@ class NoInternetView extends StatelessWidget {
                     Text(
                       "تأكد من اتصالك وحاول مرة أخرى.\nقد تحتاج لإعادة تشغيل الراوتر أو التحقق من الشبكة.",
                       style: Theme.of(context).textTheme.bodyMedium
-                          ?.copyWith(color: Colors.grey[600]),
+                          ?.copyWith(color: AppColors.grey600),
                       textAlign: TextAlign.center,
                     ),
                   ],

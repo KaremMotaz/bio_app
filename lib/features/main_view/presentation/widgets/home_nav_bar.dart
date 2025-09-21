@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:bio_app/features/main_view/presentation/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class HomeNavBar extends StatelessWidget {
     ];
 
     return BottomAppBar(
-      color: Colors.white,
+      color: AppColors.white,
       height: 96,
       padding: const EdgeInsets.symmetric(
         vertical: 12,
@@ -41,7 +42,7 @@ class HomeNavBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(40),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withAlpha(80),
+              color: AppColors.black.withAlpha(80),
               blurRadius: 5,
               offset: const Offset(0, 4),
             ),

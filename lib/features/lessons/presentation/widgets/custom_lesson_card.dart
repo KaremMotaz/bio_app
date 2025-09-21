@@ -31,7 +31,7 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: const [
           BoxShadow(
@@ -78,12 +78,12 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
                 ? const Icon(
                     Icons.expand_less,
                     size: 30,
-                    color: Colors.grey,
+                    color: AppColors.grey,
                   )
                 : const Icon(
                     Icons.expand_more,
                     size: 30,
-                    color: Colors.grey,
+                    color: AppColors.grey,
                   ),
             onTap: () {
               setState(() {
@@ -133,8 +133,8 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
                       final bool isSelected = selectedIndex == index;
                       return Container(
                         color: isSelected
-                            ? Colors.grey[100]
-                            : Colors.white,
+                            ? AppColors.grey100
+                            : AppColors.white,
                         child: ListTile(
                           title: Text(
                             "${index + 1}- ${state.quizzes[index].title}",

@@ -22,7 +22,7 @@ void showAvatarsDialog({required BuildContext context}) {
       return BlocProvider.value(
         value: cubit,
         child: Dialog(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.white,
           child: Padding(
             padding: const EdgeInsetsDirectional.only(
               start: 16,
@@ -71,7 +71,7 @@ void showAvatarsDialog({required BuildContext context}) {
                               radius: 25,
                               backgroundColor: isSelected
                                   ? AppColors.mainBlue
-                                  : Colors.white,
+                                  : AppColors.white,
                               child: CircleAvatar(
                                 radius: 27,
                                 backgroundImage: AssetImage(
@@ -93,7 +93,7 @@ void showAvatarsDialog({required BuildContext context}) {
                   buttonText: "تأكيد",
                   backgroundColor: AppColors.mainBlue,
                   textStyle: TextStyles.semiBold16.copyWith(
-                    color: Colors.white,
+                    color: AppColors.white,
                   ),
                   onPressed: () async {
                     if (selectedIndex != null) {

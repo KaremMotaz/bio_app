@@ -19,7 +19,7 @@ class CustomLinearProgressBar extends StatelessWidget {
           value: animatedProgress,
           minHeight: 12,
           borderRadius: BorderRadius.circular(5),
-          backgroundColor: Colors.grey[300],
+          backgroundColor: AppColors.grey300,
           valueColor: const AlwaysStoppedAnimation<Color>(
             AppColors.mainBlue,
           ),

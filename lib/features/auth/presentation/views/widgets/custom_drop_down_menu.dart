@@ -22,12 +22,14 @@ class CustomDropDownButton extends StatefulWidget {
       _CustomDropDownMenuSettingsState();
 }
 
-class _CustomDropDownMenuSettingsState extends State<CustomDropDownButton> {
+class _CustomDropDownMenuSettingsState
+    extends State<CustomDropDownButton> {
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final isDarkMode =
+        Theme.of(context).brightness == Brightness.dark;
     return DropdownButtonFormField(
-      dropdownColor:  Colors.white,
+      dropdownColor: AppColors.white,
       decoration: InputDecoration(
         enabledBorder: buildOutLineInputBorder(
           borderColor: AppColors.lighterGray,
@@ -36,10 +38,10 @@ class _CustomDropDownMenuSettingsState extends State<CustomDropDownButton> {
           borderColor: AppColors.darkBlue,
         ),
         errorBorder: buildOutLineInputBorder(
-          borderColor: Colors.red,
+          borderColor: AppColors.red,
         ),
         focusedErrorBorder: buildOutLineInputBorder(
-          borderColor: Colors.red,
+          borderColor: AppColors.red,
         ),
         filled: true,
       ),
@@ -48,7 +50,7 @@ class _CustomDropDownMenuSettingsState extends State<CustomDropDownButton> {
         child: Text(
           widget.hintText,
           style: TextStyle(
-            color: isDarkMode ? Colors.white : AppColors.gray,
+            color: isDarkMode ? AppColors.white : AppColors.gray,
           ),
         ),
       ),
@@ -71,12 +73,11 @@ class _CustomDropDownMenuSettingsState extends State<CustomDropDownButton> {
   }
 }
 
-OutlineInputBorder buildOutLineInputBorder({required Color borderColor}) {
+OutlineInputBorder buildOutLineInputBorder({
+  required Color borderColor,
+}) {
   return OutlineInputBorder(
-    borderSide: BorderSide(
-      color: borderColor,
-      width: 1.3,
-    ),
+    borderSide: BorderSide(color: borderColor, width: 1.3),
     borderRadius: BorderRadius.circular(16),
   );
 }

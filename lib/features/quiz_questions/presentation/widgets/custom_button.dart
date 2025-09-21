@@ -74,7 +74,9 @@ class _CustomButtonState extends State<CustomButton> {
           child: Text(
             widget.text,
             style: TextStyles.bold17.copyWith(
-              color: widget.isEnabled ? Colors.white : AppColors.gray,
+              color: widget.isEnabled
+                  ? AppColors.white
+                  : AppColors.gray,
             ),
           ),
         ),

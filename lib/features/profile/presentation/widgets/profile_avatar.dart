@@ -34,7 +34,7 @@ class ProfileAvatar extends StatelessWidget {
                 backgroundColor: AppColors.lighterGray,
                 child: Center(
                   child: CircularProgressIndicator(
-                    color: Colors.grey,
+                    color: AppColors.grey,
                   ),
                 ),
               )
@@ -57,12 +57,12 @@ class ProfileAvatar extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(5),
                         decoration: const BoxDecoration(
-                          color: Colors.white,
+                          color: AppColors.white,
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
                           Icons.edit,
-                          color: Colors.grey,
+                          color: AppColors.grey,
                           size: 20,
                         ),
                       ),

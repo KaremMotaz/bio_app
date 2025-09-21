@@ -16,7 +16,7 @@ class LessonsView extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xfff4f7fc),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.white,
         leading: Navigator.of(context).canPop()
             ? const CustomAppBarPopIcon()
             : null,

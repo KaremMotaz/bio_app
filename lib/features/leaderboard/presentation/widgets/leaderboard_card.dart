@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theming/text_styles.dart';
@@ -22,7 +23,9 @@ class LeaderboardCard extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16, right: 10),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: isCurrentUser ? Colors.white : const Color(0xffe8f9f9),
+        color: isCurrentUser
+            ? AppColors.white
+            : const Color(0xffe8f9f9),
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(

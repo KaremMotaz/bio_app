@@ -13,7 +13,10 @@ class OTPVerificationViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 20,
+      ),
       child: Column(
         children: [
           Image.asset(AssetsData.emailNotification, width: 130),
@@ -22,7 +25,9 @@ class OTPVerificationViewBody extends StatelessWidget {
             alignment: AlignmentDirectional.centerStart,
             child: Text(
               "تحقق من بريدك",
-              style: TextStyles.bold20.copyWith(color: AppColors.mainBlue),
+              style: TextStyles.bold20.copyWith(
+                color: AppColors.mainBlue,
+              ),
             ),
           ),
           const SizedBox(height: 8),
@@ -42,7 +47,9 @@ class OTPVerificationViewBody extends StatelessWidget {
           const SizedBox(height: 32),
           AppTextButton(
             buttonText: "التالي",
-            textStyle: TextStyles.semiBold16.copyWith(color: Colors.white),
+            textStyle: TextStyles.semiBold16.copyWith(
+              color: AppColors.white,
+            ),
             onPressed: () {
               GoRouter.of(context).push(Routes.signInView);
             },

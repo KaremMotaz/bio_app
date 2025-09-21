@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/functions/format_date_time.dart';
@@ -15,13 +16,13 @@ class AvailableExamCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         border: const Border(
-          right: BorderSide(color: Colors.blue, width: 10),
+          right: BorderSide(color: AppColors.blue, width: 10),
         ),
       ),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color:   const Color(0xfff4f7fc),
+          color: const Color(0xfff4f7fc),
         ),
         child: Padding(
           padding: const EdgeInsets.all(16),

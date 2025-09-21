@@ -91,7 +91,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
           padding: const EdgeInsets.symmetric(horizontal: 75),
           child: AppTextButton(
             textStyle: TextStyles.bold17.copyWith(
-              color: Colors.white,
+              color: AppColors.white,
             ),
             onPressed: () {
               if (currentPageIndex < pages.length - 1) {
@@ -109,7 +109,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
                       ? "التالي"
                       : "ابدء الآن",
                   style: TextStyles.medium20.copyWith(
-                    color: Colors.white,
+                    color: AppColors.white,
                   ),
                 ),
                 if (currentPageIndex < pages.length - 1) ...[
@@ -117,7 +117,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
                   const Icon(
                     Icons.arrow_forward_ios,
                     size: 25,
-                    color: Colors.white,
+                    color: AppColors.white,
                   ),
                 ],
               ],

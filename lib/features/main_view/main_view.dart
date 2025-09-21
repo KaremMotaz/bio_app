@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import 'logic/home_navigation_controller.dart';
@@ -23,7 +24,7 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       bottomNavigationBar: HomeNavBar(
         selectedIndex: controller.selectedIndex,
         onTap: (index) {

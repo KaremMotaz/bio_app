@@ -17,7 +17,7 @@ showConfirmDialog({
     context: context,
     builder: (context) {
       return Dialog(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.white,
         child: Padding(
           padding: const EdgeInsetsDirectional.only(
             start: 20,
@@ -30,18 +30,14 @@ showConfirmDialog({
             mainAxisSize: MainAxisSize.min,
             children: [
               Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(title, style: TextStyles.bold20),
                   IconButton(
                     onPressed: () {
                       GoRouter.of(context).pop();
                     },
-                    icon: const Icon(
-                      Icons.close_rounded,
-                      size: 26,
-                    ),
+                    icon: const Icon(Icons.close_rounded, size: 26),
                   ),
                 ],
               ),
@@ -52,19 +48,15 @@ showConfirmDialog({
                 children: [
                   Expanded(
                     child: AppTextButton(
-                      buttonText:
-                          cancelButtonText ?? "إلغاء",
-                      backgroundColor: const Color(
-                        0xffeaeaec,
-                      ),
+                      buttonText: cancelButtonText ?? "إلغاء",
+                      backgroundColor: const Color(0xffeaeaec),
                       verticalPadding: 5,
                       buttonHeight: 30,
                       borderRadius: 12,
-                      textStyle: TextStyles.semiBold16
-                          .copyWith(
-                            color: AppColors.darkModeGray,
-                            fontSize: 16,
-                          ),
+                      textStyle: TextStyles.semiBold16.copyWith(
+                        color: AppColors.darkModeGray,
+                        fontSize: 16,
+                      ),
                       onPressed: () {
                         GoRouter.of(context).pop();
                       },
@@ -78,11 +70,10 @@ showConfirmDialog({
                       verticalPadding: 5,
                       buttonHeight: 30,
                       borderRadius: 12,
-                      textStyle: TextStyles.semiBold16
-                          .copyWith(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
+                      textStyle: TextStyles.semiBold16.copyWith(
+                        color: AppColors.white,
+                        fontSize: 16,
+                      ),
                       onPressed: onPressed,
                     ),
                   ),

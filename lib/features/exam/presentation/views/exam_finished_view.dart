@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:bio_app/core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -30,12 +31,12 @@ class ExamFinishedView extends StatelessWidget {
                     height: 90,
                     width: 90,
                     decoration: BoxDecoration(
-                      color: Colors.green.withAlpha(10),
+                      color: AppColors.green.withAlpha(10),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
                       Icons.check_circle,
-                      color: Colors.green,
+                      color: AppColors.green,
                       size: 70,
                     ),
                   ),

@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theming/text_styles.dart';
@@ -18,21 +19,17 @@ class EditProfileListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(
-        icon,
-        size: 24,
-      ),
-      title: Text(
-        title,
-        style: TextStyles.bold17,
-      ),
+      leading: Icon(icon, size: 24),
+      title: Text(title, style: TextStyles.bold17),
       subtitle: subTitle,
       trailing: IconButton(
         onPressed: onTap,
-        icon: const Icon(Icons.edit,color: Colors.grey,size: 20,),
+        icon: const Icon(Icons.edit, color: AppColors.grey, size: 20),
       ),
       onTap: onTap,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
     );
   }
 }

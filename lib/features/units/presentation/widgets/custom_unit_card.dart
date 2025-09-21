@@ -40,7 +40,7 @@ class CustomUnitCard extends StatelessWidget {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withAlpha(70),
+                  color: AppColors.black.withAlpha(70),
                   spreadRadius: 0,
                   blurRadius: 8,
                   offset: const Offset(0, 6),
@@ -51,10 +51,10 @@ class CustomUnitCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CircleAvatar(
-                  backgroundColor: Colors.white.withAlpha(70),
+                  backgroundColor: AppColors.white.withAlpha(70),
                   child: SvgPicture.asset(
                     colorFilter: const ColorFilter.mode(
-                      Colors.white,
+                      AppColors.white,
                       BlendMode.srcIn,
                     ),
                     AssetsData.openIcon,
@@ -66,7 +66,7 @@ class CustomUnitCard extends StatelessWidget {
                 Text(
                   "الباب ${getDisplayNumber(unit.index)}",
                   style: TextStyles.bold14.copyWith(
-                    color: Colors.white,
+                    color: AppColors.white,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -74,7 +74,7 @@ class CustomUnitCard extends StatelessWidget {
                   unit.title,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyles.bold20.copyWith(
-                    color: Colors.white,
+                    color: AppColors.white,
                   ),
                 ),
                 const SizedBox(height: 8),

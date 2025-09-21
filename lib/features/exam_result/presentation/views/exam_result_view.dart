@@ -12,9 +12,9 @@ class ExamResultView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.white,
         leading: Navigator.of(context).canPop()
             ? const CustomAppBarPopIcon()
             : null,

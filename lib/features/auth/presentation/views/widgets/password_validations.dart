@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theming/text_styles.dart';
@@ -25,11 +26,17 @@ class PasswordValidations extends StatelessWidget {
 
         buildValidationRow("على الأقل حرف كبير واحد", hasUpperCase),
         const SizedBox(height: 4),
-        buildValidationRow("على الأقل رمز خاص واحد", hasSpecialCharacters),
+        buildValidationRow(
+          "على الأقل رمز خاص واحد",
+          hasSpecialCharacters,
+        ),
         const SizedBox(height: 4),
         buildValidationRow("على الأقل رقم واحد", hasNumber),
         const SizedBox(height: 4),
-        buildValidationRow("يجب أن يحتوي على 8 أحرف على الأقل", hasMinLength),
+        buildValidationRow(
+          "يجب أن يحتوي على 8 أحرف على الأقل",
+          hasMinLength,
+        ),
       ],
     );
   }
@@ -39,14 +46,14 @@ class PasswordValidations extends StatelessWidget {
       children: [
         Icon(
           Icons.check_circle,
-          color: hasValidated ? Colors.green : null,
+          color: hasValidated ? AppColors.green : null,
           size: 16,
         ),
         const SizedBox(width: 5),
         Text(
           text,
           style: TextStyles.regular14.copyWith(
-            color: hasValidated ? Colors.green : null,
+            color: hasValidated ? AppColors.green : null,
           ),
         ),
       ],

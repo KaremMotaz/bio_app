@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,13 +16,18 @@ class SignupViewBody extends StatefulWidget {
 }
 
 class _SignupViewBodyState extends State<SignupViewBody> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController =
+      TextEditingController();
+  final TextEditingController passwordController =
+      TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 20,
+      ),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +45,9 @@ class _SignupViewBodyState extends State<SignupViewBody> {
             const SizedBox(height: 25),
             AppTextButton(
               buttonText: "إنشاء حساب جديد",
-              textStyle: TextStyles.semiBold16.copyWith(color: Colors.white),
+              textStyle: TextStyles.semiBold16.copyWith(
+                color: AppColors.white,
+              ),
               onPressed: () {
                 validateThenSignup(context);
                 emailController.clear();

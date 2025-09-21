@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,9 +16,12 @@ class FillProfileForm extends StatefulWidget {
 }
 
 class _FillProfileFormState extends State<FillProfileForm> {
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController firstNameController =
+      TextEditingController();
+  final TextEditingController lastNameController =
+      TextEditingController();
+  final TextEditingController phoneNumberController =
+      TextEditingController();
   String? selectedGrade; // Store selected grade
   final formKey = GlobalKey<FormState>();
 
@@ -76,7 +80,9 @@ class _FillProfileFormState extends State<FillProfileForm> {
             const SizedBox(height: 32), // Add spacing between fields
             AppTextButton(
               buttonText: "تأكيد",
-              textStyle: TextStyles.semiBold16.copyWith(color: Colors.white),
+              textStyle: TextStyles.semiBold16.copyWith(
+                color: AppColors.white,
+              ),
               onPressed: () async {
                 if (formKey.currentState!.validate()) {
                   await context.read<FillProfileCubit>().fillProfile(

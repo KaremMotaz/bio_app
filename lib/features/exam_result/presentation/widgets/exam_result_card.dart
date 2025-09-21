@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:bio_app/core/theming/text_styles.dart';
 import 'package:bio_app/features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
 import 'package:bio_app/features/exam_result/presentation/widgets/exam_result_list_tile.dart';
@@ -28,13 +29,13 @@ class ExamResultCard extends StatelessWidget {
             Icon(
               isPassed ? LucideIcons.award : LucideIcons.xCircle,
               size: 80,
-              color: isPassed ? Colors.green : Colors.red,
+              color: isPassed ? AppColors.green : AppColors.red,
             ),
             const SizedBox(height: 16),
             Text(
               isPassed ? "مبروك!" : "للأسف!",
               style: TextStyles.extraBold24.copyWith(
-                color: isPassed ? Colors.green : Colors.red,
+                color: isPassed ? AppColors.green : AppColors.red,
               ),
             ),
             const SizedBox(height: 8),
@@ -46,20 +47,20 @@ class ExamResultCard extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),
-            const Divider(color: Colors.grey, thickness: 1),
+            const Divider(color: AppColors.grey, thickness: 1),
             const SizedBox(height: 16),
             ExamResultListTile(
               title: "النسبة المئوية",
               value: "${state.percentage.toStringAsFixed(2)}%",
               icon: LucideIcons.percent,
-              color: Colors.blue,
+              color: AppColors.blue,
             ),
             const SizedBox(height: 12),
             ExamResultListTile(
               title: "درجتك",
               value: "${state.studentScore} / ${state.maxScore}",
               icon: LucideIcons.checkCircle,
-              color: Colors.orange,
+              color: AppColors.orange,
             ),
           ],
         ),

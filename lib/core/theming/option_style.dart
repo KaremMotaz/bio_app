@@ -21,16 +21,16 @@ class OptionStyle {
 
   static OptionStyle examQuestionStyle({required bool isSelected}) {
     return OptionStyle(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       borderColor: isSelected
           ? AppColors.lightBlue
-          : Colors.grey.shade300,
-      shadowColor: isSelected ? AppColors.lightBlue : Colors.white,
+          : AppColors.grey300,
+      shadowColor: isSelected ? AppColors.lightBlue : AppColors.white,
       circleBackgroundColor: isSelected
           ? AppColors.darkBlue
-          : Colors.grey,
+          : AppColors.grey,
       textStyle: TextStyles.semiBold18.copyWith(
-        color: isSelected ? AppColors.darkBlue : Colors.black,
+        color: isSelected ? AppColors.darkBlue : AppColors.black,
       ),
     );
   }
@@ -46,28 +46,28 @@ class OptionStyle {
           ? AppColors.lighterGreen
           : isWrong
           ? AppColors.lighterRed
-          : Colors.white,
+          : AppColors.white,
       borderColor: isCorrect
           ? AppColors.mainGreen
           : isWrong
           ? AppColors.lightRed
-          : Colors.grey.shade300,
+          : AppColors.grey300,
       shadowColor: isCorrect
           ? AppColors.mainGreen
           : isWrong
           ? AppColors.lightRed
-          : Colors.white,
+          : AppColors.white,
       circleBackgroundColor: isCorrect
           ? AppColors.mainGreen
           : isWrong
           ? AppColors.lightRed
-          : Colors.grey,
+          : AppColors.grey,
       textStyle: TextStyles.semiBold18.copyWith(
         color: isCorrect
             ? AppColors.mainGreen
             : isWrong
             ? AppColors.lightRed
-            : Colors.black,
+            : AppColors.black,
       ),
     );
   }
@@ -87,36 +87,36 @@ class OptionStyle {
           ? AppColors.lighterRed
           : isSelected
           ? AppColors.lighterBlue
-          : Colors.white,
+          : AppColors.white,
       borderColor: isAnswered && isCorrect
           ? AppColors.mainGreen
           : isAnswered && isWrong
           ? AppColors.lightRed
           : isSelected
           ? AppColors.lightBlue
-          : Colors.grey.shade300,
+          : AppColors.grey300,
       shadowColor: isAnswered && isCorrect
           ? AppColors.mainGreen
           : isAnswered && isWrong
           ? AppColors.lightRed
           : isSelected
           ? AppColors.lightBlue
-          : Colors.white,
+          : AppColors.white,
       circleBackgroundColor: isAnswered && isCorrect
           ? AppColors.mainGreen
           : isAnswered && isWrong
           ? AppColors.lightRed
           : isSelected
           ? AppColors.darkBlue
-          : Colors.grey,
+          : AppColors.grey,
       textStyle: TextStyles.semiBold18.copyWith(
         color: isAnswered && isCorrect
             ? AppColors.mainGreen
             : isAnswered && isWrong
             ? AppColors.lightRed
             : isSelected
-            ? Colors.blue
-            : Colors.grey,
+            ? AppColors.blue
+            : AppColors.grey,
       ),
     );
   }

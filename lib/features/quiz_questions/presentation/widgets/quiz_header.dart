@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -54,7 +55,7 @@ class QuizHeader extends StatelessWidget {
             Text(
               "${status.score.toInt()}",
               style: const TextStyle(
-                color: Colors.amber,
+                color: AppColors.amber,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -68,7 +69,7 @@ class QuizHeader extends StatelessWidget {
             Text(
               "${status.remainingLives}",
               style: const TextStyle(
-                color: Colors.red,
+                color: AppColors.red,
                 fontWeight: FontWeight.bold,
               ),
             ),

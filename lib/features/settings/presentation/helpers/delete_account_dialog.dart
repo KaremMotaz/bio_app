@@ -20,10 +20,13 @@ deleteAccountDialog({
   final formKey = GlobalKey<FormState>();
   return Dialog(
     child: Container(
-      padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 20),
+      padding: const EdgeInsetsDirectional.symmetric(
+        horizontal: 20,
+        vertical: 20,
+      ),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(20)),
-        color: Colors.white,
+        color: AppColors.white,
       ),
       child: Form(
         key: formKey,
@@ -99,7 +102,7 @@ deleteAccountDialog({
                     buttonHeight: 30,
                     borderRadius: 12,
                     textStyle: TextStyles.semiBold16.copyWith(
-                      color: Colors.white,
+                      color: AppColors.white,
                       fontSize: 16,
                     ),
                     onPressed: () {

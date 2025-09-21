@@ -27,7 +27,7 @@ class NavWidget extends StatelessWidget {
           AssetsData.arrowBottomBarIcon,
           height: 6,
           colorFilter: ColorFilter.mode(
-            isSelected ? AppColors.mainBlue : Colors.transparent,
+            isSelected ? AppColors.mainBlue : AppColors.transparent,
             BlendMode.srcIn,
           ),
         ),
@@ -37,7 +37,7 @@ class NavWidget extends StatelessWidget {
           width: 24,
           height: 24,
           colorFilter: ColorFilter.mode(
-            isSelected ? AppColors.mainBlue : Colors.black,
+            isSelected ? AppColors.mainBlue : AppColors.black,
             BlendMode.srcIn,
           ),
         ),
@@ -53,7 +53,7 @@ class NavWidget extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     color: isSelected
                         ? AppColors.mainBlue
-                        : Colors.black,
+                        : AppColors.black,
                   ),
                 )
               : const Text(

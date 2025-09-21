@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theming/text_styles.dart';
@@ -37,19 +38,19 @@ class CustomTabs extends StatelessWidget
                       end: Alignment.centerLeft,
                     )
                   : null,
-              color: isSelected ? null : Colors.white,
+              color: isSelected ? null : AppColors.white,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
                 color: isSelected
-                    ? Colors.transparent
-                    : Colors.grey.shade400,
+                    ? AppColors.transparent
+                    : AppColors.grey300,
                 width: .5,
               ),
             ),
             child: Text(
               tabs[index],
               style: TextStyles.semiBold15.copyWith(
-                color: isSelected ? Colors.white : Colors.black,
+                color: isSelected ? AppColors.white : AppColors.black,
               ),
             ),
           ),

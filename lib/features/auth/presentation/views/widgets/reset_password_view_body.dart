@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,10 +18,8 @@ class ResetPasswordViewBody extends StatefulWidget {
       _ResetPasswordViewBodyState();
 }
 
-final TextEditingController emailController =
-    TextEditingController();
-final GlobalKey<FormState> _formKey =
-    GlobalKey<FormState>();
+final TextEditingController emailController = TextEditingController();
+final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
 class _ResetPasswordViewBodyState
     extends State<ResetPasswordViewBody> {
@@ -65,7 +64,7 @@ class _ResetPasswordViewBodyState
           AppTextButton(
             buttonText: "إرسال",
             textStyle: TextStyles.semiBold16.copyWith(
-              color: Colors.white,
+              color: AppColors.white,
             ),
             onPressed: () {
               validateThenSendLinkToResetPassword(context);
@@ -77,15 +76,11 @@ class _ResetPasswordViewBodyState
     );
   }
 
-  void validateThenSendLinkToResetPassword(
-    BuildContext context,
-  ) {
+  void validateThenSendLinkToResetPassword(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      context
-          .read<ResetPasswordCubit>()
-          .sendLinkToResetPassword(
-            emailController: emailController,
-          );
+      context.read<ResetPasswordCubit>().sendLinkToResetPassword(
+        emailController: emailController,
+      );
       successSnackBar(
         context: context,
         message:
