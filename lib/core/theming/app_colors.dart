@@ -23,6 +23,7 @@ class AppColors {
   static const Color mainBlueOld = Color(0xff425D8C);
   static const Color mainpurple = Color(0xffFF598C);
   static const Color darkModeGray = Color(0xff202124);
+  static const Color black = Color(0xff000000);
 
   static final List<List<Color>> predefinedColorPairsForUnits = [
     [const Color(0xffFF79A2), const Color(0xffFFC9D9)],

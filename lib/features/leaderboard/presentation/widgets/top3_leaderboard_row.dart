@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import '../../../auth/domain/user_entity.dart';
@@ -14,11 +15,11 @@ class Top3LeaderboardRow extends StatelessWidget {
 
   double getScore(UserEntity user) {
     switch (currentTab) {
-      case 'حاليا':
+      case 'يومياً':
         return user.scoreThisDay ?? 0;
-      case 'اسبوعيا':
+      case 'اسبوعياً':
         return user.scoreThisWeek ?? 0;
-      case 'شهريا':
+      case 'شهرياً':
         return user.scoreThisMonth ?? 0;
       default:
         return 0;
@@ -33,10 +34,10 @@ class Top3LeaderboardRow extends StatelessWidget {
         LeaderboardUserBadge(
           leaderboardList: leaderboardList,
           index: 1,
-          outerCircleBorderColor: const Color(0xffb5b2b0),
+          outerCircleBorderColor: const Color(0xff4779C4),
           rankCircleGradientColors: const [
-            Color(0xffafafaf),
-            Color(0xffced0cf),
+            Color(0xff4779C4),
+            Color(0xff4779C4),
           ],
           score: getScore(leaderboardList[1]),
         ),
@@ -47,15 +48,16 @@ class Top3LeaderboardRow extends StatelessWidget {
           fontSize: 35,
           outerCircleSize: 110,
           rankCircleSize: 35,
+          borderWidth: 5,
           score: getScore(leaderboardList[0]),
         ),
         LeaderboardUserBadge(
           leaderboardList: leaderboardList,
           index: 2,
-          outerCircleBorderColor: const Color(0xffa88c61),
+          outerCircleBorderColor: const Color(0xff8E8F92),
           rankCircleGradientColors: const [
-            Color(0xffad8f56),
-            Color(0xffceb995),
+            Color(0xff8E8F92),
+            Color(0xff8E8F92),
           ],
           score: getScore(leaderboardList[2]),
         ),

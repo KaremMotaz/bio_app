@@ -1,3 +1,4 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theming/assets_data.dart';
@@ -13,12 +14,13 @@ class LeaderboardUserBadge extends StatelessWidget {
     this.avatarRadius = 38,
     this.outerCircleSize = 90,
     this.rankCircleSize = 28,
-    this.outerCircleBorderColor = const Color(0xfff6bb14),
+    this.outerCircleBorderColor = const Color(0xffFCC432),
     this.rankCircleGradientColors = const [
-      Color(0xfffdbe00),
+      Color(0xffFCC432),
       Color(0xfffad75a),
     ],
     this.fontSize = 25,
+    this.borderWidth = 3,
     required this.score,
   });
 
@@ -31,6 +33,7 @@ class LeaderboardUserBadge extends StatelessWidget {
   final Color outerCircleBorderColor;
   final List<Color> rankCircleGradientColors;
   final double score;
+  final double borderWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +44,9 @@ class LeaderboardUserBadge extends StatelessWidget {
           maintainSize: true,
           maintainAnimation: true,
           maintainState: true,
-          child: Column(
-            children: [
-              Image.asset(AssetsData.crownIcon, width: 30),
-              const SizedBox(height: 2),
-            ],
+          child: Transform.translate(
+            offset: const Offset(0, 3),
+            child: Image.asset(AssetsData.crownIcon, width: 40),
           ),
         ),
         Stack(
@@ -60,7 +61,7 @@ class LeaderboardUserBadge extends StatelessWidget {
                 color: Colors.white,
                 border: Border.all(
                   color: outerCircleBorderColor,
-                  width: 4,
+                  width: borderWidth,
                 ),
               ),
             ),
@@ -86,7 +87,7 @@ class LeaderboardUserBadge extends StatelessWidget {
                     end: Alignment.topCenter,
                   ),
                   border: Border.all(
-                    color: outerCircleBorderColor,
+                    color: AppColors.white,
                     width: 2,
                   ),
                 ),
@@ -106,7 +107,7 @@ class LeaderboardUserBadge extends StatelessWidget {
           style: TextStyles.bold16.copyWith(color: Colors.black),
         ),
         Text(
-          "${score.toInt()} XP",
+          "${score.toInt()}",
           textDirection: TextDirection.ltr,
           style: TextStyles.bold14.copyWith(color: Colors.black),
         ),

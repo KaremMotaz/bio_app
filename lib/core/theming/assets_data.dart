@@ -27,7 +27,7 @@ class AssetsData {
   static const String arrowBottomBarIcon =
       'assets/svg/arrow_bottom_bar.svg';
 
-  static const String crownIcon = 'assets/images/crown.png';
+  static const String crownIcon = 'assets/images/medieval_crown.png';
   static const String sideBarIcon = 'assets/svg/side_bar.svg';
   static const String notificationsIcon =
       'assets/svg/notifications.svg';

@@ -1,7 +1,8 @@
+
+import 'package:bio_app/core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../../../../core/theming/app_colors.dart';
 import '../../../auth/domain/user_entity.dart';
 import '../../domain/leaderboard_type.dart';
@@ -18,43 +19,58 @@ class LeaderboardView extends StatefulWidget {
 class _LeaderboardViewState extends State<LeaderboardView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  final tabs = LeaderboardType.values;
 
-  final List<String> tabs = ['حاليا', 'اسبوعيا', 'شهريا'];
-
-  // لتخزين آخر بيانات محملة لكل تاب
   final Map<LeaderboardType, List<UserEntity>> _cachedData = {};
 
-  LeaderboardType get _currentType {
-    switch (_tabController.index) {
+  LeaderboardType typeFromIndex(int index) {
+    switch (index) {
       case 0:
-        return LeaderboardType.daily;
-      case 1:
         return LeaderboardType.weekly;
+      case 1:
+        return LeaderboardType.daily;
       case 2:
-      default:
         return LeaderboardType.monthly;
+      default:
+        return LeaderboardType.daily;
+    }
+  }
+
+  int indexFromType(LeaderboardType type) {
+    switch (type) {
+      case LeaderboardType.weekly:
+        return 0;
+      case LeaderboardType.daily:
+        return 1;
+      case LeaderboardType.monthly:
+        return 2;
     }
   }
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: tabs.length, vsync: this);
+    _tabController = TabController(
+      length: tabs.length,
+      vsync: this,
+      initialIndex: 1,
+    );
 
-    // تحميل أول تاب افتراضياً
     _loadCurrentTab();
 
     _tabController.addListener(() {
       if (_tabController.index ==
           _tabController.animation?.value.round()) {
-        setState(() {}); // لتحديث IndexedStack
+        setState(() {});
         _loadCurrentTab();
       }
     });
   }
 
   void _loadCurrentTab() {
-    context.read<LeaderboardCubit>().load(type: _currentType);
+    context.read<LeaderboardCubit>().load(
+      type: typeFromIndex(_tabController.index),
+    );
   }
 
   @override
@@ -69,20 +85,46 @@ class _LeaderboardViewState extends State<LeaderboardView>
       builder: (context, state) {
         final isLoading = state is LeaderboardLoadingState;
 
-        // حفظ البيانات عند التحميل الناجح
         if (state is LeaderboardLoadedState) {
-          _cachedData[_currentType] = state.users;
+          _cachedData[state.type] = state.users;
         }
 
         return ModalProgressHUD(
           inAsyncCall:
-              isLoading && (_cachedData[_currentType] == null),
+              isLoading &&
+              (_cachedData[typeFromIndex(_tabController.index)] ==
+                  null),
           child: Scaffold(
             appBar: AppBar(
-              title: const Text('لوحة الصدارة'),
+              title: const Text("الترتيب"),
               bottom: TabBar(
                 controller: _tabController,
-                tabs: tabs.map((t) => Tab(text: t)).toList(),
+                indicator: BoxDecoration(
+                  color: const Color(0xff48CAE4),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                // indicatorColor: AppColors.white,
+                unselectedLabelColor: AppColors.black,
+                labelColor: AppColors.white,
+                overlayColor: const WidgetStatePropertyAll(
+                  Colors.transparent,
+                ),
+                dividerHeight: 0,
+                tabs: tabs
+                    .map(
+                      (t) => Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 7,
+                          horizontal: 14,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: AppColors.gray),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(t.label, style: TextStyles.medium14),
+                      ),
+                    )
+                    .toList(),
               ),
             ),
             body: AnimatedSwitcher(
@@ -91,34 +133,27 @@ class _LeaderboardViewState extends State<LeaderboardView>
               switchOutCurve: Curves.easeOut,
               child: IndexedStack(
                 index: _tabController.index,
-                children: tabs.map((tabName) {
-                  final type = tabs.indexOf(tabName) == 0
-                      ? LeaderboardType.daily
-                      : tabs.indexOf(tabName) == 1
-                      ? LeaderboardType.weekly
-                      : LeaderboardType.monthly;
-
+                children: List.generate(tabs.length, (i) {
+                  final type = typeFromIndex(i);
                   final data = _cachedData[type];
-
                   if (state is LeaderboardErrorState &&
-                      _currentType == type) {
+                      typeFromIndex(_tabController.index) == type) {
                     return Center(child: Text(state.message));
                   }
 
                   if (data != null) {
                     return LeaderboardTab(
                       leaderboardList: data,
-                      currentTab: tabName,
+                      currentTab: tabs[i].label,
                     );
                   }
 
-                  // إذا لم توجد بيانات بعد
                   return const Center(
                     child: CircularProgressIndicator(
                       color: AppColors.mainBlue,
                     ),
                   );
-                }).toList(),
+                }),
               ),
             ),
           ),

@@ -35,7 +35,7 @@ class LeaderboardWithLessThanFourUsers extends StatelessWidget {
     } else if (leaderboardList.length == 1) {
       return LeaderboardUserBadge(
         leaderboardList: leaderboardList,
-        index: 0,
+        index: 1,
         avatarRadius: 48,
         fontSize: 35,
         outerCircleSize: 110,
@@ -51,7 +51,7 @@ class LeaderboardWithLessThanFourUsers extends StatelessWidget {
             LeaderboardUserBadge(
               leaderboardList: leaderboardList,
               index: 0,
-              avatarRadius: 48,
+              avatarRadius: 40,
               fontSize: 35,
               outerCircleSize: 110,
               rankCircleSize: 35,

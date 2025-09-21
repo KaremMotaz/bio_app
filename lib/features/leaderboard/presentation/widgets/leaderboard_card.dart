@@ -98,7 +98,7 @@ class LeaderboardCard extends StatelessWidget {
             ),
             child: Text(
               textDirection: TextDirection.ltr,
-              "$score XP",
+              "$score نقطة",
               style: TextStyles.semiBold15,
             ),
           ),
