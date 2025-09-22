@@ -21,18 +21,18 @@ class SettingsListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: AppColors.white,
-        border: Border.all(
-          color: AppColors.gray.withAlpha(80),
-          width: 1,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: AppColors.white,
+          border: Border.all(
+            color: AppColors.gray.withAlpha(80),
+            width: 1,
+          ),
         ),
-      ),
-      child: GestureDetector(
-        onTap: onTap,
         child: Row(
           children: [
             Container(
