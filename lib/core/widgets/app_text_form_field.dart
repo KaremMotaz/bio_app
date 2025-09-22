@@ -38,7 +38,7 @@ class AppTextFormField extends StatelessWidget {
       keyboardType: textInputType ?? TextInputType.name,
       controller: controller,
       minLines: minLines ?? 1,
-      maxLines: null,
+      maxLines: isObscureText == true ? 1 : null,
       decoration: InputDecoration(
         isDense: true,
         contentPadding:

@@ -1,9 +1,10 @@
-import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/core/widgets/app_text_button.dart';
 import 'package:bio_app/core/widgets/app_text_form_field.dart';
+import 'package:bio_app/core/widgets/bloc_button.dart';
+import 'package:bio_app/features/settings/presentation/manager/review_app_cubit/review_app_cubit.dart';
 import 'package:bio_app/features/settings/presentation/widgets/custom_rating.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppReviewForm extends StatefulWidget {
   const AppReviewForm({super.key});
@@ -46,17 +47,26 @@ class _AppReviewFormState extends State<AppReviewForm> {
             },
           ),
           const SizedBox(height: 35),
-          AppTextButton(
-            buttonText: "إرسال",
-            textStyle: TextStyles.semiBold16.copyWith(
-              color: AppColors.white,
+          SizedBox(
+            width: double.infinity,
+            child: BlocButton<ReviewAppCubit, ReviewAppState>(
+              label: "إرسال",
+              isLoading: (state) => state is ReviewAppLoadingState,
+              onPressed: () {
+                validateThenSubmitReview(context);
+              },
             ),
-            onPressed: () async {
-              if (formKey.currentState!.validate()) {}
-            },
           ),
         ],
       ),
     );
+  }
+
+  void validateThenSubmitReview(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      context.read<ReviewAppCubit>().submitReview(
+        content: reviewController.text,
+      );
+    }
   }
 }

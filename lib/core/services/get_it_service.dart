@@ -1,4 +1,6 @@
 import 'package:bio_app/features/quiz_questions/presentation/manager/quiz_questions_cubit/quiz_questions_cubit.dart';
+import 'package:bio_app/features/settings/data/settings_data_source.dart';
+import 'package:bio_app/features/settings/data/settings_repo.dart';
 
 import '../../features/lessons/data/data_source/quizzes_remote_data_source.dart';
 import '../../features/lessons/data/repos/quiz_repo_imp.dart';
@@ -285,5 +287,13 @@ void setupGetIt() {
 
   getIt.registerLazySingleton<LeaderboardRepo>(
     () => LeaderboardRepoImp(databaseService: getIt()),
+  );
+
+  getIt.registerLazySingleton<SettingsDataSource>(
+    () => SettingsDataSource(databaseService: getIt()),
+  );
+
+  getIt.registerLazySingleton<SettingsRepo>(
+    () => SettingsRepo(dataSource: getIt()),
   );
 }
