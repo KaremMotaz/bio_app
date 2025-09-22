@@ -42,4 +42,5 @@ class AssetsData {
       'assets/svg/chevron_right.svg';
   static const String emailIcon = 'assets/svg/email.svg';
   static const String phoneIcon = 'assets/svg/phone.svg';
+  static const String starIcon = 'assets/svg/star.svg';
 }

@@ -22,6 +22,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.4.6
+  flutter_rating_bar: ^4.0.1
   flutter_secure_storage: ^9.2.4
   flutter_svg: ^2.2.0
   get_it: ^8.0.3
@@ -73,7 +74,7 @@ flutter:
           weight: 600
         - asset: assets/fonts/Cairo-Bold.ttf
           weight: 700
-          
+
     - family: "Rockwell"
       fonts:
         - asset: assets/fonts/Rockwell-Bold.ttf

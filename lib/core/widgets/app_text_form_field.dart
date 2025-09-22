@@ -17,6 +17,7 @@ class AppTextFormField extends StatelessWidget {
     this.textStyle,
     required this.validator,
     this.textInputType,
+    this.minLines,
   });
   final TextEditingController? controller;
   final EdgeInsetsGeometry? contentPadding;
@@ -29,12 +30,15 @@ class AppTextFormField extends StatelessWidget {
   final TextStyle? textStyle;
   final Function(String?) validator;
   final TextInputType? textInputType;
+  final int? minLines;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       keyboardType: textInputType ?? TextInputType.name,
       controller: controller,
+      minLines: minLines ?? 1,
+      maxLines: null,
       decoration: InputDecoration(
         isDense: true,
         contentPadding:

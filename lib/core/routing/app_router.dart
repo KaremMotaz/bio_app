@@ -1,4 +1,5 @@
 import 'package:bio_app/core/widgets/no_internet_view.dart';
+import 'package:bio_app/features/settings/presentation/views/app_review_view.dart';
 import 'package:bio_app/features/splash/presentation/splash_view.dart';
 import 'package:bio_app/features/units/presentation/notifications_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -101,8 +102,15 @@ abstract class AppRouter {
         ),
         GoRoute(
           path: Routes.noInternetView,
-          builder: (context, state) =>
-              NoInternetView(isConnected: isConnected),
+          builder: (context, state) {
+            return NoInternetView(isConnected: isConnected);
+          },
+        ),
+        GoRoute(
+          path: Routes.appReviewView,
+          builder: (context, state) {
+            return const AppReviewView();
+          },
         ),
         GoRoute(
           path: Routes.profileView,
