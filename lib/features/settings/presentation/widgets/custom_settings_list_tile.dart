@@ -1,4 +1,6 @@
+import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/theming/text_styles.dart';
 
@@ -17,27 +19,30 @@ class CustomSettingsListTile extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
   final Widget trailing;
-  final IconData icon;
+  final String icon;
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 9,
-          vertical: 9,
-        ),
-        decoration: BoxDecoration(
-          color: bgIconcolor,
-          shape: BoxShape.circle,
-        ),
-        child: Icon(icon, size: 18, color: iconcolor),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        color: AppColors.white,
+        border: Border.all(color: iconcolor.withAlpha(40), width: 1),
       ),
-      title: Text(title, style: TextStyles.bold18),
-      trailing: trailing,
-      onTap: onTap,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+      child: ListTile(
+        leading: SvgPicture.asset(
+          icon,
+          colorFilter: ColorFilter.mode(iconcolor, BlendMode.srcIn),
+        ),
+        title: Text(
+          title,
+          style: TextStyles.semiBold16.copyWith(color: iconcolor),
+        ),
+        trailing: trailing,
+        onTap: onTap,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
       ),
     );
   }

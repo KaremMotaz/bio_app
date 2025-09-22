@@ -1,3 +1,4 @@
+import 'package:bio_app/features/settings/presentation/widgets/app_evaluation_list_tile.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theming/text_styles.dart';
@@ -14,13 +15,12 @@ class SettingsSection extends StatelessWidget {
       children: [
         Text("الإعدادات", style: TextStyles.bold20),
         SizedBox(height: 20),
+        AppEvaluationListTile(),
+        SizedBox(height: 24),
         LogoutListTile(),
-        SizedBox(height: 8),
+        SizedBox(height: 24),
         DeleteAccountListTile(),
       ],
     );
   }
 }
-
-
-

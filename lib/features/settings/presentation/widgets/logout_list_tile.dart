@@ -1,3 +1,5 @@
+import 'package:bio_app/core/theming/app_colors.dart';
+import 'package:bio_app/core/theming/assets_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -30,8 +32,8 @@ class LogoutListTile extends StatelessWidget {
         );
       },
       trailing: const SizedBox.shrink(),
-      icon: Icons.logout_rounded,
-      iconcolor: const Color(0xffd05b75),
+      icon: AssetsData.logoutIcon,
+      iconcolor:  AppColors.red,
     );
   }
 }

@@ -101,6 +101,10 @@ abstract class TextStyles {
     fontSize: 12,
     fontWeight: FontWeightHelper.extraBold,
   );
+  static const TextStyle medium12 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeightHelper.medium,
+  );
   static const TextStyle bold9 = TextStyle(
     fontSize: 9,
     fontWeight: FontWeightHelper.bold,

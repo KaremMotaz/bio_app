@@ -32,4 +32,14 @@ class AssetsData {
   static const String notificationsIcon =
       'assets/svg/notifications.svg';
   static const String quizReady = 'assets/images/quiz_ready.jpeg';
+  static const String editIcon = 'assets/svg/Edit.svg';
+  static const String logoutIcon = 'assets/svg/logout.svg';
+  static const String deleteAccountIcon =
+      'assets/svg/delete_account.svg';
+  static const String appEvaluationIcon =
+      'assets/svg/app_evaluation.svg';
+  static const String chevronRightIcon =
+      'assets/svg/chevron_right.svg';
+  static const String emailIcon = 'assets/svg/email.svg';
+  static const String phoneIcon = 'assets/svg/phone.svg';
 }

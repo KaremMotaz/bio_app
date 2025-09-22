@@ -20,7 +20,7 @@ class HomeNavBar extends StatelessWidget {
       AssetsData.homeIcon,
       AssetsData.examIcon,
       AssetsData.leaderboardIcon,
-      AssetsData.personIcon,
+      AssetsData.settingsIcon,
     ];
     final List<String> labels = [
       "الرئيسية",

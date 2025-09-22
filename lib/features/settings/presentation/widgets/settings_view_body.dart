@@ -22,3 +22,4 @@ class SettingsViewBody extends StatelessWidget {
     );
   }
 }
+
