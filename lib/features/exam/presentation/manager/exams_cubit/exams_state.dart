@@ -9,8 +9,6 @@ sealed class ExamsState extends Equatable {
   List<Object?> get props => [];
 }
 
-final class ExamsInitialState extends ExamsState {}
-
 final class ExamsLoadingState extends ExamsState {}
 
 final class ExamsLoadedState extends ExamsState {

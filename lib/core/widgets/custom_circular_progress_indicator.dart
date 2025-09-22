@@ -2,14 +2,16 @@ import 'package:bio_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomCircularProgressIndicator extends StatelessWidget {
-  const CustomCircularProgressIndicator({super.key});
-
+  const CustomCircularProgressIndicator({super.key, this.color});
+  final Color? color;
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
+    return SizedBox(
       width: 21,
       height: 21,
-      child: CircularProgressIndicator(color: AppColors.white),
+      child: CircularProgressIndicator(
+        color: color ?? AppColors.white,
+      ),
     );
   }
 }

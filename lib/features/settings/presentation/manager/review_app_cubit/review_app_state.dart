@@ -9,7 +9,7 @@ sealed class ReviewAppState extends Equatable {
 }
 
 final class ReviewAppInitialState extends ReviewAppState {
-  const ReviewAppInitialState({super.userRating = 0.0});
+  const ReviewAppInitialState({super.userRating});
 }
 
 final class ReviewAppLoadingState extends ReviewAppState {
@@ -22,7 +22,10 @@ final class ReviewAppSuccessState extends ReviewAppState {
 
 final class ReviewAppFailureState extends ReviewAppState {
   final String message;
-  const ReviewAppFailureState({required this.message, super.userRating});
+  const ReviewAppFailureState({
+    required this.message,
+    super.userRating,
+  });
 
   @override
   List<Object> get props => [message, userRating];

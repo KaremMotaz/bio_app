@@ -10,10 +10,12 @@ class ExamsViewBody extends StatelessWidget {
     super.key,
     required this.availableExams,
     required this.pastExams,
+    this.finishedLoading = true,
   });
 
   final List<ExamEntity> availableExams;
   final List<ExamEntity> pastExams;
+  final bool finishedLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class ExamsViewBody extends StatelessWidget {
         children: [
           const Text("الإمتحانات القادمة", style: TextStyles.bold18),
           const SizedBox(height: 16),
-          if (availableExams.isEmpty)
+          if (availableExams.isEmpty && finishedLoading)
             const Center(
               child: Text(
                 "لا توجد إمتحانات حاليا",

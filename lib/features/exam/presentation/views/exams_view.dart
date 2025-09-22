@@ -24,14 +24,21 @@ class ExamsView extends StatelessWidget {
                 ),
               );
             } else if (state is ExamsLoadedState) {
+              if (state.availableExams.isEmpty &&
+                  state.pastExams.isEmpty) {
+                return const Center(
+                  child: Text("لا يوجد إمتحانات حاليا"),
+                );
+              }
               return ExamsViewBody(
                 availableExams: state.availableExams,
                 pastExams: state.pastExams,
+                finishedLoading: true,
               );
             } else if (state is ExamsErrorState) {
               return Center(child: Text(state.message));
             } else {
-              return const Text("لا يوجد إمتحانات حاليا");
+              return const SizedBox.shrink();
             }
           },
         ),
