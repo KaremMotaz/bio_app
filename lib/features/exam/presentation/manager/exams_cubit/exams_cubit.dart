@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/errors/failure.dart';
 import '../../../domain/entities/exam_entity.dart';
 import '../../../domain/repos/exam_repo.dart';
@@ -31,29 +28,14 @@ class ExamsCubit extends Cubit<ExamsState> {
     final Either<Failure, List<ExamEntity>> pastExamsResult =
         await filterPublishedResultsExams();
 
-    // if (availableExamsResult.isRight() && pastExamsResult.isRight()) {
-    //   await Future.delayed(const Duration(seconds: 1));
-    //   return loadExams();
-    // }
-
     List<ExamEntity> availableExams = [];
     List<ExamEntity> pastExams = [];
 
-    // availableExamsResult.fold((failure) {
-    //   if (isClosed) return;
-    //   emit(ExamsErrorState(message: failure.message));
-    //   return;
-    // }, (exams) => availableExams = exams);
-
-    availableExamsResult.fold((failure) => null, (exams) {
-
-      if (exams.isEmpty) {
-        log(exams.toString());
-        Future.delayed(const Duration(seconds: 1), loadExams);
-      }else {
-        availableExams = exams;
-      }
-    });
+    availableExamsResult.fold((failure) {
+      if (isClosed) return;
+      emit(ExamsErrorState(message: failure.message));
+      return;
+    }, (exams) => availableExams = exams);
 
     pastExamsResult.fold((failure) {
       if (isClosed) return;

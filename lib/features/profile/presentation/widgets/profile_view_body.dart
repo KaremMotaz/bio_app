@@ -1,3 +1,5 @@
+import 'package:bio_app/core/theming/app_colors.dart';
+import 'package:bio_app/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:bio_app/features/profile/presentation/widgets/edit_first_name.dart';
 import 'package:bio_app/features/profile/presentation/widgets/edit_last_name.dart';
 import 'package:bio_app/features/profile/presentation/widgets/edit_phone_number.dart';
@@ -50,6 +52,9 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
       builder: (context, state) {
         return ModalProgressHUD(
           inAsyncCall: state is EditProfileLoadingState,
+          progressIndicator: const CustomCircularProgressIndicator(
+            color: AppColors.mainBlue,
+          ),
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(

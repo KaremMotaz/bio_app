@@ -1,27 +1,25 @@
+import 'package:bio_app/core/widgets/bloc_button.dart';
+import 'package:bio_app/features/auth/presentation/manager/signup_cubit/signup_cubit.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/helpers/app_regex.dart';
 import '../../../../../core/theming/text_styles.dart';
 import '../../../../../core/widgets/app_text_form_field.dart';
 import 'password_validations.dart';
 
 class SignUpForm extends StatefulWidget {
-  final TextEditingController emailController;
-  final TextEditingController passwordController;
-  final GlobalKey<FormState> formKey;
-
-  const SignUpForm({
-    super.key,
-    required this.emailController,
-    required this.passwordController,
-    required this.formKey,
-  });
+  const SignUpForm({super.key});
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
 }
 
 class _SignUpFormState extends State<SignUpForm> {
+  final TextEditingController emailController =
+      TextEditingController();
+  final TextEditingController passwordController =
+      TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isPasswordObscureText = true;
 
   // validation booleans
@@ -39,15 +37,15 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   void dispose() {
-    widget.emailController.dispose();
-    widget.passwordController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: widget.formKey,
+      key: formKey,
       child: Column(
         children: [
           AppTextFormField(
@@ -62,13 +60,13 @@ class _SignUpFormState extends State<SignUpForm> {
               }
               return null;
             },
-            controller: widget.emailController,
+            controller: emailController,
           ),
           const SizedBox(height: 18),
           AppTextFormField(
             hintText: "كلمة المرور",
             isObscureText: isPasswordObscureText,
-            controller: widget.passwordController,
+            controller: passwordController,
             suffixIcon: IconButton(
               onPressed: () {
                 setState(() {
@@ -76,7 +74,9 @@ class _SignUpFormState extends State<SignUpForm> {
                 });
               },
               icon: Icon(
-                isPasswordObscureText ? Icons.visibility_off : Icons.visibility,
+                isPasswordObscureText
+                    ? Icons.visibility_off
+                    : Icons.visibility,
               ),
             ),
             validator: (value) {
@@ -105,22 +105,41 @@ class _SignUpFormState extends State<SignUpForm> {
             hasNumber: hasNumber,
             hasMinLength: hasMinLength,
           ),
+          const SizedBox(height: 25),
+          BlocButton<SignupCubit, SignupState>(
+            label: "إنشاء حساب جديد",
+            isLoading: (state) => state is SignupLoadingState,
+            onPressed: () {
+              validateThenSignup(context);
+              emailController.clear();
+              passwordController.clear();
+            },
+          ),
         ],
       ),
     );
   }
 
   void setupPasswordControllerListener() {
-    widget.passwordController.addListener(() {
+    passwordController.addListener(() {
       setState(() {
-        hasLowerCase = AppRegex.hasLowerCase(widget.passwordController.text);
-        hasUpperCase = AppRegex.hasUpperCase(widget.passwordController.text);
+        hasLowerCase = AppRegex.hasLowerCase(passwordController.text);
+        hasUpperCase = AppRegex.hasUpperCase(passwordController.text);
         hasSpecialCharacters = AppRegex.hasSpecialCharacter(
-          widget.passwordController.text,
+          passwordController.text,
         );
-        hasNumber = AppRegex.hasNumber(widget.passwordController.text);
-        hasMinLength = AppRegex.hasMinLength(widget.passwordController.text);
+        hasNumber = AppRegex.hasNumber(passwordController.text);
+        hasMinLength = AppRegex.hasMinLength(passwordController.text);
       });
     });
+  }
+
+  void validateThenSignup(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      context.read<SignupCubit>().signupWithEmailAndPassword(
+        passwordController: passwordController,
+        emailController: emailController,
+      );
+    }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:bio_app/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,10 +22,8 @@ class UnitView extends StatelessWidget {
           builder: (context, state) {
             switch (state) {
               case UnitLoadingState():
-                return const Center(
-                  child: CircularProgressIndicator(
-                    color: AppColors.mainBlue,
-                  ),
+                return const CustomCircularProgressIndicator(
+                  color: AppColors.mainBlue,
                 );
 
               case UnitLoadedState():

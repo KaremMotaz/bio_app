@@ -47,15 +47,12 @@ class _AppReviewFormState extends State<AppReviewForm> {
             },
           ),
           const SizedBox(height: 35),
-          SizedBox(
-            width: double.infinity,
-            child: BlocButton<ReviewAppCubit, ReviewAppState>(
-              label: "إرسال",
-              isLoading: (state) => state is ReviewAppLoadingState,
-              onPressed: () {
-                validateThenSubmitReview(context);
-              },
-            ),
+          BlocButton<ReviewAppCubit, ReviewAppState>(
+            label: "إرسال",
+            isLoading: (state) => state is ReviewAppLoadingState,
+            onPressed: () {
+              validateThenSubmitReview(context);
+            },
           ),
         ],
       ),

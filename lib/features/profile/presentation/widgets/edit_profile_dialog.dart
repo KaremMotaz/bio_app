@@ -124,6 +124,7 @@ editProfileDialog({
                       ),
                     ],
                   ),
+                  const SizedBox(height: 5),
                 ],
               ),
             ),

@@ -79,6 +79,7 @@ showConfirmDialog({
                   ),
                 ],
               ),
+              const SizedBox(height: 10),
             ],
           ),
         ),

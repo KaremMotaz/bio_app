@@ -18,6 +18,7 @@ class AppTextFormField extends StatelessWidget {
     required this.validator,
     this.textInputType,
     this.minLines,
+    this.maxLines,
   });
   final TextEditingController? controller;
   final EdgeInsetsGeometry? contentPadding;
@@ -31,6 +32,7 @@ class AppTextFormField extends StatelessWidget {
   final Function(String?) validator;
   final TextInputType? textInputType;
   final int? minLines;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class AppTextFormField extends StatelessWidget {
       keyboardType: textInputType ?? TextInputType.name,
       controller: controller,
       minLines: minLines ?? 1,
-      maxLines: isObscureText == true ? 1 : null,
+      maxLines: isObscureText == true ? 1 : maxLines,
       decoration: InputDecoration(
         isDense: true,
         contentPadding:
@@ -65,7 +67,7 @@ class AppTextFormField extends StatelessWidget {
         filled: true,
       ),
       obscureText: isObscureText ?? false,
-      style: textStyle ?? TextStyles.medium14,
+      style: textStyle ?? TextStyles.medium16,
       validator: (value) {
         return validator(value);
       },

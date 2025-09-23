@@ -1,3 +1,4 @@
+import 'package:bio_app/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -105,10 +106,8 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
                 if (state is QuizLoadingState) {
                   return const Padding(
                     padding: EdgeInsets.symmetric(vertical: 16),
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        color: AppColors.mainBlue,
-                      ),
+                    child: CustomCircularProgressIndicator(
+                      color: AppColors.mainBlue,
                     ),
                   );
                 } else if (state is QuizLoadedState) {

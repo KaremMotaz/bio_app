@@ -20,26 +20,31 @@ class BlocButton<C extends StateStreamable<S>, S>
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<C, S>(
-      builder: (context, state) {
-        final bool loading = isLoading?.call(state) ?? false;
-        return IgnorePointer(
-          ignoring: loading,
-          child: AppTextButton(
-            backgroundColor: AppColors.mainBlue,
-            buttonWidth: double.infinity,
-            onPressed: onPressed,
-            child: loading
-                ? const CustomCircularProgressIndicator()
-                : Text(
-                    label,
-                    style: TextStyles.bold18.copyWith(
-                      color: AppColors.white,
+    return SizedBox(
+      width: double.infinity,
+      child: BlocBuilder<C, S>(
+        builder: (context, state) {
+          final bool loading = isLoading?.call(state) ?? false;
+          return IgnorePointer(
+            ignoring: loading,
+            child: AppTextButton(
+              backgroundColor: loading
+                  ? AppColors.gray
+                  : AppColors.mainBlue,
+              buttonWidth: double.infinity,
+              onPressed: onPressed,
+              child: loading
+                  ? const CustomCircularProgressIndicator()
+                  : Text(
+                      label,
+                      style: TextStyles.bold18.copyWith(
+                        color: AppColors.white,
+                      ),
                     ),
-                  ),
-          ),
-        );
-      },
+            ),
+          );
+        },
+      ),
     );
   }
 }

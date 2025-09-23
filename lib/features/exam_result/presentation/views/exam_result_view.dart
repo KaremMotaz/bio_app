@@ -1,4 +1,5 @@
 import 'package:bio_app/core/widgets/custom_app_bar_pop_icon.dart';
+import 'package:bio_app/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,10 +25,8 @@ class ExamResultView extends StatelessWidget {
         builder: (context, state) {
           switch (state.runtimeType) {
             case const (ExamResultLoadingState):
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.mainBlue,
-                ),
+              return const CustomCircularProgressIndicator(
+                color: AppColors.mainBlue,
               );
 
             case const (ExamResultLoadedState):
