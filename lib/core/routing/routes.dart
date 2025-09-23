@@ -19,4 +19,5 @@ class Routes {
   static const String noInternetView = '/noInternetView';
   static const String notificationsView = '/notificationsView';
   static const String appReviewView = '/appReviewView';
+  static const String reportBugView = '/reportBugView';
 }

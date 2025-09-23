@@ -1,7 +1,9 @@
 import 'package:bio_app/core/widgets/no_internet_view.dart';
 import 'package:bio_app/features/settings/data/settings_repo.dart';
+import 'package:bio_app/features/settings/presentation/manager/report_bug_cubit/report_bug_cubit.dart';
 import 'package:bio_app/features/settings/presentation/manager/review_app_cubit/review_app_cubit.dart';
 import 'package:bio_app/features/settings/presentation/views/app_review_view.dart';
+import 'package:bio_app/features/settings/presentation/views/report_bug_view.dart';
 import 'package:bio_app/features/splash/presentation/splash_view.dart';
 import 'package:bio_app/features/units/presentation/notifications_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -100,6 +102,16 @@ abstract class AppRouter {
           path: Routes.notificationsView,
           builder: (context, state) {
             return const NotificationsView();
+          },
+        ),
+        GoRoute(
+          path: Routes.reportBugView,
+          builder: (context, state) {
+            return BlocProvider(
+              create: (context) =>
+                  ReportBugCubit(settingsRepo: getIt<SettingsRepo>()),
+              child: const ReportBugView(),
+            );
           },
         ),
         GoRoute(

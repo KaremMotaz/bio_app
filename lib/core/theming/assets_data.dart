@@ -43,4 +43,6 @@ class AssetsData {
   static const String emailIcon = 'assets/svg/email.svg';
   static const String phoneIcon = 'assets/svg/phone.svg';
   static const String starIcon = 'assets/svg/star.svg';
+  static const String bugIcon = 'assets/svg/bug.svg';
+  static const String bugImage = 'assets/images/bug_image.jpeg';
 }

@@ -22,4 +22,6 @@ class BackendEndpoint {
   static const markExamAsOpened = 'openedExams';
   static const addReview = 'reviews';
   static const getReview = 'reviews';
+  static const addReport = 'reports';
+  static const getReport = 'reports';
 }
