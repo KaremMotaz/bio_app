@@ -11,4 +11,28 @@ extension LeaderboardTypeX on LeaderboardType {
         return 'شهرياً';
     }
   }
+
+  int get index {
+    switch (this) {
+      case LeaderboardType.weekly:
+        return 0;
+      case LeaderboardType.daily:
+        return 1;
+      case LeaderboardType.monthly:
+        return 2;
+    }
+  }
+
+  static LeaderboardType fromIndex(int index) {
+    switch (index) {
+      case 0:
+        return LeaderboardType.weekly;
+      case 1:
+        return LeaderboardType.daily;
+      case 2:
+        return LeaderboardType.monthly;
+      default:
+        return LeaderboardType.daily;
+    }
+  }
 }

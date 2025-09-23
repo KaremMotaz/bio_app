@@ -15,5 +15,7 @@ class LeaderboardLoadedState extends LeaderboardState {
 
 class LeaderboardErrorState extends LeaderboardState {
   final String message;
-  LeaderboardErrorState({required this.message});
+  final LeaderboardType type;
+
+  LeaderboardErrorState({required this.message, required this.type});
 }
