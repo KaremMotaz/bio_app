@@ -1,12 +1,12 @@
-import 'package:bio_app/core/helpers/constants.dart';
-import 'package:bio_app/features/chapters/data/models/chapter_model_adapter.dart';
-import 'package:bio_app/features/exam/data/models/exam_model_adapter.dart';
-import 'package:bio_app/features/exam/data/models/exam_question_model_adapter.dart';
-import 'package:bio_app/features/exam_result/data/models/exams_answers_model_adapter.dart';
-import 'package:bio_app/features/lessons/data/models/lesson_model_adapter.dart';
-import 'package:bio_app/features/lessons/data/models/quiz_model_adapter.dart';
-import 'package:bio_app/features/quiz_questions/data/models/quiz_question_model_adapter.dart';
-import 'package:bio_app/features/units/data/models/unit_model_adapter.dart';
+import '../helpers/constants.dart';
+import '../../features/chapters/data/models/chapter_model_adapter.dart';
+import '../../features/exam/data/models/exam_model_adapter.dart';
+import '../../features/exam/data/models/exam_question_model_adapter.dart';
+import '../../features/exam_result/data/models/exams_answers_model_adapter.dart';
+import '../../features/lessons/data/models/lesson_model_adapter.dart';
+import '../../features/lessons/data/models/quiz_model_adapter.dart';
+import '../../features/quiz_questions/data/models/quiz_question_model_adapter.dart';
+import '../../features/units/data/models/unit_model_adapter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 

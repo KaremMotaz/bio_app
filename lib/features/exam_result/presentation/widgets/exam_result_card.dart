@@ -1,7 +1,7 @@
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/features/exam_result/presentation/manager/exam_result_cubit/exam_result_cubit.dart';
-import 'package:bio_app/features/exam_result/presentation/widgets/exam_result_list_tile.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../manager/exam_result_cubit/exam_result_cubit.dart';
+import 'exam_result_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 

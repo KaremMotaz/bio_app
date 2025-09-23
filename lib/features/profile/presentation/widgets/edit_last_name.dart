@@ -1,8 +1,8 @@
-import 'package:bio_app/core/helpers/get_user.dart';
-import 'package:bio_app/core/theming/assets_data.dart';
-import 'package:bio_app/features/profile/presentation/manager/edit_profile_cubit/edit_profile_cubit.dart';
-import 'package:bio_app/features/profile/presentation/widgets/edit_profile_dialog.dart';
-import 'package:bio_app/features/settings/presentation/widgets/settings_list_tile.dart';
+import '../../../../core/helpers/get_user.dart';
+import '../../../../core/theming/assets_data.dart';
+import '../manager/edit_profile_cubit/edit_profile_cubit.dart';
+import 'edit_profile_dialog.dart';
+import '../../../settings/presentation/widgets/settings_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

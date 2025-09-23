@@ -1,5 +1,5 @@
-import 'package:bio_app/core/widgets/bloc_button.dart';
-import 'package:bio_app/features/auth/presentation/manager/signup_cubit/signup_cubit.dart';
+import '../../../../../core/widgets/bloc_button.dart';
+import '../../manager/signup_cubit/signup_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/helpers/app_regex.dart';

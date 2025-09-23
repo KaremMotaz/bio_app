@@ -1,6 +1,6 @@
-import '../models/chapter_model.dart';
 import '../../../../core/helpers/backend_endpoint.dart';
 import '../../../../core/services/data_service.dart';
+import '../models/chapter_model.dart';
 
 class ChaptersRemoteDataSource {
   final DatabaseService databaseService;

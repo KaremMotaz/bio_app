@@ -1,4 +1,4 @@
-import 'package:bio_app/features/exam_result/presentation/widgets/exam_result_card.dart';
+import 'exam_result_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

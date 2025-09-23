@@ -1,5 +1,5 @@
-import 'package:bio_app/core/widgets/custom_app_bar_pop_icon.dart';
-import 'package:bio_app/features/settings/presentation/widgets/app_review_listener.dart';
+import '../../../../core/widgets/custom_app_bar_pop_icon.dart';
+import '../widgets/app_rating_consumer.dart';
 import 'package:flutter/material.dart';
 
 class AppReviewView extends StatelessWidget {
@@ -14,7 +14,7 @@ class AppReviewView extends StatelessWidget {
             : null,
         title: const Text("تقييم التطبيق"),
       ),
-      body: const AppReviewListener(),
+      body: const AppRatingConsumer(),
     );
   }
 }

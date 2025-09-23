@@ -1,6 +1,6 @@
-import 'package:bio_app/core/routing/routes.dart';
-import 'package:bio_app/core/theming/assets_data.dart';
-import 'package:bio_app/features/settings/presentation/widgets/settings_list_tile.dart';
+import '../../../../core/routing/routes.dart';
+import '../../../../core/theming/assets_data.dart';
+import 'settings_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

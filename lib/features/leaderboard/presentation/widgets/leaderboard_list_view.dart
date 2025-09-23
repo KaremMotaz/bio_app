@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '../../../../core/helpers/get_user.dart';
 import '../../../auth/domain/user_entity.dart';
 import 'leaderboard_card.dart';
-import 'package:flutter/material.dart';
 
 class LeaderboardListView extends StatelessWidget {
   const LeaderboardListView({

@@ -1,5 +1,5 @@
-import 'package:bio_app/core/helpers/constants.dart';
-import 'package:bio_app/core/services/supabase_storage_service.dart';
+import '../helpers/constants.dart';
+import '../services/supabase_storage_service.dart';
 import 'package:flutter/foundation.dart';
 
 class SupabaseInitializer {

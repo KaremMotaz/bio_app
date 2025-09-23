@@ -1,9 +1,9 @@
-import 'package:bio_app/core/widgets/no_internet_view.dart';
-import 'package:bio_app/features/settings/data/settings_repo.dart';
-import 'package:bio_app/features/settings/presentation/manager/report_bug_cubit/report_bug_cubit.dart';
-import 'package:bio_app/features/settings/presentation/views/report_bug_view.dart';
-import 'package:bio_app/features/splash/presentation/splash_view.dart';
-import 'package:bio_app/features/units/presentation/notifications_view.dart';
+import '../widgets/no_internet_view.dart';
+import '../../features/settings/data/settings_repo.dart';
+import '../../features/settings/presentation/manager/report_bug_cubit/report_bug_cubit.dart';
+import '../../features/settings/presentation/views/report_bug_view.dart';
+import '../../features/splash/presentation/splash_view.dart';
+import '../../features/units/presentation/notifications_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/views/fill_profile_view.dart';

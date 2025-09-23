@@ -1,5 +1,5 @@
-import 'package:bio_app/core/widgets/custom_app_bar_pop_icon.dart';
-import 'package:bio_app/features/settings/presentation/widgets/report_bug_listener.dart';
+import '../../../../core/widgets/custom_app_bar_pop_icon.dart';
+import '../widgets/report_bug_listener.dart';
 import 'package:flutter/material.dart';
 
 class ReportBugView extends StatelessWidget {

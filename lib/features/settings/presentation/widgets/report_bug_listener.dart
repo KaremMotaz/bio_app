@@ -1,6 +1,6 @@
-import 'package:bio_app/core/functions/build_snack_bar.dart';
-import 'package:bio_app/features/settings/presentation/manager/report_bug_cubit/report_bug_cubit.dart';
-import 'package:bio_app/features/settings/presentation/widgets/add_bug_report.dart';
+import '../../../../core/functions/build_snack_bar.dart';
+import '../manager/report_bug_cubit/report_bug_cubit.dart';
+import 'add_bug_report.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

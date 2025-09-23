@@ -1,6 +1,6 @@
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/core/theming/assets_data.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/assets_data.dart';
+import '../../../../core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

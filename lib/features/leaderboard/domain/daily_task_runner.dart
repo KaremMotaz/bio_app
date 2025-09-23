@@ -1,4 +1,4 @@
-import 'package:bio_app/core/sync/fetch_and_cache_data.dart';
+import '../../../core/sync/fetch_and_cache_data.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/services/cache_helper.dart';

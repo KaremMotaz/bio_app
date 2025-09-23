@@ -1,5 +1,5 @@
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
+import 'app_colors.dart';
+import 'text_styles.dart';
 import 'package:flutter/material.dart';
 
 abstract class ThemeManager {

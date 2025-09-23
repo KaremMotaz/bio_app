@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:bio_app/core/config/init_supabase_safely.dart';
-import 'package:bio_app/core/routing/app_router.dart';
-import 'package:bio_app/core/theming/theme_manager.dart';
+import 'core/config/init_supabase_safely.dart';
+import 'core/routing/app_router.dart';
+import 'core/theming/theme_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';

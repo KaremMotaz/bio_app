@@ -9,7 +9,10 @@ class CacheHelper {
     _prefs = await SharedPreferences.getInstance();
   }
 
-  static Future<void> set({required String key, required dynamic value}) async {
+  static Future<void> set({
+    required String key,
+    required dynamic value,
+  }) async {
     if (value is String) {
       await _prefs.setString(key, value);
     } else if (value is int) {
@@ -37,8 +40,8 @@ class CacheHelper {
     return _prefs.getInt(key) ?? 0;
   }
 
-  static double getDouble({required String key}) {
-    return _prefs.getDouble(key) ?? 0.0;
+  static double? getDouble({required String key}) {
+    return _prefs.getDouble(key);
   }
 
   static List<String> getStringList({required String key}) {

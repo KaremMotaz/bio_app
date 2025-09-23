@@ -20,8 +20,8 @@ class BackendEndpoint {
   static const uploadUsersImages = 'usersImages';
   static const getUsersImages = 'usersImages';
   static const markExamAsOpened = 'openedExams';
-  static const addReview = 'reviews';
-  static const getReview = 'reviews';
+  static const addAppRating = 'reviews';
+  static const getAppRating = 'reviews';
   static const addReport = 'reports';
   static const getReport = 'reports';
 }

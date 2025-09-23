@@ -1,4 +1,4 @@
-import 'package:bio_app/core/widgets/custom_circular_progress_indicator.dart';
+import '../../../../core/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

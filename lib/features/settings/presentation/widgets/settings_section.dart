@@ -1,5 +1,5 @@
-import 'package:bio_app/features/settings/presentation/widgets/app_review_list_tile.dart';
-import 'package:bio_app/features/settings/presentation/widgets/report_bug_list_tile.dart';
+import 'app_review_list_tile.dart';
+import 'report_bug_list_tile.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theming/text_styles.dart';

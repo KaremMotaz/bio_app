@@ -1,4 +1,4 @@
-import 'package:bio_app/core/widgets/custom_app_bar_pop_icon.dart';
+import '../../../../core/widgets/custom_app_bar_pop_icon.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../../exam/domain/entities/exam_question_entity.dart';

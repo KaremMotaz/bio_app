@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/theming/text_styles.dart';
 import 'already_have_an_account.dart';
 import 'signup_form.dart';

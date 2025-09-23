@@ -1,8 +1,8 @@
-import 'package:bio_app/core/routing/routes.dart';
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/core/widgets/bloc_button.dart';
-import 'package:bio_app/features/auth/presentation/manager/login_cubit/login_cubit.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../../../core/widgets/bloc_button.dart';
+import '../../manager/login_cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

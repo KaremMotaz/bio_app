@@ -1,4 +1,4 @@
-import 'package:bio_app/features/units/presentation/widgets/home_appbar.dart';
+import 'home_appbar.dart';
 import 'package:flutter/material.dart';
 import '../../domain/unit_entity.dart';
 import 'units_cards_list.dart';

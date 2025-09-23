@@ -1,6 +1,6 @@
-import 'package:bio_app/core/theming/app_colors.dart';
-import 'package:bio_app/core/theming/text_styles.dart';
-import 'package:bio_app/features/leaderboard/domain/leaderboard_type.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../domain/leaderboard_type.dart';
 import 'package:flutter/material.dart';
 
 class CustomTabBar extends StatelessWidget

@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../../../core/functions/build_snack_bar.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../manager/signup_cubit/signup_cubit.dart';

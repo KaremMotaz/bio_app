@@ -1,7 +1,7 @@
-import 'package:bio_app/core/errors/failure.dart';
-import 'package:bio_app/core/helpers/get_user.dart';
-import 'package:bio_app/features/settings/data/report_model.dart';
-import 'package:bio_app/features/settings/data/settings_repo.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../../../../core/helpers/get_user.dart';
+import '../../../data/models/report_model.dart';
+import '../../../data/settings_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

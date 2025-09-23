@@ -1,4 +1,4 @@
-import 'package:bio_app/features/settings/presentation/widgets/report_bug_form.dart';
+import 'report_bug_form.dart';
 import 'package:flutter/material.dart';
 
 class AddBugReport extends StatelessWidget {

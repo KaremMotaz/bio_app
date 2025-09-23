@@ -1,20 +1,29 @@
-import 'package:bio_app/core/helpers/backend_endpoint.dart';
-import 'package:bio_app/core/services/data_service.dart';
-import 'package:bio_app/features/settings/data/report_model.dart';
-import 'package:bio_app/features/settings/data/review_model.dart';
+import '../../../core/helpers/backend_endpoint.dart';
+import '../../../core/helpers/get_user.dart';
+import '../../../core/services/data_service.dart';
+import 'models/report_model.dart';
+import 'models/app_rating_model.dart';
 
 class SettingsDataSource {
   final DatabaseService databaseService;
 
   SettingsDataSource({required this.databaseService});
-  Future<void> submitReview({
-    required ReviewModel reviewModel,
+  Future<void> submitAppRating({
+    required AppRatingModel appRatingModel,
   }) async {
     await databaseService.addData(
-      path: BackendEndpoint.addReview,
-      data: reviewModel.toJson(),
+      path: BackendEndpoint.addAppRating,
+      data: appRatingModel.toJson(),
+      documentId: appRatingModel.userId,
     );
   }
+
+  Future<Map<String, dynamic>> getAppRating() async {
+    return await databaseService.getData(
+      path: '${BackendEndpoint.getAppRating}/${getUser().uid}',
+    );
+  }
+
   Future<void> submitReport({
     required ReportModel reportModel,
   }) async {
