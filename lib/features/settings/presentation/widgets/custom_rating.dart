@@ -12,28 +12,23 @@ class CustomRating extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ReviewAppCubit, ReviewAppState>(
       builder: (context, state) {
-        return Row(
+        return Column(
           children: [
             RatingBar.builder(
               initialRating: state.userRating,
+              updateOnDrag: true,
               glow: false,
               minRating: 1,
               unratedColor: const Color(0xffffecb0),
               direction: Axis.horizontal,
               allowHalfRating: true,
               itemCount: 5,
-              itemSize: 20,
+              itemSize: 40,
               itemPadding: const EdgeInsets.symmetric(
                 horizontal: 4.0,
               ),
               itemBuilder: (context, _) {
-                return SvgPicture.asset(
-                  AssetsData.starIcon,
-                  colorFilter: const ColorFilter.mode(
-                    Color(0xfffec107),
-                    BlendMode.srcIn,
-                  ),
-                );
+                return SvgPicture.asset(AssetsData.starIcon);
               },
               onRatingUpdate: (value) {
                 context.read<ReviewAppCubit>().setRating(
@@ -41,7 +36,7 @@ class CustomRating extends StatelessWidget {
                 );
               },
             ),
-            const SizedBox(width: 10),
+            const SizedBox(height: 10),
             Text("(${state.userRating})"),
           ],
         );

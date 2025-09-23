@@ -18,14 +18,13 @@ class ReviewAppCubit extends Cubit<ReviewAppState> {
     emit(ReviewAppInitialState(userRating: userRating));
   }
 
-  Future<void> submitReview({required String content}) async {
+  Future<void> submitReview() async {
     emit(ReviewAppLoadingState(userRating: state.userRating));
 
     final Either<Failure, Unit> result =
         await settingsRepo.submitReview(
       reviewModel: ReviewModel(
         rating: state.userRating,
-        content: content,
         userId: getUser().uid!,
       ),
     );

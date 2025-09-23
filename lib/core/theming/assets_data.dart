@@ -42,7 +42,18 @@ class AssetsData {
       'assets/svg/chevron_right.svg';
   static const String emailIcon = 'assets/svg/email.svg';
   static const String phoneIcon = 'assets/svg/phone.svg';
-  static const String starIcon = 'assets/svg/star.svg';
+  static const String starIcon = 'assets/svg/rate_us/star-fill.svg';
   static const String bugIcon = 'assets/svg/bug.svg';
   static const String bugImage = 'assets/images/bug_image.jpeg';
+  static const String reviewBackground =
+      'assets/svg/rate_us/wave.svg';
+  static const String circle = 'assets/svg/rate_us/circle.svg';
+
+  static const String cryingFace = 'assets/images/crying_face.png';
+  static const String worriedFace = 'assets/images/worried_face.png';
+  static const String neutralFace = 'assets/images/neutral_face.png';
+  static const String faceWithSmilingEyes =
+      'assets/images/face_with_smiling_eyes.png';
+  static const String smilingFaceWithHeartEyes =
+      'assets/images/smiling_face_with_heart_eyes.png';
 }

@@ -60,6 +60,7 @@ flutter:
 
   assets:
     - assets/svg/
+    - assets/svg/rate_us/
     - assets/images/
     - assets/avatars/
     - assets/app_icon/

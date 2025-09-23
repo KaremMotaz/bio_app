@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../theming/app_colors.dart';
 
 class CloseIcon extends StatelessWidget {
-  const CloseIcon({super.key});
+  const CloseIcon({super.key, this.color});
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +15,9 @@ class CloseIcon extends StatelessWidget {
         onPressed: () {
           GoRouter.of(context).pop();
         },
-        icon: const Icon(
+        icon: Icon(
           Icons.close_rounded,
-          color: AppColors.darkModeGray,
+          color: color ?? AppColors.darkModeGray,
         ),
       ),
     );

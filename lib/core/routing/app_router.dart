@@ -1,8 +1,6 @@
 import 'package:bio_app/core/widgets/no_internet_view.dart';
 import 'package:bio_app/features/settings/data/settings_repo.dart';
 import 'package:bio_app/features/settings/presentation/manager/report_bug_cubit/report_bug_cubit.dart';
-import 'package:bio_app/features/settings/presentation/manager/review_app_cubit/review_app_cubit.dart';
-import 'package:bio_app/features/settings/presentation/views/app_review_view.dart';
 import 'package:bio_app/features/settings/presentation/views/report_bug_view.dart';
 import 'package:bio_app/features/splash/presentation/splash_view.dart';
 import 'package:bio_app/features/units/presentation/notifications_view.dart';
@@ -118,16 +116,6 @@ abstract class AppRouter {
           path: Routes.noInternetView,
           builder: (context, state) {
             return NoInternetView(isConnected: isConnected);
-          },
-        ),
-        GoRoute(
-          path: Routes.appReviewView,
-          builder: (context, state) {
-            return BlocProvider(
-              create: (context) =>
-                  ReviewAppCubit(settingsRepo: getIt<SettingsRepo>()),
-              child: const AppReviewView(),
-            );
           },
         ),
         GoRoute(

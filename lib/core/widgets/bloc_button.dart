@@ -10,12 +10,14 @@ class BlocButton<C extends StateStreamable<S>, S>
   final bool Function(S state)? isLoading;
   final VoidCallback onPressed;
   final String label;
+  final double? borderRadius;
 
   const BlocButton({
     super.key,
     required this.onPressed,
     required this.label,
     required this.isLoading,
+    this.borderRadius,
   });
 
   @override
@@ -28,6 +30,7 @@ class BlocButton<C extends StateStreamable<S>, S>
           return IgnorePointer(
             ignoring: loading,
             child: AppTextButton(
+              borderRadius: borderRadius,
               backgroundColor: loading
                   ? AppColors.gray
                   : AppColors.mainBlue,

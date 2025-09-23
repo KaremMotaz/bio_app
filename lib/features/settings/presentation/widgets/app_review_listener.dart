@@ -1,6 +1,6 @@
 import 'package:bio_app/core/functions/build_snack_bar.dart';
 import 'package:bio_app/features/settings/presentation/manager/review_app_cubit/review_app_cubit.dart';
-import 'package:bio_app/features/settings/presentation/widgets/add_app_review.dart';
+import 'package:bio_app/features/settings/presentation/widgets/edit_app_review.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -24,10 +24,7 @@ class AppReviewListener extends StatelessWidget {
             errorSnackBar(context: context, message: state.message);
           }
         },
-        child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Column(children: [AddAppReview()]),
-        ),
+        child: const EditAppReview(),
       ),
     );
   }
