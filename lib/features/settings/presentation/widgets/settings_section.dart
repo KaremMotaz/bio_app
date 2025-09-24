@@ -1,3 +1,5 @@
+import 'package:bio_app/features/settings/presentation/widgets/app_info_list_tile.dart';
+
 import 'app_review_list_tile.dart';
 import 'report_bug_list_tile.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,8 @@ class SettingsSection extends StatelessWidget {
         AppReviewListTile(),
         SizedBox(height: 24),
         ReportBugListTile(),
+        SizedBox(height: 24),
+        AppInfoListTile(),
         SizedBox(height: 24),
         LogoutListTile(),
         SizedBox(height: 24),

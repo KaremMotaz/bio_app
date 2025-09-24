@@ -1,3 +1,7 @@
+import 'package:bio_app/features/settings/presentation/views/app_info_view.dart';
+import 'package:bio_app/features/settings/presentation/views/privacy_tip_view.dart';
+import 'package:bio_app/features/settings/presentation/views/terms_and_conditions_view.dart';
+
 import '../widgets/no_internet_view.dart';
 import '../../features/settings/data/settings_repo.dart';
 import '../../features/settings/presentation/manager/report_bug_cubit/report_bug_cubit.dart';
@@ -116,6 +120,24 @@ abstract class AppRouter {
           path: Routes.noInternetView,
           builder: (context, state) {
             return NoInternetView(isConnected: isConnected);
+          },
+        ),
+        GoRoute(
+          path: Routes.appInfoView,
+          builder: (context, state) {
+            return const AppInfoView();
+          },
+        ),
+        GoRoute(
+          path: Routes.privacyTipView,
+          builder: (context, state) {
+            return const PrivacyTipView();
+          },
+        ),
+        GoRoute(
+          path: Routes.termsAndConditionsView,
+          builder: (context, state) {
+            return const TermsAndConditionsView();
           },
         ),
         GoRoute(

@@ -30,6 +30,16 @@ class AppReviewListTile extends StatelessWidget {
                     value: cubit,
                     child: const Dialog(
                       clipBehavior: Clip.hardEdge,
+                      elevation: 2,
+                      insetPadding: EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 0,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                      ),
                       backgroundColor: AppColors.white,
                       child: AppRatingConsumer(),
                     ),

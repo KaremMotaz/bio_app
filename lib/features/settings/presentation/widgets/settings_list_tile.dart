@@ -12,12 +12,15 @@ class SettingsListTile extends StatelessWidget {
     required this.icon,
     required this.onTap,
     this.isTrailingIcon,
+    this.bgIconcolor, this.iconHeight,
   });
   final String title;
   final String icon;
   final VoidCallback onTap;
   final Widget? subTitle;
   final bool? isTrailingIcon;
+  final Color? bgIconcolor;
+  final double? iconHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +40,13 @@ class SettingsListTile extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.all(8),
-              decoration: const BoxDecoration(
-                color: AppColors.grey300,
+              decoration: BoxDecoration(
+                color: bgIconcolor ?? AppColors.grey300,
                 shape: BoxShape.circle,
               ),
               child: SvgPicture.asset(
                 icon,
-                height: 20,
+                height: iconHeight ?? 20,
                 colorFilter: const ColorFilter.mode(
                   AppColors.black,
                   BlendMode.srcIn,
