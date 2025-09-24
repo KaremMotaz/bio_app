@@ -21,7 +21,8 @@ class AppRatingConsumer extends StatelessWidget {
         },
         builder: (context, state) {
           if (state is AppRatingNotRatedState ||
-              state is AppRatingInitialState) {
+              state is AppRatingInitialState ||
+              state is AppRatingLoadingState) {
             return const AddAppRating();
           }
 

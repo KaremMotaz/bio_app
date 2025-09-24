@@ -55,14 +55,7 @@ class EditAppRating extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 16),
-        BlocBuilder<AppRatingCubit, AppRatingState>(
-          builder: (context, state) {
-            return CustomRating(
-              isEditable: false,
-              userRating: state.userRating,
-            );
-          },
-        ),
+        CustomRating(isEditable: false, userRating: userRating),
         const SizedBox(height: 25),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
