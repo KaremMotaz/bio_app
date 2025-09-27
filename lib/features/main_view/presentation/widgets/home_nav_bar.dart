@@ -29,39 +29,37 @@ class HomeNavBar extends StatelessWidget {
       "الإعدادات",
     ];
 
-    return BottomAppBar(
-      color: AppColors.white,
-      height: 96,
-      padding: const EdgeInsets.symmetric(
-        vertical: 12,
-        horizontal: 24,
+    return Container(
+      height: 68,
+      margin: const EdgeInsets.only(
+        bottom: 30,
+        left: 24,
+        right: 24,
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          color: const Color(0xffEDF5F7),
-          borderRadius: BorderRadius.circular(40),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.black.withAlpha(80),
-              blurRadius: 5,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: List.generate(
-              icons.length,
-              (index) => GestureDetector(
-                onTap: () => onTap(index),
-                child: NavWidget(
-                  selectedIndex: selectedIndex,
-                  icons: icons,
-                  labels: labels,
-                  index: index,
-                ),
+      decoration: BoxDecoration(
+        color: const Color(0xffEDF5F7),
+        borderRadius: BorderRadius.circular(40),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.black.withAlpha(80),
+            blurRadius: 5,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: List.generate(
+            icons.length,
+            (index) => GestureDetector(
+              onTap: () => onTap(index),
+              child: NavWidget(
+                selectedIndex: selectedIndex,
+                icons: icons,
+                labels: labels,
+                index: index,
               ),
             ),
           ),

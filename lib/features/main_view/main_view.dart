@@ -24,18 +24,27 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
-      bottomNavigationBar: HomeNavBar(
-        selectedIndex: controller.selectedIndex,
-        onTap: (index) {
-          controller.onItemTapped(index, () => setState(() {}));
-        },
-      ),
-      body: MainPageView(
-        controller: controller.pageController,
-        onPageChanged: (index) {
-          controller.onPageChanged(index, () => setState(() {}));
-        },
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          MainPageView(
+            controller: controller.pageController,
+            onPageChanged: (index) {
+              controller.onPageChanged(index, () => setState(() {}));
+            },
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: HomeNavBar(
+              selectedIndex: controller.selectedIndex,
+              onTap: (index) {
+                controller.onItemTapped(index, () => setState(() {}));
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

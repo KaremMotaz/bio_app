@@ -19,6 +19,7 @@ class UnitViewBody extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: UnitsCardsList(units: units),
           ),
+          const SizedBox(height: 110),
         ],
       ),
     );
