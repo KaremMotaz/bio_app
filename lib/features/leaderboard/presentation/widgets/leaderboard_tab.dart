@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../auth/domain/user_entity.dart';
 import 'leaderboard_list_view.dart';
@@ -10,18 +11,23 @@ class LeaderboardTab extends StatelessWidget {
     super.key,
     required this.leaderboardList,
     required this.currentTab,
+    this.isLoading = false,
   });
   final List<UserEntity> leaderboardList;
   final String currentTab;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     if (leaderboardList.length < 4) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          LeaderboardWithLessThanFourUsers(
-            leaderboardList: leaderboardList,
-            currentTab: currentTab,
+          Skeletonizer(
+            enabled: isLoading,
+            child: LeaderboardWithLessThanFourUsers(
+              leaderboardList: leaderboardList,
+              currentTab: currentTab,
+            ),
           ),
         ],
       );
@@ -37,9 +43,12 @@ class LeaderboardTab extends StatelessWidget {
               currentTab: currentTab,
             ),
             const SizedBox(height: 10),
-            LeaderboardListView(
-              leaderboardList: leaderboardList,
-              currentTab: currentTab,
+            Skeletonizer(
+              enabled: isLoading,
+              child: LeaderboardListView(
+                leaderboardList: leaderboardList,
+                currentTab: currentTab,
+              ),
             ),
           ],
         ),

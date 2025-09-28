@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import '../../../../core/theming/text_styles.dart';
 import '../../domain/entities/exam_entity.dart';
 import 'available_exams_list_view.dart';

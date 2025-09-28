@@ -1,8 +1,6 @@
-import '../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../widgets/custom_tab_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/theming/app_colors.dart';
 import '../../domain/leaderboard_type.dart';
 import '../manager/leaderboard_cubit/leaderboard_cubit.dart';
 import '../widgets/leaderboard_tab.dart';
@@ -76,8 +74,10 @@ class _LeaderboardViewState extends State<LeaderboardView>
                 );
               }
 
-              return const CustomCircularProgressIndicator(
-                color: AppColors.mainBlue,
+              return LeaderboardTab(
+                leaderboardList: const [],
+                currentTab: type.label,
+                isLoading: true,
               );
             }).toList(),
           );
