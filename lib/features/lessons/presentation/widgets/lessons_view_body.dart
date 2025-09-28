@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../domain/lesson_entity.dart';
 import 'lessons_cards_list.dart';
@@ -9,9 +10,11 @@ class LessonsViewBody extends StatelessWidget {
     super.key,
     required this.lessons,
     required this.chapterImage,
+    this.isLoading = false,
   });
   final List<LessonEntity> lessons;
   final String chapterImage;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +37,12 @@ class LessonsViewBody extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [LessonsCardsList(lessons: lessons)],
+            child: Skeletonizer(
+              enabled: isLoading,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [LessonsCardsList(lessons: lessons)],
+              ),
             ),
           ),
         ],

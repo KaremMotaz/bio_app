@@ -1,8 +1,5 @@
-import '../../../../core/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../core/theming/app_colors.dart';
 import '../manager/exams_cubit/exams_cubit.dart';
 import '../manager/exams_cubit/exams_state.dart';
 import '../widgets/exams_view_body.dart';
@@ -19,8 +16,10 @@ class ExamsView extends StatelessWidget {
         child: BlocBuilder<ExamsCubit, ExamsState>(
           builder: (context, state) {
             if (state is ExamsLoadingState) {
-              return const CustomCircularProgressIndicator(
-                color: AppColors.mainBlue,
+              return const ExamsViewBody(
+                availableExams: [],
+                pastExams: [],
+                isLoading: true,
               );
             } else if (state is ExamsLoadedState) {
               if (state.availableExams.isEmpty &&
@@ -32,7 +31,6 @@ class ExamsView extends StatelessWidget {
               return ExamsViewBody(
                 availableExams: state.availableExams,
                 pastExams: state.pastExams,
-                finishedLoading: true,
               );
             } else if (state is ExamsErrorState) {
               return Center(child: Text(state.message));

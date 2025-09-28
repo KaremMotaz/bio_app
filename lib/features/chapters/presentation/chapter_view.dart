@@ -1,8 +1,5 @@
-import '../../../core/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../core/theming/app_colors.dart';
 import '../../../core/widgets/custom_app_bar_pop_icon.dart';
 import '../../units/domain/unit_entity.dart';
 import 'manager/chapter_cubit/chapter_cubit.dart';
@@ -26,8 +23,10 @@ class ChapterView extends StatelessWidget {
           builder: (context, state) {
             switch (state) {
               case ChapterLoadingState():
-                return const CustomCircularProgressIndicator(
-                  color: AppColors.mainBlue,
+                return ChapterViewBody(
+                  chapters: const [],
+                  unitId: unit.id,
+                  isLoading: true,
                 );
 
               case ChapterLoadedState():

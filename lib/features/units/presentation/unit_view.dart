@@ -1,9 +1,6 @@
-import '../../../core/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../core/theming/app_colors.dart';
 import 'manager/unit_cubit/unit_cubit.dart';
 import 'widgets/unit_view_body.dart';
 
@@ -22,9 +19,7 @@ class UnitView extends StatelessWidget {
           builder: (context, state) {
             switch (state) {
               case UnitLoadingState():
-                return const CustomCircularProgressIndicator(
-                  color: AppColors.mainBlue,
-                );
+                return const UnitViewBody(units: [], isLoading: true);
 
               case UnitLoadedState():
                 return UnitViewBody(units: state.units);

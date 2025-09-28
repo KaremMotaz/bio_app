@@ -8,9 +8,11 @@ class ChapterViewBody extends StatelessWidget {
     super.key,
     required this.chapters,
     required this.unitId,
+    this.isLoading = false,
   });
   final List<ChapterEntity> chapters;
   final String unitId;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,11 @@ class ChapterViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ChaptersCardsList(chapters: chapters, unitId: unitId),
+            ChaptersCardsList(
+              chapters: chapters,
+              unitId: unitId,
+              isLoading: isLoading,
+            ),
           ],
         ),
       ),

@@ -84,12 +84,15 @@ class CustomUnitCard extends StatelessWidget {
           Positioned(
             top: -45,
             left: 30,
-            child: CachedNetworkImage(
-              imageUrl: unit.image,
-              width: 128,
-              fit: BoxFit.cover,
-              errorWidget: (context, url, error) =>
-                  const Icon(Icons.error),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: CachedNetworkImage(
+                imageUrl: unit.image,
+                width: 128,
+                fit: BoxFit.cover,
+                errorWidget: (context, url, error) =>
+                    const Icon(Icons.error),
+              ),
             ),
           ),
         ],

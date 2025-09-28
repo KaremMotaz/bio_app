@@ -1,8 +1,7 @@
-import '../../../../core/widgets/custom_circular_progress_indicator.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../core/helpers/constants.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/app_colors.dart';
@@ -104,11 +103,19 @@ class _CustomLessonCardState extends State<CustomLessonCard> {
             BlocBuilder<QuizCubit, QuizState>(
               builder: (context, state) {
                 if (state is QuizLoadingState) {
-                  return const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    child: CustomCircularProgressIndicator(
-                      color: AppColors.mainBlue,
-                    ),
+                  return ListView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 1, 
+                    itemBuilder: (context, index) {
+                      return const Skeletonizer(
+                        enabled: true,
+                        child: ListTile(
+                          title: Text("loading quiz..."),
+                        ),
+                      );
+                    },
                   );
                 } else if (state is QuizLoadedState) {
                   if (state.quizzes.isEmpty) {

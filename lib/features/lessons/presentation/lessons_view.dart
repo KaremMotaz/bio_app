@@ -1,7 +1,5 @@
-import '../../../core/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../core/theming/app_colors.dart';
 import '../../../core/widgets/custom_app_bar_pop_icon.dart';
 import '../../chapters/domain/chapter_entity.dart';
@@ -28,8 +26,10 @@ class LessonsView extends StatelessWidget {
           builder: (context, state) {
             switch (state) {
               case LessonLoadingState():
-                return const CustomCircularProgressIndicator(
-                  color: AppColors.mainBlue,
+                return LessonsViewBody(
+                  lessons: const [],
+                  chapterImage: chapter.image,
+                  isLoading: true,
                 );
 
               case LessonLoadedState():

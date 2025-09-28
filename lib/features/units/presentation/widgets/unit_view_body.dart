@@ -4,8 +4,13 @@ import '../../domain/unit_entity.dart';
 import 'units_cards_list.dart';
 
 class UnitViewBody extends StatelessWidget {
-  const UnitViewBody({super.key, required this.units});
+  const UnitViewBody({
+    super.key,
+    required this.units,
+    this.isLoading = false,
+  });
   final List<UnitEntity> units;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +19,14 @@ class UnitViewBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const HomeAppbar(),
-          const SizedBox(height: 46),
+          const SizedBox(height: 20),
           Padding(
-            padding: const EdgeInsets.all(16),
-            child: UnitsCardsList(units: units),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 20,
+            ),
+            child: UnitsCardsList(units: units, isLoading: isLoading),
           ),
-          const SizedBox(height: 110),
         ],
       ),
     );
