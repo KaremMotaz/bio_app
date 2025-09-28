@@ -1,5 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-
+import 'package:flutter/services.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';
 import '../../../../core/sync/exam_view_open.dart';
@@ -37,8 +38,14 @@ class ExamRepoImpl implements ExamRepo {
       await examsLocalDataSource.cacheExams(exams);
 
       return Right(exams);
+    } on FirebaseException catch (e) {
+      return Left(ServerFailure.fromFirebaseException(e));
+    } on PlatformException catch (e) {
+      return Left(ServerFailure.fromPlatformException(e));
+    } on ServerFailure catch (e) {
+      return Left(e);
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      return Left(ServerFailure.unknown(e.toString()));
     }
   }
 
@@ -49,8 +56,14 @@ class ExamRepoImpl implements ExamRepo {
     try {
       await examsRemoteDataSource.markExamAsOpened(examId: examId);
       return const Right(unit);
+    } on FirebaseException catch (e) {
+      return Left(ServerFailure.fromFirebaseException(e));
+    } on PlatformException catch (e) {
+      return Left(ServerFailure.fromPlatformException(e));
+    } on ServerFailure catch (e) {
+      return Left(e);
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      return Left(ServerFailure.unknown(e.toString()));
     }
   }
 
@@ -61,8 +74,14 @@ class ExamRepoImpl implements ExamRepo {
       final Map<String, bool> result = await examsRemoteDataSource
           .getOpenedExamsStatus();
       return Right(result);
+    } on FirebaseException catch (e) {
+      return Left(ServerFailure.fromFirebaseException(e));
+    } on PlatformException catch (e) {
+      return Left(ServerFailure.fromPlatformException(e));
+    } on ServerFailure catch (e) {
+      return Left(e);
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      return Left(ServerFailure.unknown(e.toString()));
     }
   }
 }

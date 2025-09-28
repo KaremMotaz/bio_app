@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../../../../core/helpers/get_user.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';
@@ -31,10 +32,18 @@ class ImagesRepoImp implements ImagesRepo {
         path: BackendEndpoint.uploadUsersImages,
       );
       return right(url);
+    } on StorageException catch (e) {
+      return left(
+        ServerFailure(message: "خطأ في التخزين: ${e.message}"),
+      );
+    } on PostgrestException catch (e) {
+      return left(
+        ServerFailure(message: "خطأ في قاعدة البيانات: ${e.message}"),
+      );
     } catch (e) {
-      log('From upload Image To Storage +${e.toString()}');
-
-      return left(ServerFailure(message: e.toString()));
+      return left(
+        ServerFailure(message: "خطأ غير متوقع: ${e.toString()}"),
+      );
     }
   }
 
@@ -49,10 +58,18 @@ class ImagesRepoImp implements ImagesRepo {
         path: BackendEndpoint.getUsersImages,
       );
       return right(getUrl);
+    } on StorageException catch (e) {
+      return left(
+        ServerFailure(message: "خطأ في التخزين: ${e.message}"),
+      );
+    } on PostgrestException catch (e) {
+      return left(
+        ServerFailure(message: "خطأ في قاعدة البيانات: ${e.message}"),
+      );
     } catch (e) {
-      log('From get Image +${e.toString()}');
-
-      return left(ServerFailure(message: e.toString()));
+      return left(
+        ServerFailure(message: "خطأ غير متوقع: ${e.toString()}"),
+      );
     }
   }
 
@@ -66,10 +83,18 @@ class ImagesRepoImp implements ImagesRepo {
         data: {'imageUrl': imageUrl},
       );
       return right(unit);
+    } on StorageException catch (e) {
+      return left(
+        ServerFailure(message: "خطأ في التخزين: ${e.message}"),
+      );
+    } on PostgrestException catch (e) {
+      return left(
+        ServerFailure(message: "خطأ في قاعدة البيانات: ${e.message}"),
+      );
     } catch (e) {
-      log('From upload Image To Database +${e.toString()}');
-
-      return left(ServerFailure(message: e.toString()));
+      return left(
+        ServerFailure(message: "خطأ غير متوقع: ${e.toString()}"),
+      );
     }
   }
 
@@ -106,10 +131,18 @@ class ImagesRepoImp implements ImagesRepo {
       );
 
       return const Right(null);
+    } on StorageException catch (e) {
+      return left(
+        ServerFailure(message: "خطأ في التخزين: ${e.message}"),
+      );
+    } on PostgrestException catch (e) {
+      return left(
+        ServerFailure(message: "خطأ في قاعدة البيانات: ${e.message}"),
+      );
     } catch (e) {
-      log('From delete Image From Storage +${e.toString()}');
-
-      return Left(ServerFailure(message: e.toString()));
+      return left(
+        ServerFailure(message: "خطأ غير متوقع: ${e.toString()}"),
+      );
     }
   }
 }

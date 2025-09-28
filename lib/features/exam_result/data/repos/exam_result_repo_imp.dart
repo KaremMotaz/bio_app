@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';
@@ -49,8 +51,14 @@ class ExamResultRepoImp implements ExamResultRepo {
       );
 
       return Right(examsquestions);
+    } on FirebaseException catch (e) {
+      return Left(ServerFailure.fromFirebaseException(e));
+    } on PlatformException catch (e) {
+      return Left(ServerFailure.fromPlatformException(e));
+    } on ServerFailure catch (e) {
+      return Left(e);
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      return Left(ServerFailure.unknown(e.toString()));
     }
   }
 
@@ -75,8 +83,14 @@ class ExamResultRepoImp implements ExamResultRepo {
       );
 
       return Right(examsAnswers);
+    } on FirebaseException catch (e) {
+      return Left(ServerFailure.fromFirebaseException(e));
+    } on PlatformException catch (e) {
+      return Left(ServerFailure.fromPlatformException(e));
+    } on ServerFailure catch (e) {
+      return Left(e);
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      return Left(ServerFailure.unknown(e.toString()));
     }
   }
 
@@ -93,8 +107,14 @@ class ExamResultRepoImp implements ExamResultRepo {
         examId: examId,
       );
       return const Right(unit);
+    } on FirebaseException catch (e) {
+      return Left(ServerFailure.fromFirebaseException(e));
+    } on PlatformException catch (e) {
+      return Left(ServerFailure.fromPlatformException(e));
+    } on ServerFailure catch (e) {
+      return Left(e);
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      return Left(ServerFailure.unknown(e.toString()));
     }
   }
 }

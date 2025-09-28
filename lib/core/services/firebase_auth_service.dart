@@ -1,12 +1,9 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
 import '../errors/auth_failure.dart';
 import '../errors/failure.dart';
 import '../errors/server_failure.dart';
@@ -64,8 +61,6 @@ class FirebaseAuthService {
           );
       return right(credential.user!);
     } on FirebaseAuthException catch (e) {
-      log(e.toString());
-
       return left(
         ServerFailure(
           code: e.code,
@@ -73,7 +68,6 @@ class FirebaseAuthService {
         ),
       );
     } catch (e) {
-      log(e.toString());
       return left(
         ServerFailure(code: 'unknown', message: e.toString()),
       );
@@ -100,7 +94,6 @@ Future<Either<Failure, User>> signInWithGoogle({
     );
     return right(userCredential.user!);
   } on GoogleSignInException catch (e) {
-    log(e.toString());
     if (e.code == GoogleSignInExceptionCode.canceled) {
       return left(
         const ServerFailure(
@@ -116,7 +109,6 @@ Future<Either<Failure, User>> signInWithGoogle({
       ),
     );
   } on FirebaseAuthException catch (e) {
-    log(e.toString());
     return left(
       ServerFailure(
         code: e.code,
@@ -124,7 +116,6 @@ Future<Either<Failure, User>> signInWithGoogle({
       ),
     );
   } catch (e) {
-    log(e.toString());
     return left(
       ServerFailure(code: 'unknown', message: e.toString()),
     );

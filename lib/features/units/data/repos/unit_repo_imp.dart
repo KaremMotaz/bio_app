@@ -1,7 +1,6 @@
-import 'dart:developer';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-
+import 'package:flutter/services.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';
 import '../../domain/unit_repo.dart';
@@ -36,9 +35,14 @@ class UnitRepoImpl implements UnitRepo {
       await unitsLocalDataSource.cacheUnits(units);
 
       return Right(units);
+    } on FirebaseException catch (e) {
+      return Left(ServerFailure.fromFirebaseException(e));
+    } on PlatformException catch (e) {
+      return Left(ServerFailure.fromPlatformException(e));
+    } on ServerFailure catch (e) {
+      return Left(e);
     } catch (e) {
-      log(e.toString());
-      return Left(ServerFailure(message: e.toString()));
+      return Left(ServerFailure.unknown(e.toString()));
     }
   }
 }

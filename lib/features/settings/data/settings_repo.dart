@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import '../../../core/errors/failure.dart';
 import '../../../core/errors/firestore_failure.dart';
 import '../../../core/helpers/constants.dart';
@@ -27,7 +25,6 @@ class SettingsRepo {
       );
       return right(unit);
     } catch (e) {
-      log("From submit app rating $e");
       return left(FirestoreFailure.fromCode(e.toString()));
     }
   }
@@ -58,7 +55,6 @@ class SettingsRepo {
 
       return right(appRatingModel);
     } catch (e) {
-      log("From get app Rating $e");
       return left(FirestoreFailure.fromCode(e.toString()));
     }
   }

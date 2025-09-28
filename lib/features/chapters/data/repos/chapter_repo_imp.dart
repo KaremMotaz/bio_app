@@ -1,7 +1,6 @@
-import 'dart:developer';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-
+import 'package:flutter/services.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';
 import '../../domain/chapter_repo.dart';
@@ -42,11 +41,15 @@ class ChapterRepoImpl implements ChapterRepo {
         chapters: chapters,
         unitId: unitId,
       );
-
       return Right(chapters);
-    } catch (e, st) {
-      log(e.toString(), stackTrace: st);
-      return Left(ServerFailure(message: e.toString()));
+    } on FirebaseException catch (e) {
+      return Left(ServerFailure.fromFirebaseException(e));
+    } on PlatformException catch (e) {
+      return Left(ServerFailure.fromPlatformException(e));
+    } on ServerFailure catch (e) {
+      return Left(e);
+    } catch (e) {
+      return Left(ServerFailure.unknown(e.toString()));
     }
   }
 }
