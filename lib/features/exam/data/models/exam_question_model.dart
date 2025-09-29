@@ -1,5 +1,10 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import '../../domain/entities/exam_question_entity.dart';
 
+part 'exam_question_model.g.dart';
+
+@JsonSerializable()
 class ExamQuestionsModel extends ExamQuestionEntity {
   ExamQuestionsModel({
     required super.index,
@@ -15,37 +20,45 @@ class ExamQuestionsModel extends ExamQuestionEntity {
   });
 
   factory ExamQuestionsModel.fromJson(Map<String, dynamic> json) {
-    return ExamQuestionsModel(
-      index: json['index'] as int,
-      title: json['title'] as String?,
-      scenario: json['scenario'] as String?,
-      questionText: json['text'] as String,
-      options: (json['options'] as List<dynamic>)
-          .map((e) => e.toString())
-          .toList(),
-      correctIndex: json['correctIndex'] as int,
-      type: ExamOptionsType.values.byName(json['type'] as String),
-      marks: json['marks'],
-      images: (json['images'] as List<dynamic>?)
-          ?.map((e) => e.toString())
-          .toList(),
-      explanation: json['explanation'] as String?,
-    );
+    return _$ExamQuestionsModelFromJson(json);
   }
+
   Map<String, dynamic> toJson() {
-    return {
-      'index': index,
-      'title': title,
-      'scenario': scenario,
-      'text': questionText,
-      'options': options,
-      'correctIndex': correctIndex,
-      'type': type.name,
-      'marks': marks,
-      'images': images,
-      'explanation': explanation,
-    };
+    return _$ExamQuestionsModelToJson(this);
   }
+
+  // factory ExamQuestionsModel.fromJson(Map<String, dynamic> json) {
+  //   return ExamQuestionsModel(
+  //     index: json['index'] as int,
+  //     title: json['title'] as String?,
+  //     scenario: json['scenario'] as String?,
+  //     questionText: json['text'] as String,
+  //     options: (json['options'] as List<dynamic>)
+  //         .map((e) => e.toString())
+  //         .toList(),
+  //     correctIndex: json['correctIndex'] as int,
+  //     type: ExamOptionsType.values.byName(json['type'] as String),
+  //     marks: json['marks'],
+  //     images: (json['images'] as List<dynamic>?)
+  //         ?.map((e) => e.toString())
+  //         .toList(),
+  //     explanation: json['explanation'] as String?,
+  //   );
+  // }
+  // Map<String, dynamic> toJson() {
+  //   return {
+  //     'index': index,
+  //     'title': title,
+  //     'scenario': scenario,
+  //     'text': questionText,
+  //     'options': options,
+  //     'correctIndex': correctIndex,
+  //     'type': type.name,
+  //     'marks': marks,
+  //     'images': images,
+  //     'explanation': explanation,
+  //   };
+  // }
 }
 
 enum ExamOptionsType { textOptions, imageOptions, trueFalseOptions }

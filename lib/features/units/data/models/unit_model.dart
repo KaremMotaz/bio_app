@@ -1,7 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import '../../domain/unit_entity.dart';
-
 part 'unit_model.g.dart';
 
 @JsonSerializable()
@@ -14,10 +12,13 @@ class UnitModel extends UnitEntity {
     required super.colorIndex,
   });
 
-  factory UnitModel.fromJson(Map<String, dynamic> json) =>
-      _$UnitModelFromJson(json);
-      
-  Map<String, dynamic> toJson() => _$UnitModelToJson(this);
+  factory UnitModel.fromJson(Map<String, dynamic> json) {
+    return _$UnitModelFromJson(json);
+  }
+
+  Map<String, dynamic> toJson() {
+    return _$UnitModelToJson(this);
+  }
 
   UnitEntity toEntity() => UnitEntity(
     index: index,

@@ -1,5 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
 import '../../domain/quiz_entity.dart';
+part 'quiz_model.g.dart';
 
+@JsonSerializable()
 class QuizModel extends QuizEntity {
   QuizModel({
     required super.id,
@@ -9,20 +12,10 @@ class QuizModel extends QuizEntity {
   });
 
   factory QuizModel.fromJson(Map<String, dynamic> json) {
-    return QuizModel(
-      id: json['id'] as String,
-      index: json['index'] as int,
-      title: json['title'] as String,
-      lessonId: json['lessonId'] as String,
-    );
+    return _$QuizModelFromJson(json);
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'index': index,
-      'title': title,
-      'lessonId': lessonId,
-    };
+    return _$QuizModelToJson(this);
   }
 }

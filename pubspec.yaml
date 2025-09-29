@@ -46,6 +46,7 @@ dependencies:
   url_launcher: ^6.3.2
 
 dev_dependencies:
+  analyzer: ^6.4.1
   build_runner: ^2.4.13
   flutter_launcher_icons: ^0.14.4
   flutter_lints: ^5.0.0
@@ -53,6 +54,7 @@ dev_dependencies:
     sdk: flutter
   hive_generator: ^2.0.1
   json_serializable: ^6.8.0
+
 flutter_launcher_icons:
   android: true
   ios: true

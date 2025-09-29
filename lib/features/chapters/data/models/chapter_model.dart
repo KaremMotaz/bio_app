@@ -1,7 +1,11 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import '../../domain/chapter_entity.dart';
 
-class ChapterModel extends ChapterEntity {
+part 'chapter_model.g.dart';
 
+@JsonSerializable()
+class ChapterModel extends ChapterEntity {
   ChapterModel({
     required super.id,
     required super.index,
@@ -11,21 +15,10 @@ class ChapterModel extends ChapterEntity {
   });
 
   factory ChapterModel.fromJson(Map<String, dynamic> json) {
-    return ChapterModel(
-      id: json['id'] as String,
-      index: json['index'] as int,
-      title: json['title'] as String,
-      image: json['image'] as String,
-      colorIndex: json['colorIndex'] as int,
-    );
+    return _$ChapterModelFromJson(json);
   }
+
   Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'index': index,
-      'title': title,
-      'image': image,
-      'colorIndex': colorIndex,
-    };
+    return _$ChapterModelToJson(this);
   }
 }
