@@ -281,7 +281,7 @@ abstract class AppRouter {
         }
 
         if (isConnected && currentLocation == Routes.noInternetView) {
-          return lastLocation ?? Routes.mainView;
+          return lastLocation ?? Routes.splashView;
         }
 
         return null;
