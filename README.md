@@ -55,7 +55,7 @@ The app provides structured content, quizzes, exams, and gamified learning.
 ### Welcome To Biotics  
 ![Welcome To Biotics](assets/biotics_app_presentation/2.png)  
 
-### Onboarding Screen  
+### Onboarding Screens  
 ![Onboarding Screen](assets/biotics_app_presentation/3.png)  
 
 ### Auth Screens  
