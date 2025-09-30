@@ -50,46 +50,49 @@ The app provides structured content, quizzes, exams, and gamified learning.
 ## 📱 Preview  
 
 ### Splash Screen  
-![Splash Screen](assets/Biotics_app_presentation/1.png)  
+![Splash Screen](assets/biotics_app_presentation/1.png)  
 
 ### Welcome To Biotics  
-![Welcome To Biotics](assets/Biotics_app_presentation/2.png)  
+![Welcome To Biotics](assets/biotics_app_presentation/2.png)  
 
 ### Onboarding Screen  
-![Onboarding Screen](assets/Biotics_app_presentation/3.png)  
+![Onboarding Screen](assets/biotics_app_presentation/3.png)  
 
 ### Auth Screens  
-![Auth Screens](assets/Biotics_app_presentation/4.png)  
+![Auth Screens](assets/biotics_app_presentation/4.png)  
 
 ### Curriculum Screens  
-![Curriculum Screens](assets/Biotics_app_presentation/5.png)  
+![Curriculum Screens](assets/biotics_app_presentation/5.png)  
 
 ### Quiz Screens  
-![Quiz Screens](assets/Biotics_app_presentation/6.png)  
+![Quiz Screens](assets/biotics_app_presentation/6.png)  
 
 ### Exam Screens  
-![Exam Screens](assets/Biotics_app_presentation/7.png)  
+![Exam Screens](assets/biotics_app_presentation/7.png)  
 
 ### Exam Result Screens  
-![Exam Result Screens](assets/Biotics_app_presentation/8.png)  
+![Exam Result Screens](assets/biotics_app_presentation/8.png)  
 
 ### Leaderboard Screen  
-![Leaderboard Screen](assets/Biotics_app_presentation/9.png)  
+![Leaderboard Screen](assets/biotics_app_presentation/9.png)  
 
-### Settings Screen  
-![Settings Screen](assets/Biotics_app_presentation/10.png)  
+### Settings Screens  
+![Settings Screens](assets/biotics_app_presentation/10.png)  
+
+### Settings Screens Continue
+![Settings Screens Continue](assets/biotics_app_presentation/11.png)  
 
 ### Profile Screen  
-![Profile Screen](assets/Biotics_app_presentation/11.png)  
+![Profile Screen](assets/biotics_app_presentation/12.png)  
 
 ### No Internet Screen  
-![No Internet Screen](assets/Biotics_app_presentation/12.png)  
+![No Internet Screen](assets/biotics_app_presentation/13.png)  
 
 ### Contact Us  
-![Contact Us](assets/Biotics_app_presentation/13.png)  
+![Contact Us](assets/biotics_app_presentation/14.png)  
 
 ### Thank You For Your Time  
-![Thank You For Your Time](assets/Biotics_app_presentation/14.png)  
+![Thank You For Your Time](assets/biotics_app_presentation/15.png)  
 
 ---
 
